@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SwordAnimation : MonoBehaviour
+public class AxeAnimation : MonoBehaviour
 {
     Animator animator;
     bool inAnimation = false;
@@ -23,12 +23,12 @@ public class SwordAnimation : MonoBehaviour
 
         if (!inAnimation && Input.GetMouseButtonDown(1)){
             
-            animator.SetBool("SwordBlock", true);
+            animator.SetBool("AxeBlock", true);
             inAnimation = true;
         }
         if (Input.GetMouseButtonUp(1))
         {
-            animator.SetBool("SwordBlock", false);
+            animator.SetBool("AxeBlock", false);
             inAnimation = false;
         }
     }
@@ -36,10 +36,10 @@ public class SwordAnimation : MonoBehaviour
     {
         Blade.isTrigger = true;
         inAnimation = true;
-        animator.SetBool("SwordAnim",true);
+        animator.SetBool("AxeAnim",true);
         yield return new WaitForSeconds(0.46f);
         Blade.isTrigger = false;
-        animator.SetBool("SwordAnim", false);
+        animator.SetBool("AxeAnim", false);
         yield return new WaitForSeconds(0.40f);
         inAnimation = false;
     }

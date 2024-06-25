@@ -4,29 +4,39 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int health = 3;
-    Animator animator;
+    public int maxHealth = 3; 
+    private int currentHealth; 
+    private Animator animator;
+    public HealthBar healthBar; 
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        currentHealth = maxHealth; 
+        healthBar.SetMaxHealth(maxHealth); 
     }
-    
-
 
     void Update()
     {
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             animator.SetBool("EnemyDeath", true);
         }
-        Debug.Log(health);
+        Debug.Log(currentHealth);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Blade")
         {
-            health--;
+            TakeDamage(1); 
         }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage; 
+        healthBar.SetHealth(currentHealth); 
+        Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
     }
 }

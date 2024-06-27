@@ -11,8 +11,8 @@ public abstract class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public abstract void LightAttack();
-    //public abstract void HardAttack();
+    public abstract void Attack();
+    public abstract void HardAttack();
     public abstract void Block();
     //public abstract void Bash();
     public abstract void HandleInput(PlayerInputActions playerInputActions);

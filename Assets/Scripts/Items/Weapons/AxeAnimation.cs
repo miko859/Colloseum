@@ -10,6 +10,7 @@ public class AxeAnimation : Weapon
     public Collider Blade;
 
     private bool isBlocking = false;
+    private bool isAttacking = false;
     public GameObject myPrefab;
 
     protected override void Awake()
@@ -17,11 +18,20 @@ public class AxeAnimation : Weapon
         base.Awake();
     }
 
-    public override void LightAttack()
+    public override void Attack()
     {
         if (!isBlocking)
         {
             StartCoroutine(AttackAnim());
+        }
+        
+    }
+
+    public override void HardAttack()
+    { 
+        if (!isBlocking)
+        {
+        StartCoroutine(HardAttackAnim()); 
         }
     }
 
@@ -35,7 +45,11 @@ public class AxeAnimation : Weapon
     {
         if (playerInputActions.Player.Attack.triggered)
         {
-            LightAttack();
+            Attack();
+        }
+        if (playerInputActions.Player.Attack.triggered)
+        {
+            HardAttack();
         }
         if (playerInputActions.Player.Block.triggered)
         {
@@ -52,7 +66,7 @@ public class AxeAnimation : Weapon
     {
         gameObject.SetActive(false);
     }
-
+    
     private IEnumerator AttackAnim()
     {
         Blade.isTrigger = true;
@@ -60,9 +74,17 @@ public class AxeAnimation : Weapon
         yield return new WaitForSeconds(0.46f);
         Blade.isTrigger = false;
         animator.SetBool("AxeAnim", false);
-        
+       
     }
-
+    
+    private IEnumerator HardAttackAnim()
+    {
+        Blade.isTrigger = true;
+        animator.SetBool("AxeHardAttack", true);
+        yield return new WaitForSeconds(0.2f);
+        Blade.isTrigger = false;
+        animator.SetBool("AxeHardAttack", false);
+    }
     
 
 

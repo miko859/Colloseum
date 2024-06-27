@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,12 +7,13 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
 
-
+    private bool isCharging = false;
 
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Attack.performed += OnAttack;
+        //playerInputActions.Player.Attack.performed -= OnHardAttack;
         playerInputActions.Player.Block.performed += OnBlock;
     }
 
@@ -23,16 +25,6 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInputActions.Player.Disable();
-    }
-
-    private void WeaponShow()
-    {
-        currentWeapon.enabled = true;
-    }
-
-    private void WeaponHide()
-    {
-        currentWeapon.gameObject.active = false;
     }
 
     private void Update()
@@ -56,24 +48,38 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttack(InputAction.CallbackContext context)
     {
-        
-        Debug.Log("UTOK");
-        if (currentWeapon != null)
+        if (context.started)
         {
-            Debug.Log("UTOK IF");
-            currentWeapon.LightAttack();
+            isCharging = true;
+        }
+        else if (context.duration < 0.1 && isCharging)
+        {
+            isCharging = false;
+            Debug.Log("LIGHT ATTACK");
+            currentWeapon.Attack();
+            
+        }
+        else if (isCharging)
+        {
+            isCharging = false;
+            Debug.Log("PREPARING HARD ATTACK");
+            currentWeapon.HardAttack();
         }
     }
-
-    private void OnBlock(InputAction.CallbackContext context)
+    /*
+    private void OnHardAttack(InputAction.CallbackContext context)
     {
-     
-        OnDisable();
-
-        Debug.Log("BLOK");
         if (currentWeapon != null)
         {
-            Debug.Log("BLOK IF");
+            Debug.Log("PREPARING HARD ATTACK");
+            currentWeapon.HardAttack();
+        } 
+    }*/
+    
+    private void OnBlock(InputAction.CallbackContext context)
+    {
+        if (currentWeapon != null)
+        {
             currentWeapon.Block();
         }
     }

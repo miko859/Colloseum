@@ -6,9 +6,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
 
-    
 
-    
 
     private void Awake()
     {
@@ -25,6 +23,16 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         playerInputActions.Player.Disable();
+    }
+
+    private void WeaponShow()
+    {
+        currentWeapon.enabled = true;
+    }
+
+    private void WeaponHide()
+    {
+        currentWeapon.gameObject.active = false;
     }
 
     private void Update()
@@ -60,6 +68,8 @@ public class PlayerController : MonoBehaviour
     private void OnBlock(InputAction.CallbackContext context)
     {
      
+        OnDisable();
+
         Debug.Log("BLOK");
         if (currentWeapon != null)
         {

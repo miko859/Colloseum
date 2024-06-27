@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public GameObject myPrefab;
+    public GameObject myPrefabWeapon;
 
     public PlayerController playerController;
     public Weapon[] weapons;
 
-    public GameObject parentObject;
-    public GameObject[] allChildren;
 
-    private void Start()
+    /*private void Start()
         { 
         weapons = new Weapon[parentObject.transform.childCount];
 
@@ -23,7 +21,7 @@ public class WeaponManager : MonoBehaviour
         
         weapons[0] = allChildren[2].GetComponent<Weapon>();
         EquipWeapon(0);
-    }
+    }*/
 
     public void EquipWeapon(int index)
     {

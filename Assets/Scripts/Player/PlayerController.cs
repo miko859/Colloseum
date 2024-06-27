@@ -1,6 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class PlayerController : MonoBehaviour
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Attack.performed += OnAttack;
-        //playerInputActions.Player.Attack.performed -= OnHardAttack;
         playerInputActions.Player.Block.performed += OnBlock;
     }
 
@@ -46,35 +46,34 @@ public class PlayerController : MonoBehaviour
         currentWeapon.gameObject.SetActive(true);
     }
 
-    private void OnAttack(InputAction.CallbackContext context)
+    public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
         {
             isCharging = true;
         }
-        else if (context.duration < 0.1 && isCharging)
-        {
-            isCharging = false;
-            Debug.Log("LIGHT ATTACK");
-            currentWeapon.Attack();
-            
-        }
         else if (isCharging)
         {
-            isCharging = false;
-            Debug.Log("PREPARING HARD ATTACK");
-            currentWeapon.HardAttack();
+            if (context.interaction is TapInteraction && context.performed)
+            {
+                isCharging = false;
+                Debug.Log("LIGHT ATTACK");
+                currentWeapon.Attack();
+            }
+            if (context.action.IsPressed())
+            {
+                Debug.Log("PREPARING HARD ATTACK");
+                currentWeapon.HardAttack(true);
+            }
+            else
+            {
+                isCharging = false;
+                Debug.Log("PREPARING HARD ATTACK");
+                currentWeapon.HardAttack(false);
+            }
+
         }
     }
-    /*
-    private void OnHardAttack(InputAction.CallbackContext context)
-    {
-        if (currentWeapon != null)
-        {
-            Debug.Log("PREPARING HARD ATTACK");
-            currentWeapon.HardAttack();
-        } 
-    }*/
     
     private void OnBlock(InputAction.CallbackContext context)
     {

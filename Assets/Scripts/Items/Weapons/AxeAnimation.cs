@@ -27,11 +27,18 @@ public class AxeAnimation : Weapon
         
     }
 
-    public override void HardAttack()
+    public override void HardAttack(bool attackPhase)
     { 
         if (!isBlocking)
         {
-        StartCoroutine(HardAttackAnim()); 
+            if (attackPhase)
+            {
+                StartCoroutine(HardAttackAnim());
+            }
+            else 
+            {
+                StartCoroutine(HardAttackAnimPerform());
+            }
         }
     }
 
@@ -49,7 +56,7 @@ public class AxeAnimation : Weapon
         }
         if (playerInputActions.Player.Attack.triggered)
         {
-            HardAttack();
+            HardAttack(true || false);
         }
         if (playerInputActions.Player.Block.triggered)
         {
@@ -79,14 +86,20 @@ public class AxeAnimation : Weapon
     
     private IEnumerator HardAttackAnim()
     {
-        Blade.isTrigger = true;
         animator.SetBool("AxeHardAttack", true);
         yield return new WaitForSeconds(0.2f);
-        Blade.isTrigger = false;
         animator.SetBool("AxeHardAttack", false);
     }
     
-
+    private IEnumerator HardAttackAnimPerform()
+    {
+        Blade.isTrigger = true;
+        animator.SetBool("AxeHardAttackPerform", true);
+        yield return new WaitForSeconds(0.46f);
+        Blade.isTrigger= false;
+        animator.SetBool("AxeHardAttackPerform", false);
+        
+    }
 
 
     /*

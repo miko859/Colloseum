@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour
         {
             animator.SetBool("EnemyDeath", true);
         }
-        Debug.Log(currentHealth);
+       // Debug.Log(currentHealth);
     }
 
     private void OnTriggerEnter(Collider other)

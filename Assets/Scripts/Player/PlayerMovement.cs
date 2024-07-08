@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,11 +23,15 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
 
     public float jumpHeight = 2f;
-    void Update(){
+    //private PlayerInput;
+
+
+
+    public void Update(){
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -35,19 +40,25 @@ public class PlayerMovement : MonoBehaviour
         movement_z = Input.GetAxisRaw("Vertical");
         movement_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
-        if (Input.GetKey(KeyCode.LeftShift)){
-            movement_speed = sprint_speed;
 
-        }else {
+        if (Input.GetKey(KeyCode.LeftShift)) 
+        {
+            movement_speed = sprint_speed;
+        }
+        else {
             movement_speed = base_move_speed;
         }
+
         //gravity
         velocity.y += gravity * Time.deltaTime;
         playerController.Move(velocity * Time.deltaTime);
+
         //jump
         if(Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
+
+    
 }

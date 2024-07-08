@@ -8,7 +8,7 @@
                 {
                     "name": "Attack",
                     "type": "Button",
-                    "id": "28b21f8c-4bd9-44a0-95f0-0b97fe0d71f1",
+                    "id": "56b988c9-f8dc-4b11-b575-f84b65e03f2b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -27,23 +27,23 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "7b7d6c04-e8bb-4150-9691-bba3fb3b17fd",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=2,pressPoint=0.5)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b32f6468-e2b2-4f8b-b85c-eaa1c99a0b56",
                     "path": "<Mouse>/rightButton",
                     "interactions": "Hold(duration=0.4,pressPoint=0.5)",
                     "processors": "",
                     "groups": "",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50aa1310-b0d7-46b8-8f0b-eea3b43ec68b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Tap(duration=0.2,pressPoint=0.5),SlowTap(duration=0.5,pressPoint=0.5)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

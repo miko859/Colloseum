@@ -9,15 +9,24 @@ public class AxeAnimation : Weapon
 
     public Collider Blade;
 
+    private bool isBashing = false;
     private bool isBlocking = false;
     private bool isAttacking = false;
     public GameObject myPrefab;
+
+    public bool getIsBashing()
+    {
+        return isBashing;
+    }
 
     protected override void Awake()
     {
         base.Awake();
     }
 
+    /// <summary>
+    /// Basic Attacl/Light Attack
+    /// </summary>
     public override void Attack()
     {
         if (!isBlocking)
@@ -27,6 +36,10 @@ public class AxeAnimation : Weapon
         
     }
 
+    /// <summary>
+    /// Hard Attack/Strong Attack
+    /// </summary>
+    /// <param name="attackPhase"></param>
     public override void HardAttack(bool attackPhase)
     { 
         if (!isBlocking)
@@ -42,12 +55,30 @@ public class AxeAnimation : Weapon
         }
     }
 
+    /// <summary>
+    /// Block, player will partly or fully block incoming damage
+    /// </summary>
     public override void Block()
     {
         isBlocking = !isBlocking;
         animator.SetBool("AxeBlock", isBlocking);
     }
 
+    /// <summary>
+    /// Bash, player will bash enemy, which will stun enemy for little time
+    /// </summary>
+    public override void Bash()
+    {
+        if(isBlocking)
+        {
+            StartCoroutine(BashAnim());
+        } 
+    }
+
+    /// <summary>
+    /// Function to handle inputs from InputSystem Map
+    /// </summary>
+    /// <param name="playerInputActions"></param>
     public override void HandleInput(PlayerInputActions playerInputActions)
     {
         if (playerInputActions.Player.Attack.triggered)
@@ -74,6 +105,10 @@ public class AxeAnimation : Weapon
         gameObject.SetActive(false);
     }
     
+    /// <summary>
+    /// Async LightAttack animation
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AttackAnim()
     {
         Blade.isTrigger = true;
@@ -84,6 +119,10 @@ public class AxeAnimation : Weapon
        
     }
     
+    /// <summary>
+    /// Async HardAttack charge
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator HardAttackAnim()
     {
         animator.SetBool("AxeHardAttack", true);
@@ -91,79 +130,27 @@ public class AxeAnimation : Weapon
         animator.SetBool("AxeHardAttack", false);
     }
     
+    /// <summary>
+    /// Async HardAttack perform
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator HardAttackAnimPerform()
     {
         Blade.isTrigger = true;
         animator.SetBool("AxeHardAttackPerform", true);
         yield return new WaitForSeconds(0.46f);
         Blade.isTrigger= false;
-        animator.SetBool("AxeHardAttackPerform", false);
-        
+        animator.SetBool("AxeHardAttackPerform", false);   
     }
 
-
-    /*
-    private Animator animator;
-
-    private bool inAnimation = false;
-
-    bool holdBlock = false;
-    bool bash = false;
-    public Collider Blade;
-
-
-    private void Start()
+    /// <summary>
+    /// Async Bash animation
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator BashAnim()
     {
-        animator = GetComponent<Animator>();
-    }
-    
-    void Update()
-    {
-        if (!inAnimation && Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(attackAnim());
-        }
-
-        
-        if (!inAnimation && Input.GetMouseButtonDown(1)){
-            
-            animator.SetBool("AxeBlock", true);
-            inAnimation = true;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("Mouse0");
-                StartCoroutine(bashAnimation());
-            }
-            
-
-        
-        }
-        
-        if (Input.GetMouseButtonUp(1))
-        {
-            animator.SetBool("AxeBlock", false);
-            inAnimation = false;
-            
-        }
-    }
-
-    IEnumerator attackAnim()
-    {
-        Blade.isTrigger = true;
-        inAnimation = true;
-        animator.SetBool("AxeAnim",true);
-        yield return new WaitForSeconds(0.46f);
-        Blade.isTrigger = false;
-        animator.SetBool("AxeAnim", false);
-        yield return new WaitForSeconds(0.40f);
-        inAnimation = false;
-    }
-
-    IEnumerator bashAnimation() {
         animator.SetBool("Bash", true);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.48f);
         animator.SetBool("Bash", false);
     }
-    */
 }

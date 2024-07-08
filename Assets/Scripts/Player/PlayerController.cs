@@ -2,6 +2,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,13 +28,21 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Disable();
     }
 
+    /// <summary>
+    /// update is readed every frame
+    /// </summary>
     private void Update()
     {
-        // Tu mÙûeö pridaù logiku na v˝menu zbranÌ naprÌklad pomocou tlaËidiel
-        // if (Input.GetKeyDown(KeyCode.Alpha1)) EquipWeapon(axe);
-        // if (Input.GetKeyDown(KeyCode.Alpha2)) EquipWeapon(sword);
+        if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
+        { 
+                currentWeapon.Bash();
+        }
     }
 
+    /// <summary>
+    /// Swap weapon
+    /// </summary>
+    /// <param name="newWeapon"></param>
     public void EquipWeapon(Weapon newWeapon)
     {
         
@@ -46,6 +55,10 @@ public class PlayerController : MonoBehaviour
         currentWeapon.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Will perform attack based on action, if just clicked, LightAttack will be performed and if action is Hold, attack will charge and by releasing button HardAttack will perform
+    /// </summary>
+    /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -57,30 +70,28 @@ public class PlayerController : MonoBehaviour
             if (context.interaction is TapInteraction && context.performed)
             {
                 isCharging = false;
-                Debug.Log("LIGHT ATTACK");
                 currentWeapon.Attack();
+ 
             }
             if (context.action.IsPressed())
             {
-                Debug.Log("PREPARING HARD ATTACK");
                 currentWeapon.HardAttack(true);
             }
             else
             {
                 isCharging = false;
-                Debug.Log("PREPARING HARD ATTACK");
                 currentWeapon.HardAttack(false);
             }
 
         }
     }
     
-    private void OnBlock(InputAction.CallbackContext context)
-    {
-        if (currentWeapon != null)
-        {
-            currentWeapon.Block();
-        }
+    /// <summary>
+    /// Will perform block
+    /// </summary>
+    /// <param name="context"></param>
+    public void OnBlock(InputAction.CallbackContext context)
+    { 
+        currentWeapon.Block(); 
     }
-
 }

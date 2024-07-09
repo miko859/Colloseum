@@ -427,17 +427,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: mikoPIKO
       objectReference: {fileID: 0}
+    - target: {fileID: 3674337688568872338, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674337688568872338, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674337688568872338, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.522
+      objectReference: {fileID: 0}
     - target: {fileID: 5225335347189836918, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5225335347189836918, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.521
+      value: 0.762
       objectReference: {fileID: 0}
     - target: {fileID: 5225335347189836918, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.026
+      value: 0.038
       objectReference: {fileID: 0}
     - target: {fileID: 9220884924874214180, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9220884924874214180, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.434
+      value: 1.391
       objectReference: {fileID: 0}
     - target: {fileID: 9220884924874214180, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.z

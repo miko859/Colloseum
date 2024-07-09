@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,46 +18,74 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     Vector3 velocity;
-    public float gravity = -15f;
+    public float gravity = -9.81f;
     bool isGrounded;
-
-    public float jumpHeight = 2f;
-    //private PlayerInput;
-
+    float target_speed;
+    float gravity_acceleration = 2.4f;
 
 
-    public void Update(){
+    public float jumpHeight = 1.7f;
+    public float decelerationFactor = 5f;
+    public float airControl = 10;
 
+    void Update()
+    {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
 
         movement_x = Input.GetAxisRaw("Horizontal");
         movement_z = Input.GetAxisRaw("Vertical");
-        movement_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
-        playerController.Move(movement_direction * movement_speed * Time.deltaTime);
+        Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
 
-        if (Input.GetKey(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            movement_speed = sprint_speed;
+            target_speed = sprint_speed;
         }
-        else {
-            movement_speed = base_move_speed;
+        else
+        {
+            target_speed = base_move_speed;
         }
 
-        //gravity
-        velocity.y += gravity * Time.deltaTime;
-        playerController.Move(velocity * Time.deltaTime);
+        if (!isGrounded)
+        {
+            target_speed *= 0.8f; // Reduce target speed by 20%
+        }
 
-        //jump
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        // AIR INERTIA
+        if (!isGrounded)
+        {
+            // air drag
+            movement_speed -= decelerationFactor * Time.deltaTime; // slow down by decelerationFactor per second
+            movement_speed = Mathf.Max(movement_speed, 5);
+        }
+        else
+        {
+            movement_speed = target_speed;
+        }
+
+        movement_direction = input_direction; // you don't need to modify direction for air control, just speed
+
+        playerController.Move(movement_direction * movement_speed * Time.deltaTime);
+        // GRAVITY
+        if (isGrounded)
+        {
+            if (velocity.y < 0)
+            {
+
+                velocity.y = -2f; // keeps the player on the ground
+            }
+        }
+        else
+        {
+            // GRAVITY ACCELERATION
+            velocity.y += gravity * Time.deltaTime;
+        }
+
+        playerController.Move(velocity * Time.deltaTime * gravity_acceleration);
+
+        // JUMP
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
     }
-
-    
 }

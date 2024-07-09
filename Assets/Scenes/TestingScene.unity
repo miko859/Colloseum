@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.038
       objectReference: {fileID: 0}
+    - target: {fileID: 8476634257282124151, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
+      propertyPath: airControl
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9220884924874214180, guid: 60236c4e7ce7805499ef0defbb7b596a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.182372

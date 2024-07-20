@@ -31069,10 +31069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a314753bd3a23e6439635d814892cc56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorLeft: {fileID: 4920771228679313662}
-  doorRight: {fileID: 489955689014200751}
-  leftOpenPosition: {x: 0, y: 0, z: -23}
-  rightOpenPosition: {x: 0, y: 0, z: 9}
+  doorLeft: {fileID: 489955689014200751}
+  doorRight: {fileID: 4920771228679313662}
+  leftOpenZPosition: 0
+  rightOpenZPosition: 0
   speed: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

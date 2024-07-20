@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleDoorController : MonoBehaviour
+public class ExitDoor : MonoBehaviour
 {
     public Transform doorLeft;      // The left door object
     public Transform doorRight;     // The right door object
@@ -10,7 +12,7 @@ public class DoubleDoorController : MonoBehaviour
     private Vector3 leftClosedPosition;  // The initial position of the left door
     private Vector3 rightClosedPosition; // The initial position of the right door
 
-    public float speed = 2.0f;       // Speed at which the doors move
+    public float speed = 1.0f;       // Speed at which the doors move
     private bool isOpen = false;     // Condition to check if the doors are open
 
     void Start()
@@ -23,7 +25,7 @@ public class DoubleDoorController : MonoBehaviour
     void Update()
     {
         // Check if the condition to open the doors is met
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             // Toggle the door state
             isOpen = !isOpen;

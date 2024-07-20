@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
             animator.SetBool("EnemyDeath", true);
         }
        // Debug.Log(currentHealth);

@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 1334639112509266661}
   - component: {fileID: 4050582378585188481}
   - component: {fileID: 6846834404624583850}
-  m_Layer: 0
-  m_Name: mikoPIKO
-  m_TagString: Untagged
+  m_Layer: 7
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 6862232593985300429}
   - component: {fileID: 3027285159881515962}
   - component: {fileID: 5716480734126880088}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -368,7 +368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4538839862045017532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -446,9 +446,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.498
       objectReference: {fileID: 0}
+    - target: {fileID: 6150917401082336547, guid: 0a2eccd6e0cabb740b4ed6fe0b2ce227, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 9006131631603290319, guid: 0a2eccd6e0cabb740b4ed6fe0b2ce227, type: 3}
       propertyPath: m_Name
       value: Axe1H_Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006131631603290319, guid: 0a2eccd6e0cabb740b4ed6fe0b2ce227, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

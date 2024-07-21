@@ -135,6 +135,8 @@ MonoBehaviour:
     m_Bits: 8
   gravity: -9.81
   jumpHeight: 2
+  decelerationFactor: 5
+  airControl: 10
 --- !u!143 &5831740664322509240
 CharacterController:
   m_ObjectHideFlags: 0

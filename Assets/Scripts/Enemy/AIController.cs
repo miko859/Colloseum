@@ -11,13 +11,15 @@ public class AIController : MonoBehaviour
     private NavMeshPath path;
     private Vector3[] pathCorners;
     private float fullDistance = 0f;
-    bool x = false;
+    private Vector3 originalPos;
+    //bool x = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
+        originalPos = agent.transform.position;
         path = new NavMeshPath();       
 
         if (agent == null)
@@ -36,30 +38,41 @@ public class AIController : MonoBehaviour
     {
         if (agent != null && player != null)
         {
-            CalculateDistanceOfPath();
-
             agent.CalculatePath(player.transform.position, path);
+            CalculateDistanceOfPath();
             if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
             {
-                x = agent.SetDestination(player.transform.position);
+                agent.stoppingDistance = 2.5f;
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.stoppingDistance = 0;
+                agent.SetDestination(originalPos);
             }
             Debug.Log(fullDistance);
-            /*
-            Debug.Log(x);
-            Debug.Log("Setting destination to player position: " + player.transform.position);
-            Debug.Log("Current agent position: " + agent.transform.position);
-            Debug.Log("Agent velocity: " + agent.velocity);
-
-            // Additional checks
-            Debug.Log("Agent path status: " + agent.pathStatus);
-            Debug.Log("Agent remaining distance: " + agent.remainingDistance);*/
-            OnDrawGizmos();
-            
         }
     }
+    private void CalculateDistanceOfPath()
+    {
+        if (path.status != NavMeshPathStatus.PathComplete)
+        {
+            fullDistance = 0f;
+            return;
+        }
 
+        pathCorners = path.corners;
+        var temp = 0f;
+        for (int i = 1; i < pathCorners.Length; i++)
+        {
+            temp += Vector3.Distance(pathCorners[i - 1], pathCorners[i]);
+        }
+        fullDistance = temp;
+    }
 
     //shows path in Scene
+
+    
     private void OnDrawGizmos()
     {
         if (agent.destination != null)
@@ -78,13 +91,5 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private void CalculateDistanceOfPath()
-    {
-        fullDistance = 0f;
-        int i;
-        for (i = 1; i < pathCorners.Length; i++)
-        {
-            fullDistance += Vector3.Distance(pathCorners[i - 1], pathCorners[i]);
-        }
-    }
+    
 }

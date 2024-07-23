@@ -5113,6 +5113,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4067672638025234734, guid: 1512d2938f52c8f48a70029a594aa0a3, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067672638025234734, guid: 1512d2938f52c8f48a70029a594aa0a3, type: 3}
+      propertyPath: m_Height
+      value: 1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067672638025234734, guid: 1512d2938f52c8f48a70029a594aa0a3, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4067672638025234734, guid: 1512d2938f52c8f48a70029a594aa0a3, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5636707676136328856, guid: 1512d2938f52c8f48a70029a594aa0a3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5459442

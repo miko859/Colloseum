@@ -39,7 +39,7 @@ public class AIController : MonoBehaviour
             CalculateDistanceOfPath();
 
             agent.CalculatePath(player.transform.position, path);
-            if (path.status == NavMeshPathStatus.PathComplete && fullDistance <= 20)
+            if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
             {
                 x = agent.SetDestination(player.transform.position);
             }

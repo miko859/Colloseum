@@ -6,21 +6,22 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
-    public GameObject player;
+    private GameObject player;
     private NavMeshAgent agent;
     private NavMeshPath path;
     private Vector3[] pathCorners;
     private float fullDistance = 0f;
-    private Vector3 originalPos;
-    //bool x = false;
+    private Vector3 spawnPos;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        originalPos = agent.transform.position;
-        path = new NavMeshPath();       
+        spawnPos = agent.transform.position;
+        path = new NavMeshPath();
+        animator = GetComponent<Animator>();
 
         if (agent == null)
         {
@@ -44,13 +45,26 @@ public class AIController : MonoBehaviour
             {
                 agent.stoppingDistance = 2.5f;
                 agent.SetDestination(player.transform.position);
+                animator.SetBool("walk", true);
+                
             }
             else
             {
-                agent.stoppingDistance = 0;
-                agent.SetDestination(originalPos);
+                //agent.stoppingDistance = 0;
+                agent.SetDestination(spawnPos);
+                animator.SetBool("walk", true);
+
+                if (agent.remainingDistance <= 2)
+                {
+                    animator.SetBool("walk", false);
+                    
+                }
             }
-            Debug.Log(fullDistance);
+            
+            if (fullDistance <= 2.5f)
+            {
+                    animator.SetBool("walk", false);
+            }
         }
     }
     private void CalculateDistanceOfPath()

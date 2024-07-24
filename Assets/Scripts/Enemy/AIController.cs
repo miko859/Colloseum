@@ -13,6 +13,7 @@ public class AIController : MonoBehaviour
     private float fullDistance = 0f;
     private Vector3 spawnPos;
     private Animator animator;
+    private bool follows;
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +47,15 @@ public class AIController : MonoBehaviour
                 agent.stoppingDistance = 2.5f;
                 agent.SetDestination(player.transform.position);
                 animator.SetBool("walk", true);
+                follows = true;
                 
             }
             else
             {
-                //agent.stoppingDistance = 0;
+                agent.stoppingDistance = 0;
                 agent.SetDestination(spawnPos);
                 animator.SetBool("walk", true);
+                follows = false;
 
                 if (agent.remainingDistance <= 2)
                 {
@@ -60,11 +63,30 @@ public class AIController : MonoBehaviour
                     
                 }
             }
+
             
             if (fullDistance <= 2.5f)
             {
+                if (follows)
+                {
                     animator.SetBool("walk", false);
+                    animator.SetBool("attack", true);
+                }
+                else
+                {
+                    animator.SetBool("walk", false);
+                    animator.SetBool("attack", false);
+                }
+
             }
+            else
+            {
+                animator.SetBool("attack", false);
+            }
+            
+            
+            
+            
         }
     }
     private void CalculateDistanceOfPath()

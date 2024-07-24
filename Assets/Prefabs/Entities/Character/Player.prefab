@@ -134,7 +134,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   gravity: -9.81
-  jumpHeight: 2
+  jumpHeight: 0.5
   decelerationFactor: 5
   airControl: 10
 --- !u!143 &5831740664322509240

@@ -33,6 +33,10 @@ public class EnemyHealth : MonoBehaviour
         {
             TakeDamage(1); 
         }
+        else if (other.gameObject.tag == "HeavyBlade")
+        {
+            TakeDamage(3);
+        }
     }
 
     void TakeDamage(int damage)

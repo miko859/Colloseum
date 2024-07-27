@@ -31,7 +31,8 @@ public class EnemyHealth : MonoBehaviour
     {
         if (other.gameObject.tag == "Blade")
         {
-            TakeDamage(1); 
+            TakeDamage(1);
+            other.transform.GetComponent<Collider>().isTrigger = false;
         }
         else if (other.gameObject.tag == "HeavyBlade")
         {

@@ -9,6 +9,7 @@ TagManager:
   - BossDoor
   - Door
   - HeavyBlade
+  - Enemy
   layers:
   - Default
   - TransparentFX

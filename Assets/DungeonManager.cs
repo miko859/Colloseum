@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
+
     public GameObject[] enemies;
     public GameObject victoryScreen;
     private int totalEnemies;
     // Start is called before the first frame update
     void Start()
     {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         totalEnemies = enemies.Length;
         victoryScreen.SetActive(false);
     }

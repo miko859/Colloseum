@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Attack.performed += OnAttack;
         playerInputActions.Player.Block.performed += OnBlock;
+        //playerInputActions.Player.Movement.performed += OnMovement;
     }
 
     private void OnEnable()
@@ -94,4 +95,6 @@ public class PlayerController : MonoBehaviour
     { 
         currentWeapon.Block(); 
     }
+
+
 }

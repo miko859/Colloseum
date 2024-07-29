@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -20,20 +21,35 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     public float gravity = -9.81f;
     bool isGrounded;
+    bool isJumping = false;
     float target_speed;
     float gravity_acceleration = 2.4f;
-
 
     public float jumpHeight = 1.7f;
     public float decelerationFactor = 5f;
     public float airControl = 10;
 
+    private Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        Debug.Log(isGrounded);
+        
+        if (!isJumping)
+        {
+            movement_x = Input.GetAxisRaw("Horizontal");
+            movement_z = Input.GetAxisRaw("Vertical");
+        
+            animator.SetFloat("VelocityX", movement_x);
+            animator.SetFloat("VelocityZ", movement_z);
+        }
 
-        movement_x = Input.GetAxisRaw("Horizontal");
-        movement_z = Input.GetAxisRaw("Vertical");
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
 
         if (Input.GetKey(KeyCode.LeftShift))
@@ -86,6 +102,13 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            animator.SetBool("Jump", true);
+            isJumping = true;
+        }
+        else if (isGrounded)
+        {
+            animator.SetBool("Jump", false);
+            isJumping = false;
         }
     }
 }

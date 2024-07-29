@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,6 +15,8 @@ public class AIController : MonoBehaviour
     private Vector3 spawnPos;
     private Animator animator;
     private bool follows;
+    public GameObject weapon;
+    private Collider blade;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,7 @@ public class AIController : MonoBehaviour
         spawnPos = agent.transform.position;
         path = new NavMeshPath();
         animator = GetComponent<Animator>();
+        blade = weapon.GetComponent<Collider>();
 
         if (agent == null)
         {
@@ -71,17 +75,20 @@ public class AIController : MonoBehaviour
                 {
                     animator.SetBool("walk", false);
                     animator.SetBool("attack", true);
+                    blade.isTrigger = true;
                 }
                 else
                 {
                     animator.SetBool("walk", false);
                     animator.SetBool("attack", false);
+                    blade.isTrigger = false;
                 }
 
             }
             else
             {
                 animator.SetBool("attack", false);
+                blade.isTrigger = false;
             }
             
             

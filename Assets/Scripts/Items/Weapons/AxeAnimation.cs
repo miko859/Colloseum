@@ -111,10 +111,10 @@ public class AxeAnimation : Weapon
     /// <returns></returns>
     private IEnumerator AttackAnim()
     {
-        Blade.isTrigger = true;
+        //Blade.isTrigger = true;
         animator.SetBool("AxeAnim", true);
         yield return new WaitForSeconds(0.46f);
-        Blade.isTrigger = false;
+        //Blade.isTrigger = false;
         animator.SetBool("AxeAnim", false);
        
     }
@@ -136,10 +136,10 @@ public class AxeAnimation : Weapon
     /// <returns></returns>
     private IEnumerator HardAttackAnimPerform()
     {
-        Blade.isTrigger = true;
+        //Blade.isTrigger = true;
         animator.SetBool("AxeHardAttackPerform", true);
         yield return new WaitForSeconds(0.46f);
-        Blade.isTrigger= false;
+        //Blade.isTrigger= false;
         animator.SetBool("AxeHardAttackPerform", false);   
     }
 

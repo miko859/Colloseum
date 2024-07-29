@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public int maxHealth = 3; 
     private int currentHealth; 
@@ -27,19 +27,8 @@ public class EnemyHealth : MonoBehaviour
        // Debug.Log(currentHealth);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Blade")
-        {
-            TakeDamage(1); 
-        }
-        else if (other.gameObject.tag == "HeavyBlade")
-        {
-            TakeDamage(3);
-        }
-    }
 
-    void TakeDamage(int damage)
+    public void DealDamage(int damage)
     {
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 

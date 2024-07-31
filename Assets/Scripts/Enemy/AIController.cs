@@ -133,6 +133,4 @@ public class AIController : MonoBehaviour
             }
         }
     }
-
-    
 }

@@ -8,10 +8,12 @@ public class Health : MonoBehaviour
     public int maxHealth = 3; 
     private int currentHealth; 
     private Animator animator;
-    public HealthBar healthBar; 
+    public HealthBar healthBar;
+    private Weapon weapon;
 
     void Start()
     {
+        weapon = GetComponent<Weapon>();
         animator = GetComponent<Animator>();
         currentHealth = maxHealth; 
         healthBar.SetMaxHealth(maxHealth); 
@@ -19,10 +21,28 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 5)
         {
             gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
-            animator.SetBool("EnemyDeath", true);
+            //animator.SetBool("EnemyDeath", true);
+
+            animator.enabled = false;
+            /*foreach (Rigidbody rb in GetComponentInChildren<Rigidbody>())
+            {
+                rb.isKinematic = false;
+            }*/
+
+            if (weapon != null)
+            {
+                weapon.transform.SetParent(null);
+                Rigidbody weaponRb = weapon.GetComponent<Rigidbody>();
+                if (weaponRb != null)
+                {
+                    weaponRb.isKinematic = false;
+                    weaponRb.useGravity = true;
+                }
+            }
+            
         }
        // Debug.Log(currentHealth);
     }

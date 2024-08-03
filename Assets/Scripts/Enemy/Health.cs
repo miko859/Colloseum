@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (currentHealth <= 5)
+        if (currentHealth <= 0)
         {
             gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
             //animator.SetBool("EnemyDeath", true);

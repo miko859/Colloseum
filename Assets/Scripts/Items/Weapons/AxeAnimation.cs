@@ -48,11 +48,10 @@ public class AxeAnimation : Weapon
             {
                 StartCoroutine(HardAttackAnim());
             }
-            /*else // temp fix player could attack multiple times 
-                   // while the animation was ongoing while the normal attack anim was active 
+            else 
             {
-                //StartCoroutine(HardAttackAnimPerform());
-            }*/
+                StartCoroutine(HardAttackAnimPerform());
+            }
         }
     }
 
@@ -112,13 +111,6 @@ public class AxeAnimation : Weapon
     /// <returns></returns>
     private IEnumerator AttackAnim()
     {
-<<<<<<< HEAD
-        //Blade.isTrigger = true;
-        animator.SetBool("AxeAnim", true);
-        yield return new WaitForSeconds(0.46f);
-        //Blade.isTrigger = false;
-        animator.SetBool("AxeAnim", false);
-=======
          if (!isAttacking) 
          {
           isAttacking = true;
@@ -131,7 +123,6 @@ public class AxeAnimation : Weapon
          isAttacking = false; 
          }
         
->>>>>>> 5dfd57cd36d175ee711f1cceb34ad8f4f29045ee
        
     }
     
@@ -144,21 +135,18 @@ public class AxeAnimation : Weapon
         animator.SetBool("AxeHardAttack", true);
         yield return new WaitForSeconds(0.2f);
         animator.SetBool("AxeHardAttack", false);
-        StartCoroutine(HardAttackAnimPerform());
-
-
     }
-
+    
     /// <summary>
     /// Async HardAttack perform
     /// </summary>
     /// <returns></returns>
     private IEnumerator HardAttackAnimPerform()
     {
-        //Blade.isTrigger = true;
+        Blade.isTrigger = true;
         animator.SetBool("AxeHardAttackPerform", true);
         yield return new WaitForSeconds(0.46f);
-        //Blade.isTrigger= false;
+        Blade.isTrigger= false;
         animator.SetBool("AxeHardAttackPerform", false);   
     }
 

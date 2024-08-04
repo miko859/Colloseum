@@ -2503,6 +2503,7 @@ GameObject:
   - component: {fileID: 160297087538832809}
   - component: {fileID: 5786621904566011840}
   - component: {fileID: 6214029409180559568}
+  - component: {fileID: 5102247749282432599}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2719,6 +2720,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Enemy
+--- !u!114 &5102247749282432599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3082542490788796248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093be1f82aec7a747a39abe6842524a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthBar: {fileID: 0}
 --- !u!1 &3082700438439263180
 GameObject:
   m_ObjectHideFlags: 0
@@ -4563,7 +4578,7 @@ GameObject:
   - component: {fileID: 747284361700526970}
   - component: {fileID: 6557351224920793025}
   - component: {fileID: 7117906122224036776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Blade
   m_Icon: {fileID: 0}
@@ -5307,7 +5322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7347564751047621749}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightGrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6132,7 +6147,7 @@ GameObject:
   - component: {fileID: 4622296213663508193}
   - component: {fileID: 1388914830170070843}
   - component: {fileID: 3252802694563254803}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Axe1H_Basic
   m_TagString: Weapon
   m_Icon: {fileID: 0}

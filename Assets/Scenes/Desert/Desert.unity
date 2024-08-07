@@ -4714,6 +4714,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4088224190947632365, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 895
+      objectReference: {fileID: 0}
+    - target: {fileID: 4273461817778011828, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.171
+      objectReference: {fileID: 0}
     - target: {fileID: 5102247749282432599, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
       propertyPath: healthBar
       value: 
@@ -4757,6 +4765,18 @@ PrefabInstance:
     - target: {fileID: 5124614524295302332, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673342879800700617, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.134
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128036420250024602, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.133
+      objectReference: {fileID: 0}
+    - target: {fileID: 7079894570448851598, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.1709999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

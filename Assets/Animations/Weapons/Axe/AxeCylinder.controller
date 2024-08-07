@@ -191,7 +191,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AxeBlockBash
-  m_Speed: 1
+  m_Speed: 20
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5501252906972465430}
@@ -270,7 +270,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AxeBlockBashRelease
-  m_Speed: -1
+  m_Speed: -5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1664416120175327796}
@@ -490,10 +490,10 @@ AnimatorStateMachine:
     m_Position: {x: 230, y: 500, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3847058225003072504}
-    m_Position: {x: 265, y: 565, z: 0}
+    m_Position: {x: -150, y: 570, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8127751603304641815}
-    m_Position: {x: 300, y: 630, z: 0}
+    m_Position: {x: -170, y: 630, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:

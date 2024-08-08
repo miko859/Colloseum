@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
             //animator.SetBool("EnemyDeath", true);
 
             animator.enabled = false;
+            
             /*foreach (Rigidbody rb in GetComponentInChildren<Rigidbody>())
             {
                 rb.isKinematic = false;
@@ -52,6 +53,6 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 
-        Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
+        //Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
     }
 }

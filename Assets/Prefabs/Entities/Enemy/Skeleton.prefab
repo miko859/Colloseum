@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.275
+      value: 20.466938
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6465192
+      value: 0.000094890594
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.2938643
+      value: -1.3526356
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -629,6 +629,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8135834130421910842}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1256740617690719585}
     - targetCorrespondingSourceObject: {fileID: -5282305834285496754, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2783372431569676081}
@@ -1231,6 +1234,19 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.86, z: 0}
+--- !u!114 &1256740617690719585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2292279165291071904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49259b8c9b0f16649af0d1f174a81aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 6394440241161260426}
 --- !u!4 &2575035235656081211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5714229035188606006, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
@@ -2148,6 +2164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Player
+  blade: {fileID: 3959479997129887399}
+  hit: 0
 --- !u!65 &3959479997129887399
 BoxCollider:
   m_ObjectHideFlags: 0

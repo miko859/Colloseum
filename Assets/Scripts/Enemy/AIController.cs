@@ -18,6 +18,9 @@ public class AIController : MonoBehaviour
     public GameObject weapon;
     private Collider blade;
 
+    private bool isAttacking;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +45,8 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (agent != null && player != null)
         {
             agent.CalculatePath(player.transform.position, path);
@@ -75,13 +80,11 @@ public class AIController : MonoBehaviour
                 {
                     animator.SetBool("walk", false);
                     animator.SetBool("attack", true);
-                    blade.isTrigger = true;
                 }
                 else
                 {
                     animator.SetBool("walk", false);
-                    animator.SetBool("attack", false);
-                    blade.isTrigger = false;
+                    animator.SetBool("attack", false);   
                 }
 
             }
@@ -89,13 +92,12 @@ public class AIController : MonoBehaviour
             {
                 animator.SetBool("attack", false);
                 blade.isTrigger = false;
-            }
-            
-            
-            
-            
+            }     
         }
     }
+
+    
+
     private void CalculateDistanceOfPath()
     {
         if (path.status != NavMeshPathStatus.PathComplete)

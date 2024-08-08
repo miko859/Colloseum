@@ -5,7 +5,9 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public string target;
-    private int lightAttackDmg = 2;
+    public Collider blade;
+    public bool hit = false;
+    private int lightAttackDmg = 1;
     private int hardAttackDmg = 4;
 
     // Start is called before the first frame update
@@ -16,10 +18,18 @@ public class WeaponManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(target))
+        if (other.CompareTag(target) & !hit)
         {
             other.GetComponent<Health>().DealDamage(lightAttackDmg);
-            Debug.Log(target + " hit by damage " +  lightAttackDmg);
+            Debug.Log("you hit " + target + " by damage " +  lightAttackDmg);
+            //blade.isTrigger = false;
+            hit = true;
+            
         }
+    }
+
+    public void SetHit(bool hit)
+    {
+        this.hit = hit;
     }
 }

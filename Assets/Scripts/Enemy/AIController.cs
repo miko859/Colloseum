@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,6 +20,8 @@ public class AIController : MonoBehaviour
     private Collider blade;
 
     private bool isAttacking;
+    private bool knowAboutPlayer = false;
+    private bool fallBack;
 
 
     // Start is called before the first frame update
@@ -49,54 +52,88 @@ public class AIController : MonoBehaviour
 
         if (agent != null && player != null)
         {
+
+            Debug.Log("Enemy know about player: " + knowAboutPlayer);
+            fallBack = true;
             agent.CalculatePath(player.transform.position, path);
             CalculateDistanceOfPath();
-            if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
+
+            if (knowAboutPlayer & Vector3.Distance(agent.transform.position, player.transform.position) <= 20 & path.status != NavMeshPathStatus.PathComplete)
             {
+                fallBack = false;
+                
+
+                if (Vector3.Distance(agent.transform.position, player.transform.position) <= 4)
+                {
+                    agent.SetDestination(player.transform.position);
+                    follows = true;
+                    AiStateAttackOrGoBack();
+                }
+                else
+                {
+                    follows = false;
+                    agent.SetDestination(player.transform.position);
+                }
+                
+            }
+            else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)   
+            {
+                fallBack = false;
+                knowAboutPlayer = true;
                 agent.stoppingDistance = 2.5f;
                 agent.SetDestination(player.transform.position);
                 animator.SetBool("walk", true);
                 follows = true;
-                
+
+                if (fullDistance <= 3)
+                {
+                    AiStateAttackOrGoBack();
+                }
+                else
+                {
+                    animator.SetBool("attack", false);
+                }
             }
-            else
+            if (fallBack)
             {
+                Debug.Log("3");
                 agent.stoppingDistance = 0;
                 agent.SetDestination(spawnPos);
                 animator.SetBool("walk", true);
                 follows = false;
 
-                if (agent.remainingDistance <= 2)
+                if (agent.remainingDistance <= 3)
                 {
                     animator.SetBool("walk", false);
-                    
+                }
+                if (knowAboutPlayer)
+                {
+                    StartCoroutine(TimeUntilEnemyForgetPlayer());
                 }
             }
-
             
-            if (fullDistance <= 2.5f)
-            {
-                if (follows)
-                {
-                    animator.SetBool("walk", false);
-                    animator.SetBool("attack", true);
-                }
-                else
-                {
-                    animator.SetBool("walk", false);
-                    animator.SetBool("attack", false);   
-                }
-
-            }
-            else
-            {
-                animator.SetBool("attack", false);
-                blade.isTrigger = false;
-            }     
         }
     }
 
-    
+    private IEnumerator TimeUntilEnemyForgetPlayer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+       // knowAboutPlayer = false;
+    }
+
+    private void AiStateAttackOrGoBack()
+    { 
+        if (follows)
+        {
+            animator.SetBool("walk", false);
+            animator.SetBool("attack", true);
+        }
+        else
+        {
+            animator.SetBool("walk", false);
+            animator.SetBool("attack", false);
+        }
+    }
 
     private void CalculateDistanceOfPath()
     {
@@ -115,9 +152,8 @@ public class AIController : MonoBehaviour
         fullDistance = temp;
     }
 
-    //shows path in Scene
 
-    
+    //shows path in Scene
     private void OnDrawGizmos()
     {
         if (agent.destination != null)

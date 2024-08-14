@@ -8,16 +8,17 @@ using UnityEngine.AI;
 
 public class AIController : MonoBehaviour
 {
-    private GameObject player;
-    private NavMeshAgent agent;
-    private NavMeshPath path;
-    private Vector3[] pathCorners;
-    private float fullDistance = 0f;
+    private GameObject player;          //Player, enemy's target
+    private NavMeshAgent agent;         //NavMeshAgent for AI
+    private NavMeshPath path;           //Path of pathfinding which AI follows on NavMesh
+    private Vector3[] pathCorners;      //Dismembered path on lines for calculation of distance
+    private float fullDistance = 0f;    
     private Vector3 spawnPos;
     private Animator animator;
-    private bool follows;
-    public GameObject weapon;
+    private bool follows;               //if AI follows player
+    public GameObject weapon;           //enemy´s weapon
     private Collider blade;
+    private Patrolling patrolling;      //script for patrolling
 
     private bool isAttacking;
     private bool knowAboutPlayer = false;
@@ -33,6 +34,7 @@ public class AIController : MonoBehaviour
         path = new NavMeshPath();
         animator = GetComponent<Animator>();
         blade = weapon.GetComponent<Collider>();
+        patrolling = GetComponent<Patrolling>();
 
         if (agent == null)
         {
@@ -48,44 +50,44 @@ public class AIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
         if (agent != null && player != null)
         {
-
-            Debug.Log("Enemy know about player: " + knowAboutPlayer);
+            float distanceToPlayer = Vector3.Distance(agent.transform.position, player.transform.position);
             fallBack = true;
             agent.CalculatePath(player.transform.position, path);
             CalculateDistanceOfPath();
 
-            if (knowAboutPlayer & Vector3.Distance(agent.transform.position, player.transform.position) <= 20 & path.status != NavMeshPathStatus.PathComplete)
+            if (knowAboutPlayer && distanceToPlayer <= 20 && path.status != NavMeshPathStatus.PathComplete)
             {
                 fallBack = false;
-                
+                patrolling.StopPatrolling();
 
-                if (Vector3.Distance(agent.transform.position, player.transform.position) <= 4)
+                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
+
+                if (distanceToPlayer <= 4 || (distanceToPlayer <= 4 && IsPlayerAbove()))
                 {
-                    agent.SetDestination(player.transform.position);
+                    agent.SetDestination(playerGroundPosition);
                     follows = true;
                     AiStateAttackOrGoBack();
                 }
                 else
                 {
-                    follows = false;
-                    agent.SetDestination(player.transform.position);
+                    follows = true;
+                    agent.SetDestination(playerGroundPosition);
                 }
-                
             }
-            else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)   
+            else if (path.status == NavMeshPathStatus.PathComplete && fullDistance <= 20 && fullDistance != 0)
             {
                 fallBack = false;
                 knowAboutPlayer = true;
                 agent.stoppingDistance = 2.5f;
-                agent.SetDestination(player.transform.position);
+                patrolling.StopPatrolling();
+                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
+                agent.SetDestination(playerGroundPosition);
                 animator.SetBool("walk", true);
                 follows = true;
 
-                if (fullDistance <= 3)
+                if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
                 {
                     AiStateAttackOrGoBack();
                 }
@@ -94,9 +96,18 @@ public class AIController : MonoBehaviour
                     animator.SetBool("attack", false);
                 }
             }
-            if (fallBack)
+            else
             {
-                Debug.Log("3");
+                follows = false;
+            }
+
+            if (patrolling.hasPatrollPoints() & !follows)
+            {
+                patrolling.StartPatrolling();
+                animator.SetBool("walk", true);
+            }
+            else if (!follows) 
+            {
                 agent.stoppingDistance = 0;
                 agent.SetDestination(spawnPos);
                 animator.SetBool("walk", true);
@@ -106,6 +117,7 @@ public class AIController : MonoBehaviour
                 {
                     animator.SetBool("walk", false);
                 }
+
                 if (knowAboutPlayer)
                 {
                     StartCoroutine(TimeUntilEnemyForgetPlayer());
@@ -115,14 +127,28 @@ public class AIController : MonoBehaviour
         }
     }
 
-    private IEnumerator TimeUntilEnemyForgetPlayer()
+    /// <summary>
+    /// Check if player is above enemy entity
+    /// </summary>
+    /// <returns>
+    /// bool = true/false
+    /// </returns>
+    private bool IsPlayerAbove()
     {
-        yield return new WaitForSecondsRealtime(5);
-       // knowAboutPlayer = false;
+        RaycastHit hit;
+        Vector3 direction = (player.transform.position - agent.transform.position).normalized;
+        if (Physics.Raycast(agent.transform.position, direction, out hit))
+        {
+            if (hit.collider != null && hit.collider.gameObject == player)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void AiStateAttackOrGoBack()
-    { 
+    {
         if (follows)
         {
             animator.SetBool("walk", false);
@@ -134,6 +160,14 @@ public class AIController : MonoBehaviour
             animator.SetBool("attack", false);
         }
     }
+
+        private IEnumerator TimeUntilEnemyForgetPlayer()
+    {
+        yield return new WaitForSecondsRealtime(5);
+       // knowAboutPlayer = false;
+    }
+
+    
 
     private void CalculateDistanceOfPath()
     {

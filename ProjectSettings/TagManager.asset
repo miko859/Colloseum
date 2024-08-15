@@ -10,6 +10,7 @@ TagManager:
   - Door
   - HeavyBlade
   - Enemy
+  - DeadEnemy
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,8 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 3; 
     private int currentHealth; 
     private Animator animator;
-    public HealthBar healthBar; 
+    public HealthBar healthBar;
+    private bool isDead = false;
 
     void Start()
     {
@@ -21,8 +22,15 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            isDead = true;
+
             gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
+            
             animator.SetBool("EnemyDeath", true);
+
+            transform.parent.tag = "DeadEnemy";
+            
+            
         }
        // Debug.Log(currentHealth);
     }

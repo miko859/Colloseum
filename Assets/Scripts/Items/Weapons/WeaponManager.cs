@@ -1,19 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public PlayerController playerController;
-    public Weapon[] weapons;
+    public string target;
+    public Collider blade;
+    public bool hit = false;
+    private int lightAttackDmg = 1;
+    private int hardAttackDmg = 4;
 
-    /// <summary>
-    /// This will equip weapon from inventory based on index recevied from InputSystem
-    /// </summary>
-    /// <param name="index"></param>
-    public void EquipWeapon(int index)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (index >= 0 && index < weapons.Length)
+    
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(target) & !hit)
         {
-            playerController.EquipWeapon(weapons[index]);
+            other.GetComponent<Health>().DealDamage(lightAttackDmg);
+            Debug.Log("you hit " + target + " by damage " +  lightAttackDmg);
+            hit = true;
+            
         }
+    }
+
+    public void SetHit(bool hit)
+    {
+        this.hit = hit;
     }
 }

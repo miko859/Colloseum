@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public float airControl = 10;
     public AudioSource movementSound;
     bool startedSound = false;
+    bool wasGrounded;
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -36,12 +37,12 @@ public class PlayerMovement : MonoBehaviour
         movement_x = Input.GetAxisRaw("Horizontal");
         movement_z = Input.GetAxisRaw("Vertical");
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
-        if (movement_x !=0 || movement_z !=0)
+        if (movement_x !=0 && isGrounded==true || movement_z !=0 && isGrounded == true)
         {
-            if (startedSound == false)
+            if (startedSound == false||wasGrounded == true)
             {
                 startedSound = true;
-                Invoke("delay", 0.2f);
+                Invoke("delay", 0.5f);
             
             }
             
@@ -66,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         {
             target_speed *= 0.8f; // Reduce target speed by 20%
             movementSound.enabled = false;
+            wasGrounded = true;
         }
 
         // AIR INERTIA

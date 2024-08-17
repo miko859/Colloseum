@@ -37,8 +37,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    bool startedSound = false;
-    bool wasGrounded;
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -54,21 +52,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
-        if (movement_x !=0 && isGrounded==true || movement_z !=0 && isGrounded == true)
+        if (movement_x !=0 || movement_z !=0)
         {
-            if (startedSound == false||wasGrounded == true)
-            {
-                startedSound = true;
-                Invoke("delay", 0.5f);
-            
-            }
-            
+            movementSound.enabled = true;
 
         }
         else
         {
             movementSound.enabled = false;
-            startedSound = false;
 
         }
         if (Input.GetKey(KeyCode.LeftShift))
@@ -84,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
         {
             target_speed *= 0.8f; // Reduce target speed by 20%
             movementSound.enabled = false;
-            wasGrounded = true;
         }
 
         // AIR INERTIA
@@ -131,14 +121,5 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", false);
             isJumping = false;
         }
-    }
-
-    public void delay(){
-        if (startedSound == true)
-        {
-            movementSound.enabled = true;
-        }
-
-
     }
 }

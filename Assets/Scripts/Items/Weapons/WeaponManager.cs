@@ -22,7 +22,6 @@ public class WeaponManager : MonoBehaviour
         {
             other.GetComponent<Health>().DealDamage(lightAttackDmg);
             Debug.Log("you hit " + target + " by damage " +  lightAttackDmg);
-            //blade.isTrigger = false;
             hit = true;
             
         }

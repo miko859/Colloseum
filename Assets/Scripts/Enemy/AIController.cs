@@ -21,7 +21,7 @@ public class AIController : MonoBehaviour
     private Patrolling patrolling;      //script for patrolling
 
     private bool isAttacking;
-    private bool knowAboutPlayer = false;
+    private bool knowAboutPlayer;
     private bool fallBack;
 
 
@@ -45,6 +45,8 @@ public class AIController : MonoBehaviour
         {
             Debug.LogError("Player GameObject with tag 'Player' not found in the scene");
         }
+
+        knowAboutPlayer = false;
     }
 
     // Update is called once per frame
@@ -57,12 +59,12 @@ public class AIController : MonoBehaviour
             agent.CalculatePath(player.transform.position, path);
             CalculateDistanceOfPath();
 
-            if (knowAboutPlayer && distanceToPlayer <= 20 && path.status != NavMeshPathStatus.PathComplete)
+            if (knowAboutPlayer & distanceToPlayer <= 20 & path.status != NavMeshPathStatus.PathComplete)
             {
                 fallBack = false;
                 patrolling.StopPatrolling();
 
-                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
+                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, player.transform.position.z);
 
                 if (distanceToPlayer <= 4 || (distanceToPlayer <= 4 && IsPlayerAbove()))
                 {
@@ -76,7 +78,7 @@ public class AIController : MonoBehaviour
                     agent.SetDestination(playerGroundPosition);
                 }
             }
-            else if (path.status == NavMeshPathStatus.PathComplete && fullDistance <= 20 && fullDistance != 0)
+            else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
             {
                 fallBack = false;
                 knowAboutPlayer = true;

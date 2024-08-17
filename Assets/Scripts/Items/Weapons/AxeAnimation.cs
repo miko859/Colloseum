@@ -6,13 +6,14 @@ using UnityEngine.InputSystem;
 
 public class AxeAnimation : Weapon
 {
+    
 
     public Collider Blade;
 
     private bool isBashing = false;
     private bool isBlocking = false;
     private bool isAttacking = false;
-    public GameObject myPrefab;
+    
 
     public bool getIsBashing()
     {
@@ -24,16 +25,24 @@ public class AxeAnimation : Weapon
         base.Awake();
     }
 
+
+
     /// <summary>
     /// Basic Attacl/Light Attack
     /// </summary>
     public override void Attack()
     {
+        
         if (!isBlocking)
         {
-            StartCoroutine(AttackAnim());
+            if (!isAttacking)
+            {
+                StartCoroutine(AttackAnim(Random.Range(0, 3)));
+            }
         }
-        
+
+
+
     }
 
     /// <summary>
@@ -41,14 +50,14 @@ public class AxeAnimation : Weapon
     /// </summary>
     /// <param name="attackPhase"></param>
     public override void HardAttack(bool attackPhase)
-    { 
+    {
         if (!isBlocking)
         {
             if (attackPhase)
             {
                 StartCoroutine(HardAttackAnim());
             }
-            else 
+            else
             {
                 StartCoroutine(HardAttackAnimPerform());
             }
@@ -69,10 +78,10 @@ public class AxeAnimation : Weapon
     /// </summary>
     public override void Bash()
     {
-        if(isBlocking)
+        if (isBlocking)
         {
             StartCoroutine(BashAnim());
-        } 
+        }
     }
 
     /// <summary>
@@ -87,7 +96,7 @@ public class AxeAnimation : Weapon
         }
         if (playerInputActions.Player.Attack.triggered)
         {
-           HardAttack(true || false);
+            HardAttack(true || false);
         }
         if (playerInputActions.Player.Block.triggered)
         {
@@ -104,27 +113,53 @@ public class AxeAnimation : Weapon
     {
         gameObject.SetActive(false);
     }
-    
+
     /// <summary>
     /// Async LightAttack animation
     /// </summary>
     /// <returns></returns>
-    private IEnumerator AttackAnim()
+    private IEnumerator AttackAnim(int attackType)
     {
-         if (!isAttacking) 
-         {
-          isAttacking = true;
-         Blade.isTrigger = true;
-         animator.SetBool("AxeAnim", true);
-         yield return new WaitForSeconds(0.46f);
-         Blade.isTrigger = false;
-         animator.SetBool("AxeAnim", false);
-         yield return new WaitForSeconds(0.46f);
-         isAttacking = false; 
-         }
         
-       
+
+
+        if (!isAttacking) 
+        {
+            isAttacking = true;       
+
+            switch(attackType)
+            {
+                case 0:
+                    animator.SetBool("AxeAnim", true);
+                    yield return new WaitForSeconds(0.46f);
+                    animator.SetBool("AxeAnim", false);
+                    break;
+                case 1:
+                    animator.SetBool("AxeAnim2", true);
+                    yield return new WaitForSeconds(0.18f);
+                    animator.SetBool("AxeAnim2", false);
+                    break;
+                case 2:
+                    animator.SetBool("AxeAnim3", true);
+                    yield return new WaitForSeconds(0.28f);
+                    animator.SetBool("AxeAnim3", false);
+                    break;
+            }
+            
+            
+            isAttacking = false; 
+        }
+
+
     }
+
+    private IEnumerator AttackAnim2()
+    {
+        animator.SetBool("AxeAnim2", true);
+        yield return new WaitForSeconds(0.15f);
+        animator.SetBool("AxeAnim2", false);
+    }
+
     
     /// <summary>
     /// Async HardAttack charge

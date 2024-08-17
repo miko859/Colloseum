@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 1.7f;
     public float decelerationFactor = 5f;
     public float airControl = 10;
+    public AudioSource movementSound;
 
     private Animator animator;
 
@@ -51,7 +52,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
+        if (movement_x !=0 || movement_z !=0)
+        {
+            movementSound.enabled = true;
 
+        }
+        else
+        {
+            movementSound.enabled = false;
+
+        }
         if (Input.GetKey(KeyCode.LeftShift))
         {
             target_speed = sprint_speed;
@@ -64,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             target_speed *= 0.8f; // Reduce target speed by 20%
+            movementSound.enabled = false;
         }
 
         // AIR INERTIA

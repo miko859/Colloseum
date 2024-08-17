@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float decelerationFactor = 5f;
     public float airControl = 10;
     public AudioSource movementSound;
-
+    bool startedSound = false;
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -38,12 +38,19 @@ public class PlayerMovement : MonoBehaviour
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
         if (movement_x !=0 || movement_z !=0)
         {
-            movementSound.enabled = true;
+            if (startedSound == false)
+            {
+                startedSound = true;
+                Invoke("delay", 0.2f);
+            
+            }
+            
 
         }
         else
         {
             movementSound.enabled = false;
+            startedSound = false;
 
         }
         if (Input.GetKey(KeyCode.LeftShift))
@@ -98,5 +105,14 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+    }
+
+    public void delay(){
+        if (startedSound == true)
+        {
+            movementSound.enabled = true;
+        }
+
+
     }
 }

@@ -1262,9 +1262,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ce86900420094ba98f86ab31107b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPatrolling: 0
-  position1: {fileID: 0}
-  position2: {fileID: 0}
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &2575035235656081211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5714229035188606006, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}

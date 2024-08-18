@@ -5079,6 +5079,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3162557397414611166, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
+      propertyPath: movementSound
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3252802694563254803, guid: aa9b6eb7180feb045b1530ef31ea3380, type: 3}
       propertyPath: blade
       value: 

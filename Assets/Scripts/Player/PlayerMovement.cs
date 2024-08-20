@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float decelerationFactor = 5f;
     public float airControl = 10;
     public AudioSource movementSound;
+    public AudioSource jumpSound; // New variable for the jump sound
     bool startedSound = false;
     bool wasGrounded;
     public float range;
@@ -77,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             target_speed *= 0.8f;
-            movementSound.Stop(); // Stop sound when not grounded
+            StopFootstepSound();
             wasGrounded = true;
         }
 
@@ -112,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            PlayJumpSound(); // Play jump sound here
             animator.SetBool("Jump", true);
             isJumping = true;
         }
@@ -138,8 +140,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    IEnumerator StopMovementSoundAfterFinish()
+    {
+        yield return new WaitWhile(() => movementSound.isPlaying); // Wait until the sound finishes playing
+        movementSound.Stop(); // Stop the sound completely after it finishes
+        movementSound.enabled = false; // Disable the AudioSource to reset the delay next time
+    }
+
     void PlayFootstepSound()
     {
+        if (movementSound == null) return;
         movementSound.pitch = Random.Range(0.8f, 1f); // Adjust pitch randomly
         if (!movementSound.isPlaying)
         {
@@ -147,10 +157,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator StopMovementSoundAfterFinish()
+    void StopFootstepSound()
     {
-        yield return new WaitWhile(() => movementSound.isPlaying); // Wait until the sound finishes playing
-        movementSound.Stop(); // Stop the sound completely after it finishes
-        movementSound.enabled = false; // Disable the AudioSource to reset the delay next time
+        if (movementSound == null) return;
+        if (movementSound.isPlaying)
+        {
+            movementSound.Stop(); // Stop the sound if playing
+        }
+    }
+
+    void PlayJumpSound()
+    {
+        if (jumpSound == null) return;
+        jumpSound.Play(); // Play jump sound
     }
 }

@@ -55,12 +55,12 @@ public class PlayerMovement : MonoBehaviour
             if (!startedSound || wasGrounded)
             {
                 startedSound = true;
-                Invoke("DelaySound", 0.0f);
+                StartCoroutine(StartMovementSoundWithDelay(0.2f)); // Start the sound with a delay of 0.2 seconds
             }
         }
         else if (startedSound)
         {
-            // Stop movement sound after the current clip finishes
+            // Stop movement
             StartCoroutine(StopMovementSoundAfterFinish());
             startedSound = false;
         }
@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isGrounded)
         {
             target_speed *= 0.8f;
-            movementSound.Stop(); // Stop the sound when not grounded
+            movementSound.Stop(); // Stop sound when not grounded
             wasGrounded = true;
         }
 
@@ -127,11 +127,14 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void DelaySound()
+    IEnumerator StartMovementSoundWithDelay(float delay)
     {
-        if (startedSound)
+        yield return new WaitForSeconds(delay);
+
+        if (startedSound) // Ensure the sound starts only if the player is still moving
         {
             movementSound.enabled = true;
+            PlayFootstepSound();
         }
     }
 
@@ -140,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
         movementSound.pitch = Random.Range(0.8f, 1f); // Adjust pitch randomly
         if (!movementSound.isPlaying)
         {
-            movementSound.Play(); // Play sound if not already playing
+            movementSound.Play(); // Play the sound if not playing already 
         }
     }
 
@@ -148,5 +151,6 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitWhile(() => movementSound.isPlaying); // Wait until the sound finishes playing
         movementSound.Stop(); // Stop the sound completely after it finishes
+        movementSound.enabled = false; // Disable the AudioSource to reset the delay next time
     }
 }

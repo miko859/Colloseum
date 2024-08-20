@@ -1,7 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
     float movement_x;
     float movement_z;
     float sprint_speed = 20f;
-    bool sprint = false;
     public CharacterController playerController;
     Vector3 movement_direction;
     float movement_speed;
@@ -31,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource movementSound;
     bool startedSound = false;
     bool wasGrounded;
+    public float range;
     private Animator animator;
 
     private void Start()
@@ -41,35 +38,33 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        Debug.Log(isGrounded);
-        
+
         if (!isJumping)
         {
             movement_x = Input.GetAxisRaw("Horizontal");
             movement_z = Input.GetAxisRaw("Vertical");
-        
+
             animator.SetFloat("VelocityX", movement_x);
             animator.SetFloat("VelocityZ", movement_z);
         }
 
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
-        if (movement_x != 0 && isGrounded == true || movement_z != 0 && isGrounded == true)
+
+        if ((movement_x != 0 || movement_z != 0) && isGrounded)
         {
-            if (startedSound == false || wasGrounded == true)
+            if (!startedSound || wasGrounded)
             {
                 startedSound = true;
-                Invoke("delay", 0.5f);
-
+                Invoke("DelaySound", 0.0f);
             }
-
-
         }
-        else
+        else if (startedSound)
         {
-            movementSound.enabled = false;
+            // Stop movement sound after the current clip finishes
+            StartCoroutine(StopMovementSoundAfterFinish());
             startedSound = false;
-
         }
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             target_speed = sprint_speed;
@@ -81,16 +76,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (!isGrounded)
         {
-            target_speed *= 0.8f; // Reduce target speed by 20%
-            movementSound.enabled = false;
+            target_speed *= 0.8f;
+            movementSound.Stop(); // Stop the sound when not grounded
             wasGrounded = true;
         }
 
-        // AIR INERTIA
         if (!isGrounded)
         {
-            // air drag
-            movement_speed -= decelerationFactor * Time.deltaTime; // slow down by decelerationFactor per second
+            movement_speed -= decelerationFactor * Time.deltaTime;
             movement_speed = Mathf.Max(movement_speed, 5);
         }
         else
@@ -98,27 +91,24 @@ public class PlayerMovement : MonoBehaviour
             movement_speed = target_speed;
         }
 
-        movement_direction = input_direction; // you don't need to modify direction for air control, just speed
+        movement_direction = input_direction;
 
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
-        // GRAVITY
+
         if (isGrounded)
         {
             if (velocity.y < 0)
             {
-
-                velocity.y = -2f; // keeps the player on the ground
+                velocity.y = -2f;
             }
         }
         else
         {
-            // GRAVITY ACCELERATION
             velocity.y += gravity * Time.deltaTime;
         }
 
         playerController.Move(velocity * Time.deltaTime * gravity_acceleration);
 
-        // JUMP
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -130,14 +120,33 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Jump", false);
             isJumping = false;
         }
+
+        if (isGrounded && (movement_x != 0 || movement_z != 0))
+        {
+            PlayFootstepSound();
+        }
     }
-    public void delay()
+
+    public void DelaySound()
     {
-        if (startedSound == true)
+        if (startedSound)
         {
             movementSound.enabled = true;
         }
+    }
 
+    void PlayFootstepSound()
+    {
+        movementSound.pitch = Random.Range(0.8f, 1f); // Adjust pitch randomly
+        if (!movementSound.isPlaying)
+        {
+            movementSound.Play(); // Play sound if not already playing
+        }
+    }
 
+    IEnumerator StopMovementSoundAfterFinish()
+    {
+        yield return new WaitWhile(() => movementSound.isPlaying); // Wait until the sound finishes playing
+        movementSound.Stop(); // Stop the sound completely after it finishes
     }
 }

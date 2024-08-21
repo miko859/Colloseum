@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public float decelerationFactor = 5f;
     public float airControl = 10;
     public AudioSource movementSound;
-    public AudioSource jumpSound; // New variable for the jump sound
+    public AudioSource landSound;
+    public AudioSource jumpSound;
     bool startedSound = false;
     bool wasGrounded;
     public float range;
@@ -56,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             if (!startedSound || wasGrounded)
             {
                 startedSound = true;
-                StartCoroutine(StartMovementSoundWithDelay(0.2f)); // Start the sound with a delay of 0.2 seconds
+                StartCoroutine(StartMovementSoundWithDelay(0.2f)); // Start the sound with a delay
             }
         }
         else if (startedSound)
@@ -80,6 +81,13 @@ public class PlayerMovement : MonoBehaviour
             target_speed *= 0.8f;
             StopFootstepSound();
             wasGrounded = true;
+        }
+
+        if (!isGrounded && wasGrounded == true)
+        {
+            PlayLandSound(); // plays the sound when the player reaches the ground 
+            wasGrounded = false;
+            
         }
 
         if (!isGrounded)
@@ -113,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            PlayJumpSound(); // Play jump sound here
+            PlayJumpSound(); // Play jump sound
             animator.SetBool("Jump", true);
             isJumping = true;
         }
@@ -143,8 +151,8 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator StopMovementSoundAfterFinish()
     {
         yield return new WaitWhile(() => movementSound.isPlaying); // Wait until the sound finishes playing
-        movementSound.Stop(); // Stop the sound completely after it finishes
-        movementSound.enabled = false; // Disable the AudioSource to reset the delay next time
+        movementSound.Stop(); // Stop the sound
+        movementSound.enabled = false; //reset the delay
     }
 
     void PlayFootstepSound()
@@ -169,6 +177,15 @@ public class PlayerMovement : MonoBehaviour
     void PlayJumpSound()
     {
         if (jumpSound == null) return;
-        jumpSound.Play(); // Play jump sound
+        jumpSound.Play(); 
+    }
+
+    void PlayLandSound()
+    {
+        if (landSound == null) return;
+        landSound.Play();
+        {
+            
+        }
     }
 }

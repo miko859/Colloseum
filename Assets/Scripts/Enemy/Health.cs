@@ -25,6 +25,7 @@ public class Health : MonoBehaviour
         {
             gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
             //animator.SetBool("EnemyDeath", true);
+            transform.tag = "DeadEnemy";
 
             animator.enabled = false;
             

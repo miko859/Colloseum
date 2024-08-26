@@ -6,12 +6,15 @@ using UnityEngine.InputSystem;
 
 public class WeaponAnimations : Weapon
 {
-    
-
     private bool isBashing = false;
     private bool isBlocking = false;
     private bool isAttacking = false;
-    
+    private int damage;
+
+    public int getDamage()
+    {
+        return damage; 
+    }
 
     public bool getIsBashing()
     {
@@ -22,8 +25,6 @@ public class WeaponAnimations : Weapon
     {
         base.Awake();
     }
-
-
 
     /// <summary>
     /// Basic Attacl/Light Attack
@@ -36,13 +37,11 @@ public class WeaponAnimations : Weapon
             if (!isAttacking)
             {
                 isAttacking = true;
+                damage = weaponData.lightAttackDamage;
                 StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + Random.Range(1, 4), weaponData.lightAttackDuration));
                 isAttacking = false;
             }
         }
-
-
-
     }
 
     /// <summary>
@@ -59,6 +58,7 @@ public class WeaponAnimations : Weapon
             }
             else
             {
+                damage = weaponData.heavyAttackDamage;
                 StartCoroutine(PlayAnimation(weaponData.heavyAttackPerformAnimation, weaponData.heavyAttackPerformDuration));
             }
         }

@@ -5,23 +5,29 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public string target;
-    public Collider blade;
-    public bool hit = false;
-    private int lightAttackDmg = 1;
-    private int hardAttackDmg = 4;
+    private Collider blade;
+    private bool hit = false;
+    private WeaponAnimations weaponAnimations;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Set blade for hitboxes and weaponAnimations to get DMG of actual attack
+    /// </summary>
     void Start()
     {
-    
+        blade = GetComponent<Collider>();
+        weaponAnimations = GetComponent<WeaponAnimations>();
     }
 
+    /// <summary>
+    /// Check if entity was hit by weapon and dealing dmg by attack, enemy <=> player
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(target) & !hit)
         {
-            other.GetComponent<Health>().DealDamage(lightAttackDmg);
-            Debug.Log("you hit " + target + " by damage " +  lightAttackDmg);
+            other.GetComponent<Health>().DealDamage(weaponAnimations.getDamage());
+            Debug.Log("you hit " + target + " by damage " + weaponAnimations.getDamage());
             hit = true;
             
         }

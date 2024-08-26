@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public string target;
+    private string target;
     private Collider blade;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
@@ -16,6 +17,16 @@ public class WeaponManager : MonoBehaviour
     {
         blade = GetComponent<Collider>();
         weaponAnimations = GetComponent<WeaponAnimations>();
+        
+        /// Check who is owner of weapon, if nobody than target will be Enemy, cause enemy will not be picking an weapon
+        if (transform.parent.tag == "Enemy")
+        {
+            target = "Player";
+        }
+        else 
+        {
+            target = "Enemy";
+        }
     }
 
     /// <summary>
@@ -28,8 +39,7 @@ public class WeaponManager : MonoBehaviour
         {
             other.GetComponent<Health>().DealDamage(weaponAnimations.getDamage());
             Debug.Log("you hit " + target + " by damage " + weaponAnimations.getDamage());
-            hit = true;
-            
+            hit = true; 
         }
     }
 

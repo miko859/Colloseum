@@ -54,13 +54,14 @@ public class WeaponAnimations : Weapon
         {
             if (attackPhase)
             {
-                StartCoroutine(PlayAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));
+                damage = weaponData.heavyAttackDamage;
+                StartCoroutine(PlayAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));               
             }
             else
             {
-                damage = weaponData.heavyAttackDamage;
-                StartCoroutine(PlayAnimation(weaponData.heavyAttackPerformAnimation, weaponData.heavyAttackPerformDuration));
+                StartCoroutine(PlayAnimation(weaponData.heavyAttackPerformAnimation, weaponData.heavyAttackPerformDuration));   
             }
+            
         }
     }
 
@@ -70,7 +71,7 @@ public class WeaponAnimations : Weapon
     public override void Block()
     {
         isBlocking = !isBlocking;
-        animator.SetBool("AxeBlock", isBlocking);
+        animator.SetBool("Block", isBlocking);
     }
 
     /// <summary>
@@ -113,41 +114,4 @@ public class WeaponAnimations : Weapon
     {
         gameObject.SetActive(false);
     }
-
-    /*
-    /// <summary>
-    /// Async LightAttack animation
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator AttackAnim(int attackType)
-    {
-        if (!isAttacking) 
-        {
-            isAttacking = true;
-
-            
-            switch(attackType)
-            {
-                case 0:
-                    animator.SetBool("AxeAnim", true);
-                    yield return new WaitForSeconds(0.46f);
-                    animator.SetBool("AxeAnim", false);
-                    break;
-                case 1:
-                    animator.SetBool("AxeAnim2", true);
-                    yield return new WaitForSeconds(0.18f);
-                    animator.SetBool("AxeAnim2", false);
-                    break;
-                case 2:
-                    animator.SetBool("AxeAnim3", true);
-                    yield return new WaitForSeconds(0.28f);
-                    animator.SetBool("AxeAnim3", false);
-                    break;
-            }
-            //StartCoroutine(PlayAnimation());
-            
-            
-            isAttacking = false; 
-        }
-    }*/
 }

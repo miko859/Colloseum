@@ -19,7 +19,7 @@ MonoBehaviour:
   bashDuration: 0.48
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
-  heavyAttackPerformAnimation: HeavyAttackPerfrom
+  heavyAttackPerformAnimation: HeavyAttackPerform
   blockAnimation: Block
   bashAnimation: Bash
   lightAttackDamage: 1

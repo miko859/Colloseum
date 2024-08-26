@@ -2696,14 +2696,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3082542490788796248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 680fa8459ab9dc241a416b2fb715bbd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: Enemy
-  blade: {fileID: 0}
-  hit: 0
 --- !u!114 &5102247749282432599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6457,8 +6455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Enemy
-  blade: {fileID: 7103206432626506071}
-  hit: 0
 --- !u!114 &4412282198825604878
 MonoBehaviour:
   m_ObjectHideFlags: 0

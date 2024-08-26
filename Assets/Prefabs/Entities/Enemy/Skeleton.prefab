@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.275078
+      value: 41.327576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00009536743
+      value: -19.622911
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.4954352
+      value: -3.9211164
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2182,8 +2182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Player
-  blade: {fileID: 3959479997129887399}
-  hit: 0
 --- !u!65 &3959479997129887399
 BoxCollider:
   m_ObjectHideFlags: 0

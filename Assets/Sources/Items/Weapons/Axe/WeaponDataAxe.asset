@@ -23,4 +23,4 @@ MonoBehaviour:
   blockAnimation: Block
   bashAnimation: Bash
   lightAttackDamage: 1
-  heavyAttackDamage: 3
+  heavyAttackDamage: 4

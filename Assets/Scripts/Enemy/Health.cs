@@ -23,11 +23,17 @@ public class Health : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
-            //animator.SetBool("EnemyDeath", true);
-            transform.tag = "DeadEnemy";
-
-            animator.enabled = false;
+            if (transform.CompareTag("Enemy"))
+            {
+                transform.tag = "DeadEnemy";
+                animator.enabled = false;
+                transform.GetComponent<NavMeshAgent>().enabled = false;
+            }
+            else if (transform.CompareTag("Player"))
+            {
+                Debug.Log("YOU HAVE DIED");
+            }
+            
             
             /*foreach (Rigidbody rb in GetComponentInChildren<Rigidbody>())
             {

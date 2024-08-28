@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
-  m_Name: WeaponDataSpear
+  m_Script: {fileID: 11500000, guid: 58b99cc53ff3850478943c7501768b1c, type: 3}
+  m_Name: EnemyDataSkeleton
   m_EditorClassIdentifier: 
-  weaponName: Spear
+  enemyName: Skeleton
+  enemyHealth: 6
   lightAttackDuration: 0
   heavyAttackChargeDuration: 0
   heavyAttackPerformDuration: 0
   bashDuration: 0
-  lightAttackAnimation: LighAttack
-  heavyAttackAnimation: HeavyAttack
-  heavyAttackPerformAnimation: HeavyAttackPerform
-  blockAnimation: Block
-  bashAnimation: Bash
+  lightAttackAnimation: 
+  heavyAttackAnimation: 
+  heavyAttackPerformAnimation: 
+  blockAnimation: 
+  bashAnimation: 
   lightAttackDamage: 1
-  heavyAttackDamage: 3
+  heavyAttackDamage: 2

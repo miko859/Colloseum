@@ -12,12 +12,10 @@ public class Patrolling : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("patrol start");
         agent = GetComponent<NavMeshAgent>();
 
         if (patrolPoints.Length > 0)
         {
-            Debug.Log("enough points");
             agent.SetDestination(patrolPoints[currentPatrolIndex].position);
         }
     }
@@ -26,7 +24,6 @@ public class Patrolling : MonoBehaviour
     {
         if (isPatrolling & agent.remainingDistance < 3)
         {
-            Debug.Log("Next point");
             currentPatrolIndex = (currentPatrolIndex + 1) % patrolPoints.Length;
             agent.SetDestination(patrolPoints[currentPatrolIndex].position);
         }
@@ -34,14 +31,12 @@ public class Patrolling : MonoBehaviour
 
     public void StartPatrolling()
     {
-        Debug.Log("start patrol");
         isPatrolling = true;
         agent.SetDestination(patrolPoints[currentPatrolIndex].position);
     }
 
     public void StopPatrolling()
     {
-        Debug.Log("stop patrol");
         isPatrolling = false;
         agent.ResetPath();
     }

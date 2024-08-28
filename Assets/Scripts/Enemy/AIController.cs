@@ -19,13 +19,12 @@ public class AIController : MonoBehaviour
     public GameObject weapon;           //enemy´s weapon
     private Collider blade;
     private Patrolling patrolling;      //script for patrolling
+    public EnemyData enemyData;
 
     private bool isAttacking;
     private bool knowAboutPlayer;
     private bool fallBack;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -49,7 +48,6 @@ public class AIController : MonoBehaviour
         knowAboutPlayer = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (agent != null && player != null)
@@ -186,6 +184,11 @@ public class AIController : MonoBehaviour
             temp += Vector3.Distance(pathCorners[i - 1], pathCorners[i]);
         }
         fullDistance = temp;
+    }
+
+    public int getDamage()
+    {
+        return enemyData.lightAttackDamage;
     }
 
 

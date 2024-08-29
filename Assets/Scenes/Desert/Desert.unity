@@ -639,6 +639,10 @@ PrefabInstance:
       value: Pillar (11)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -650,6 +654,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 558188435}
+    - target: {fileID: 1187504837658751883, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1187504837658751883, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -718,6 +726,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1201160211}
+    - target: {fileID: 4618985218735071704, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4618985218735071704, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -16007,6 +16019,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1452005668}
     - target: {fileID: 2800928697185858086, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2800928697185858086, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -16019,6 +16035,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 115157128}
     - target: {fileID: 4615779058654438700, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615779058654438700, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -16026,6 +16046,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1452005668}
+    - target: {fileID: 5494103447447375087, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5494103447447375087, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -16037,6 +16061,10 @@ PrefabInstance:
     - target: {fileID: 6764276017036681022, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
       propertyPath: m_Name
       value: Pillar Torch (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6764276017036681022, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6764276017036681022, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
       propertyPath: m_StaticEditorFlags

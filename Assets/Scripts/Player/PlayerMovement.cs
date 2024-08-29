@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     bool isGrounded;
     bool isJumping = false;
+    bool hasJumped = false;
     float target_speed;
     float gravity_acceleration = 2.4f;
 
@@ -30,11 +31,9 @@ public class PlayerMovement : MonoBehaviour
     bool startedSound = false;
     bool wasGrounded;
     public float range;
-    private Animator animator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -46,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
             movement_x = Input.GetAxisRaw("Horizontal");
             movement_z = Input.GetAxisRaw("Vertical");
 
-            animator.SetFloat("VelocityX", movement_x);
-            animator.SetFloat("VelocityZ", movement_z);
         }
 
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
@@ -76,18 +73,20 @@ public class PlayerMovement : MonoBehaviour
             target_speed = base_move_speed;
         }
 
+       
+
+        if (isGrounded && wasGrounded && hasJumped == true) // Landing after a jump
+        {
+            PlayLandSound(); // Play the landing sound
+            wasGrounded = false;
+            hasJumped = false; // Reset the jump after landing
+        }
+
         if (!isGrounded)
         {
             target_speed *= 0.8f;
             StopFootstepSound();
             wasGrounded = true;
-        }
-
-        if (!isGrounded && wasGrounded == true)
-        {
-            PlayLandSound(); // plays the sound when the player reaches the ground 
-            wasGrounded = false;
-            
         }
 
         if (!isGrounded)
@@ -106,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
+            wasGrounded = false;
             if (velocity.y < 0)
             {
                 velocity.y = -2f;
@@ -122,13 +122,13 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             PlayJumpSound(); // Play jump sound
-            animator.SetBool("Jump", true);
             isJumping = true;
+            hasJumped = true; 
         }
         else if (isGrounded)
         {
-            animator.SetBool("Jump", false);
             isJumping = false;
+            
         }
 
         if (isGrounded && (movement_x != 0 || movement_z != 0))
@@ -177,15 +177,12 @@ public class PlayerMovement : MonoBehaviour
     void PlayJumpSound()
     {
         if (jumpSound == null) return;
-        jumpSound.Play(); 
+        jumpSound.Play();
     }
 
     void PlayLandSound()
     {
         if (landSound == null) return;
         landSound.Play();
-        {
-            
-        }
     }
 }

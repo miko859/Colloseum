@@ -3,10 +3,10 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     public Transform cameraTransform; // Kamera hráèa
-    public float interactionRange = 5f; // Dosah interakcie
+    public float interactionRange; // Dosah interakcie
     public LayerMask interactionLayerMask; // Vrstva pre interaktívne objekty
 
-    private Interactable currentInteractable;
+    public Interactable currentInteractable;
 
     void Update()
     {
@@ -16,6 +16,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             currentInteractable.Interact(); // Spustí interakciu
         }
+
+        
     }
 
     private void CheckForInteractable()
@@ -23,8 +25,11 @@ public class PlayerInteraction : MonoBehaviour
         Ray ray = new Ray(cameraTransform.position, cameraTransform.forward);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, interactionRange, interactionLayerMask))
+        //if (Physics.Raycast(ray, out hit, interactionRange, interactionLayerMask))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactionRange))
         {
+            Debug.DrawLine(cameraTransform.position, cameraTransform.forward * hit.distance, Color.red);
+
             Interactable interactable = hit.collider.GetComponent<Interactable>();
 
             if (interactable != null)
@@ -40,6 +45,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
+            Debug.DrawLine(cameraTransform.position, cameraTransform.forward * interactionRange, Color.blue);
             currentInteractable = null;
         }
     }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6624903311065791583}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightGrip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 3867815251423727121}
   - component: {fileID: 5863639437405994028}
   - component: {fileID: 2380462149919120160}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Axe1H_Basic
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -138,8 +138,8 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.40033048, y: 0.33499005, z: 0.06714517}

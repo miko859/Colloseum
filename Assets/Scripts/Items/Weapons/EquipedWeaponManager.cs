@@ -48,6 +48,7 @@ public class EquipedWeaponManager : MonoBehaviour
     public void AddWeapon(Weapon newWeapon)
     {
         weaponery.Add(newWeapon);
+        
         Debug.Log("Weapon added: " + newWeapon.name);
     }
 }

@@ -2722,7 +2722,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.90260154
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -2844,6 +2844,7 @@ MonoBehaviour:
   interactionLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  currentInteractable: {fileID: 0}
 --- !u!1 &3082700438439263180
 GameObject:
   m_ObjectHideFlags: 0
@@ -6235,7 +6236,7 @@ Rigidbody:
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

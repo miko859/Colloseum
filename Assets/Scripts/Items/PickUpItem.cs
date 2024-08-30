@@ -7,7 +7,9 @@ public class PickUpItem : Interactable
     public override void Interact()
     {
         Debug.Log("Picking up: " + weaponPrefab.name);
-        EquipedWeaponManager.Instance.AddWeapon(weaponPrefab); // Predpokladá sa, že WeaponManager spravuje zbrane
-        Destroy(gameObject); // Znièí predmet po zdvihnutí
+        EquipedWeaponManager.Instance.AddWeapon(weaponPrefab);
+        //Destroy(gameObject); // Znièí predmet po zdvihnutí
+        weaponPrefab.transform.SetParent(GameObject.Find("Main Camera").transform, false);
+        weaponPrefab.Unequip();
     }
 }

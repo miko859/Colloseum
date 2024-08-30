@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
         {
             if (transform.CompareTag("Enemy"))
             {
-                transform.tag = "DeadEnemy";
+                transform.tag = "Ground";
                 animator.enabled = false;
                 transform.GetComponent<NavMeshAgent>().enabled = false;
             }

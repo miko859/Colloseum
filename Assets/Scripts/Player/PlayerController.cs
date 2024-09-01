@@ -8,15 +8,19 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
+    private EquipedWeaponManager equipedWeaponManager;
 
     private bool isCharging = false;
 
     private void Awake()
     {
+        equipedWeaponManager = GetComponent<EquipedWeaponManager>();
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Attack.performed += OnAttack;
         playerInputActions.Player.Block.performed += OnBlock;
         //playerInputActions.Player.Movement.performed += OnMovement;
+        playerInputActions.Player.ChangeWeapon.performed += OnScroll;
     }
 
     private void OnEnable()
@@ -46,14 +50,45 @@ public class PlayerController : MonoBehaviour
     /// <param name="newWeapon"></param>
     public void EquipWeapon(Weapon newWeapon)
     {
-        
+        /*
         if (currentWeapon != null)
         {
             currentWeapon.gameObject.SetActive(false);
-        }
+        }*/
 
         currentWeapon = newWeapon;
-        currentWeapon.gameObject.SetActive(true);
+       // currentWeapon.gameObject.SetActive(true);
+    }
+
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            if (context.ReadValue<Vector2>().y < 0)
+            {
+
+                int yValueDown = equipedWeaponManager.getCurrentWeaponIndex() - 1;
+
+                if (yValueDown < 0)
+                {
+                    yValueDown = equipedWeaponManager.weaponery.Count;
+                }
+
+                equipedWeaponManager.SwitchWeapon(yValueDown);
+            }
+            else
+            {
+                int yValueUp = equipedWeaponManager.getCurrentWeaponIndex() + 1;
+
+                if (yValueUp > equipedWeaponManager.weaponery.Count)
+                {
+                    yValueUp = 0;
+                }
+
+                equipedWeaponManager.SwitchWeapon(yValueUp);
+            }
+        }
+        
     }
 
     /// <summary>

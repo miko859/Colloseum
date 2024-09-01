@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class EquipedWeaponManager : MonoBehaviour
 {
     public static EquipedWeaponManager Instance;
 
+    public Transform rightHandGrip;
+    public Transform leftHandGrip;
+
     public List<Weapon> weaponery = new List<Weapon>();
-    private int currentWeaponIndex = -1;
+    private int currentWeaponIndex = 0;
 
     private void Awake()
     {
@@ -18,6 +22,11 @@ public class EquipedWeaponManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public int getCurrentWeaponIndex() 
+    {  
+        return currentWeaponIndex; 
     }
 
     /// <summary>
@@ -37,6 +46,20 @@ public class EquipedWeaponManager : MonoBehaviour
             // Aktivuj novú zbraò
             currentWeaponIndex = index;
             weaponery[currentWeaponIndex].Equip();
+
+            transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
+
+            Debug.Log("Right Grip -> " + weaponery[currentWeaponIndex].transform.Find("RightGrip"));
+            Debug.Log("Left Grip -> " + weaponery[currentWeaponIndex].transform.Find("LeftGrip"));
+
+            //rightHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
+            //leftHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
+
+            rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
+            leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");
+
+            rightHandGrip.GetComponent<TwoBoneIKConstraint>().Reset();
+            leftHandGrip.GetComponent<TwoBoneIKConstraint>().Reset();
         }
     }
 

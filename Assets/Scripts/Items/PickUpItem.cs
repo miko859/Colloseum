@@ -11,7 +11,7 @@ public class PickUpItem : Interactable
         Weapon temp = Instantiate(weaponPrefab);
         temp.name = weaponPrefab.name;
         temp.Unequip();
-        temp.transform.SetParent(GameObject.Find("Weapons").transform, false);
+        temp.transform.SetParent(GameObject.Find("Main Camera").transform, false);
         EquipedWeaponManager.Instance.AddWeapon(temp);
 
         if (destroyObject)

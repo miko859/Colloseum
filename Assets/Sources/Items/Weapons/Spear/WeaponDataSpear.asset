@@ -17,7 +17,7 @@ MonoBehaviour:
   heavyAttackChargeDuration: 0
   heavyAttackPerformDuration: 0
   bashDuration: 0
-  lightAttackAnimation: LighAttack
+  lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform
   blockAnimation: Block

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
   m_Name: WeaponDataAxe
   m_EditorClassIdentifier: 
-  weaponName: Axe
+  weaponName: axe
   lightAttackDuration: 0.45
   heavyAttackChargeDuration: 0.2
   heavyAttackPerformDuration: 0.46

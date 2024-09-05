@@ -8,6 +8,10 @@ public class EquipedWeaponManager : MonoBehaviour
 
     public Transform rightHandGrip;
     public Transform leftHandGrip;
+    public Animator rigController;
+
+    public Rig rightRig;
+    public Rig leftRig;
 
     public List<Weapon> weaponery = new List<Weapon>();
     private int currentWeaponIndex = 0;
@@ -49,11 +53,16 @@ public class EquipedWeaponManager : MonoBehaviour
 
             transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
 
+            rigController.Play("equip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
+
             Debug.Log("Right Grip -> " + weaponery[currentWeaponIndex].transform.Find("RightGrip"));
             Debug.Log("Left Grip -> " + weaponery[currentWeaponIndex].transform.Find("LeftGrip"));
 
             //rightHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
             //leftHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
+
+            
+
 
             rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
             leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");

@@ -79,7 +79,7 @@ Animator:
   m_GameObject: {fileID: 315176189185121011}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ef6403663453e6a4cb106814a81e72b4, type: 2}
+  m_Controller: {fileID: 9100000, guid: ee238aaf3845a22469ad00beda8f20c5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efa2eb0c0edab94ab0eb00cbe81173c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 2998818355250797748}
+  currentWeapon: {fileID: 4259202053366821359}
 --- !u!114 &5786621904566011840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandGrip: {fileID: 3648224957646994939}
   leftHandGrip: {fileID: 942148858530172110}
+  rigController: {fileID: 1099434256678053752}
+  rightRig: {fileID: 804939624395820877}
+  leftRig: {fileID: 4145546060095971624}
   weaponery:
   - {fileID: 2998818355250797748}
   - {fileID: 4259202053366821359}
@@ -1343,7 +1346,7 @@ Animator:
   m_GameObject: {fileID: 3082542490788796248}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ef6403663453e6a4cb106814a81e72b4, type: 2}
+  m_Controller: {fileID: 9100000, guid: ee238aaf3845a22469ad00beda8f20c5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

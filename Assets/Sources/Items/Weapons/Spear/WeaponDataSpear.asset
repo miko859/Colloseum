@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
   m_Name: WeaponDataSpear
   m_EditorClassIdentifier: 
-  weaponName: Spear
+  weaponName: spear
   lightAttackDuration: 0
   heavyAttackChargeDuration: 0
   heavyAttackPerformDuration: 0

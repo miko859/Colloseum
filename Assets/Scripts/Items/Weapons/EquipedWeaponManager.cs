@@ -61,14 +61,8 @@ public class EquipedWeaponManager : MonoBehaviour
             //rightHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
             //leftHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
 
-            
-
-
             rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
             leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");
-
-            rightHandGrip.GetComponent<TwoBoneIKConstraint>().Reset();
-            leftHandGrip.GetComponent<TwoBoneIKConstraint>().Reset();
         }
     }
 

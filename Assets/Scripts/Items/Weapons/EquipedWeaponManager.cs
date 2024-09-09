@@ -16,6 +16,8 @@ public class EquipedWeaponManager : MonoBehaviour
     public List<Weapon> weaponery = new List<Weapon>();
     private int currentWeaponIndex = 0;
 
+    public RigBuilder rigBUilder;
+
     private void Awake()
     {
         if (Instance == null)
@@ -41,13 +43,13 @@ public class EquipedWeaponManager : MonoBehaviour
     {
         if (index >= 0 && index < weaponery.Count)
         {
-            // Deaktivuj súèasnú zbraò
+            // Deaktivuj sï¿½ï¿½asnï¿½ zbraï¿½
             if (currentWeaponIndex != -1)
             {
                 weaponery[currentWeaponIndex].Unequip();
             }
 
-            // Aktivuj novú zbraò
+            // Aktivuj novï¿½ zbraï¿½
             currentWeaponIndex = index;
             weaponery[currentWeaponIndex].Equip();
 
@@ -63,6 +65,8 @@ public class EquipedWeaponManager : MonoBehaviour
 
             rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
             leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");
+
+            rigBUilder.Build();
         }
     }
 

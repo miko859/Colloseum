@@ -90,17 +90,18 @@ public class AIControllerTroll : MonoBehaviour
                 animator.SetBool("run", true);
                 follows = true;
 
-                if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
+                if (fullDistance <= 8 || (fullDistance <= 8 && IsPlayerAbove()))
                 {
                     AiStateAttackOrGoBack();
                 }
                 else
                 {
-                    animator.SetBool("attack", false);
+                    animator.SetBool("attack1", false);
                 }
             }
             else
             {
+                animator.SetBool("run", false);
                 follows = false;
             }
 
@@ -116,9 +117,9 @@ public class AIControllerTroll : MonoBehaviour
                 animator.SetBool("walk", true);
                 follows = false;
 
-                if (agent.remainingDistance <= 3)
+                if (agent.remainingDistance <= 5)
                 {
-                    animator.SetBool("walk", false);
+                    animator.SetBool("run", false);
                 }
 
                 if (knowAboutPlayer)
@@ -154,13 +155,13 @@ public class AIControllerTroll : MonoBehaviour
     {
         if (follows)
         {
-            animator.SetBool("walk", false);
-            animator.SetBool("attack", true);
+            animator.SetBool("run", false);
+            animator.SetBool("attack1", true);
         }
         else
         {
-            animator.SetBool("walk", false);
-            animator.SetBool("attack", false);
+            animator.SetBool("run", false);
+            animator.SetBool("attack1", false);
         }
     }
 

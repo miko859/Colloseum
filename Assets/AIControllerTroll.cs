@@ -90,7 +90,7 @@ public class AIControllerTroll : MonoBehaviour
                 animator.SetBool("run", true);
                 follows = true;
 
-                if (fullDistance <= 8 || (fullDistance <= 8 && IsPlayerAbove()))
+                if (fullDistance <= 5 || (fullDistance <= 5 && IsPlayerAbove()))
                 {
                     AiStateAttackOrGoBack();
                 }

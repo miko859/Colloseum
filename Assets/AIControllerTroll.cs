@@ -120,6 +120,7 @@ public class AIControllerTroll : MonoBehaviour
                 if (agent.remainingDistance <= 5)
                 {
                     animator.SetBool("run", false);
+                    animator.SetBool("walk", false);
                 }
 
                 if (knowAboutPlayer)
@@ -156,12 +157,25 @@ public class AIControllerTroll : MonoBehaviour
         if (follows)
         {
             animator.SetBool("run", false);
-            animator.SetBool("attack1", true);
+            // Generate a random number between 0 and 100 = heavy attack chance
+            int heavyAttackChance = Random.Range(0, 100);
+
+            if (heavyAttackChance < 20)
+            {
+                animator.SetBool("attack1", false);
+                animator.SetBool("attack2", true); // Trigger heavy attack
+            }
+            else
+            {
+                animator.SetBool("attack2", false);
+                animator.SetBool("attack1", true); // Trigger normal attack
+            }
         }
         else
         {
             animator.SetBool("run", false);
             animator.SetBool("attack1", false);
+            animator.SetBool("attack2", false);
         }
     }
 

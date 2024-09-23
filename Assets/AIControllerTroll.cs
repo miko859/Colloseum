@@ -20,9 +20,10 @@ public class AIControllerTroll : MonoBehaviour
     private Collider blade;
     private Patrolling patrolling;      //script for patrolling
 
-    private bool isAttacking;
+    private bool isAttacking = false;
     private bool knowAboutPlayer;
     private bool fallBack;
+    public int heavyAttackChance = 20;
 
 
     // Start is called before the first frame update
@@ -152,32 +153,52 @@ public class AIControllerTroll : MonoBehaviour
         return false;
     }
 
+
     private void AiStateAttackOrGoBack()
     {
-        if (follows)
+        if (follows && !isAttacking) // Only attack if not already attacking
         {
             animator.SetBool("run", false);
-            // Generate a random number between 0 and 100 = heavy attack chance
-            int heavyAttackChance = Random.Range(0, 100);
 
-            if (heavyAttackChance < 20)
+            // Generate a random number between 0 and 100
+            int attackChance = Random.Range(0, 100);
+
+            if (attackChance < heavyAttackChance)
             {
-                animator.SetBool("attack1", false);
-                animator.SetBool("attack2", true); // Trigger heavy attack
+                StartCoroutine(PerformAttack("attack2")); // Perform heavy attack
             }
             else
             {
-                animator.SetBool("attack2", false);
-                animator.SetBool("attack1", true); // Trigger normal attack
+                StartCoroutine(PerformAttack("attack1")); // Perform normal attack
             }
         }
         else
         {
             animator.SetBool("run", false);
-            animator.SetBool("attack1", false);
-            animator.SetBool("attack2", false);
         }
     }
+
+    private IEnumerator PerformAttack(string attackType)
+    {
+        isAttacking = true;
+
+        // Reset both attack bools
+        animator.SetBool("attack1", false);
+
+        animator.SetBool("attack2", false);
+
+        animator.SetBool(attackType, true);
+
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        yield return new WaitForSeconds(stateInfo.length); // Waits for the animation to finish playing
+
+        // Bool reset
+        animator.SetBool(attackType, false);
+
+        isAttacking = false; // Allow next attack
+    }
+
 
     private IEnumerator TimeUntilEnemyForgetPlayer()
     {

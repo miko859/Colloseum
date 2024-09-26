@@ -3,6 +3,7 @@ using UnityEngine;
 public class DoubleDoorController : MonoBehaviour
 {
     public Animator animator;
+    public AudioSource doorSound;
 
     public Transform doorLeft;      // The left door object
     public Transform doorRight;     // The right door object
@@ -32,7 +33,12 @@ public class DoubleDoorController : MonoBehaviour
             // Toggle the door state
             //isOpen = !isOpen;
             animator.SetBool("openDoor", true);
-            
+
+            if (!doorSound.isPlaying)
+            {
+                doorSound.Play();
+            }
+
         }
     }
 }

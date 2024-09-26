@@ -43,19 +43,21 @@ public class EquipedWeaponManager : MonoBehaviour
     {
         if (index >= 0 && index < weaponery.Count)
         {
-            // Deaktivuj s��asn� zbra�
+            
             if (currentWeaponIndex != -1)
             {
                 weaponery[currentWeaponIndex].Unequip();
             }
 
-            // Aktivuj nov� zbra�
+            rigController.Play("unequip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
+            rigBUilder.Clear();
             currentWeaponIndex = index;
             weaponery[currentWeaponIndex].Equip();
 
             transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
 
-            rigController.Play("equip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
+            //rigController.Play("equip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
+            rigController.SetBool("equip_" +  weaponery[currentWeaponIndex].weaponData.weaponName, true);
 
             Debug.Log("Right Grip -> " + weaponery[currentWeaponIndex].transform.Find("RightGrip"));
             Debug.Log("Left Grip -> " + weaponery[currentWeaponIndex].transform.Find("LeftGrip"));
@@ -66,7 +68,11 @@ public class EquipedWeaponManager : MonoBehaviour
             rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
             leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");
 
+            
+            //rigBUilder.Clear();
             rigBUilder.Build();
+
+            
         }
     }
 

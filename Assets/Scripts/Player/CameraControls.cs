@@ -8,24 +8,28 @@ public class CameraControls : MonoBehaviour
     float mouse_y;
     public Transform playerBody;
     float rotation_x = 0f;
+    float rotation_y = 0f;
+
     void Start(){
-     Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update(){
-        mouse_x = Input.GetAxis("Mouse X")* 130f * Time.deltaTime;
-        mouse_y = Input.GetAxis("Mouse Y")* 130f * Time.deltaTime;
+        mouse_x = Input.GetAxis("Mouse X") * 130f * Time.deltaTime;
+        mouse_y = Input.GetAxis("Mouse Y") * 130f * Time.deltaTime;
         rotation_x -= mouse_y;
         rotation_x = Mathf.Clamp(rotation_x, -90f, 90f);
-        /*transform.localRotation = Quaternion.Euler(rotation_x, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouse_x);*/
+        rotation_y += mouse_x;
+        playerBody.transform.localRotation = Quaternion.Euler(rotation_x, rotation_y, 0f);
+        //playerBody.Rotate(Vector3.up * mouse_x);
     }
 
     /*LateUpdate is called after all Update functions have been called. This is useful to order script execution. 
     For example a follow camera should always be implemented in LateUpdate because it tracks objects that might have moved inside Update.*/
-    private void LateUpdate()
+    /*private void LateUpdate()
     {
-        transform.localRotation = Quaternion.Euler(rotation_x, 0f, 0f);
-        playerBody.Rotate(Vector3.up * mouse_x);
-    }
+        
+        //transform.localRotation = Quaternion.Euler(rotation_x, 0f, 0f);
+        //playerBody.Rotate(Vector3.up * mouse_x);
+    }*/
 }

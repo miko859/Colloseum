@@ -123,7 +123,6 @@ public class AIController : MonoBehaviour
                     StartCoroutine(TimeUntilEnemyForgetPlayer());
                 }
             }
-            
         }
     }
 

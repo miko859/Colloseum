@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Health : MonoBehaviour
+public class TrollHealth : MonoBehaviour
 {
-    public int maxHealth = 3; 
-    private int currentHealth; 
+    public int maxHealth = 3;
+    private int currentHealth;
     private Animator animator;
     public HealthBar healthBar;
     private Weapon weapon;
@@ -15,8 +15,8 @@ public class Health : MonoBehaviour
     {
         weapon = GetComponent<Weapon>();
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth; 
-        healthBar.SetMaxHealth(maxHealth); 
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -25,11 +25,11 @@ public class Health : MonoBehaviour
         {
             animator.SetBool("death", true);
             gameObject.GetComponentInParent<NavMeshAgent>().enabled = false;
-            animator.SetBool("EnemyDeath", true);
+            //animator.SetBool("EnemyDeath", true);
             transform.tag = "DeadEnemy";
 
-            //animator.enabled = false;
-            
+            animator.enabled = false;
+
             /*foreach (Rigidbody rb in GetComponentInChildren<Rigidbody>())
             {
                 rb.isKinematic = false;
@@ -45,16 +45,16 @@ public class Health : MonoBehaviour
                     weaponRb.useGravity = true;
                 }
             }
-            
+
         }
-       //Debug.Log(currentHealth);
+        Debug.Log(currentHealth);
     }
 
 
     public void DealDamage(int damage)
     {
-        currentHealth -= damage; 
-        healthBar.SetHealth(currentHealth); 
-        //Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
     }
 }

@@ -19,7 +19,7 @@ public class AIControllerTroll : MonoBehaviour
     public GameObject weapon;           //enemy´s weapon
     private Collider blade;
     private Patrolling patrolling;      //script for patrolling
-
+    private Health health;
     private bool isAttacking = false;
     private bool knowAboutPlayer;
     private bool fallBack;
@@ -83,7 +83,7 @@ public class AIControllerTroll : MonoBehaviour
             {
                 fallBack = false;
                 knowAboutPlayer = true;
-                agent.stoppingDistance = 2.5f;
+                agent.stoppingDistance = 1.5f;
                 patrolling.StopPatrolling();
                 Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
                 agent.SetDestination(playerGroundPosition);
@@ -113,12 +113,12 @@ public class AIControllerTroll : MonoBehaviour
             }
             else if (!follows)
             {
-                agent.stoppingDistance = 0;
+                agent.stoppingDistance = 1;
                 agent.SetDestination(spawnPos);
                 animator.SetBool("walk", true);
                 follows = false;
 
-                if (agent.remainingDistance <= 5)
+                if (agent.remainingDistance <= 2)
                 {
                     animator.SetBool("run", false);
                     animator.SetBool("walk", false);
@@ -129,6 +129,7 @@ public class AIControllerTroll : MonoBehaviour
                     StartCoroutine(TimeUntilEnemyForgetPlayer());
                 }
             }
+
 
         }
     }

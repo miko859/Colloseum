@@ -31,11 +31,11 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource movementSound;
     bool startedSound = false;
     bool wasGrounded;
-    private Animator animator;
+    public Animator animator;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        
     }
 
     void Update()
@@ -47,9 +47,6 @@ public class PlayerMovement : MonoBehaviour
         {
             movement_x = Input.GetAxisRaw("Horizontal");
             movement_z = Input.GetAxisRaw("Vertical");
-        
-            animator.SetFloat("VelocityX", movement_x);
-            animator.SetFloat("VelocityZ", movement_z);
         }
 
         Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
@@ -101,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         movement_direction = input_direction; // you don't need to modify direction for air control, just speed
 
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
+
         // GRAVITY
         if (isGrounded)
         {
@@ -122,12 +120,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetBool("Jump", true);
             isJumping = true;
         }
         else if (isGrounded)
         {
-            animator.SetBool("Jump", false);
             isJumping = false;
         }
     }

@@ -49,13 +49,20 @@ public class EquipedWeaponManager : MonoBehaviour
                 weaponery[currentWeaponIndex].Unequip();
             }
 
-            rigController.Play("unequip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
-            rigBUilder.Clear();
+            //rigController.Play("unequip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
+            //rigBUilder.Clear();
+
             currentWeaponIndex = index;
+
+            // This will set new weapon active
             weaponery[currentWeaponIndex].Equip();
 
+            // This will change weapon's scripts for player
             transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
 
+
+                                /*--- NO NEED FOR THIS, LATER CLEANING ---*/
+            /*
             //rigController.Play("equip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
             rigController.SetBool("equip_" +  weaponery[currentWeaponIndex].weaponData.weaponName, true);
 
@@ -71,7 +78,7 @@ public class EquipedWeaponManager : MonoBehaviour
             
             //rigBUilder.Clear();
             rigBUilder.Build();
-
+            */
             
         }
     }

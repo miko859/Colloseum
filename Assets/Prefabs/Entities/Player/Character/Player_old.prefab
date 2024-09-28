@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bdb9472f4ee794f8416ec6af400733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseSensitivity: 130
   playerBody: {fileID: 5124614524295302332}
 --- !u!1 &1557967162308579686
 GameObject:
@@ -1050,7 +1051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5124614524295302332
 Transform:
   m_ObjectHideFlags: 0
@@ -1096,6 +1097,7 @@ MonoBehaviour:
   decelerationFactor: 5
   airControl: 10
   movementSound: {fileID: 7467238011543873282}
+  animator: {fileID: 0}
 --- !u!143 &756795831787866766
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1211,6 +1213,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 0bbc95d5-9f3a-4aeb-b374-53808bd7c2fc
     m_ActionName: Player/Change Weapon[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fac49e2c-3959-4130-92b5-7cacafe5068d
+    m_ActionName: Player/Run[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1229,6 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 2998818355250797748}
+  animator: {fileID: 0}
 --- !u!114 &5786621904566011840
 MonoBehaviour:
   m_ObjectHideFlags: 0

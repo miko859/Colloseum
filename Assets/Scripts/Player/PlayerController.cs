@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.PlayerLoop;
 
@@ -8,15 +10,24 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
+    private EquipedWeaponManager equipedWeaponManager;
+
+    public Animator animator;
 
     private bool isCharging = false;
 
+    private bool isWalking = false;
+
     private void Awake()
     {
+        equipedWeaponManager = GetComponent<EquipedWeaponManager>();
+
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Attack.performed += OnAttack;
         playerInputActions.Player.Block.performed += OnBlock;
-        //playerInputActions.Player.Movement.performed += OnMovement;
+        playerInputActions.Player.Movement.performed += OnMovement;
+        playerInputActions.Player.ChangeWeapon.performed += OnScroll;
+        playerInputActions.Player.Run.performed += OnRun;
     }
 
     private void OnEnable()
@@ -46,14 +57,45 @@ public class PlayerController : MonoBehaviour
     /// <param name="newWeapon"></param>
     public void EquipWeapon(Weapon newWeapon)
     {
-        
+        /*
         if (currentWeapon != null)
         {
             currentWeapon.gameObject.SetActive(false);
-        }
+        }*/
 
         currentWeapon = newWeapon;
-        currentWeapon.gameObject.SetActive(true);
+       // currentWeapon.gameObject.SetActive(true);
+    }
+
+    public void OnScroll(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            if (context.ReadValue<Vector2>().y < 0)
+            {
+
+                int yValueDown = equipedWeaponManager.getCurrentWeaponIndex() - 1;
+
+                if (yValueDown < 0)
+                {
+                    yValueDown = equipedWeaponManager.weaponery.Count;
+                }
+
+                equipedWeaponManager.SwitchWeapon(yValueDown);
+            }
+            else
+            {
+                int yValueUp = equipedWeaponManager.getCurrentWeaponIndex() + 1;
+
+                if (yValueUp > equipedWeaponManager.weaponery.Count)
+                {
+                    yValueUp = 0;
+                }
+
+                equipedWeaponManager.SwitchWeapon(yValueUp);
+            }
+        }
+        
     }
 
     /// <summary>
@@ -96,5 +138,38 @@ public class PlayerController : MonoBehaviour
         currentWeapon.Block(); 
     }
 
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
+        {
+            
+            Debug.Log("Pressed");
+            if (context.control is KeyControl key && key.keyCode == Key.LeftShift) {
+                //animator.SetBool("Run", true);
+                Debug.Log("Holding Left Shift interaction");
+            }
+            else if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
+                animator.SetBool("Walk", true);
+                Debug.Log("Holding W interaction");
+            }
+        }
+        else if (context.performed) {
+            //animator.SetBool("Run", false);
+            animator.SetBool("Walk", false);
+            Debug.Log("Player is Idle");
+        }
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
+        {
+            animator.SetBool("Run", true);
+        }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
+    }
 
 }

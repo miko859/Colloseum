@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.275078
+      value: 113.225624
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00009536743
+      value: -19.622913
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.4954352
+      value: -22.025398
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1200,6 +1200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6394440241161260426}
+  enemyData: {fileID: 11400000, guid: 34d287db61b798947bce6d6c11422d14, type: 2}
 --- !u!114 &4103814720347756976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,9 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728ce86900420094ba98f86ab31107b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolPoints: []
 --- !u!4 &2575035235656081211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5714229035188606006, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
@@ -2182,8 +2181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Player
-  blade: {fileID: 3959479997129887399}
-  hit: 0
 --- !u!65 &3959479997129887399
 BoxCollider:
   m_ObjectHideFlags: 0

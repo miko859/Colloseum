@@ -36416,7 +36416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eca190832d89c2c43a58e97768623a97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.17
+      value: 53.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: eca190832d89c2c43a58e97768623a97, type: 3}
       propertyPath: m_LocalPosition.y
@@ -36461,6 +36461,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: eca190832d89c2c43a58e97768623a97, type: 3}
       propertyPath: m_Name
       value: goblin_low_anim_final
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eca190832d89c2c43a58e97768623a97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3911738152918885129, guid: eca190832d89c2c43a58e97768623a97, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -54987,7 +54991,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -55051,7 +55055,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -55104,7 +55108,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5
+      scalar: 4.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -55222,7 +55226,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -55600,7 +55604,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 5
+    angle: 6
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -55922,7 +55926,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.4594578
+          value: 0
           inSlope: -0.014036282
           outSlope: -0.014036282
           tangentMode: 0
@@ -55930,8 +55934,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.19417472
         - serializedVersion: 3
-          time: 0.9911177
-          value: 0.9675681
+          time: 0.84728837
+          value: 0.99218243
           inSlope: 1.6657473
           outSlope: 1.6657473
           tangentMode: 0
@@ -63392,7 +63396,7 @@ Transform:
   m_GameObject: {fileID: 1967030262}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.667852, y: -14.307117, z: -86.3}
+  m_LocalPosition: {x: -75.3, y: -14.307117, z: -86.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -64736,7 +64740,7 @@ GameObject:
   - component: {fileID: 1991750884}
   - component: {fileID: 1991750883}
   m_Layer: 0
-  m_Name: fire_parent
+  m_Name: flamethrowerWIP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

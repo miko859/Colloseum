@@ -1,10 +1,7 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
-using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {

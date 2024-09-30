@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
+    /// <summary>
+    /// Health points bars of enemies are facing player
+    /// </summary>
     void LateUpdate()
     {
         transform.LookAt(Camera.main.transform);

@@ -74,6 +74,7 @@ public class AIController : MonoBehaviour
                 {
                     follows = true;
                     agent.SetDestination(playerGroundPosition);
+                    
                 }
             }
             else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)

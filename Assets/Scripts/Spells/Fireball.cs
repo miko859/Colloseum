@@ -8,7 +8,7 @@ public class Fireball : MonoBehaviour
     public GameObject fireballPrefab;
     public float fireballSpeed = 20f;
     public Transform castPoint;
-
+    public ManaSystem manaSystem;
 
     void Update()
     {
@@ -21,8 +21,15 @@ public class Fireball : MonoBehaviour
 
     void CastFireball()
     {
-        Vector3 offsetPosition = castPoint.position + castPoint.forward * 25.5f;
-        GameObject fireball = Instantiate(fireballPrefab, castPoint.position, castPoint.rotation);
-        fireball.GetComponent<Rigidbody>().velocity = castPoint.forward * fireballSpeed;
+        // mana chekc
+        if (manaSystem.SpendMana(manaSystem.fireballManaCost))
+        {
+            GameObject fireball = Instantiate(fireballPrefab, castPoint.position, castPoint.rotation);
+            fireball.GetComponent<Rigidbody>().velocity = castPoint.forward * fireballSpeed;
+        }
+        else
+        {
+            Debug.Log("Not enough mana to cast fireball");
+        }
     }
 }

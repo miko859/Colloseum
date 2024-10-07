@@ -6,13 +6,17 @@ public class FireballDMG : MonoBehaviour
 {
     public int damage = 2;
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        Debug.Log("BALL HAS TRIGGERED WITH: " + other.gameObject.name);
+
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<Health>()?.DealDamage(damage);
-            
+            Debug.Log("TRIGGERED WITH AN ENEMY - DEALING DAMAGE");
+            other.gameObject.GetComponent<Health>()?.DealDamage(damage);
         }
+
         Destroy(gameObject);
     }
+
 }

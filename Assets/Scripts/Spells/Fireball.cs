@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +8,6 @@ public class Fireball : MonoBehaviour
     public float fireballSpeed = 20f;
     public Transform castPoint;
     public ManaSystem manaSystem;
-    public Transform cameraView;
 
     void Update()
     {
@@ -22,21 +20,23 @@ public class Fireball : MonoBehaviour
 
     void CastFireball()
     {
-        // mana chekc
+        // Mana check
         if (manaSystem.SpendMana(manaSystem.fireballManaCost))
         {
             Debug.Log("Cast Point Forward Direction: " + castPoint.forward);
 
-            GameObject fireball = Instantiate(fireballPrefab, castPoint.position, cameraView.rotation);
-            fireball.transform.rotation = cameraView.rotation;
+            GameObject fireball = Instantiate(fireballPrefab, castPoint.position, Quaternion.identity);
+
+            fireball.transform.LookAt(fireball.transform.position + castPoint.forward);
+
             Debug.Log("Fireball Rotation After Instantiation: " + fireball.transform.rotation.eulerAngles);
 
-            fireball.GetComponent<Rigidbody>().velocity = cameraView.forward * fireballSpeed;
-            //fireball.transform.rotation = castPoint.rotation;
+            fireball.GetComponent<Rigidbody>().velocity = fireball.transform.forward * fireballSpeed;
         }
         else
         {
             Debug.Log("Not enough mana to cast fireball");
         }
     }
+
 }

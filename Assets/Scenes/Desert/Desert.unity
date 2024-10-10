@@ -21107,15 +21107,15 @@ RectTransform:
   m_GameObject: {fileID: 482383482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1061, y: 1.1061, z: 1.1061}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1693707546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -79.7, y: 5.6202}
-  m_SizeDelta: {x: 59.5294, y: 66.766}
+  m_AnchoredPosition: {x: -82.1, y: 5.6202}
+  m_SizeDelta: {x: 66, y: 66.766}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &482383484
 MonoBehaviour:
@@ -62106,11 +62106,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4859267500469189711, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 19.7
       objectReference: {fileID: 0}
     - target: {fileID: 4859267500469189711, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412849668944997642, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -77.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412849668944997642, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.6203
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62450,7 +62458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -132}
+  m_AnchoredPosition: {x: 20.700012, y: -171.8}
   m_SizeDelta: {x: 174.7516, y: 78.0065}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1693707548
@@ -62522,6 +62530,8 @@ MonoBehaviour:
   fireballManaCost: 40
   manaRegen: 1
   regenInterval: 0.18
+  vibrationDuration: 0.5
+  vibrationMagnitude: 7.5
 --- !u!43 &1694089182
 Mesh:
   m_ObjectHideFlags: 0

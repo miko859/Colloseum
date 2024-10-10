@@ -10,6 +10,9 @@ public class ManaSystem : MonoBehaviour
     public int fireballManaCost = 10;
     public int manaRegen = 1;
     public float regenInterval = 0.2f;
+    public float vibrationDuration = 0.5f;
+    public float vibrationMagnitude = 7.1f;
+    private bool isVibrating = false;
 
     void Start()
     {
@@ -39,9 +42,32 @@ public class ManaSystem : MonoBehaviour
             UpdateManaUI();
             return true; 
         }
+        if (!isVibrating)
+        {
+            StartCoroutine(VibrateManaBar());
+
+        }
         return false; 
     }
 
+   
+
+    IEnumerator VibrateManaBar()
+    {
+        isVibrating = true;
+        Vector3 originalPosition = manaSlider.transform.localPosition;
+
+        float startTime = 0;
+        while (startTime < vibrationDuration)
+        {
+            float xOffSet = Random.Range(0, vibrationMagnitude);
+            manaSlider.transform.localPosition = originalPosition + new Vector3(xOffSet, 0, 0);
+            startTime += Time.deltaTime;
+            yield return null;
+        }
+        manaSlider.transform.localPosition = originalPosition;
+        isVibrating = false;
+    }
     void UpdateManaUI()
     {
         // mana slider change/update

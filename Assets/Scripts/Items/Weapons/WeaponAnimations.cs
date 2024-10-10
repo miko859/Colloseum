@@ -10,6 +10,7 @@ public class WeaponAnimations : Weapon
     private bool isBlocking = false;
     private bool isAttacking = false;
     private int damage;
+    
 
     public int getDamage()
     {
@@ -38,7 +39,9 @@ public class WeaponAnimations : Weapon
             {
                 isAttacking = true;
                 damage = weaponData.lightAttackDamage;
-                StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + Random.Range(1, 4), weaponData.lightAttackDuration));
+                var attackType = Random.Range(1, weaponData.lightAttackTypesCount);
+                StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
+                StartCoroutine(PlayBodyAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
                 isAttacking = false;
             }
         }
@@ -55,13 +58,15 @@ public class WeaponAnimations : Weapon
             if (attackPhase)
             {
                 damage = weaponData.heavyAttackDamage;
-                StartCoroutine(PlayAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));               
+                StartCoroutine(PlayAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));
+                StartCoroutine(PlayBodyAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));
             }
             else
             {
                 StartCoroutine(PlayAnimation(weaponData.heavyAttackPerformAnimation, weaponData.heavyAttackPerformDuration));   
+                StartCoroutine(PlayBodyAnimation(weaponData.heavyAttackPerformAnimation, weaponData.heavyAttackPerformDuration));
             }
-            
+
         }
     }
 
@@ -72,6 +77,7 @@ public class WeaponAnimations : Weapon
     {
         isBlocking = !isBlocking;
         animator.SetBool("Block", isBlocking);
+        bodyAnimator.SetBool("Block", isBlocking);
     }
 
     /// <summary>
@@ -82,6 +88,7 @@ public class WeaponAnimations : Weapon
         if (isBlocking)
         {
             StartCoroutine(PlayAnimation(weaponData.bashAnimation, weaponData.bashDuration));
+            StartCoroutine(PlayBodyAnimation(weaponData.bashAnimation, weaponData.bashDuration));
         }
     }
 

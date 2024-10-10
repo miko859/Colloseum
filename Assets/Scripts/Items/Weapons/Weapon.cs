@@ -4,6 +4,7 @@ using System.Collections;
 public abstract class Weapon : MonoBehaviour
 {
     protected Animator animator;
+    public Animator bodyAnimator;
     public WeaponData weaponData;
 
     protected virtual void Awake()
@@ -25,5 +26,14 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(duration);
         animator.SetBool(animationName, false);
     }
+
+    protected IEnumerator PlayBodyAnimation(string animationName, float duration)
+    {
+        bodyAnimator.SetBool(animationName, true);
+        yield return new WaitForSeconds(duration);
+        bodyAnimator.SetBool(animationName, false);
+    }
+
+    public Animator GetAnimator() { return animator; }
 
 }

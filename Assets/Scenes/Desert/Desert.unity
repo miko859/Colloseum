@@ -42917,11 +42917,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6477941098373694862, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
   m_PrefabInstance: {fileID: 7035115}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1506348148 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5633093677248071833, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-  m_PrefabInstance: {fileID: 7035115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1506551403
 Mesh:
   m_ObjectHideFlags: 0
@@ -53080,7 +53075,6 @@ MonoBehaviour:
   fireballSpeed: 15
   castPoint: {fileID: 1500952360}
   manaSystem: {fileID: 2050302778}
-  cameraView: {fileID: 1506348148}
 --- !u!43 &1942472786
 Mesh:
   m_ObjectHideFlags: 0
@@ -65123,11 +65117,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1453661163088080334, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.35
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 1453661163088080334, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.300728
+      value: -14.46
       objectReference: {fileID: 0}
     - target: {fileID: 1453661163088080334, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_LocalRotation.w

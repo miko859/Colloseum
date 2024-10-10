@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4562435466451562940}
   - component: {fileID: 3339959561819367939}
   - component: {fileID: 4123268909235830128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fireball_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,12 +66,12 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 3.1744003
-  m_Center: {x: 2.5, y: 0, z: -1.1744003}
+  m_Center: {x: 0, y: 0, z: 3.2}
 --- !u!54 &3339959561819367939
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 7182246142652174026}
   - component: {fileID: 6110472268642680616}
   - component: {fileID: 6217388355073951833}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4982,7 +4982,7 @@ GameObject:
   - component: {fileID: 7728403021070321448}
   - component: {fileID: 2329513323431771087}
   - component: {fileID: 1401074156915311172}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9813,7 +9813,7 @@ GameObject:
   - component: {fileID: 6562935564297172654}
   - component: {fileID: 1345107384151933123}
   - component: {fileID: 8329282421736932961}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

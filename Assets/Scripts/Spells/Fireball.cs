@@ -9,6 +9,7 @@ public class Fireball : MonoBehaviour
     public float fireballSpeed = 20f;
     public Transform castPoint;
     public ManaSystem manaSystem;
+    public Transform cameraView;
 
     void Update()
     {
@@ -24,8 +25,14 @@ public class Fireball : MonoBehaviour
         // mana chekc
         if (manaSystem.SpendMana(manaSystem.fireballManaCost))
         {
-            GameObject fireball = Instantiate(fireballPrefab, castPoint.position, castPoint.rotation);
-            fireball.GetComponent<Rigidbody>().velocity = castPoint.forward * fireballSpeed;
+            Debug.Log("Cast Point Forward Direction: " + castPoint.forward);
+
+            GameObject fireball = Instantiate(fireballPrefab, castPoint.position, cameraView.rotation);
+            fireball.transform.rotation = cameraView.rotation;
+            Debug.Log("Fireball Rotation After Instantiation: " + fireball.transform.rotation.eulerAngles);
+
+            fireball.GetComponent<Rigidbody>().velocity = cameraView.forward * fireballSpeed;
+            //fireball.transform.rotation = castPoint.rotation;
         }
         else
         {

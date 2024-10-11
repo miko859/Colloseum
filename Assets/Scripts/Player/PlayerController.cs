@@ -44,9 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
         { 
-            currentWeapon.Bash();
-
-            
+            currentWeapon.Bash(); 
         }
     }
 
@@ -94,7 +92,6 @@ public class PlayerController : MonoBehaviour
                 equipedWeaponManager.SwitchWeapon(yValueUp);
             }
         }
-        
     }
 
     /// <summary>
@@ -143,15 +140,12 @@ public class PlayerController : MonoBehaviour
         {
             if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
                 animator.SetBool("Walk", true);
-                currentWeapon.GetAnimator().SetBool("Walk", true);
-                Debug.Log("Holding W interaction");
-                
+                currentWeapon.GetAnimator().SetBool("Walk", true); 
             }
         }
         else if (context.performed) {
             animator.SetBool("Walk", false);
             currentWeapon.GetAnimator().SetBool("Walk", false);
-            Debug.Log("Player is Idle");
         }
     }
 
@@ -168,6 +162,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
             currentWeapon.GetAnimator().SetBool("Run", false);
         }
+    }
+
+    public void GotHit()
+    {
+        currentWeapon.GetComponent<WeaponAnimations>().GotHit();
     }
 
 }

@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: WeaponDataAxe
   m_EditorClassIdentifier: 
   weaponName: axe
+  lightAttackTypesCount: 0
   lightAttackDuration1: 1.26
   lightAttackDuration2: 1.06
   lightAttackDuration3: 0
   heavyAttackChargeDuration: 0.8
   heavyAttackPerformDuration: 0.8
   bashDuration: 0.4
+  hurtDuration: 0.23
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform

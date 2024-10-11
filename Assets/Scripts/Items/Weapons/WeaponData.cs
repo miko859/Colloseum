@@ -13,6 +13,7 @@ public class WeaponData : ScriptableObject
     public float heavyAttackChargeDuration;
     public float heavyAttackPerformDuration;
     public float bashDuration;
+    public float hurtDuration;
     [Header("Animation names")]
     public string lightAttackAnimation;
     public string heavyAttackAnimation;

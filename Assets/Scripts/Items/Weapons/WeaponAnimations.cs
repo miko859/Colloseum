@@ -112,6 +112,12 @@ public class WeaponAnimations : Weapon
         }
     }
 
+    public void GotHit()
+    {
+        StartCoroutine(PlayAnimation(weaponData.hurtAnimation, weaponData.hurtDuration));
+        StartCoroutine(PlayBodyAnimation(weaponData.hurtAnimation, weaponData.hurtDuration));
+    }
+
     public override void Equip()
     {
         gameObject.SetActive(true);

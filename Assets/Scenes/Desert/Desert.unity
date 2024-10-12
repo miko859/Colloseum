@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43736348, g: 0.4851545, b: 0.5654228, a: 1}
+  m_IndirectSpecularColor: {r: 0.43736386, g: 0.48515522, b: 0.5654241, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,16 +345,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7243431930775328091, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7657625602918447259, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1937135113}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
---- !u!4 &7035116 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7243431930775328091, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-  m_PrefabInstance: {fileID: 7035115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &26319623
 Mesh:
   m_ObjectHideFlags: 0
@@ -29201,6 +29196,11 @@ Transform:
   - {fileID: 1554896449}
   m_Father: {fileID: 2032553121}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &879182701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7657625602918447259, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+  m_PrefabInstance: {fileID: 7035115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &883093026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53051,7 +53051,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7035116}
+  m_Father: {fileID: 879182701}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1937135114
 MonoBehaviour:
@@ -53067,7 +53067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 1038316120}
   fireballSpeed: 15
-  castPoint: {fileID: 2028393306}
+  castPoint: {fileID: 0}
   manaSystem: {fileID: 2050302778}
 --- !u!43 &1942472786
 Mesh:
@@ -61235,11 +61235,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!4 &2028393306 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5633093677248071833, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-  m_PrefabInstance: {fileID: 7035115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2031962810 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2240041534817976171, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
@@ -65096,6 +65091,22 @@ PrefabInstance:
     - target: {fileID: 1812495592237193793, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_Name
       value: Fireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 3001501003934978861, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
+      propertyPath: m_Name
+      value: Fireball_explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716082380898719270, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
+      propertyPath: m_Name
+      value: Fireball_head
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375948934327365086, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
+      propertyPath: m_Name
+      value: Fireball_trails
+      objectReference: {fileID: 0}
+    - target: {fileID: 7068439776000932566, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
+      propertyPath: m_Name
+      value: Fireball_projectile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

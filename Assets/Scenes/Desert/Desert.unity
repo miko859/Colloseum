@@ -32464,6 +32464,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1812495592237193793, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
   m_PrefabInstance: {fileID: 4886826636064426665}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1051046672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2872052656188863262, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+  m_PrefabInstance: {fileID: 7035115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1055961892
 Mesh:
   m_ObjectHideFlags: 0
@@ -53067,7 +53072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 1038316120}
   fireballSpeed: 15
-  castPoint: {fileID: 0}
+  castPoint: {fileID: 1051046672}
   manaSystem: {fileID: 2050302778}
 --- !u!43 &1942472786
 Mesh:

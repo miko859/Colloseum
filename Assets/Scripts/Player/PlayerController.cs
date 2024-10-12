@@ -1,10 +1,7 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
-using UnityEngine.PlayerLoop;
 
 public class PlayerController : MonoBehaviour
 {
@@ -47,7 +44,7 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
         { 
-                currentWeapon.Bash();
+            currentWeapon.Bash(); 
         }
     }
 
@@ -95,7 +92,6 @@ public class PlayerController : MonoBehaviour
                 equipedWeaponManager.SwitchWeapon(yValueUp);
             }
         }
-        
     }
 
     /// <summary>
@@ -142,21 +138,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.action.IsPressed())
         {
-            
-            Debug.Log("Pressed");
-            if (context.control is KeyControl key && key.keyCode == Key.LeftShift) {
-                //animator.SetBool("Run", true);
-                Debug.Log("Holding Left Shift interaction");
-            }
-            else if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
+            if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
                 animator.SetBool("Walk", true);
-                Debug.Log("Holding W interaction");
+                currentWeapon.GetAnimator().SetBool("Walk", true); 
             }
         }
         else if (context.performed) {
-            //animator.SetBool("Run", false);
             animator.SetBool("Walk", false);
-            Debug.Log("Player is Idle");
+            currentWeapon.GetAnimator().SetBool("Walk", false);
         }
     }
 
@@ -165,11 +154,19 @@ public class PlayerController : MonoBehaviour
         if (context.action.IsPressed())
         {
             animator.SetBool("Run", true);
+            currentWeapon.GetAnimator().SetBool("Run", true);
+            
         }
         else
         {
             animator.SetBool("Run", false);
+            currentWeapon.GetAnimator().SetBool("Run", false);
         }
+    }
+
+    public void GotHit()
+    {
+        currentWeapon.GetComponent<WeaponAnimations>().GotHit();
     }
 
 }

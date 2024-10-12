@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     bool wasGrounded;
     public Animator animator;
 
+    public Transform player;
+
     private void Start()
     {
         
@@ -49,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
             movement_z = Input.GetAxisRaw("Vertical");
         }
 
-        Vector3 input_direction = (transform.right * movement_x + transform.forward * movement_z).normalized;
+        Vector3 input_direction = (player.transform.right * movement_x + player.transform.forward * movement_z).normalized;
         if (movement_x != 0 && isGrounded == true || movement_z != 0 && isGrounded == true)
         {
             if (startedSound == false || wasGrounded == true)

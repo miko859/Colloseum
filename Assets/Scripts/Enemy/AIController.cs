@@ -148,33 +148,13 @@ public class AIController : MonoBehaviour
         RaycastHit hit;
         Vector3 direction = (player.transform.position - agent.transform.position).normalized;
 
-        // Overenie v˝öky hr·Ëa oproti nepriateæovi
-        float playerHeightDifference = player.transform.position.y - agent.transform.position.y;
-
-        // Ak je hr·Ë v˝razne vyööie ako nepriateæ, vykonaj Raycast smerom nahor
-        if (playerHeightDifference > 1.5f) // 1.5f je prah, mÙûeö upraviù podæa potreby
+        if (Physics.Raycast(agent.transform.position, direction, out hit))
         {
-            // Raycast priamo hore z nepriateæovej pozÌcie
-            if (Physics.Raycast(agent.transform.position, Vector3.up, out hit))
+            if (hit.collider != null && hit.collider.gameObject == player)
             {
-                if (hit.collider != null && hit.collider.gameObject == player)
-                {
-                    return true;
-                }
+                return true;
             }
         }
-        else
-        {
-            // PÙvodn˝ Raycast smerom k hr·Ëovi
-            if (Physics.Raycast(agent.transform.position, direction, out hit))
-            {
-                if (hit.collider != null && hit.collider.gameObject == player)
-                {
-                    return true;
-                }
-            }
-        }
-
         return false;
     }
 

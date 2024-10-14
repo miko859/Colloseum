@@ -25,6 +25,8 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
+    private int frames = 0;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -52,76 +54,84 @@ public class AIController : MonoBehaviour
     {
         if (agent != null && player != null)
         {
-            float distanceToPlayer = Vector3.Distance(agent.transform.position, player.transform.position);
-            fallBack = true;
-            agent.CalculatePath(player.transform.position, path);
-            CalculateDistanceOfPath();
-
-            if (knowAboutPlayer & distanceToPlayer <= 20 & path.status != NavMeshPathStatus.PathComplete)
+            frames++;
+            if (frames % 20 == 0)
             {
-                fallBack = false;
-                patrolling.StopPatrolling();
+                frames = 0;
 
-                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, player.transform.position.z);
+                float distanceToPlayer = Vector3.Distance(agent.transform.position, player.transform.position);
+                fallBack = true;
+                agent.CalculatePath(player.transform.position, path);
+                CalculateDistanceOfPath();
 
-                if (distanceToPlayer <= 4 || (distanceToPlayer <= 4 && IsPlayerAbove()))
+                if (knowAboutPlayer & distanceToPlayer <= 20 & path.status != NavMeshPathStatus.PathComplete)
                 {
+                    Debug.Log(knowAboutPlayer + " " +  distanceToPlayer + " " + path.status.ToString());
+                    fallBack = false;
+                    patrolling.StopPatrolling();
+
+                    Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
+                    Debug.Log(playerGroundPosition);
+
+                    if (distanceToPlayer <= 4 || (distanceToPlayer <= 4 && IsPlayerAbove()))
+                    {
+                        agent.SetDestination(playerGroundPosition);
+                        follows = true;
+                        AiStateAttackOrGoBack();
+                    }
+                    else
+                    {
+                        follows = true;
+                        agent.SetDestination(playerGroundPosition);
+
+                    }
+                }
+                else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
+                {
+                    fallBack = false;
+                    knowAboutPlayer = true;
+                    agent.stoppingDistance = 2.5f;
+                    patrolling.StopPatrolling();
+                    Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
                     agent.SetDestination(playerGroundPosition);
+                    animator.SetBool("walk", true);
                     follows = true;
-                    AiStateAttackOrGoBack();
+
+                    if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
+                    {
+                        AiStateAttackOrGoBack();
+                    }
+                    else
+                    {
+                        animator.SetBool("attack", false);
+                    }
                 }
                 else
                 {
-                    follows = true;
-                    agent.SetDestination(playerGroundPosition);
-                    
-                }
-            }
-            else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
-            {
-                fallBack = false;
-                knowAboutPlayer = true;
-                agent.stoppingDistance = 2.5f;
-                patrolling.StopPatrolling();
-                Vector3 playerGroundPosition = new Vector3(player.transform.position.x, agent.transform.position.y, player.transform.position.z);
-                agent.SetDestination(playerGroundPosition);
-                animator.SetBool("walk", true);
-                follows = true;
-
-                if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
-                {
-                    AiStateAttackOrGoBack();
-                }
-                else
-                {
-                    animator.SetBool("attack", false);
-                }
-            }
-            else
-            {
-                follows = false;
-            }
-
-            if (patrolling.hasPatrollPoints() & !follows)
-            {
-                patrolling.StartPatrolling();
-                animator.SetBool("walk", true);
-            }
-            else if (!follows) 
-            {
-                agent.stoppingDistance = 0;
-                agent.SetDestination(spawnPos);
-                animator.SetBool("walk", true);
-                follows = false;
-
-                if (agent.remainingDistance <= 3)
-                {
-                    animator.SetBool("walk", false);
+                    follows = false;
                 }
 
-                if (knowAboutPlayer)
+                if (patrolling.hasPatrollPoints() & !follows)
                 {
-                    StartCoroutine(TimeUntilEnemyForgetPlayer());
+                    patrolling.StartPatrolling();
+                    animator.SetBool("walk", true);
+                }
+                else if (!follows)
+                {
+                    agent.stoppingDistance = 0;
+                    agent.SetDestination(spawnPos);
+                    animator.SetBool("walk", true);
+                    follows = false;
+
+                    if (agent.remainingDistance <= 3)
+                    {
+                        animator.SetBool("walk", false);
+                    }
+
+                    if (knowAboutPlayer)
+                    {
+                        StartCoroutine(TimeUntilEnemyForgetPlayer());
+                    }
                 }
             }
         }
@@ -137,13 +147,34 @@ public class AIController : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = (player.transform.position - agent.transform.position).normalized;
-        if (Physics.Raycast(agent.transform.position, direction, out hit))
+
+        // Overenie v˝öky hr·Ëa oproti nepriateæovi
+        float playerHeightDifference = player.transform.position.y - agent.transform.position.y;
+
+        // Ak je hr·Ë v˝razne vyööie ako nepriateæ, vykonaj Raycast smerom nahor
+        if (playerHeightDifference > 1.5f) // 1.5f je prah, mÙûeö upraviù podæa potreby
         {
-            if (hit.collider != null && hit.collider.gameObject == player)
+            // Raycast priamo hore z nepriateæovej pozÌcie
+            if (Physics.Raycast(agent.transform.position, Vector3.up, out hit))
             {
-                return true;
+                if (hit.collider != null && hit.collider.gameObject == player)
+                {
+                    return true;
+                }
             }
         }
+        else
+        {
+            // PÙvodn˝ Raycast smerom k hr·Ëovi
+            if (Physics.Raycast(agent.transform.position, direction, out hit))
+            {
+                if (hit.collider != null && hit.collider.gameObject == player)
+                {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 

@@ -29074,6 +29074,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_ManaBar
       objectReference: {fileID: 0}
+    - target: {fileID: 1680616327188495825, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -151.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3028393783740428653, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -47657,6 +47661,14 @@ PrefabInstance:
     - target: {fileID: 4341687862393899610, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
       propertyPath: m_Name
       value: Canvas_HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859267500469189711, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -273
+      objectReference: {fileID: 0}
+    - target: {fileID: 4859267500469189711, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -199.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -33,12 +33,6 @@ public class Health : MonoBehaviour
             {
                 Debug.Log("YOU HAVE DIED");
             }
-            
-            
-            /*foreach (Rigidbody rb in GetComponentInChildren<Rigidbody>())
-            {
-                rb.isKinematic = false;
-            }*/
 
             if (weapon != null)
             {
@@ -50,9 +44,7 @@ public class Health : MonoBehaviour
                     weaponRb.useGravity = true;
                 }
             }
-            
         }
-       // Debug.Log(currentHealth);
     }
 
 
@@ -60,6 +52,5 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 
-        //Debug.Log("Damage taken: " + damage + ". Current Health: " + currentHealth);
     }
 }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -57,6 +54,11 @@ public class WeaponManager : MonoBehaviour
             other.GetComponent<Health>().DealDamage(CalculateDamage());
             Debug.Log("you hit " + target + " by damage " + CalculateDamage());
             hit = true; 
+
+            if (other.tag == "Player")
+            {
+                other.transform.GetChild(0).GetComponent<PlayerController>().GotHit();
+            }
         }
     }
 

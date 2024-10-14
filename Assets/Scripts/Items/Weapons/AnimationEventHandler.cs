@@ -26,6 +26,4 @@ public class AnimationEventHandler : MonoBehaviour
     {
         collider.isTrigger = true;
     }
-
-
 }

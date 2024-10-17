@@ -7,21 +7,19 @@ public class SceneLoader : MonoBehaviour
 {
     public GameObject loadingScreen; // Reference to the loading screen GameObject
     public Slider progressBar; // Reference to the slider (progress bar)
-    public float delay = 0.5f; 
 
     public void LoadGameScene()
     {
-        Debug.Log("Loading game scene..."); 
-        loadingScreen.SetActive(true);
-        Debug.Log("Starting LoadAsyncScene coroutine...");
+        Debug.Log("Loading game scene...");
+        loadingScreen.SetActive(true); // Ensure loading screen stays active
         StartCoroutine(LoadAsyncScene());
     }
 
     private IEnumerator LoadAsyncScene()
     {
         Debug.Log("Preparing to load scene...");
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Desert"); 
-        operation.allowSceneActivation = false;
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Desert");
+        operation.allowSceneActivation = false; // Hold scene activation until fully loaded
         Debug.Log("Scene loading initiated.");
 
         while (operation.progress < 0.9f)
@@ -32,17 +30,10 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        progressBar.value = 1f; 
+        progressBar.value = 1f; // Loading complete
+        Debug.Log("Scene fully loaded.");
 
-        StartCoroutine(DelayedSceneActivation(operation));
-    }
-
-    private IEnumerator DelayedSceneActivation(AsyncOperation operation)
-    {
-        Debug.Log("About to start delay...");
-        yield return new WaitForSeconds(delay); 
-
-        Debug.Log("Activating scene...");
+        // Set allowSceneActivation to true to trigger scene switch
         operation.allowSceneActivation = true;
     }
 }

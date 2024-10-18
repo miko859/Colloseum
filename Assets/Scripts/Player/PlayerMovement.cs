@@ -26,9 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 1.7f;
     public float decelerationFactor = 5f;
     public float airControl = 10;
-    public AudioSource movementSound;
-    public AudioSource landSound;
-    public AudioSource jumpSound;
+    
     bool startedSound = false;
     bool wasGrounded;
     public Animator animator;
@@ -36,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform player;
 
+    [Header("Sound effects")]
+    public AudioSource movementSound;
+    public AudioSource landSound;
+    public AudioSource jumpSound;
 
     private void Start()
     {

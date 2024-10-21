@@ -7,10 +7,14 @@ public class LoadingScreenManager : MonoBehaviour
 {
     public Slider progressBar;
     public float fakeLoadingSpeed = 0.1f; // Speed for smooth progress 
+    public Image backgroundImage; 
+    public Sprite[] backgroundSprites; // Array for bakcground images 
+    public float backgroundSwitchInterval = 2f;
 
     private void Start()
     {
         StartCoroutine(LoadDesertSceneAsync());
+        StartCoroutine(SwitchBackgroundImages());
     }
 
     private IEnumerator LoadDesertSceneAsync()
@@ -40,5 +44,20 @@ public class LoadingScreenManager : MonoBehaviour
         progressBar.value = 1f;
 
         operation.allowSceneActivation = true;
+    }
+    private IEnumerator SwitchBackgroundImages()
+    {
+        int index = 0;
+        while (true)
+        {
+            if (backgroundSprites.Length > 0)
+            {
+                Debug.Log("Switching to background image: " + backgroundSprites[index].name); // Log the name of the sprite being set
+                backgroundImage.sprite = backgroundSprites[index]; 
+                index = (index + 1) % backgroundSprites.Length; // loops back to the first image 
+            }
+
+            yield return new WaitForSeconds(backgroundSwitchInterval); 
+        }
     }
 }

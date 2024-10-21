@@ -54,14 +54,9 @@ public class PlayerController : MonoBehaviour
     /// <param name="newWeapon"></param>
     public void EquipWeapon(Weapon newWeapon)
     {
-        /*
-        if (currentWeapon != null)
-        {
-            currentWeapon.gameObject.SetActive(false);
-        }*/
-
         currentWeapon = newWeapon;
-       // currentWeapon.gameObject.SetActive(true);
+        currentWeapon.setBodyAnimator(animator);
+        currentWeapon.setNewAnimationsForBody();
     }
 
     public void OnScroll(InputAction.CallbackContext context)
@@ -100,29 +95,30 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            isCharging = true;
-        }
-        else if (isCharging)
-        {
-            if (context.interaction is TapInteraction && context.performed)
+            if (context.started)
             {
-                isCharging = false;
-                currentWeapon.Attack();
- 
+                isCharging = true;
             }
-            if (context.action.IsPressed())
+            else if (isCharging)
             {
-                currentWeapon.HardAttack(true);
-            }
-            else
-            {
-                isCharging = false;
-                currentWeapon.HardAttack(false);
-            }
+                if (context.interaction is TapInteraction && context.performed)
+                {
+                    
+                    currentWeapon.Attack();
+                    isCharging = false;
 
-        }
+                }
+                if (context.action.IsPressed())
+                {
+                    currentWeapon.HardAttack(true);
+                }
+                else
+                {
+                    
+                    currentWeapon.HardAttack(false);
+                    isCharging = false;
+                }
+            } 
     }
     
     /// <summary>

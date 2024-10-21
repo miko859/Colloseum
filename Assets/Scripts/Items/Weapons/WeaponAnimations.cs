@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class WeaponAnimations : Weapon
 {
     private bool isBashing = false;
     private bool isBlocking = false;
-    private bool isAttacking = false;
+    
     private int damage;
     
 
@@ -39,10 +35,10 @@ public class WeaponAnimations : Weapon
             {
                 isAttacking = true;
                 damage = weaponData.lightAttackDamage;
-                var attackType = Random.Range(1, weaponData.lightAttackTypesCount);
+                var attackType = Random.Range(1, weaponData.lightAttackTypesCount+1);
                 StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
                 StartCoroutine(PlayBodyAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
-                isAttacking = false;
+                
             }
         }
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponDataAxe
   m_EditorClassIdentifier: 
   weaponName: axe
-  lightAttackTypesCount: 0
+  lightAttackTypesCount: 2
   lightAttackDuration1: 1.26
   lightAttackDuration2: 1.06
   lightAttackDuration3: 0
@@ -27,5 +27,5 @@ MonoBehaviour:
   blockAnimation: Block
   bashAnimation: Bash
   hurtAnimation: Hurt
-  lightAttackDamage: 1
-  heavyAttackDamage: 4
+  lightAttackDamage: 4
+  heavyAttackDamage: 6

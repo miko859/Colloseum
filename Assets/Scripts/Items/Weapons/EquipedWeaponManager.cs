@@ -6,17 +6,11 @@ public class EquipedWeaponManager : MonoBehaviour
 {
     public static EquipedWeaponManager Instance;
 
-    public Transform rightHandGrip;
-    public Transform leftHandGrip;
     public Animator rigController;
 
-    public Rig rightRig;
-    public Rig leftRig;
 
     public List<Weapon> weaponery = new List<Weapon>();
     private int currentWeaponIndex = 0;
-
-    public RigBuilder rigBUilder;
 
     private void Awake()
     {
@@ -59,6 +53,7 @@ public class EquipedWeaponManager : MonoBehaviour
 
             // This will change weapon's scripts for player
             transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
+            
 
 
                                 /*--- NO NEED FOR THIS, LATER CLEANING ---*/

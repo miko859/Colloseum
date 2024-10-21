@@ -5,7 +5,7 @@ using UnityEditor.Animations;
 public abstract class Weapon : MonoBehaviour
 {
     protected Animator animator;
-    private Animator bodyAnimator;
+    public Animator bodyAnimator;
     public WeaponData weaponData;
     public AnimatorOverrideController overrideController;
 
@@ -41,11 +41,15 @@ public abstract class Weapon : MonoBehaviour
 
     public void setNewAnimationsForBody()
     {
-        animator.runtimeAnimatorController = overrideController;
+        bodyAnimator.runtimeAnimatorController = overrideController;
     }
 
-    public void setBodyAnimator(Animator bodyAnimator) { this.bodyAnimator = bodyAnimator; }
+    public void setBodyAnimator(Animator bodyAnimator) { 
+        this.bodyAnimator = bodyAnimator; 
+    }
 
     public Animator GetAnimator() { return animator; }
+
+    public Animator GetBodyAnimator() { return bodyAnimator; }
 
 }

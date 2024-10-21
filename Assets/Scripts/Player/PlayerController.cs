@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -14,6 +15,12 @@ public class PlayerController : MonoBehaviour
     private bool isCharging = false;
 
     private bool isWalking = false;
+
+    [Header("Testujem")]
+    public AnimatorStateInfo stateInfo;
+    public Animator oldAnimator;
+    public AnimatorClipInfo[] clipInfo;
+    public AnimatorControllerParameter[] parametre;
 
     private void Awake()
     {
@@ -52,11 +59,53 @@ public class PlayerController : MonoBehaviour
     /// Swap weapon
     /// </summary>
     /// <param name="newWeapon"></param>
-    public void EquipWeapon(Weapon newWeapon)
+
+    public IEnumerator EquipWeapon(Weapon newWeapon)
     {
+        // options of old Animator on Weapon
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetBodyAnimator().Play("unequip", 0, 0f);
+            currentWeapon.GetAnimator().Play("unequip", 0, 0f);
+
+            yield return new WaitForSeconds(currentWeapon.weaponData.equipUnequipDuration);
+            currentWeapon.Unequip();
+        }
+
+        // change old for new weapon
         currentWeapon = newWeapon;
+
+        // override new Weapon Animator
         currentWeapon.setBodyAnimator(animator);
         currentWeapon.setNewAnimationsForBody();
+
+        currentWeapon.Equip();
+
+        currentWeapon.GetBodyAnimator().Play("equip", 0, 0f);
+        currentWeapon.GetAnimator().Play("equip", 0, 0f);
+        yield return new WaitForSeconds(currentWeapon.weaponData.equipUnequipDuration);
+
+        if (currentWeapon != null)
+        {
+            currentWeapon.GetAnimator().Play(currentWeapon.bodyAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.bodyAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+
+            // sync parameters
+            foreach (AnimatorControllerParameter parameter in currentWeapon.bodyAnimator.parameters)
+            {
+                switch (parameter.type)
+                {
+                    case AnimatorControllerParameterType.Float:
+                        currentWeapon.GetAnimator().SetFloat(parameter.name, currentWeapon.bodyAnimator.GetFloat(parameter.name));
+                        break;
+                    case AnimatorControllerParameterType.Int:
+                        currentWeapon.GetAnimator().SetInteger(parameter.name, currentWeapon.bodyAnimator.GetInteger(parameter.name));
+                        break;
+                    case AnimatorControllerParameterType.Bool:
+                        currentWeapon.GetAnimator().SetBool(parameter.name, currentWeapon.bodyAnimator.GetBool(parameter.name));
+                        break;
+                }
+            }
+        }
     }
 
     public void OnScroll(InputAction.CallbackContext context)
@@ -65,7 +114,6 @@ public class PlayerController : MonoBehaviour
         {
             if (context.ReadValue<Vector2>().y < 0)
             {
-
                 int yValueDown = equipedWeaponManager.getCurrentWeaponIndex() - 1;
 
                 if (yValueDown < 0)

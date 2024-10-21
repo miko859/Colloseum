@@ -6,9 +6,6 @@ public class EquipedWeaponManager : MonoBehaviour
 {
     public static EquipedWeaponManager Instance;
 
-    public Animator rigController;
-
-
     public List<Weapon> weaponery = new List<Weapon>();
     private int currentWeaponIndex = 0;
 
@@ -17,10 +14,6 @@ public class EquipedWeaponManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
@@ -37,48 +30,12 @@ public class EquipedWeaponManager : MonoBehaviour
     {
         if (index >= 0 && index < weaponery.Count)
         {
-            
-            if (currentWeaponIndex != -1)
-            {
-                weaponery[currentWeaponIndex].Unequip();
-            }
-
-            //rigController.Play("unequip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
-            //rigBUilder.Clear();
-
             currentWeaponIndex = index;
 
-            // This will set new weapon active
-            weaponery[currentWeaponIndex].Equip();
-
-            // This will change weapon's scripts for player
-            transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]);
-            
-
-
-                                /*--- NO NEED FOR THIS, LATER CLEANING ---*/
-            /*
-            //rigController.Play("equip_" + weaponery[currentWeaponIndex].weaponData.weaponName);
-            rigController.SetBool("equip_" +  weaponery[currentWeaponIndex].weaponData.weaponName, true);
-
-            Debug.Log("Right Grip -> " + weaponery[currentWeaponIndex].transform.Find("RightGrip"));
-            Debug.Log("Left Grip -> " + weaponery[currentWeaponIndex].transform.Find("LeftGrip"));
-
-            //rightHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
-            //leftHandGrip.GetComponent<TwoBoneIKConstraint>().enabled = false;
-
-            rightHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("RightGrip");
-            leftHandGrip.GetComponent<TwoBoneIKConstraint>().data.target = weaponery[currentWeaponIndex].transform.Find("LeftGrip");
-
-            
-            //rigBUilder.Clear();
-            rigBUilder.Build();
-            */
-            
+            StartCoroutine(transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]));
         }
     }
 
-    
     /// <summary>
     /// Add weapon into weaponery/inventory
     /// </summary>

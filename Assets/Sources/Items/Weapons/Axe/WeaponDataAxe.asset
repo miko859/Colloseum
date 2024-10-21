@@ -21,6 +21,7 @@ MonoBehaviour:
   heavyAttackPerformDuration: 0.8
   bashDuration: 0.4
   hurtDuration: 0.23
+  equipUnequipDuration: 0.8
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform

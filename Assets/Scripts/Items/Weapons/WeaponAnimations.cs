@@ -73,7 +73,7 @@ public class WeaponAnimations : Weapon
     {
         isBlocking = !isBlocking;
         animator.SetBool("Block", isBlocking);
-        bodyAnimator.SetBool("Block", isBlocking);
+        GetBodyAnimator().SetBool("Block", isBlocking);
     }
 
     /// <summary>

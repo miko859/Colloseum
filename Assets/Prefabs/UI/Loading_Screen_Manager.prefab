@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressBar: {fileID: 0}
   fakeLoadingSpeed: 0.1
+  image1: {fileID: 0}
+  image2: {fileID: 0}
+  blackScreen: {fileID: 0}
+  fadeDuration: 2
+  delay: 2

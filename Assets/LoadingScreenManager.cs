@@ -7,15 +7,67 @@ public class LoadingScreenManager : MonoBehaviour
 {
     public Slider progressBar;
     public float fakeLoadingSpeed = 0.1f; // Speed for smooth progress 
-    public Image backgroundImage; 
-    public Sprite[] backgroundSprites; // Array for bakcground images 
-    public float backgroundSwitchInterval = 2f;
+    public Image image1;
+    public Image image2;
+    public Image blackScreen;
+    public float fadeDuration = 1f;
+    private bool isFirstImageShowing = true;
+    public float delay = 2f;
 
     private void Start()
     {
+        StartCoroutine(SwitchImagesWithDelay());
         StartCoroutine(LoadDesertSceneAsync());
-        StartCoroutine(SwitchBackgroundImages());
     }
+    public void StartImageSwitch()
+    {
+        StartCoroutine(SwitchImages());
+    }
+    private IEnumerator SwitchImagesWithDelay()
+    {
+        yield return new WaitForSeconds(2f);
+
+        StartImageSwitch();
+    }
+
+    private IEnumerator SwitchImages()
+    {
+        yield return StartCoroutine(FadeImage(blackScreen, 0f, 1f, fadeDuration));
+
+        if (isFirstImageShowing)
+        {
+            image1.gameObject.SetActive(false);
+            image2.gameObject.SetActive(true);
+        }
+        else
+        {
+            image1.gameObject.SetActive(true);
+            image2.gameObject.SetActive(false);
+        }
+        isFirstImageShowing = !isFirstImageShowing; // switch between images
+
+        yield return StartCoroutine(FadeImage(blackScreen, 1f, 0f, fadeDuration));
+
+    }
+    private IEnumerator FadeImage(Image image, float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+        Color imageColor = image.color;
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            imageColor.a = alpha;
+            image.color = imageColor;
+            yield return null;
+        }
+
+        imageColor.a = endAlpha;
+        image.color = imageColor;
+
+    }
+
 
     private IEnumerator LoadDesertSceneAsync()
     {
@@ -44,20 +96,5 @@ public class LoadingScreenManager : MonoBehaviour
         progressBar.value = 1f;
 
         operation.allowSceneActivation = true;
-    }
-    private IEnumerator SwitchBackgroundImages()
-    {
-        int index = 0;
-        while (true)
-        {
-            if (backgroundSprites.Length > 0)
-            {
-                Debug.Log("Switching to background image: " + backgroundSprites[index].name); // Log the name of the sprite being set
-                backgroundImage.sprite = backgroundSprites[index]; 
-                index = (index + 1) % backgroundSprites.Length; // loops back to the first image 
-            }
-
-            yield return new WaitForSeconds(backgroundSwitchInterval); 
-        }
     }
 }

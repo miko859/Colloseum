@@ -1,11 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor.Animations;
 
 public abstract class Weapon : MonoBehaviour
 {
     protected Animator animator;
     public Animator bodyAnimator;
     public WeaponData weaponData;
+    public AnimatorOverrideController overrideController;
+
+    protected bool isAttacking = false;
 
     protected virtual void Awake()
     {
@@ -32,8 +36,20 @@ public abstract class Weapon : MonoBehaviour
         bodyAnimator.SetBool(animationName, true);
         yield return new WaitForSeconds(duration);
         bodyAnimator.SetBool(animationName, false);
+        isAttacking = false;
+    }
+
+    public void setNewAnimationsForBody()
+    {
+        bodyAnimator.runtimeAnimatorController = overrideController;
+    }
+
+    public void setBodyAnimator(Animator bodyAnimator) { 
+        this.bodyAnimator = bodyAnimator; 
     }
 
     public Animator GetAnimator() { return animator; }
+
+    public Animator GetBodyAnimator() { return bodyAnimator; }
 
 }

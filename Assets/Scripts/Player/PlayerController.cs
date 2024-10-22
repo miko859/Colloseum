@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -14,6 +15,13 @@ public class PlayerController : MonoBehaviour
     private bool isCharging = false;
 
     private bool isWalking = false;
+
+    [Header("Testujem")]
+    private AnimatorStateInfo stateInfo;
+    private Animator oldAnimator;
+    private AnimatorClipInfo[] clipInfo;
+    private AnimatorControllerParameter[] parametre;
+    private Animator bodyAni;
 
     private void Awake()
     {
@@ -52,16 +60,61 @@ public class PlayerController : MonoBehaviour
     /// Swap weapon
     /// </summary>
     /// <param name="newWeapon"></param>
-    public void EquipWeapon(Weapon newWeapon)
+
+    public IEnumerator EquipWeapon(Weapon newWeapon)
     {
-        /*
+        // options of old Animator on Weapon
         if (currentWeapon != null)
         {
-            currentWeapon.gameObject.SetActive(false);
-        }*/
+            currentWeapon.GetBodyAnimator().Play("unequip", 0, 0f);
+            currentWeapon.GetAnimator().Play("unequip", 0, 0f);
 
+            yield return new WaitForSeconds(currentWeapon.weaponData.equipUnequipDuration);
+
+            currentWeapon.Unequip();
+        }
+
+        // change old for new weapon
         currentWeapon = newWeapon;
-       // currentWeapon.gameObject.SetActive(true);
+
+        // override new Weapon Animator
+        currentWeapon.setBodyAnimator(animator);
+        currentWeapon.setNewAnimationsForBody();
+
+        currentWeapon.Equip();
+
+        currentWeapon.GetBodyAnimator().Play("equip", 0, 0f);
+        currentWeapon.GetAnimator().Play("equip", 0, 0f);
+        yield return new WaitForSeconds(currentWeapon.weaponData.equipUnequipDuration);
+
+        if (currentWeapon != null)
+        {
+            //StartCoroutine(test());
+
+            // sync parameters
+            foreach (AnimatorControllerParameter parameter in currentWeapon.bodyAnimator.parameters)
+            {
+                switch (parameter.type)
+                {
+                    case AnimatorControllerParameterType.Float:
+                        currentWeapon.GetAnimator().SetFloat(parameter.name, currentWeapon.bodyAnimator.GetFloat(parameter.name));
+                        break;
+                    case AnimatorControllerParameterType.Int:
+                        currentWeapon.GetAnimator().SetInteger(parameter.name, currentWeapon.bodyAnimator.GetInteger(parameter.name));
+                        break;
+                    case AnimatorControllerParameterType.Bool:
+                        currentWeapon.GetAnimator().SetBool(parameter.name, currentWeapon.bodyAnimator.GetBool(parameter.name));
+                        break;
+                }
+            }
+        }
+    }
+
+    private IEnumerator test()
+    {
+        Debug.Log($"{currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime} === {currentWeapon.GetAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime}");
+        currentWeapon.GetAnimator().Play(currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime);
+        yield return null;
     }
 
     public void OnScroll(InputAction.CallbackContext context)
@@ -70,7 +123,6 @@ public class PlayerController : MonoBehaviour
         {
             if (context.ReadValue<Vector2>().y < 0)
             {
-
                 int yValueDown = equipedWeaponManager.getCurrentWeaponIndex() - 1;
 
                 if (yValueDown < 0)
@@ -100,29 +152,30 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started)
-        {
-            isCharging = true;
-        }
-        else if (isCharging)
-        {
-            if (context.interaction is TapInteraction && context.performed)
+            if (context.started)
             {
-                isCharging = false;
-                currentWeapon.Attack();
- 
+                isCharging = true;
             }
-            if (context.action.IsPressed())
+            else if (isCharging)
             {
-                currentWeapon.HardAttack(true);
-            }
-            else
-            {
-                isCharging = false;
-                currentWeapon.HardAttack(false);
-            }
+                if (context.interaction is TapInteraction && context.performed)
+                {
+                    
+                    currentWeapon.Attack();
+                    isCharging = false;
 
-        }
+                }
+                if (context.action.IsPressed())
+                {
+                    currentWeapon.HardAttack(true);
+                }
+                else
+                {
+                    
+                    currentWeapon.HardAttack(false);
+                    isCharging = false;
+                }
+            } 
     }
     
     /// <summary>

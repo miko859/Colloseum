@@ -13,14 +13,20 @@ MonoBehaviour:
   m_Name: WeaponDataSpear
   m_EditorClassIdentifier: 
   weaponName: spear
-  lightAttackDuration: 0
-  heavyAttackChargeDuration: 0
-  heavyAttackPerformDuration: 0
-  bashDuration: 0
+  lightAttackTypesCount: 1
+  lightAttackDuration1: 0.6
+  lightAttackDuration2: 0
+  lightAttackDuration3: 0
+  heavyAttackChargeDuration: 0.333
+  heavyAttackPerformDuration: 0.733
+  bashDuration: 0.333
+  hurtDuration: 0.4
+  equipUnequipDuration: 0.333
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform
   blockAnimation: Block
   bashAnimation: Bash
-  lightAttackDamage: 1
-  heavyAttackDamage: 3
+  hurtAnimation: Hurt
+  lightAttackDamage: 3
+  heavyAttackDamage: 2

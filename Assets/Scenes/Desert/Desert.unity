@@ -286,10 +286,6 @@ PrefabInstance:
       propertyPath: fireballPrefab
       value: 
       objectReference: {fileID: 1038316120}
-    - target: {fileID: 5373229122324713160, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.38
-      objectReference: {fileID: 0}
     - target: {fileID: 6391437961676749637, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: m_Name
       value: Player

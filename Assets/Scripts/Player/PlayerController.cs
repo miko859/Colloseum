@@ -17,10 +17,11 @@ public class PlayerController : MonoBehaviour
     private bool isWalking = false;
 
     [Header("Testujem")]
-    public AnimatorStateInfo stateInfo;
-    public Animator oldAnimator;
-    public AnimatorClipInfo[] clipInfo;
-    public AnimatorControllerParameter[] parametre;
+    private AnimatorStateInfo stateInfo;
+    private Animator oldAnimator;
+    private AnimatorClipInfo[] clipInfo;
+    private AnimatorControllerParameter[] parametre;
+    private Animator bodyAni;
 
     private void Awake()
     {
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
             currentWeapon.GetAnimator().Play("unequip", 0, 0f);
 
             yield return new WaitForSeconds(currentWeapon.weaponData.equipUnequipDuration);
+
             currentWeapon.Unequip();
         }
 
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentWeapon != null)
         {
-            currentWeapon.GetAnimator().Play(currentWeapon.bodyAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.bodyAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            //StartCoroutine(test());
 
             // sync parameters
             foreach (AnimatorControllerParameter parameter in currentWeapon.bodyAnimator.parameters)
@@ -106,6 +108,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator test()
+    {
+        Debug.Log($"{currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime} === {currentWeapon.GetAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime}");
+        currentWeapon.GetAnimator().Play(currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime);
+        yield return null;
     }
 
     public void OnScroll(InputAction.CallbackContext context)

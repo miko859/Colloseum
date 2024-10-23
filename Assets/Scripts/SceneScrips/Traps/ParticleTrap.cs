@@ -4,18 +4,39 @@ using UnityEngine;
 
 public class ParticleTrap : Trap
 {
+
+    [Header("Trap Animation")]
+    public Animator animator;
+
     public override void StartTrap()
     {
-        throw new System.NotImplementedException();
+        SetIsActived(true);
+
+        if (singleUse)
+        {
+            TurnOffTrap();
+        }
+
+        
+
+        SetDetectionCollidor(false, false);
+        SetDamageCollidor(true, true);
     }
 
     public override void RunningTrap()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void StopTrap()
     {
-        throw new System.NotImplementedException();
+        SetDamageCollidor(false, false);
+
+        if (!singleUse)
+        {
+            SetDetectionCollidor(true, true);
+        }
+
+        SetIsActived(false);
     }
 }

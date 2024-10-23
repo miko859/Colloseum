@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     private Animator animator;
     public HealthBar healthBar;
     private Weapon weapon;
+    public bool hasDeathAnimation = false;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class Health : MonoBehaviour
         {
             if (transform.CompareTag("Enemy"))
             {
+                if (hasDeathAnimation)
+                {
+                    animator.SetBool("death", true);
+                }
+
                 transform.tag = "Ground";
                 animator.enabled = false;
                 transform.GetComponent<NavMeshAgent>().enabled = false;

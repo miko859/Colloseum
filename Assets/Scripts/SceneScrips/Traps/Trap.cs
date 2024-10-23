@@ -15,6 +15,10 @@ public abstract class Trap : MonoBehaviour
     public bool enemyCanActivate = true;
     [SerializeField] public bool timer = false;
     [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
+    public int damage = 0;
+    public bool dmgPerTick = false;
+    
+    
 
     private void Start()
     {
@@ -95,7 +99,7 @@ public abstract class Trap : MonoBehaviour
     {
         if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
         {
-            RunningTrap();
+            RunningTrap(other);
         }
     }
 
@@ -115,13 +119,13 @@ public abstract class Trap : MonoBehaviour
         
     }
 
-    protected void TurnOffTrap()
+    protected void TurnOffTrap(Collider other)
     {
         detectionCollider.isTrigger = false;
     }
 
     public abstract void StartTrap();
-    public abstract void RunningTrap();
+    public abstract void RunningTrap(Collider other);
     public abstract void StopTrap();
 
 }

@@ -23,16 +23,34 @@ public class AniTrap : Trap
 
     private int frame = 0;
     private int count = 0;
-    public override void RunningTrap()
+    public override void RunningTrap(Collider other)
     {
-        Debug.Log("RunningTrap");
-        frame++;
-        if (frame == 60)
+        if (dmgPerTick)
         {
-            count++;
-            frame = 0;
-            Debug.Log($"Frame: {count}");
+            frame++;
+            if (frame == 60)
+            {
+                count++;
+                frame = 0;
+                Debug.Log($"Frame: {count}");
+                other.GetComponent<Health>().DealDamage(damage);
+                /*
+                 *  can also apply debuf, debuf will be in list, 
+                 *  that will be applied on entity
+                 *  will need create new class Buf, Debuf
+                 */
+            }
         }
+        else
+        {
+            other.GetComponent<Health>().DealDamage(damage);
+            /*
+             *  can also apply debuf, debuf will be in list, 
+             *  that will be applied on entity
+             *  will need create new class Buf, Debuf
+             */
+        }
+
     }
 
     public override void StopTrap()

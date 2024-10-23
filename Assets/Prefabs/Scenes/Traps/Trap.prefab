@@ -124,4 +124,5 @@ MonoBehaviour:
   damageCollider: {fileID: 930830487992281779}
   singleUse: 0
   enemyCanActivate: 1
+  timer: 0
   animator: {fileID: 0}

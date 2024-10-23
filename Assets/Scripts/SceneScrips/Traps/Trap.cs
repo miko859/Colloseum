@@ -1,5 +1,6 @@
 
 
+using System.Collections;
 using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
@@ -12,7 +13,8 @@ public abstract class Trap : MonoBehaviour
     [Header("Trap settings")]
     public bool singleUse = false;
     public bool enemyCanActivate = true;
-
+    [SerializeField] public bool timer = false;
+    [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
 
     private void Start()
     {
@@ -58,16 +60,31 @@ public abstract class Trap : MonoBehaviour
         return this.isActived;
     }
 
+    protected IEnumerator SetTimerToEndTrap()
+    {
+        yield return new WaitForSecondsRealtime(timeTillEnd);
+        StopTrap();
+    }
+
     /// <summary>
     /// Triggered by detection collider, wake up trap
     /// </summary>
     /// <param name="other"></param>
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
+        if (!isActived)
         {
-            StartTrap();
-        }
+            if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
+            {
+                StartTrap();
+
+            }
+
+            if (timer)
+            {
+                StartCoroutine(SetTimerToEndTrap());
+            }
+        } 
     }
 
     /// <summary>
@@ -88,7 +105,7 @@ public abstract class Trap : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        if (this.isActived)
+        if (isActived && !timer)
         {
             if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
             {

@@ -65684,6 +65684,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9092929718465045026, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: timer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092929718465045026, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: singleUse
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092929718465045026, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: timeTillEnd
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092929718465045026, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: enemyCanActivate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

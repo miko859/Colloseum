@@ -7,20 +7,22 @@ public class ParticleTrap : Trap
 
     [Header("Trap Animation")]
     public Animator animator;
-
+    [Header("Particles to activate")]
+    public ParticleSystem[] particleObjects;
     public override void StartTrap()
     {
-        SetIsActived(true);
-
-        if (singleUse)
-        {
-            TurnOffTrap();
-        }
-
-        
-
         SetDetectionCollidor(false, false);
         SetDamageCollidor(true, true);
+
+        SetIsActived(true);
+
+        foreach (var particle in particleObjects)
+        {
+            particle.Play();
+        }
+        
+
+        
     }
 
     public override void RunningTrap()
@@ -35,6 +37,11 @@ public class ParticleTrap : Trap
         if (!singleUse)
         {
             SetDetectionCollidor(true, true);
+        }
+
+        foreach (var particle in particleObjects)
+        {
+            particle.Stop();
         }
 
         SetIsActived(false);

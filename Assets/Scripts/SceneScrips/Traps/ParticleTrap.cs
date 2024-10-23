@@ -1,5 +1,6 @@
 
 
+using System.Threading;
 using UnityEngine;
 
 public class ParticleTrap : Trap
@@ -15,19 +16,28 @@ public class ParticleTrap : Trap
         SetDamageCollidor(true, true);
 
         SetIsActived(true);
-
-        foreach (var particle in particleObjects)
+        if (particleObjects != null)
         {
-            particle.Play();
+            foreach (var particle in particleObjects)
+            {
+                particle.Play();
+            }
         }
-        
-
         
     }
 
+    private int frame = 0;
+    private int count = 0;
     public override void RunningTrap()
     {
-
+        Debug.Log("RunningTrap");
+        frame++;
+        if (frame == 60)
+        {
+            count++;
+            frame = 0;
+            Debug.Log($"Frame: {count}");
+        }
     }
 
     public override void StopTrap()

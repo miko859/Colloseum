@@ -10,22 +10,29 @@ public class AniTrap : Trap
 
     public override void StartTrap()
     {
-        SetIsActived(true);
-
-        if (singleUse)
-        {
-            TurnOffTrap();
-        }
-
-        //animator.Play("trap", 0, 0f);
-
         SetDetectionCollidor(false, false);
         SetDamageCollidor(true, true);
+
+        SetIsActived(true);
+
+        if (animator != null)
+        {
+            animator.Play("trap", 0, 0f);
+        }
     }
 
+    private int frame = 0;
+    private int count = 0;
     public override void RunningTrap()
     {
-        
+        Debug.Log("RunningTrap");
+        frame++;
+        if (frame == 60)
+        {
+            count++;
+            frame = 0;
+            Debug.Log($"Frame: {count}");
+        }
     }
 
     public override void StopTrap()

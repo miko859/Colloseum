@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 14.3258, y: -3.8975}
+  m_AnchoredPosition: {x: 14.325798, y: -3.8975067}
   m_SizeDelta: {x: 3.5964, y: -45.824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &860209326660606966
@@ -362,9 +362,9 @@ RectTransform:
   - {fileID: 526099895000693793}
   m_Father: {fileID: 3028393783740428653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20.700012, y: -171.8}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 20.700012, y: 109.600006}
   m_SizeDelta: {x: 174.7516, y: 78.0065}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &8904758951397069904
@@ -434,7 +434,9 @@ MonoBehaviour:
   maxMana: 100
   currentMana: 0
   fireballManaCost: 40
+  flamethrowerCost: 2
   manaRegen: 1
   regenInterval: 0.18
   vibrationDuration: 0.5
   vibrationMagnitude: 7.5
+  flameThrower: {fileID: 0}

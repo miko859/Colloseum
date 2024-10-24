@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4562435466451562940}
   - component: {fileID: 3339959561819367939}
   - component: {fileID: 4123268909235830128}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fireball_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,8 +153,8 @@ GameObject:
   - component: {fileID: 7182246142652174026}
   - component: {fileID: 6110472268642680616}
   - component: {fileID: 6217388355073951833}
-  m_Layer: 0
-  m_Name: Explosion
+  m_Layer: 10
+  m_Name: Fireball_explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4983,8 +4983,8 @@ GameObject:
   - component: {fileID: 7728403021070321448}
   - component: {fileID: 2329513323431771087}
   - component: {fileID: 1401074156915311172}
-  m_Layer: 0
-  m_Name: Particles
+  m_Layer: 10
+  m_Name: Fireball_trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9814,8 +9814,8 @@ GameObject:
   - component: {fileID: 6562935564297172654}
   - component: {fileID: 1345107384151933123}
   - component: {fileID: 8329282421736932961}
-  m_Layer: 0
-  m_Name: FireBall
+  m_Layer: 10
+  m_Name: Fireball_projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14707,7 +14707,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804049840483725826, guid: 9b90a9b03af11734abed416ba1debfe7, type: 3}
       propertyPath: m_Name
-      value: Explosion
+      value: Fireball_head
+      objectReference: {fileID: 0}
+    - target: {fileID: 2804049840483725826, guid: 9b90a9b03af11734abed416ba1debfe7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 939921490300972734, guid: 9b90a9b03af11734abed416ba1debfe7, type: 3}

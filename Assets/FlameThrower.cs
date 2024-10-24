@@ -10,15 +10,30 @@ public class FlameThrower : MonoBehaviour
     public float swaySpeed = 5f;         
     private bool isFlameActive = false;
     private Quaternion targetRotation;
+    private Coroutine manaCoroutine;
+    public ManaSystem manaSystem;
+
+    private void Start()
+    {
+        flameEffect.Stop();
+    }
     void Update()
     {
-        
 
-        if (Input.GetKeyDown(KeyCode.F))
+
+        if (Input.GetKey(KeyCode.F))  // Use GetKey for continuous input detection
         {
-            StartFlameThrower();
+            if (manaSystem.currentMana >= manaSystem.flamethrowerCost)
+            {
+                StartFlameThrower();
+            }
+            else
+            {
+                StopFlameThrower();  // Stop the flamethrower if there's no mana
+            }
         }
-        if (Input.GetKeyUp(KeyCode.F))
+
+        if (Input.GetKeyUp(KeyCode.F))  // Detect when the F key is released
         {
             StopFlameThrower();
         }
@@ -29,12 +44,21 @@ public class FlameThrower : MonoBehaviour
         isFlameActive = true;
         flameEffect.Play();
         StartCoroutine(DealDamageOverTime());
+        manaCoroutine = StartCoroutine(manaSystem.SpendManaPerSecond());
+        Debug.Log("Flamethrower started, mana spending coroutine started.");
+
     }
 
-    void StopFlameThrower()
+    public void StopFlameThrower()
     {
         isFlameActive = false;
         flameEffect.Stop();
+        if (manaCoroutine != null)
+        {
+            StopCoroutine(manaCoroutine);
+            manaCoroutine = null;  
+        }
+
     }
 
 

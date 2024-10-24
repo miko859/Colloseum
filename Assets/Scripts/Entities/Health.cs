@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     private Weapon weapon;
     public bool hasDeathAnimation = false;
 
-    void Start()
+    public void Start()
     {
         weapon = GetComponent<Weapon>();
         animator = GetComponent<Animator>();
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth); 
     }
 
-    void Update()
+    public void Update()
     {
         if (currentHealth <= 0)
         {

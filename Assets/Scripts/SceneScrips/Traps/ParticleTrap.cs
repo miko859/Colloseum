@@ -4,6 +4,8 @@ public class ParticleTrap : Trap
 {
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
+    [SerializeField] public bool timer = false;
+    [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
     public override void StartTrap()
     {
         SetDetectionCollidor(false, false);
@@ -17,7 +19,17 @@ public class ParticleTrap : Trap
                 particle.Play();
             }
         }
-        
+
+        if (animator != null)
+        {
+            animator.Play("trap", 0, 0f);
+        }
+
+        if (timer)
+        {
+            StartCoroutine(SetTimerToEndTrap(timeTillEnd));
+        }
+
     }
 
     private int frame = 0;
@@ -55,19 +67,22 @@ public class ParticleTrap : Trap
     }
     public override void StopTrap()
     {
-        SetDamageCollidor(false, false);
-
-        if (!singleUse)
+        if (!timer) 
         {
-            SetDetectionCollidor(true, true);
-        }
+            SetDamageCollidor(false, false);
 
-        foreach (var particle in particleObjects)
-        {
-            particle.Stop();
-        }
+            if (!singleUse)
+            {
+                SetDetectionCollidor(true, true);
+            }
 
-        SetIsActived(false);
-        SetDealtInstaDmg(false);
+            foreach (var particle in particleObjects)
+            {
+                particle.Stop();
+            }
+
+            SetIsActived(false);
+            SetDealtInstaDmg(false);
+        }
     }
 }

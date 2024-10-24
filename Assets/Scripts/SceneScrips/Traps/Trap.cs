@@ -14,8 +14,6 @@ public abstract class Trap : MonoBehaviour
     [Header("Trap settings")]
     public bool singleUse = false;
     public bool enemyCanActivate = true;
-    [SerializeField] public bool timer = false;
-    [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
     public int damage = 0;
     public bool dmgPerTick = false;
     [Header("Trap Animation")]
@@ -74,7 +72,7 @@ public abstract class Trap : MonoBehaviour
         return this.isActived;
     }
 
-    protected IEnumerator SetTimerToEndTrap()
+    protected IEnumerator SetTimerToEndTrap(float timeTillEnd)
     {
         yield return new WaitForSecondsRealtime(timeTillEnd);
         StopTrap();
@@ -91,12 +89,6 @@ public abstract class Trap : MonoBehaviour
             if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
             {
                 StartTrap();
-
-            }
-
-            if (timer)
-            {
-                StartCoroutine(SetTimerToEndTrap());
             }
         } 
     }
@@ -119,7 +111,7 @@ public abstract class Trap : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
-        if (isActived && !timer)
+        if (isActived)
         {
             if (other.tag.Equals("Player") || (other.tag.Equals("Enemy") && enemyCanActivate))
             {

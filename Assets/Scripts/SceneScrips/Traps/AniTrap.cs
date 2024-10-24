@@ -1,13 +1,7 @@
-
-
 using UnityEngine;
 
 public class AniTrap : Trap
 {
-    [Header("Trap Animation")]
-    public Animator animator;
-    
-
     public override void StartTrap()
     {
         SetDetectionCollidor(false, false);
@@ -22,7 +16,6 @@ public class AniTrap : Trap
     }
 
     private int frame = 0;
-    private int count = 0;
     public override void RunningTrap(Collider other)
     {
         if (dmgPerTick)
@@ -30,9 +23,7 @@ public class AniTrap : Trap
             frame++;
             if (frame == 60)
             {
-                count++;
-                frame = 0;
-                Debug.Log($"Frame: {count}");
+                frame = 0;;
                 other.GetComponent<Health>().DealDamage(damage);
                 /*
                  *  can also apply debuf, debuf will be in list, 
@@ -43,12 +34,16 @@ public class AniTrap : Trap
         }
         else
         {
-            other.GetComponent<Health>().DealDamage(damage);
-            /*
-             *  can also apply debuf, debuf will be in list, 
-             *  that will be applied on entity
-             *  will need create new class Buf, Debuf
-             */
+            if (!GetDealtInstaDmg())
+            {
+                SetDealtInstaDmg(true);
+                other.GetComponent<Health>().DealDamage(damage);
+                /*
+                 *  can also apply debuf, debuf will be in list, 
+                 *  that will be applied on entity
+                 *  will need create new class Buf, Debuf
+                 */
+            }
         }
 
     }
@@ -63,5 +58,6 @@ public class AniTrap : Trap
         }
 
         SetIsActived(false);
+        SetDealtInstaDmg(false);
     }
 }

@@ -9,6 +9,7 @@ public abstract class Trap : MonoBehaviour
     public Collider damageCollider;
     
     private bool isActived = false;
+    private bool dealtInstaDmg = false;
 
     [Header("Trap settings")]
     public bool singleUse = false;
@@ -17,8 +18,9 @@ public abstract class Trap : MonoBehaviour
     [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
     public int damage = 0;
     public bool dmgPerTick = false;
-    
-    
+    [Header("Trap Animation")]
+    public Animator animator;
+
 
     private void Start()
     {
@@ -57,6 +59,14 @@ public abstract class Trap : MonoBehaviour
     protected void SetIsActived(bool isActived)
     {
         this.isActived = isActived;
+    }
+
+    protected bool GetDealtInstaDmg() { 
+        return dealtInstaDmg; 
+    }
+    protected void SetDealtInstaDmg(bool isDealtInstaDmg)
+    {
+        this.dealtInstaDmg = isDealtInstaDmg;
     }
 
     protected bool GetIsActived() 

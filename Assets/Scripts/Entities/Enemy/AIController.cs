@@ -25,7 +25,7 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
-    private int frames = 0;
+    private float elapsedTime = 0;
 
     void Start()
     {
@@ -54,10 +54,11 @@ public class AIController : MonoBehaviour
     {
         if (agent != null && player != null)
         {
-            frames++;
-            if (frames % 20 == 0)
+            elapsedTime += Time.deltaTime;
+
+            if (elapsedTime >= 0.33)
             {
-                frames = 0;
+                elapsedTime = 0;
 
                 float distanceToPlayer = Vector3.Distance(agent.transform.position, player.transform.position);
                 fallBack = true;

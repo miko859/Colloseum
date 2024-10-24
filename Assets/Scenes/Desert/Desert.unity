@@ -302,6 +302,10 @@ PrefabInstance:
       propertyPath: manaSystem
       value: 
       objectReference: {fileID: 2050302778}
+    - target: {fileID: 2028962254863666105, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+      propertyPath: damagePerSecond
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6391437961676749637, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: m_Name
       value: Player

@@ -16,6 +16,9 @@ public class ManaSystem : MonoBehaviour
     public float vibrationMagnitude = 7.1f;
     private bool isVibrating = false;
     public FlameThrower flameThrower;
+
+    private Coroutine manaSpendingCoroutine;
+
     void Start()
     {
         currentMana = maxMana;
@@ -23,6 +26,7 @@ public class ManaSystem : MonoBehaviour
 
         StartCoroutine(RegenerateMana());
     }
+
     IEnumerator RegenerateMana()
     {
         while (true)
@@ -31,16 +35,34 @@ public class ManaSystem : MonoBehaviour
 
             if (currentMana < maxMana)
             {
-                currentMana = Mathf.Min(currentMana + manaRegen, maxMana); 
+                currentMana = Mathf.Min(currentMana + manaRegen, maxMana);
                 UpdateManaUI();
             }
         }
     }
 
+    public Coroutine StartSpendingManaPerSecond()
+    {
+        if (manaSpendingCoroutine == null)
+        {
+            manaSpendingCoroutine = StartCoroutine(SpendManaPerSecond());
+        }
+        return manaSpendingCoroutine;
+    }
+
+    public void StopSpendingManaPerSecond()
+    {
+        if (manaSpendingCoroutine != null)
+        {
+            StopCoroutine(manaSpendingCoroutine);
+            manaSpendingCoroutine = null; // Clear the reference after stopping
+        }
+    }
+
     public IEnumerator SpendManaPerSecond()
     {
-
         bool vibrationIsTriggered = false;
+
         while (currentMana >= flamethrowerCost)
         {
             Debug.Log("Spending mana...");
@@ -49,18 +71,18 @@ public class ManaSystem : MonoBehaviour
             currentMana -= flamethrowerCost;
             UpdateManaUI();
 
-
             if (currentMana < flamethrowerCost)
             {
                 Debug.Log("Not enough mana!");
                 vibrationIsTriggered = true;
-                StartCoroutine(VibrateManaBar(() =>vibrationIsTriggered = false));
-               
-
+                StartCoroutine(VibrateManaBar(() => vibrationIsTriggered = false));
+                break;
             }
         }
-        
+
+        StopSpendingManaPerSecond(); // Ensure it stops when mana is insufficient
     }
+
     public bool SpendMana(int amount)
     {
         if (currentMana >= amount)
@@ -78,32 +100,29 @@ public class ManaSystem : MonoBehaviour
         return false;
     }
 
-
     IEnumerator VibrateManaBar(System.Action onVibrationComplete)
     {
-        if (isVibrating) yield break; 
+        if (isVibrating) yield break;
 
         isVibrating = true;
-        Vector3 originalPosition = manaSlider.transform.localPosition; // Store the original position
+        Vector3 originalPosition = manaSlider.transform.localPosition;
 
         float startTime = 0;
         while (startTime < vibrationDuration)
         {
-            float xOffSet = Random.Range(-vibrationMagnitude, vibrationMagnitude); //shake
+            float xOffSet = Random.Range(-vibrationMagnitude, vibrationMagnitude);
             manaSlider.transform.localPosition = originalPosition + new Vector3(xOffSet, 0, 0);
             startTime += Time.deltaTime;
             yield return null;
         }
 
         manaSlider.transform.localPosition = originalPosition;
-
-        onVibrationComplete?.Invoke();  
-        isVibrating = false; 
+        onVibrationComplete?.Invoke();
+        isVibrating = false;
     }
 
     void UpdateManaUI()
     {
-        // mana slider change/update
         manaSlider.value = currentMana;
     }
 }

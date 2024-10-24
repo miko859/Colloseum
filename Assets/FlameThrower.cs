@@ -3,13 +3,12 @@ using UnityEngine;
 
 public class FlameThrower : MonoBehaviour
 {
-    public ParticleSystem flameEffect;  
-    public int damagePerSecond = 5;      
-    public float damageInterval = 0.5f;  // Damage tick
-    public float range = 10f;            // Range 
-    public float swaySpeed = 5f;         
+    public ParticleSystem flameEffect;
+    public int damagePerSecond = 5;
+    public float damageInterval = 0.5f;
+    public float range = 10f;
+    public float swaySpeed = 5f;
     private bool isFlameActive = false;
-    private Quaternion targetRotation;
     private Coroutine manaCoroutine;
     public ManaSystem manaSystem;
 
@@ -17,10 +16,9 @@ public class FlameThrower : MonoBehaviour
     {
         flameEffect.Stop();
     }
+
     void Update()
     {
-
-
         if (Input.GetKey(KeyCode.F))  // Use GetKey for continuous input detection
         {
             if (manaSystem.currentMana >= manaSystem.flamethrowerCost)
@@ -41,26 +39,23 @@ public class FlameThrower : MonoBehaviour
 
     void StartFlameThrower()
     {
-        isFlameActive = true;
-        flameEffect.Play();
-        StartCoroutine(DealDamageOverTime());
-        manaCoroutine = StartCoroutine(manaSystem.SpendManaPerSecond());
-        Debug.Log("Flamethrower started, mana spending coroutine started.");
-
+        if (!isFlameActive)
+        {
+            isFlameActive = true;
+            flameEffect.Play();
+            StartCoroutine(DealDamageOverTime());
+            manaSystem.StartSpendingManaPerSecond();
+            Debug.Log("Flamethrower started, mana spending coroutine started.");
+        }
     }
 
     public void StopFlameThrower()
     {
         isFlameActive = false;
         flameEffect.Stop();
-        if (manaCoroutine != null)
-        {
-            StopCoroutine(manaCoroutine);
-            manaCoroutine = null;  
-        }
-
+        manaSystem.StopSpendingManaPerSecond();  
+        Debug.Log("Flamethrower stopped, mana spending coroutine stopped.");
     }
-
 
     IEnumerator DealDamageOverTime()
     {

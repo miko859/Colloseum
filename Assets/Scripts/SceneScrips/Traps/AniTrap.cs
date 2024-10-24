@@ -15,21 +15,26 @@ public class AniTrap : Trap
         }
     }
 
-    private int frame = 0;
+    private float elapsedTime = 0;
     public override void RunningTrap(Collider other)
     {
         if (dmgPerTick)
         {
-            frame++;
-            if (frame == 60)
+            elapsedTime = Time.deltaTime;
+
+            if (elapsedTime >= 1)
             {
-                frame = 0;;
+                elapsedTime = 0;;
                 other.GetComponent<Health>().DealDamage(damage);
                 /*
                  *  can also apply debuf, debuf will be in list, 
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
+                if (listOfEffects.Count > 0)
+                {
+                    ApplyEffect(other);
+                }
             }
         }
         else
@@ -43,9 +48,12 @@ public class AniTrap : Trap
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
+                if (listOfEffects.Count > 0)
+                {
+                    ApplyEffect(other);
+                }
             }
         }
-
     }
 
     public override void StopTrap()

@@ -1,6 +1,7 @@
 
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
@@ -10,6 +11,8 @@ public abstract class Trap : MonoBehaviour
     
     private bool isActived = false;
     private bool dealtInstaDmg = false;
+
+    public List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
 
     [Header("Trap settings")]
     public bool singleUse = false;
@@ -119,6 +122,14 @@ public abstract class Trap : MonoBehaviour
             }
         }
         
+    }
+
+    protected void ApplyEffect(Collider other)
+    {
+        foreach (BuffDebuff effect in listOfEffects)
+        {
+            other.GetComponent<EffectStatus>().InsertNewEffect(effect);
+        }
     }
 
     protected void TurnOffTrap(Collider other)

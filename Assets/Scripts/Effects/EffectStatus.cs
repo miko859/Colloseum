@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectStatus
+public class EffectStatus : MonoBehaviour
 {
     List<BuffDebuff> listOfBuffDebuffs = new List<BuffDebuff>();
     public GameObject entity;

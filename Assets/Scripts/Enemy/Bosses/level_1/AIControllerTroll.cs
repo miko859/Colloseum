@@ -175,7 +175,7 @@ public class AIControllerTroll : MonoBehaviour
         }
         else
         {
-            animator.SetBool("run", false);
+            animator.SetBool("run", true);
         }
     }
 
@@ -189,6 +189,15 @@ public class AIControllerTroll : MonoBehaviour
         animator.SetBool("attack2", false);
 
         animator.SetBool(attackType, true);
+        float delayTime = 1.5f; // Set your desired delay time here
+        yield return new WaitForSeconds(delayTime);
+
+        animator.SetBool("attack1", false);
+        animator.SetBool("attack2", false);
+        animator.SetBool(attackType, false);
+
+
+
 
         AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
 

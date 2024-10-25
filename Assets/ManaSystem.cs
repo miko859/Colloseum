@@ -15,7 +15,7 @@ public class ManaSystem : MonoBehaviour
     public float vibrationDuration = 0.5f;
     public float vibrationMagnitude = 7.1f;
     private bool isVibrating = false;
-    public FlameThrower flameThrower;
+    private FlameThrower flameThrower;
 
     private Coroutine manaSpendingCoroutine;
 

@@ -189,7 +189,7 @@ public class AIControllerTroll : MonoBehaviour
         animator.SetBool("attack2", false);
 
         animator.SetBool(attackType, true);
-        float delayTime = 1.5f; // Set delay time here so th attack can finish 
+        float delayTime = 1.5f; // Set delay time here so the attack can finish 
         yield return new WaitForSeconds(delayTime);
 
         animator.SetBool("attack1", false);

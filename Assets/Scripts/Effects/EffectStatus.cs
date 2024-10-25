@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EffectStatus
 {
-    List<BuffDebuff> listOfBuffDebuffs = new List<BuffDebuff>();
+    public List<BuffDebuff> listOfBuffDebuffs = new List<BuffDebuff>();
     public GameObject entity;
     public void InsertNewEffect(BuffDebuff effect)
     {

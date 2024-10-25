@@ -5,7 +5,7 @@ public abstract class BuffDebuff : MonoBehaviour
     protected BuffDebuffConfig data;
     protected Health health;
     protected PlayerMovement playerMovement;
-    protected GameObject gameObject; // I don't what all will be needed
+    protected GameObject gameObject; // I don't know what all will be needed
 
     private bool effectEnded = false;
 

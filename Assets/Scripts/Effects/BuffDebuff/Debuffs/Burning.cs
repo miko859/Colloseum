@@ -11,6 +11,7 @@ public class Burning : BuffDebuff
 
     public override void Functionality()
     {
+        Debug.Log("malo by odpoËÌtaù HP");
         gameObject.GetComponent<Health>().DealDamage(data.DamagePerTick);
     }
 }

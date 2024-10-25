@@ -24,13 +24,6 @@ public class EffectStatus : MonoBehaviour
             {
                 BuffDebuff effect = listOfBuffDebuffs[index];
                 Debug.Log($"Effect status: našlo effect {effect.name}");
-                if (!effect.IsEffectEnded())
-                {
-                    Debug.Log(effect.IsEffectEnded());
-                    listOfBuffDebuffs.RemoveAt(index);
-                    Debug.Log("Vymaže efekt");
-                    continue;
-                }
 
                 if (effect.GetData() == null)
                 {
@@ -38,6 +31,16 @@ public class EffectStatus : MonoBehaviour
                     Debug.Log("Vytvorilo efekt");
                 }
 
+
+                if (effect.IsEffectEnded())
+                {
+                    Debug.Log(effect.IsEffectEnded());
+                    listOfBuffDebuffs.RemoveAt(index);
+                    Debug.Log("Vymaže efekt");
+                    continue;
+                }
+
+                
                 effect.TimerEffect();
             }
         }

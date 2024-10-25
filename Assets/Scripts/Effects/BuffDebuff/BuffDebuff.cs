@@ -36,11 +36,11 @@ public abstract class BuffDebuff : MonoBehaviour
     public void TimerEffect()
     {
         elapsedTime += Time.deltaTime;
-        Debug.Log($"zaèiatok TimerEffect, elapsedTime: {elapsedTime}");
+        //Debug.Log($"zaèiatok TimerEffect, elapsedTime: {elapsedTime}");
         if (elapsedTime < data.Duration)
         {
             Debug.Log($"ElapsedTime {elapsedTime} < data.Duration {data.Duration}");
-
+            Debug.Log($"{data.Frequency} data.Frequency");
             if (data.Frequency > 0)
             {
                 Debug.Log($"{data.Frequency} data.Frequency, prešlo na kotroli ticku");
@@ -87,15 +87,22 @@ public abstract class BuffDebuff : MonoBehaviour
     /// Create this effect with data
     /// </summary>
     /// <param name="entity"></param>
-    public abstract void CreateObject(GameObject entity);
+    public virtual void CreateObject(GameObject entity) { }
 
     /// <summary>
     /// Function of this effect
     /// </summary>
-    public abstract void Functionality();
+    public virtual void Functionality() { }
 
     /// <summary>
     /// Function to reverse changes of effect
     /// </summary>
     public virtual void ReverseEffect() { }
+
+    private void Update()
+    {
+        Debug.Log(data);
+    }
+
+
 }

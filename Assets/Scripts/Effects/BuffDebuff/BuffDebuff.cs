@@ -8,6 +8,7 @@ public abstract class BuffDebuff : MonoBehaviour
     protected GameObject gameObject; // I don't know what all will be needed
 
     private bool effectEnded = false;
+    private bool isApplied = false;
 
     private float elapsedTime = 0f;
     private float elapsedTickTime = 0f;
@@ -33,16 +34,31 @@ public abstract class BuffDebuff : MonoBehaviour
 
         if (elapsedTime < data.Duration)
         {
-            elapsedTickTime += Time.deltaTime;
+            // Determide if effect is isnta or per some time
+            if (data.Frequency > 0)
+            {
+                elapsedTickTime += Time.deltaTime;
 
-            if (elapsedTickTime >= data.Frequency)
+                if (elapsedTickTime >= data.Frequency)
+                {
+                    Functionality();
+                    elapsedTickTime = 0f;
+                }
+            }
+            else if (!isApplied)
             {
                 Functionality();
-                elapsedTickTime = 0f;
+                isApplied = true;
             }
+            
         }
         else
         {
+            if (data.Frequency <= 0)
+            {
+
+            }
+
             DestroyObject();
         }
     }
@@ -65,4 +81,9 @@ public abstract class BuffDebuff : MonoBehaviour
     /// Function of this effect
     /// </summary>
     public abstract void Functionality();
+
+    /// <summary>
+    /// Function to reverse changes of effect
+    /// </summary>
+    public virtual void ReverseEffect() { }
 }

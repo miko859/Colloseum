@@ -1581,6 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   healthBar: {fileID: 0}
+  hasDeathAnimation: 0
 --- !u!1 &6662210690725507281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,6 +1659,7 @@ GameObject:
   - component: {fileID: 4341763608945074473}
   - component: {fileID: 969086035410836751}
   - component: {fileID: 2024704079196360826}
+  - component: {fileID: 5654488762871636145}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1748,7 +1750,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
   animator: {fileID: 153524699417840477}
-  oldAnimator: {fileID: 0}
 --- !u!114 &4341763608945074473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1890,6 +1891,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponery: []
+--- !u!114 &5654488762871636145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7094087719220630579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305f108090b6ad745a91b5b175834da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 6391437961676749637}
 --- !u!1 &7152469309457388583
 GameObject:
   m_ObjectHideFlags: 0

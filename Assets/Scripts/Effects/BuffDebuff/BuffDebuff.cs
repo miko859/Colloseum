@@ -7,7 +7,7 @@ public abstract class BuffDebuff : MonoBehaviour
     protected PlayerMovement playerMovement;
     protected GameObject gameObject; // I don't know what all will be needed
 
-    private bool effectEnded = false;
+    public bool effectEnded = false;
     private bool isApplied = false;
 
     private float elapsedTime = 0f;
@@ -23,37 +23,49 @@ public abstract class BuffDebuff : MonoBehaviour
     protected void Initialize(BuffDebuffConfig config)
     {
         data = config;
+        effectEnded = false;
+        elapsedTime = 0f;
+        elapsedTickTime = 0f;
     }
 
     /// <summary>
     /// Counting time of effect, starting function and killing this effect
     /// </summary>
+    /// 
+    
     public void TimerEffect()
     {
         elapsedTime += Time.deltaTime;
-
+        Debug.Log($"zaèiatok TimerEffect, elapsedTime: {elapsedTime}");
         if (elapsedTime < data.Duration)
         {
-            // Determide if effect is isnta or per some time
+            Debug.Log($"ElapsedTime {elapsedTime} < data.Duration {data.Duration}");
+
             if (data.Frequency > 0)
             {
+                Debug.Log($"{data.Frequency} data.Frequency, prešlo na kotroli ticku");
                 elapsedTickTime += Time.deltaTime;
 
                 if (elapsedTickTime >= data.Frequency)
                 {
+                    Debug.Log("elapsedTickTime prešlo data.frequency");
+                    Debug.Log("Apply timer effect");
                     Functionality();
                     elapsedTickTime = 0f;
                 }
             }
             else if (!isApplied)
             {
+                Debug.Log("Apply effect");
                 Functionality();
                 isApplied = true;
+
             }
             
         }
         else
         {
+            Debug.Log($"MAŽEM EFFECT {elapsedTime}");
             if (data.Frequency <= 0)
             {
 

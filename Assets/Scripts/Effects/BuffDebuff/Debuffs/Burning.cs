@@ -1,15 +1,16 @@
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Burning : BuffDebuff
 {
     public override void CreateObject(GameObject entity)
     {
         Initialize(BuffDebuffData.BurningConfig);
-        health = entity.GetComponent<Health>();
+        //health = entity.GetComponent<Health>();
     }
 
     public override void Functionality()
     {
-        health.DealDamage(data.DamagePerTick);
+        gameObject.GetComponent<Health>().DealDamage(data.DamagePerTick);
     }
 }

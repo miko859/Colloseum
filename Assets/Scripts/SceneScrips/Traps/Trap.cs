@@ -75,6 +75,12 @@ public abstract class Trap : MonoBehaviour
         return this.isActived;
     }
 
+    /// <summary>
+    /// Only is it has timer
+    /// Will end trap, ONLY for particles trap
+    /// </summary>
+    /// <param name="timeTillEnd"></param>
+    /// <returns></returns>
     protected IEnumerator SetTimerToEndTrap(float timeTillEnd)
     {
         yield return new WaitForSecondsRealtime(timeTillEnd);
@@ -124,6 +130,10 @@ public abstract class Trap : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Apply all effects that are available on friendly/enemy entity
+    /// </summary>
+    /// <param name="other"></param>
     protected void ApplyEffect(Collider other)
     {
         foreach (BuffDebuff effect in listOfEffects)

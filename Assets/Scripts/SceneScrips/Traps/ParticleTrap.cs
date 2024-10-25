@@ -48,6 +48,10 @@ public class ParticleTrap : Trap
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
+                if (listOfEffects.Count > 0)
+                {
+                    ApplyEffect(other);
+                }
             }
         }
         else
@@ -61,6 +65,10 @@ public class ParticleTrap : Trap
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
+                if (listOfEffects.Count > 0)
+                {
+                    ApplyEffect(other);
+                }
             }
 
         }

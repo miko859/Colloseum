@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
 
     public void Update()
     {
+        //Debug.Log(Time.deltaTime);
         if (currentHealth <= 0)
         {
             if (transform.CompareTag("Enemy"))

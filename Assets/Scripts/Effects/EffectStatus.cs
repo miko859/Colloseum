@@ -20,16 +20,22 @@ public class EffectStatus : MonoBehaviour
     {
         if (listOfBuffDebuffs.Count != 0)
         {
-            foreach (var effect in listOfBuffDebuffs)
+            for (int index = listOfBuffDebuffs.Count - 1; index >= 0; index--)
             {
-                if (effect.IsEffectEnded())
+                BuffDebuff effect = listOfBuffDebuffs[index];
+                Debug.Log($"Effect status: našlo effect {effect.name}");
+                if (!effect.IsEffectEnded())
                 {
-                    listOfBuffDebuffs.Remove(effect);
+                    Debug.Log(effect.IsEffectEnded());
+                    listOfBuffDebuffs.RemoveAt(index);
+                    Debug.Log("Vymaže efekt");
+                    continue;
                 }
 
                 if (effect.GetData() == null)
                 {
                     effect.CreateObject(entity);
+                    Debug.Log("Vytvorilo efekt");
                 }
 
                 effect.TimerEffect();

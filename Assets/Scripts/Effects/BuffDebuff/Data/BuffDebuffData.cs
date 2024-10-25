@@ -3,9 +3,9 @@ public static class BuffDebuffData
     public static BuffDebuffConfig BurningConfig = new BuffDebuffConfig
     {
         Name = "Burning",
-        DamagePerTick = 2,
+        DamagePerTick = 5,
         Frequency = 1f,
-        Duration = 5f
+        Duration = 10f
     };
 
     public static BuffDebuffConfig FreezingConfig = new BuffDebuffConfig

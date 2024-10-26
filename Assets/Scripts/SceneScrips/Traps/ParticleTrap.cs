@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class ParticleTrap : Trap
 {
-    private float elapsedTime = 0;
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
     [SerializeField] public bool timer = false;
@@ -33,25 +32,21 @@ public class ParticleTrap : Trap
 
     }
 
+    private int frame = 0;
     public override void RunningTrap(Collider other)
     {
         if (dmgPerTick)
         {
-            elapsedTime += Time.deltaTime;
-
-            if (elapsedTime >= 1)
+            frame++;
+            if (frame == 60)
             {
-                elapsedTime = 0;
+                frame = 0;
                 other.GetComponent<Health>().DealDamage(damage);
                 /*
                  *  can also apply debuf, debuf will be in list, 
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
-                if (listOfEffects.Count > 0)
-                {
-                    ApplyEffect(other);
-                }
             }
         }
         else
@@ -65,10 +60,6 @@ public class ParticleTrap : Trap
                  *  that will be applied on entity
                  *  will need create new class Buf, Debuf
                  */
-                if (listOfEffects.Count > 0)
-                {
-                    ApplyEffect(other);
-                }
             }
 
         }

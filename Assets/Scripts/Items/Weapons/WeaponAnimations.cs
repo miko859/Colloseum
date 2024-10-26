@@ -6,13 +6,7 @@ public class WeaponAnimations : Weapon
     private bool isBlocking = false;
     
     private int damage;
-    private int buffDebuffDmg = 0;
     
-
-    public void ChangeBuffDebuffDmg(int value)
-    {
-        buffDebuffDmg += value;
-    }
 
     public int getDamage()
     {
@@ -40,7 +34,7 @@ public class WeaponAnimations : Weapon
             if (!isAttacking)
             {
                 isAttacking = true;
-                damage = weaponData.lightAttackDamage + buffDebuffDmg;
+                damage = weaponData.lightAttackDamage;
                 var attackType = Random.Range(1, weaponData.lightAttackTypesCount+1);
                 StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
                 StartCoroutine(PlayBodyAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
@@ -59,7 +53,7 @@ public class WeaponAnimations : Weapon
         {
             if (attackPhase)
             {
-                damage = weaponData.heavyAttackDamage + buffDebuffDmg;
+                damage = weaponData.heavyAttackDamage;
                 StartCoroutine(PlayAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));
                 StartCoroutine(PlayBodyAnimation(weaponData.heavyAttackAnimation, weaponData.heavyAttackChargeDuration));
             }

@@ -25,16 +25,7 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
-    private int buffDebuffDmg = 0;
-
-    private float elapsedTime = 0;
-
-
-    public void ChangeBuffDebuffDmgBy(int value)
-    {
-        buffDebuffDmg += value;
-    }
-
+    private int frames = 0;
 
     void Start()
     {
@@ -63,11 +54,10 @@ public class AIController : MonoBehaviour
     {
         if (agent != null && player != null)
         {
-            elapsedTime += Time.deltaTime;
-
-            if (elapsedTime >= 0.33)
+            frames++;
+            if (frames % 20 == 0)
             {
-                elapsedTime = 0;
+                frames = 0;
 
                 float distanceToPlayer = Vector3.Distance(agent.transform.position, player.transform.position);
                 fallBack = true;
@@ -209,7 +199,7 @@ public class AIController : MonoBehaviour
 
     public int getDamage()
     {
-        return enemyData.lightAttackDamage + buffDebuffDmg;
+        return enemyData.lightAttackDamage;
     }
 
 

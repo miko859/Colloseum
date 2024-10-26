@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Silence : BuffDebuff
 {
-    public override void CreateObject(GameObject entity)
+    public override void CreateObject(GameObject entity) /* REWORK NEEDED */ 
     {
         Initialize(BuffDebuffData.SilenceConfig);
         gameObject = entity;

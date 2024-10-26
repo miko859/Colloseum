@@ -13,11 +13,11 @@ public class Freezing : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed -= data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed -= data.MovementSpeedChangedBy * stacks;
         }
         else
         {
-            gameObject.transform.GetComponent<NavMeshAgent>().speed -= data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponent<NavMeshAgent>().speed -= data.MovementSpeedChangedBy * stacks;
         }
     }
 
@@ -25,11 +25,11 @@ public class Freezing : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed += data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed += data.MovementSpeedChangedBy * stacks;
         }
         else
         {
-            gameObject.transform.GetComponent<NavMeshAgent>().speed += data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponent<NavMeshAgent>().speed += data.MovementSpeedChangedBy * stacks;
         }
     }
 }

@@ -58,4 +58,10 @@ public class Health : MonoBehaviour
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 
     }
+
+    public void Heal(int value)
+    {
+        currentHealth += value;
+        healthBar.SetHealth(value); 
+    }
 }

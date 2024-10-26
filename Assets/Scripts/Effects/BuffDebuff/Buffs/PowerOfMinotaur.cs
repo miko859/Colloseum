@@ -1,11 +1,10 @@
-using UnityEngine.AI;
 using UnityEngine;
 
-public class Weakness : BuffDebuff
+public class PowerOfMinotaur : BuffDebuff
 {
     public override void CreateObject(GameObject entity)
     {
-        Initialize(BuffDebuffData.WeaknessConfig);
+        Initialize(BuffDebuffData.PowerOfMinotaur);
         gameObject = entity;
     }
 
@@ -25,7 +24,7 @@ public class Weakness : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg( (data.DamageChangedBy * (-1)) );
+            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg((data.DamageChangedBy * (-1)));
         }
         else
         {

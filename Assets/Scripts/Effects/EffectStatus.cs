@@ -37,15 +37,13 @@ public class EffectStatus : MonoBehaviour
 
                 if (effect.IsEffectEnded())
                 {
-                    Debug.Log("DELETE");
                     effect.SetEffectEnded(false);
                     Debug.Log(effect.IsEffectEnded());
                     listOfBuffDebuffs.RemoveAt(index);
                     continue;
                 }
                 if (effect.GetData() == null)
-                {
-                    Debug.Log("CREATE");
+                { 
                     effect.CreateObject(entity);
                 }
 

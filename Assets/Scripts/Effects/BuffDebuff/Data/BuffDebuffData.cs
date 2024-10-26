@@ -40,4 +40,36 @@ public static class BuffDebuffData
         Duration = 4f,
         DamageChangedBy = -3
     };
+
+    public static BuffDebuffConfig SilenceConfig = new BuffDebuffConfig
+    {
+        Id = 6,
+        Name = "Silence",
+        Duration = 8f,
+        DisableSpellsSkills = true,
+    };
+
+    public static BuffDebuffConfig BlessingOfHealing = new BuffDebuffConfig
+    {
+        Id = 7,
+        Name = "Blessing of Healing",
+        Duration = 5f,
+        HealPerTick = 1
+    };
+
+    public static BuffDebuffConfig PowerOfMinotaur = new BuffDebuffConfig
+    {
+        Id = 8,
+        Name = "Power of Minotaur",
+        Duration = 4f,
+        DamageChangedBy = 2
+    };
+
+    public static BuffDebuffConfig Haste = new BuffDebuffConfig
+    {
+        Id = 9,
+        Name = "Haste",
+        Duration = 5f,
+        MovementSpeedChangedBy = 2.5f,
+    };
 }

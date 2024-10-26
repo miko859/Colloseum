@@ -19,7 +19,7 @@ public class FlameThrower : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.F))  // Use GetKey for continuous input detection
+        if (Input.GetKey(KeyCode.F))  // GetKey for continuous input detection
         {
             if (manaSystem.currentMana >= manaSystem.flamethrowerCost)
             {
@@ -31,7 +31,7 @@ public class FlameThrower : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.F))  // Detect when the F key is released
+        if (Input.GetKeyUp(KeyCode.F))  
         {
             StopFlameThrower();
         }

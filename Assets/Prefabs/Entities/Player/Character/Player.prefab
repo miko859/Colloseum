@@ -71,7 +71,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347794433091738403}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!82 &8066523089395395501
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1408,6 +1408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7657625602918447259}
+  - component: {fileID: 6897387313133253083}
   - component: {fileID: 3677612080461889476}
   - component: {fileID: 961304731711646622}
   - component: {fileID: 1288085461979614336}
@@ -1437,6 +1438,20 @@ Transform:
   - {fileID: 3146849201201999580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6897387313133253083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391437961676749637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305f108090b6ad745a91b5b175834da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfBuffDebuffs: []
+  entity: {fileID: 6391437961676749637}
 --- !u!143 &3677612080461889476
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1566,7 +1581,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6391437961676749637}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &372730588996837534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1579,7 +1594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 093be1f82aec7a747a39abe6842524a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 50
   healthBar: {fileID: 0}
   hasDeathAnimation: 0
 --- !u!1 &6662210690725507281
@@ -1659,7 +1674,6 @@ GameObject:
   - component: {fileID: 4341763608945074473}
   - component: {fileID: 969086035410836751}
   - component: {fileID: 2024704079196360826}
-  - component: {fileID: 5654488762871636145}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -1891,19 +1905,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponery: []
---- !u!114 &5654488762871636145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7094087719220630579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 305f108090b6ad745a91b5b175834da6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entity: {fileID: 6391437961676749637}
 --- !u!1 &7152469309457388583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,7 +2041,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7378407195906241249}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!82 &8249628538789892794
 AudioSource:
   m_ObjectHideFlags: 0

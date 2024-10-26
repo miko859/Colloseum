@@ -4,7 +4,7 @@ public class PowerOfMinotaur : BuffDebuff
 {
     public override void CreateObject(GameObject entity)
     {
-        Initialize(BuffDebuffData.PowerOfMinotaur);
+        Initialize(BuffDebuffData.PowerOfMinotaurConfig);
         gameObject = entity;
     }
 

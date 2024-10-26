@@ -4,7 +4,7 @@ public class BlessingOfHealing : BuffDebuff
 {
     public override void CreateObject(GameObject entity)
     {
-        Initialize(BuffDebuffData.BlessingOfHealing);
+        Initialize(BuffDebuffData.BlessingOfHealingConfig);
         gameObject = entity;
     }
 

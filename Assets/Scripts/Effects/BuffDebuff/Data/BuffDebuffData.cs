@@ -49,7 +49,7 @@ public static class BuffDebuffData
         DisableSpellsSkills = true,
     };
 
-    public static BuffDebuffConfig BlessingOfHealing = new BuffDebuffConfig
+    public static BuffDebuffConfig BlessingOfHealingConfig = new BuffDebuffConfig
     {
         Id = 7,
         Name = "Blessing of Healing",
@@ -57,7 +57,7 @@ public static class BuffDebuffData
         HealPerTick = 1
     };
 
-    public static BuffDebuffConfig PowerOfMinotaur = new BuffDebuffConfig
+    public static BuffDebuffConfig PowerOfMinotaurConfig = new BuffDebuffConfig
     {
         Id = 8,
         Name = "Power of Minotaur",
@@ -65,7 +65,7 @@ public static class BuffDebuffData
         DamageChangedBy = 2
     };
 
-    public static BuffDebuffConfig Haste = new BuffDebuffConfig
+    public static BuffDebuffConfig HasteConfig = new BuffDebuffConfig
     {
         Id = 9,
         Name = "Haste",

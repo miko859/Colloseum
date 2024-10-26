@@ -302,14 +302,6 @@ PrefabInstance:
       propertyPath: manaSystem
       value: 
       objectReference: {fileID: 2050302778}
-    - target: {fileID: 4351618605464007621, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4351618605464007621, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      propertyPath: landSound
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6391437961676749637, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: m_Name
       value: Player

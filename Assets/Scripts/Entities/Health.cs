@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     private Weapon weapon;
     public bool hasDeathAnimation = false;
 
-    void Start()
+    public void Start()
     {
         weapon = GetComponent<Weapon>();
         animator = GetComponent<Animator>();
@@ -18,8 +18,9 @@ public class Health : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth); 
     }
 
-    void Update()
+    public void Update()
     {
+        //Debug.Log(Time.deltaTime);
         if (currentHealth <= 0)
         {
             if (transform.CompareTag("Enemy"))
@@ -56,5 +57,11 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 
+    }
+
+    public void Heal(int value)
+    {
+        currentHealth += value;
+        healthBar.SetHealth(value); 
     }
 }

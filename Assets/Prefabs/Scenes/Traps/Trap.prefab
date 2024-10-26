@@ -122,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionCollider: {fileID: 4788275486701633500}
   damageCollider: {fileID: 930830487992281779}
+  listOfEffects:
+  - {fileID: 1097346447326694404, guid: 6f3c48e7420dbd442b7b3d453e2baa74, type: 3}
   singleUse: 0
   enemyCanActivate: 1
-  timer: 0
-  timeTillEnd: 5
-  damage: 1
-  dmgPerTick: 1
+  damage: 0
+  dmgPerTick: 0
   animator: {fileID: 0}

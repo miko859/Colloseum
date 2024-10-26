@@ -1,6 +1,7 @@
 
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
@@ -10,6 +11,8 @@ public abstract class Trap : MonoBehaviour
     
     private bool isActived = false;
     private bool dealtInstaDmg = false;
+
+    public List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
 
     [Header("Trap settings")]
     public bool singleUse = false;
@@ -72,6 +75,12 @@ public abstract class Trap : MonoBehaviour
         return this.isActived;
     }
 
+    /// <summary>
+    /// Only is it has timer
+    /// Will end trap, ONLY for particles trap
+    /// </summary>
+    /// <param name="timeTillEnd"></param>
+    /// <returns></returns>
     protected IEnumerator SetTimerToEndTrap(float timeTillEnd)
     {
         yield return new WaitForSecondsRealtime(timeTillEnd);
@@ -119,6 +128,18 @@ public abstract class Trap : MonoBehaviour
             }
         }
         
+    }
+
+    /// <summary>
+    /// Apply all effects that are available on friendly/enemy entity
+    /// </summary>
+    /// <param name="other"></param>
+    protected void ApplyEffect(Collider other)
+    {
+        foreach (BuffDebuff effect in listOfEffects)
+        {
+            other.GetComponent<EffectStatus>().InsertEffect(effect);
+        }
     }
 
     protected void TurnOffTrap(Collider other)

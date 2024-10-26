@@ -44,5 +44,11 @@ public class EquipedWeaponManager : MonoBehaviour
     {
         weaponery.Add(newWeapon);
         Debug.Log("Weapon added: " + newWeapon.name);
+
+        //doèasný fix
+        if (transform.GetComponent<PlayerController>().currentWeapon == null)
+        {
+            StartCoroutine(transform.GetComponent<PlayerController>().EquipWeapon(weaponery[0]));
+        }
     }
 }

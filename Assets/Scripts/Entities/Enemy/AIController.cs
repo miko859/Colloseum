@@ -25,7 +25,16 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
+    private int buffDebuffDmg = 0;
+
     private float elapsedTime = 0;
+
+
+    public void ChangeBuffDebuffDmgBy(int value)
+    {
+        buffDebuffDmg += value;
+    }
+
 
     void Start()
     {
@@ -200,7 +209,7 @@ public class AIController : MonoBehaviour
 
     public int getDamage()
     {
-        return enemyData.lightAttackDamage;
+        return enemyData.lightAttackDamage + buffDebuffDmg;
     }
 
 

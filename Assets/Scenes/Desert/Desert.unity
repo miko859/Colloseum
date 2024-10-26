@@ -29630,7 +29630,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905451269}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!43 &906087024
 Mesh:
   m_ObjectHideFlags: 0
@@ -47114,6 +47114,76 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6814799570741590883, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
   m_PrefabInstance: {fileID: 1715348270}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1717009353
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 768840914946342072, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_Name
+      value: Trap (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931408007709258702, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: listOfEffects.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1931408007709258702, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: listOfEffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -121.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.9000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9092929718465045026, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: listOfEffects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1097346447326694404, guid: 6f3c48e7420dbd442b7b3d453e2baa74, type: 3}
+    m_RemovedComponents:
+    - {fileID: 1931408007709258702, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
 --- !u!1001 &1718014344
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64437,7 +64507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.5240574
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64645,3 +64715,4 @@ SceneRoots:
   - {fileID: 1411075812}
   - {fileID: 2099159712}
   - {fileID: 6009127469082711301}
+  - {fileID: 1717009353}

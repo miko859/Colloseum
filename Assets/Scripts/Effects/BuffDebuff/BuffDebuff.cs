@@ -7,15 +7,26 @@ public abstract class BuffDebuff : MonoBehaviour
     protected PlayerMovement playerMovement;
     protected GameObject gameObject; // I don't know what all will be needed
 
-    public bool effectEnded = false;
+    private bool effectEnded = false;
     private bool isApplied = false;
+    protected int stacks = 1;
 
     private float elapsedTime = 0f;
     private float elapsedTickTime = 0f;
 
-    public BuffDebuffConfig GetData() {  return data; }
+    public BuffDebuffConfig GetData() { return data; }
     public bool IsEffectEnded() { return effectEnded; }
+    public void SetEffectEnded(bool value)
+    {
+        effectEnded = value;
+    }
+    public void SetIsApplied(bool value) { isApplied = value; }
 
+    private void ResetElapsedTickTime()
+    {
+        elapsedTickTime = 0f;
+    }
+    
     /// <summary>
     /// Add needed data for effect
     /// </summary>
@@ -26,49 +37,48 @@ public abstract class BuffDebuff : MonoBehaviour
         effectEnded = false;
         elapsedTime = 0f;
         elapsedTickTime = 0f;
+        stacks = 1;
     }
 
     /// <summary>
     /// Counting time of effect, starting function and killing this effect
     /// </summary>
-    /// 
-    
     public void TimerEffect()
     {
         elapsedTime += Time.deltaTime;
-        //Debug.Log($"zaèiatok TimerEffect, elapsedTime: {elapsedTime}");
-        if (elapsedTime < data.Duration)
+
+        if (elapsedTime < data.Duration * stacks)
         {
-            Debug.Log($"ElapsedTime {elapsedTime} < data.Duration {data.Duration}");
-            Debug.Log($"{data.Frequency} data.Frequency");
+            Debug.Log($"ElapsedTime {elapsedTime} < data.Duration {data.Duration * stacks}");
             if (data.Frequency > 0)
             {
-                Debug.Log($"{data.Frequency} data.Frequency, prešlo na kotroli ticku");
                 elapsedTickTime += Time.deltaTime;
 
                 if (elapsedTickTime >= data.Frequency)
                 {
-                    Debug.Log("elapsedTickTime prešlo data.frequency");
-                    Debug.Log("Apply timer effect");
-                    Functionality();
+                    Debug.Log($"elapsedTickTime {elapsedTickTime} >= {data.Frequency}");
                     elapsedTickTime = 0f;
+                    Functionality();
+                    
                 }
             }
-            else if (!isApplied)
+            Debug.Log($"Value of is Applied: {isApplied}"); 
+            if (!isApplied)
             {
                 Debug.Log("Apply effect");
-                Functionality();
                 isApplied = true;
-
+                Functionality();
             }
             
         }
         else
         {
-            Debug.Log($"MAŽEM EFFECT {elapsedTime}");
-            if (data.Frequency <= 0)
-            {
+            Debug.Log($"MAŽEM EFFECT {data.Name}");
 
+            if (isApplied)
+            {
+                ReverseEffect();
+                isApplied = false;
             }
 
             DestroyObject();
@@ -81,28 +91,33 @@ public abstract class BuffDebuff : MonoBehaviour
     private void DestroyObject()
     {
         effectEnded = true;
+        data = null;
+        elapsedTime = 0f;
+        elapsedTickTime = 0f;
+        stacks = 1;
+    }
+
+    /// <summary>
+    /// if this effect is already on entity, stack will be added to multiply Duration and Damage
+    /// </summary>
+    public void AddStack() 
+    { 
+        stacks++; 
     }
 
     /// <summary>
     /// Create this effect with data
     /// </summary>
     /// <param name="entity"></param>
-    public virtual void CreateObject(GameObject entity) { }
+    public abstract void CreateObject(GameObject entity);
 
     /// <summary>
     /// Function of this effect
     /// </summary>
-    public virtual void Functionality() { }
+    public abstract void Functionality();
 
     /// <summary>
     /// Function to reverse changes of effect
     /// </summary>
-    public virtual void ReverseEffect() { }
-
-    private void Update()
-    {
-        Debug.Log(data);
-    }
-
-
+    public abstract void ReverseEffect();
 }

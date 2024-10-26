@@ -1,7 +1,7 @@
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
-public class Freezing : BuffDebuff
+public class Weakness : BuffDebuff
 {
     public override void CreateObject(GameObject entity)
     {
@@ -13,7 +13,7 @@ public class Freezing : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed -= data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg(data.DamageChangedBy);
         }
         else
         {
@@ -25,11 +25,11 @@ public class Freezing : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed += data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg( (data.DamageChangedBy * (-1)) );
         }
         else
         {
-            gameObject.transform.GetComponent<NavMeshAgent>().speed += data.MovementSpeedChangedBy;
+            gameObject.transform.GetComponent<AIController>().speed += data.MovementSpeedChangedBy;
         }
     }
 }

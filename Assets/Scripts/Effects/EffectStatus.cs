@@ -5,9 +5,16 @@ public class EffectStatus : MonoBehaviour
 {
     public List<BuffDebuff> listOfBuffDebuffs = new List<BuffDebuff>();
     public GameObject entity;
-    public void InsertNewEffect(BuffDebuff effect)
+    public void InsertEffect(BuffDebuff effect)
     {
-        listOfBuffDebuffs.Add(effect);
+        if (HasEntityEffect(effect))
+        {
+            effect.AddStack();
+        }
+        else
+        {
+            listOfBuffDebuffs.Add(effect);
+        }
     }
 
     public void DeleteEndedEffect(BuffDebuff effect)
@@ -15,6 +22,10 @@ public class EffectStatus : MonoBehaviour
         listOfBuffDebuffs.Remove(effect);
     }
 
+    private bool HasEntityEffect(BuffDebuff effect)
+    {
+        return listOfBuffDebuffs.Contains(effect);
+    }
 
     public void Update()
     {
@@ -23,24 +34,21 @@ public class EffectStatus : MonoBehaviour
             for (int index = listOfBuffDebuffs.Count - 1; index >= 0; index--)
             {
                 BuffDebuff effect = listOfBuffDebuffs[index];
-                Debug.Log($"Effect status: našlo effect {effect.name}");
-
-                if (effect.GetData() == null)
-                {
-                    effect.CreateObject(entity);
-                    Debug.Log("Vytvorilo efekt");
-                }
-
 
                 if (effect.IsEffectEnded())
                 {
+                    Debug.Log("DELETE");
+                    effect.SetEffectEnded(false);
                     Debug.Log(effect.IsEffectEnded());
                     listOfBuffDebuffs.RemoveAt(index);
-                    Debug.Log("Vymaže efekt");
                     continue;
                 }
+                if (effect.GetData() == null)
+                {
+                    Debug.Log("CREATE");
+                    effect.CreateObject(entity);
+                }
 
-                
                 effect.TimerEffect();
             }
         }

@@ -138,7 +138,7 @@ public abstract class Trap : MonoBehaviour
     {
         foreach (BuffDebuff effect in listOfEffects)
         {
-            other.GetComponent<EffectStatus>().InsertNewEffect(effect);
+            other.GetComponent<EffectStatus>().InsertEffect(effect);
         }
     }
 

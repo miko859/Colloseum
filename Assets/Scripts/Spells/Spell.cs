@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Abstract base class for all spells.
 /// </summary>
-public abstract class Spell : ManaSystem
+public abstract class Spell : MonoBehaviour
 {
     public int manaCost;
     protected ManaSystem manaSystem;

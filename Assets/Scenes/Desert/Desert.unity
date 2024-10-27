@@ -351,6 +351,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+--- !u!20 &7035116 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1189772407380430273, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+  m_PrefabInstance: {fileID: 7035115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &26319623
 Mesh:
   m_ObjectHideFlags: 0
@@ -29650,6 +29655,14 @@ PrefabInstance:
     - target: {fileID: 2292279165291071904, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_Name
       value: Skeleton (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6229343504279984243, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 7035116}
+    - target: {fileID: 6229343504279984243, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7670714476054614373, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_AnchorMax.x

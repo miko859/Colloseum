@@ -2074,6 +2074,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1457689732461557241, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5782087183868878743, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -2093,6 +2097,10 @@ PrefabInstance:
     - target: {fileID: 6718722160522758833, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006891767279731623, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7179171645502822993, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
       propertyPath: m_Layer

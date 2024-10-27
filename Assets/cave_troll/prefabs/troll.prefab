@@ -3199,12 +3199,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4876443625621520}
   - component: {fileID: 95309135661054092}
-  - component: {fileID: 8812684492283749963}
-  - component: {fileID: 3387101661536699757}
-  - component: {fileID: 7446765577739031432}
   - component: {fileID: 4476726068451475623}
   - component: {fileID: 6699105137885821221}
   - component: {fileID: 1333688971463868610}
+  - component: {fileID: 7764650166375336848}
+  - component: {fileID: 8085484986171690436}
   m_Layer: 6
   m_Name: troll
   m_TagString: Enemy
@@ -3257,60 +3256,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!195 &8812684492283749963
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 1
-  m_AgentTypeID: 1479372276
-  m_Radius: 1.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 2.8
-  m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 3.5
-  m_BaseOffset: 0
-  m_WalkableMask: 5
-  m_ObstacleAvoidanceType: 4
---- !u!114 &3387101661536699757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eb29cb6a8286148952d574a22b6265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
-  spottingRange: 10
-  attackRange: 2
---- !u!114 &7446765577739031432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c152f2801266e4ea5f3367b4171b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1077419662316846}
-  enemyData: {fileID: 0}
 --- !u!114 &4476726068451475623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3355,6 +3300,51 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 0}
   hasDeathAnimation: 1
+--- !u!195 &7764650166375336848
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862107410815556}
+  m_Enabled: 1
+  m_AgentTypeID: 1479372276
+  m_Radius: 1.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2.8
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 3.5
+  m_BaseOffset: 0
+  m_WalkableMask: 5
+  m_ObstacleAvoidanceType: 4
+--- !u!136 &8085484986171690436
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862107410815556}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Height: 4.2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.8, z: 0}
 --- !u!1 &1868828153997032
 GameObject:
   m_ObjectHideFlags: 0

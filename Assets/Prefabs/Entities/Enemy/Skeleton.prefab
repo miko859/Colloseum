@@ -2199,6 +2199,10 @@ PrefabInstance:
       propertyPath: m_ProbeAnchor
       value: 
       objectReference: {fileID: 2575035235656081211}
+    - target: {fileID: 1793849016081404864, guid: f7c59459c406fa04e8b2220eb4a70bd9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2544109580854566363, guid: dac8dda5a77a0764996f3d84ef091067, type: 3}
     - target: {fileID: 2260081846229690791, guid: f7c59459c406fa04e8b2220eb4a70bd9, type: 3}
       propertyPath: m_IsTrigger
       value: 1

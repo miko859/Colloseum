@@ -403,6 +403,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+--- !u!20 &7035116 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1189772407380430273, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+  m_PrefabInstance: {fileID: 7035115}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &26319623
 Mesh:
   m_ObjectHideFlags: 0
@@ -29463,7 +29468,7 @@ PrefabInstance:
     - target: {fileID: 6229343504279984243, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 2028863736}
+      objectReference: {fileID: 0}
     - target: {fileID: 7670714476054614373, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29702,7 +29707,7 @@ PrefabInstance:
     - target: {fileID: 6229343504279984243, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 2028863736}
+      objectReference: {fileID: 0}
     - target: {fileID: 7670714476054614373, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -29711,6 +29716,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7904656325770582874, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 7035116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -45470,30 +45479,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 14749189502193910, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 431063237}
-    - target: {fileID: 14749189502193910, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 247241072}
-    - target: {fileID: 2317565104270431933, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 431063237}
-    - target: {fileID: 2317565104270431933, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 247241072}
-    - target: {fileID: 3387101661536699757, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 431063237}
-    - target: {fileID: 3387101661536699757, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
-      propertyPath: patrolPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 247241072}
     - target: {fileID: 4476726068451475623, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
@@ -60435,11 +60420,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!20 &2028863736 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 1189772407380430273, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-  m_PrefabInstance: {fileID: 7035115}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2031962810 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2240041534817976171, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}

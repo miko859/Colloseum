@@ -1013,6 +1013,10 @@ PrefabInstance:
       value: Pillar (16)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -1440,6 +1444,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3453,7 +3461,7 @@ GameObject:
   - component: {fileID: 126299248}
   - component: {fileID: 126299247}
   - component: {fileID: 126299246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4450,6 +4458,10 @@ PrefabInstance:
       value: Pillar (20)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5042,7 +5054,7 @@ GameObject:
   - component: {fileID: 212185739}
   - component: {fileID: 212185741}
   - component: {fileID: 212185740}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Terrain_0_0_0853bac7-4c6b-47b1-939c-937bcd1a7a05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5214,6 +5226,10 @@ PrefabInstance:
       value: Pillar (14)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -5334,6 +5350,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5977,7 +5997,7 @@ GameObject:
   - component: {fileID: 250070153}
   - component: {fileID: 250070152}
   - component: {fileID: 250070151}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7483,7 +7503,7 @@ GameObject:
   - component: {fileID: 334851117}
   - component: {fileID: 334851116}
   - component: {fileID: 334851115}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Outdoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7749,6 +7769,38 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &357671903 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6394440241161260426, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+  m_PrefabInstance: {fileID: 1824360059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &357671909
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357671903}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1001 &359974913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8684,6 +8736,10 @@ PrefabInstance:
       value: Pillar (3)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -9282,6 +9338,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10667,6 +10727,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -18557,6 +18621,10 @@ PrefabInstance:
       value: Pillar (13)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -19167,7 +19235,7 @@ GameObject:
   - component: {fileID: 606967789}
   - component: {fileID: 606967788}
   - component: {fileID: 606967787}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19850,7 +19918,7 @@ GameObject:
   - component: {fileID: 625209434}
   - component: {fileID: 625209433}
   - component: {fileID: 625209432}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20368,7 +20436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.9813147
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20402,9 +20470,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6511430998969272238, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -6026687404146079813, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1675234708158751701, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1237407233577889919, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 663080572192742743, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_Name
       value: BlenderPyramid
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21583,6 +21675,10 @@ PrefabInstance:
       value: Pillar (1)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -22160,7 +22256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724446776}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22198,7 +22294,7 @@ GameObject:
   - component: {fileID: 732314570}
   - component: {fileID: 732314569}
   - component: {fileID: 732314568}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23056,6 +23152,10 @@ PrefabInstance:
       value: Pillar (19)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -23415,7 +23515,7 @@ GameObject:
   - component: {fileID: 811235693}
   - component: {fileID: 811235692}
   - component: {fileID: 811235691}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23787,6 +23887,10 @@ PrefabInstance:
       value: Pillar (4)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -24062,7 +24166,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819467627}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainEntrance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29096,7 +29200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 878153646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pillars2.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31485,7 +31589,7 @@ GameObject:
   - component: {fileID: 967982302}
   - component: {fileID: 967982301}
   - component: {fileID: 967982300}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32907,7 +33011,7 @@ GameObject:
   - component: {fileID: 1070503675}
   - component: {fileID: 1070503674}
   - component: {fileID: 1070503673}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33444,6 +33548,10 @@ PrefabInstance:
       value: Pillar (7)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -33854,7 +33962,7 @@ GameObject:
   - component: {fileID: 1085708580}
   - component: {fileID: 1085708579}
   - component: {fileID: 1085708578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34539,6 +34647,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -36402,7 +36514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189048317}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: OutsideWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36773,7 +36885,7 @@ GameObject:
   - component: {fileID: 1220762287}
   - component: {fileID: 1220762286}
   - component: {fileID: 1220762285}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pyramid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39080,6 +39192,10 @@ PrefabInstance:
       value: Pillar (12)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -39396,10 +39512,10 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 446
+    m_Bits: 972
   m_UseGeometry: 0
   m_DefaultArea: 0
-  m_GenerateLinks: 0
+  m_GenerateLinks: 1
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
@@ -39408,7 +39524,7 @@ MonoBehaviour:
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1de4096406f938a4a8b47561c4c38b36, type: 2}
-  m_BuildHeightMesh: 0
+  m_BuildHeightMesh: 1
 --- !u!1001 &1316159056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40249,6 +40365,10 @@ PrefabInstance:
       value: Pillar (10)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -40854,7 +40974,7 @@ GameObject:
   - component: {fileID: 1408684531}
   - component: {fileID: 1408684530}
   - component: {fileID: 1408684529}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41455,6 +41575,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -42067,7 +42191,7 @@ GameObject:
   - component: {fileID: 1452929513}
   - component: {fileID: 1452929512}
   - component: {fileID: 1452929511}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42420,7 +42544,7 @@ GameObject:
   - component: {fileID: 1487569922}
   - component: {fileID: 1487569921}
   - component: {fileID: 1487569920}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43126,6 +43250,10 @@ PrefabInstance:
       value: Pillar (6)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -43425,6 +43553,10 @@ PrefabInstance:
       value: Pillar (22)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -43540,7 +43672,7 @@ GameObject:
   - component: {fileID: 1512537213}
   - component: {fileID: 1512537212}
   - component: {fileID: 1512537211}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44118,6 +44250,10 @@ PrefabInstance:
       value: Pillar (8)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -44380,6 +44516,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -47205,7 +47345,7 @@ GameObject:
   - component: {fileID: 1738772187}
   - component: {fileID: 1738772186}
   - component: {fileID: 1738772185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48213,7 +48353,7 @@ GameObject:
   - component: {fileID: 1770185358}
   - component: {fileID: 1770185357}
   - component: {fileID: 1770185356}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49519,6 +49659,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6394440241161260426, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7306097169633504453, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
       propertyPath: patrolPoints.Array.size
       value: 0
@@ -49534,7 +49678,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6394440241161260426, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 357671909}
   m_SourcePrefab: {fileID: 100100000, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
 --- !u!4 &1824360060 stripped
 Transform:
@@ -51821,7 +51968,7 @@ GameObject:
   - component: {fileID: 1933876584}
   - component: {fileID: 1933876583}
   - component: {fileID: 1933876582}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52339,7 +52486,7 @@ GameObject:
   - component: {fileID: 1945160326}
   - component: {fileID: 1945160325}
   - component: {fileID: 1945160324}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: texturedWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52692,7 +52839,7 @@ GameObject:
   - component: {fileID: 1948931163}
   - component: {fileID: 1948931162}
   - component: {fileID: 1948931161}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53610,7 +53757,7 @@ GameObject:
   - component: {fileID: 1974268941}
   - component: {fileID: 1974268940}
   - component: {fileID: 1974268939}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54894,6 +55041,10 @@ PrefabInstance:
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_Name
       value: Pillar (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -60006,7 +60157,7 @@ GameObject:
   - component: {fileID: 2024346269}
   - component: {fileID: 2024346268}
   - component: {fileID: 2024346267}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60368,7 +60519,7 @@ GameObject:
   - component: {fileID: 2032553120}
   - component: {fileID: 2032553119}
   - component: {fileID: 2032553118}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Indoors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60643,7 +60794,7 @@ GameObject:
   - component: {fileID: 2048939428}
   - component: {fileID: 2048939427}
   - component: {fileID: 2048939426}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61337,7 +61488,7 @@ GameObject:
   - component: {fileID: 2082772085}
   - component: {fileID: 2082772084}
   - component: {fileID: 2082772083}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61697,6 +61848,10 @@ PrefabInstance:
       value: Pillar (2)
       objectReference: {fileID: 0}
     - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 280348559944020812, guid: 8874ed6c1ee8cba458b04501e6b0f012, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -61890,7 +62045,7 @@ GameObject:
   - component: {fileID: 2093866961}
   - component: {fileID: 2093866960}
   - component: {fileID: 2093866959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62784,7 +62939,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119248298}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IndoorsWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62972,7 +63127,7 @@ GameObject:
   - component: {fileID: 2125998634}
   - component: {fileID: 2125998633}
   - component: {fileID: 2125998632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63552,7 +63707,7 @@ GameObject:
   - component: {fileID: 2147441007}
   - component: {fileID: 2147441006}
   - component: {fileID: 2147441005}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

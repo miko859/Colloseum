@@ -39,7 +39,7 @@ public class AIController : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        agent = GetComponent<NavMeshAgent>();
+        agent = transform.GetComponent<NavMeshAgent>();
         spawnPos = agent.transform.position;
         path = new NavMeshPath();
         animator = GetComponent<Animator>();

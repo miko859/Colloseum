@@ -29,11 +29,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: PT_Medieval_mat
     second: {fileID: 2100000, guid: 741114174bb42e0458ead3dc0d64ab38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PT_Weapons_Material
+    second: {fileID: 2100000, guid: 91f6c46322151e34eaab7683d94e0eda, type: 2}
   materials:
     materialImportMode: 1
     materialName: 1
     materialSearch: 2
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

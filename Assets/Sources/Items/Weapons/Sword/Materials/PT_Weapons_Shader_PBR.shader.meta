@@ -3,8 +3,11 @@ guid: 4c78e194af5aea24b8e755b2124eb94c
 ShaderImporter:
   externalObjects: {}
   defaultTextures:
-  - _TextureSample2: {fileID: 2800000, guid: 7772baab606a3874d99a1e30d4b6b891, type: 3}
-  - _TextureSample9: {fileID: 2800000, guid: f88a8d19ac8f5724aa4e309405c476b6, type: 3}
+  - _COATOFARMSMASK: {instanceID: 0}
+  - _TextureSample2: {fileID: 2800000, guid: b905d00eea0998941970c3ca93863a84, type: 3}
+  - _TextureSample9: {fileID: 2800000, guid: 48d5e65c504ffc247bc3a9f23d875bd3, type: 3}
+  - _texcoord: {instanceID: 0}
+  - _texcoord2: {instanceID: 0}
   nonModifiableTextures: []
   userData: 
   assetBundleName: 

@@ -3199,16 +3199,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4876443625621520}
   - component: {fileID: 95309135661054092}
-  - component: {fileID: 3387101661536699757}
-  - component: {fileID: 7446765577739031432}
   - component: {fileID: 4476726068451475623}
   - component: {fileID: 6699105137885821221}
   - component: {fileID: 1333688971463868610}
   - component: {fileID: 7764650166375336848}
-  - component: {fileID: 14749189502193910}
-  - component: {fileID: 3352741998481943838}
-  - component: {fileID: 2317565104270431933}
-  - component: {fileID: 8888585768345841537}
   - component: {fileID: 8085484986171690436}
   m_Layer: 6
   m_Name: troll
@@ -3262,38 +3256,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3387101661536699757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eb29cb6a8286148952d574a22b6265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
-  spottingRange: 10
-  attackRange: 2
---- !u!114 &7446765577739031432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c152f2801266e4ea5f3367b4171b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1077419662316846}
-  enemyData: {fileID: 0}
 --- !u!114 &4476726068451475623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3360,67 +3322,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 5
   m_ObstacleAvoidanceType: 4
---- !u!114 &14749189502193910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27eb29cb6a8286148952d574a22b6265, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
-  spottingRange: 10
-  attackRange: 2
---- !u!114 &3352741998481943838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c152f2801266e4ea5f3367b4171b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 0}
-  enemyData: {fileID: 0}
---- !u!114 &2317565104270431933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728ce86900420094ba98f86ab31107b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!114 &8888585768345841537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862107410815556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137dd73a29873554b933c19a374aaf66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weapon: {fileID: 1077419662316846}
-  heavyAttackChance: 50
 --- !u!136 &8085484986171690436
 CapsuleCollider:
   m_ObjectHideFlags: 0

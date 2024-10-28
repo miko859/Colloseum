@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.Progress;
+using static UnityEngine.GraphicsBuffer;
 
 public class AIController : MonoBehaviour
 {
@@ -68,11 +69,12 @@ public class AIController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            if (follows && forwardCheck)
+            if (follows && !CanSeeTarget())
             {
-                //transform.LookAt(player.transform.position);
-                transform.Rotate(transform.rotation.x,player.transform.rotation.y,transform.rotation.z);
                 
+                Vector3 direction = (player.transform.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 2);
             }
 
             if (elapsedTime >= 0.33)
@@ -159,13 +161,25 @@ public class AIController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Check if player is above enemy entity
-    /// </summary>
-    /// <returns>
-    /// bool = true/false
-    /// </returns>
-    private bool IsPlayerAbove()
+    private bool CanSeeTarget()
+    {
+        Vector3 toTarget = player.transform.position - transform.position;
+        if (Physics.Raycast(transform.position, toTarget, out RaycastHit hit))
+        {
+            if (hit.transform.root == player)
+                return true;
+        }
+        return false;
+    }
+    
+
+        /// <summary>
+        /// Check if player is above enemy entity
+        /// </summary>
+        /// <returns>
+        /// bool = true/false
+        /// </returns>
+        private bool IsPlayerAbove()
     {
         RaycastHit hit;
         Vector3 direction = (player.transform.position - agent.transform.position).normalized;

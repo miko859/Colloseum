@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         movement_direction = input_direction; // you don't need to modify direction for air control, just speed
-        Debug.Log(movement_speed);
+        
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
 
         if (isGrounded)

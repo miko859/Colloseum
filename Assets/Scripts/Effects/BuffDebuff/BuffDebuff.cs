@@ -62,7 +62,6 @@ public abstract class BuffDebuff : MonoBehaviour
             }
             if (!isApplied)
             {
-                Debug.Log($"Apply Effect {data.Name}");
                 isApplied = true;
                 Functionality();
             }
@@ -71,8 +70,7 @@ public abstract class BuffDebuff : MonoBehaviour
         else
         {
             if (isApplied)
-            {
-                
+            { 
                 ReverseEffect();
                 isApplied = false;
             }

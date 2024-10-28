@@ -13,10 +13,12 @@ public class Haste : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().RestoreMovementSpeed();
             gameObject.transform.GetComponentInChildren<PlayerMovement>().speedMultiplier += data.MovementSpeedChangedBy * stacks;
         }
         else
         {
+            gameObject.transform.GetComponent<AIController>().RestoreMovementSpeed();
             gameObject.transform.GetComponent<NavMeshAgent>().speed += data.MovementSpeedChangedBy * stacks;
         }
     }
@@ -25,11 +27,11 @@ public class Haste : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().speedMultiplier -= data.MovementSpeedChangedBy * stacks;
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().RestoreMovementSpeed();
         }
         else
         {
-            gameObject.transform.GetComponent<NavMeshAgent>().speed -= data.MovementSpeedChangedBy * stacks;
+            gameObject.transform.GetComponent<AIController>().RestoreMovementSpeed();
         }
     }
 }

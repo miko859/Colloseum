@@ -18,6 +18,7 @@ public class Freezing : BuffDebuff
         }
         else
         {
+            gameObject.transform.GetComponent<AIController>().RestoreMovementSpeed();
             if (gameObject.transform.GetComponent<NavMeshAgent>().speed - data.MovementSpeedChangedBy * stacks  > 0)
             {
                 gameObject.transform.GetComponent<NavMeshAgent>().speed -= data.MovementSpeedChangedBy * stacks;
@@ -33,7 +34,7 @@ public class Freezing : BuffDebuff
         }
         else
         {
-            gameObject.transform.GetComponent<NavMeshAgent>().speed += data.MovementSpeedChangedBy * stacks;
+            gameObject.transform.GetComponent<AIController>().RestoreMovementSpeed();
         }
     }
 }

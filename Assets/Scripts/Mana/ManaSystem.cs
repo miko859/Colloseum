@@ -62,7 +62,7 @@ public class ManaSystem : MonoBehaviour
     }
 
     
-    public void StartSpendingManaForFlamethrower()
+    /*public void StartSpendingManaForFlamethrower()
     {
         if (manaSpendingCoroutine == null && currentMana >= flamethrowerCost)
         {
@@ -88,7 +88,7 @@ public class ManaSystem : MonoBehaviour
             UpdateManaUI();
         }
         StopSpendingManaForFlamethrower();  // Stop if out of mana
-    }
+    }*/
 
     IEnumerator RegenerateMana()
     {

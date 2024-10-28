@@ -5,28 +5,10 @@ using UnityEngine;
 /// </summary>
 public class Fireball : Ball
 {
-    private void Start()
+    public override void Initialize()
     {
-        manaCost = 10; 
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Activate(); 
-        }
-    }
-
-    private void CastFireball()
-    {
-        Rigidbody fireballInstance = Instantiate(rb, transform.position + transform.forward, Quaternion.LookRotation(transform.forward));
-        fireballInstance.velocity = transform.forward * speed; 
-    }
-
-    protected override void OnCollisionEnter(Collision other)
-    {
-        base.OnCollisionEnter(other); 
-        Destroy(gameObject); 
+        manaCost = 10;
+        speed = 20f;
+        impactDamage = 3;
     }
 }

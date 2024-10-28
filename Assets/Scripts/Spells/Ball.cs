@@ -6,19 +6,20 @@ using UnityEngine;
 public abstract class Ball : Spell
 {
     public float speed = 10f; // Default speed for all balls ;)
-    public Rigidbody rb;
+    public Rigidbody spellRb;
     public int impactDamage = 3;
-
+    public PlayerController playerController;
     protected virtual void Start() 
     {
         
-        if (rb == null) rb = GetComponent<Rigidbody>();
+        if (spellRb == null) spellRb = GetComponent<Rigidbody>();
     }
 
-    public override void Activate()
+    public override void ActiveBall()
     {
+        CastFireball();
         base.Activate();
-        rb.velocity = transform.forward * speed; 
+        spellRb.velocity = transform.forward * speed; 
     }
 
     protected virtual void OnCollisionEnter(Collision other)
@@ -30,7 +31,15 @@ public abstract class Ball : Spell
             {
                 enemyHealth.DealDamage(impactDamage);
             }
-            Destroy(gameObject);
+            
         }
+            Destroy(gameObject);
+    }
+    private void CastFireball()
+    {
+        Rigidbody fireballInstance = Instantiate(spellRb, playerController.transform.localPosition + transform.forward, Quaternion.LookRotation(transform.forward));
+        fireballInstance.velocity = transform.forward * speed; 
     }
 }
+
+

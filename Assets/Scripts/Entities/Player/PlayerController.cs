@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
     private EquipedWeaponManager equipedWeaponManager;
+    public SpellManager spellManager;
+
+    public Spell spell;
 
     public Animator animator;
 
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Movement.performed += OnMovement;
         playerInputActions.Player.ChangeWeapon.performed += OnScroll;
         playerInputActions.Player.Run.performed += OnRun;
+        playerInputActions.Player.SpellCast.performed += OnSpellCast;
+        playerInputActions.Player.SpellSwitch.performed += OnSpellSwitch;
     }
 
     private void OnEnable()
@@ -214,6 +219,31 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Run", false);
             currentWeapon.GetAnimator().SetBool("Run", false);
+        }
+    }
+
+    public void OnSpellCast(InputAction.CallbackContext context)
+    {
+        if (context.performed && !context.action.IsPressed())
+        {
+            spellManager.CallActiveBall();
+        }
+        else if (context.action.IsPressed())
+        {
+            spellManager.CallActive();
+
+        }
+        else
+        {
+            spellManager.CallDeactive();
+        }
+
+    }
+
+    public void OnSpellSwitch(InputAction.CallbackContext context)
+    {
+        if (context.performed) {
+            spellManager.SpellSwitch(context.control.name);
         }
     }
 

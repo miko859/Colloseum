@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -8,7 +10,7 @@ public abstract class Spell : MonoBehaviour
     public int manaCost;
     protected ManaSystem manaSystem;
 
-    protected virtual void Awake() 
+    private void Awake() 
     {
         manaSystem = FindObjectOfType<ManaSystem>();
         if (manaSystem == null)
@@ -38,10 +40,16 @@ public abstract class Spell : MonoBehaviour
         }
     }
 
+    public virtual void StartManaSpending() { }
+    public virtual void ActiveBall()
+    {
+        
+    }
+
     public virtual void Deactivate()
     {
         Debug.Log($"{GetType().Name} spell deactivated.");
     }
-    protected virtual void StartManaSpending() { }
-    protected virtual void StopManaSpending() { }
+
+    public virtual void Initialize() { }
 }

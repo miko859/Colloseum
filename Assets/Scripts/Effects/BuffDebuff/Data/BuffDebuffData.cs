@@ -13,7 +13,7 @@ public static class BuffDebuffData
     {
         Id = 2,
         Name = "Freezing",
-        MovementSpeedChangedBy = 0.05f,
+        MovementSpeedChangedBy = 0.1f,
         Duration = 3f
     };
 

@@ -49,23 +49,20 @@ public abstract class BuffDebuff : MonoBehaviour
 
         if (elapsedTime < data.Duration * stacks)
         {
-            Debug.Log($"ElapsedTime {elapsedTime} < data.Duration {data.Duration * stacks}");
             if (data.Frequency > 0)
             {
                 elapsedTickTime += Time.deltaTime;
 
                 if (elapsedTickTime >= data.Frequency)
                 {
-                    Debug.Log($"elapsedTickTime {elapsedTickTime} >= {data.Frequency}");
                     elapsedTickTime = 0f;
                     Functionality();
                     
                 }
             }
-            Debug.Log($"Value of is Applied: {isApplied}"); 
             if (!isApplied)
             {
-                Debug.Log("Apply effect");
+                Debug.Log($"Apply Effect {data.Name}");
                 isApplied = true;
                 Functionality();
             }
@@ -73,10 +70,9 @@ public abstract class BuffDebuff : MonoBehaviour
         }
         else
         {
-            Debug.Log($"MAŽEM EFFECT {data.Name}");
-
             if (isApplied)
             {
+                
                 ReverseEffect();
                 isApplied = false;
             }
@@ -101,8 +97,16 @@ public abstract class BuffDebuff : MonoBehaviour
     /// if this effect is already on entity, stack will be added to multiply Duration and Damage
     /// </summary>
     public void AddStack() 
-    { 
-        stacks++; 
+    {
+        if (data.MaxStacks < stacks)
+        {
+            stacks++;
+
+            if (isApplied)
+            {
+                isApplied = false;
+            }
+        }
     }
 
     /// <summary>

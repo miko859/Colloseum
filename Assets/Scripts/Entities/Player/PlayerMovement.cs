@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController playerController;
     Vector3 movement_direction;
     float movement_speed;
-    public float base_move_speed = 10f;
+    public float base_move_speed = 12f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -34,14 +34,12 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform player;
 
+    public float speedMultiplier = 1f;
+
     [Header("Sound effects")]
     public AudioSource movementSound;
     public AudioSource landSound;
     public AudioSource jumpSound;
-
-    private void Start()
-    {
-    }
 
     void Update()
     {
@@ -102,11 +100,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            movement_speed = target_speed;
+            movement_speed = target_speed * speedMultiplier;
         }
 
         movement_direction = input_direction; // you don't need to modify direction for air control, just speed
-
+        Debug.Log(movement_speed);
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
 
         if (isGrounded)
@@ -141,6 +139,11 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayFootstepSound();
         }
+    }
+
+    public void RestoreMovementSpeed()
+    {
+        speedMultiplier = 1f;
     }
 
     IEnumerator StartMovementSoundWithDelay(float delay)

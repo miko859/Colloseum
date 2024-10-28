@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
 
 public class AIController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class AIController : MonoBehaviour
     private Collider blade;
     private Patrolling patrolling;      //script for patrolling
     public EnemyData enemyData;
+
+    private bool forwardCheck = true;
 
     private bool isAttacking;
     private bool knowAboutPlayer;
@@ -65,6 +68,13 @@ public class AIController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
+            if (follows && forwardCheck)
+            {
+                //transform.LookAt(player.transform.position);
+                transform.Rotate(transform.rotation.x,player.transform.rotation.y,transform.rotation.z);
+                
+            }
+
             if (elapsedTime >= 0.33)
             {
                 elapsedTime = 0;
@@ -76,6 +86,7 @@ public class AIController : MonoBehaviour
 
                 if (knowAboutPlayer & distanceToPlayer <= 20 & path.status != NavMeshPathStatus.PathComplete)
                 {
+                    
                     Debug.Log(knowAboutPlayer + " " +  distanceToPlayer + " " + path.status.ToString());
                     fallBack = false;
                     patrolling.StopPatrolling();
@@ -98,6 +109,7 @@ public class AIController : MonoBehaviour
                 }
                 else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
                 {
+                    
                     fallBack = false;
                     knowAboutPlayer = true;
                     agent.stoppingDistance = 2.5f;
@@ -107,7 +119,7 @@ public class AIController : MonoBehaviour
                     animator.SetBool("walk", true);
                     follows = true;
 
-                    if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
+                    if (fullDistance <= 4 || (fullDistance <= 4 && IsPlayerAbove()))
                     {
                         AiStateAttackOrGoBack();
                     }
@@ -174,18 +186,20 @@ public class AIController : MonoBehaviour
         {
             animator.SetBool("walk", false);
             animator.SetBool("attack", true);
+            forwardCheck = true;
         }
         else
         {
             animator.SetBool("walk", false);
             animator.SetBool("attack", false);
+            forwardCheck = false;
         }
     }
 
         private IEnumerator TimeUntilEnemyForgetPlayer()
     {
         yield return new WaitForSecondsRealtime(5);
-       // knowAboutPlayer = false;
+        //knowAboutPlayer = false;
     }
 
     

@@ -30,3 +30,4 @@ MonoBehaviour:
   hurtAnimation: Hurt
   lightAttackDamage: 3
   heavyAttackDamage: 2
+  icon: {fileID: 21300000, guid: b2b2cac2e07af854ea102134c22cb6cc, type: 3}

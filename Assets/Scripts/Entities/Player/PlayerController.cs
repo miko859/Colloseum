@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Movement.performed += OnMovement;
         playerInputActions.Player.ChangeWeapon.performed += OnScroll;
         playerInputActions.Player.Run.performed += OnRun;
+        playerInputActions.Player.Interact.performed += OnInteract;
     }
 
     private void OnEnable()
@@ -215,6 +216,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
             currentWeapon.GetAnimator().SetBool("Run", false);
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        transform.GetComponent<PlayerInteraction>().Interact();
     }
 
     public void GotHit()

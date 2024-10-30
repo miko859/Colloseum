@@ -4,6 +4,7 @@ public class ToggleUI : MonoBehaviour
 {
     public GameObject inventory;
     public GameObject mainMenu;
+    public InventoryManager inventoryManager;
 
     private bool isInventoryOpen = false;
     private bool isMenuOpen = false;
@@ -18,6 +19,7 @@ public class ToggleUI : MonoBehaviour
                 isInventoryOpen = !isInventoryOpen;
                 inventory.SetActive(isInventoryOpen);
                 mainMenu.SetActive(false);
+                inventoryManager.ListItems();
 
                 Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
                 Time.timeScale = isInventoryOpen ? 0.0f : 1.0f;

@@ -47,12 +47,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""dad35b07-8f02-4e77-8449-4f7d9f44535f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Change Weapon"",
@@ -106,48 +106,59 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""da8e4951-e4b7-445b-ac74-2b7aa9fcea78"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""89a5a639-3d3c-4cde-bcaa-3c4116589eec"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""eaa8af87-896b-495a-a665-e54d1fa82baf"",
                     ""path"": ""<Keyboard>/w"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""87090964-1d41-4713-b8ef-de0838eb7c92"",
+                    ""name"": ""down"",
+                    ""id"": ""ee82617a-07b1-4169-9ffd-98ed5fbc3d2d"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4f05b934-e608-4e6c-b328-3829ac8ed7f8"",
+                    ""name"": ""left"",
+                    ""id"": ""82c3775d-ebd3-4b37-8b96-b112cc40c510"",
                     ""path"": ""<Keyboard>/a"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b2c7d50c-d3c2-4fee-9613-8cd905388b40"",
+                    ""name"": ""right"",
+                    ""id"": ""a7bc8f76-f6f4-448e-924f-501bb7b7ca60"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",

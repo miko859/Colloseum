@@ -183,7 +183,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     { 
         currentWeapon.Block(); 
     }
-    //private bool isWalking = false;
+
     public void OnMovement(InputAction.CallbackContext context)
     {
         Vector2 value = playerInputActions.Player.Movement.ReadValue<Vector2>();

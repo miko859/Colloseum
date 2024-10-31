@@ -41,26 +41,22 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource landSound;
     public AudioSource jumpSound;
 
+    /// <summary>
+    /// Sets data from Input to values to move player object
+    /// </summary>
+    /// <param name="value">2D Vector (x,y(z))</param>
     public void Move(Vector2 value)
     {
         if (!isJumping)
         {
             movement_x = value.x;
             movement_z = value.y;
-
         }
     }
 
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        /*
-        if (!isJumping)
-        {
-            movement_x = Input.GetAxisRaw("Horizontal");
-            movement_z = Input.GetAxisRaw("Vertical");
-
-        }*/
 
         Vector3 input_direction = (player.transform.right * movement_x + player.transform.forward * movement_z).normalized;
         if ((movement_x != 0 || movement_z != 0) && isGrounded)

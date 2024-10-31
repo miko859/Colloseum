@@ -44,7 +44,6 @@ public class WeaponAnimations : Weapon
                 var attackType = Random.Range(1, weaponData.lightAttackTypesCount+1);
                 StartCoroutine(PlayAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
                 StartCoroutine(PlayBodyAnimation(weaponData.lightAttackAnimation + attackType, (attackType == 1) ? weaponData.lightAttackDuration1 : ((attackType == 2) ? weaponData.lightAttackDuration2 : weaponData.lightAttackDuration3)));
-                
             }
         }
     }
@@ -80,6 +79,7 @@ public class WeaponAnimations : Weapon
         isBlocking = !isBlocking;
         animator.SetBool("Block", isBlocking);
         GetBodyAnimator().SetBool("Block", isBlocking);
+        GetComponent<CharacterController>().isTrigger = !isBlocking;
     }
 
     /// <summary>

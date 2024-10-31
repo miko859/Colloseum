@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
     public Animator animator;
 
-    private bool isCharging = false;
+    private bool isCharging = true;
 
     private bool isWalking = false;
 
@@ -149,32 +149,30 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
-            if (context.started)
-            {
-                isCharging = true;
-            }
-            else if (isCharging)
-            {
-                if (context.interaction is TapInteraction && context.performed)
-                {
-                    
-                    currentWeapon.Attack();
-                    isCharging = false;
+        if (context.interaction is SlowTapInteraction && context.action.IsInProgress() && context.started && context.time > 1)
+        {
+            isCharging = true;
+            currentWeapon.HardAttack(true); 
+        }
 
-                }
-                if (context.action.IsPressed())
-                {
-                    currentWeapon.HardAttack(true);
-                }
-                else
-                {
-                    
-                    currentWeapon.HardAttack(false);
-                    isCharging = false;
-                }
-            } 
+        if (context.performed && context.interaction is TapInteraction)
+        {
+            currentWeapon.Attack();
+            isCharging = false;
+        }
+
+        if (context.performed && context.interaction is SlowTapInteraction)
+        {
+            currentWeapon.HardAttack(false);
+            isCharging = false;
+        }
     }
     
+    public void SetIsCharging(bool value)
+    {
+        isCharging = value;
+    }
+
     /// <summary>
     /// Will perform block
     /// </summary>
@@ -218,9 +216,23 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
     }
 
+    private bool interacted = false;
     public void OnInteract(InputAction.CallbackContext context)
     {
-        transform.GetComponent<PlayerInteraction>().Interact();
+        if (context.started)
+        {
+            
+            if (!interacted)
+            {
+                transform.GetComponent<PlayerInteraction>().Interact();
+                interacted = true;
+            } 
+            
+        }
+        else if (context.performed) 
+        { 
+            interacted = false; 
+        }
     }
 
     public void GotHit()

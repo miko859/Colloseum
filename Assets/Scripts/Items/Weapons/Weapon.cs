@@ -51,5 +51,4 @@ public abstract class Weapon : MonoBehaviour
     public Animator GetAnimator() { return animator; }
 
     public Animator GetBodyAnimator() { return bodyAnimator; }
-
 }

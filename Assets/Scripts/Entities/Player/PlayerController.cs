@@ -28,8 +28,12 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
 
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.SetCallbacks(this);
-        playerInputActions.Enable();
+        playerInputActions.Player.AddCallbacks(this);
+
+        playerInputActions.Player.Block.started -= OnBlock;
+        playerInputActions.Player.Block.canceled -= OnBlock;
+
+        playerInputActions.Player.Enable();
     }
 
     private void OnEnable()
@@ -86,8 +90,6 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
         if (currentWeapon != null)
         {
-            //StartCoroutine(test());
-
             // sync parameters
             foreach (AnimatorControllerParameter parameter in currentWeapon.bodyAnimator.parameters)
             {
@@ -105,13 +107,6 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
                 }
             }
         }
-    }
-
-    private IEnumerator test()
-    {
-        Debug.Log($"{currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime} === {currentWeapon.GetAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime}");
-        currentWeapon.GetAnimator().Play(currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime);
-        yield return null;
     }
 
     public void OnChangeWeapon(InputAction.CallbackContext context)
@@ -179,7 +174,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     /// <param name="context"></param>
     public void OnBlock(InputAction.CallbackContext context)
     { 
-        currentWeapon.Block(); 
+            currentWeapon.Block();    
     }
 
     public void OnMovement(InputAction.CallbackContext context)

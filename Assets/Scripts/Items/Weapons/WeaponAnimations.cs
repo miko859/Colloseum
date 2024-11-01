@@ -5,16 +5,16 @@ public class WeaponAnimations : Weapon
     private bool isBashing = false;
     private bool isBlocking = false;
     
-    private int damage;
-    private int buffDebuffDmg = 0;
+    private float damage;
+    private float buffDebuffDmg = 0;
     
 
-    public void ChangeBuffDebuffDmg(int value)
+    public void ChangeBuffDebuffDmg(float value)
     {
         buffDebuffDmg += value;
     }
 
-    public int getDamage()
+    public float getDamage()
     {
         return damage; 
     }
@@ -81,7 +81,7 @@ public class WeaponAnimations : Weapon
         animator.SetBool("Block", isBlocking);
         GetBodyAnimator().SetBool("Block", isBlocking);
         Debug.Log("BLOCK END");
-        GetComponentInParent<CharacterController>().isTrigger = !isBlocking;
+        GetComponentInParent<CharacterController>().isTrigger = !isBlocking; //doesn't work
     }
 
     /// <summary>

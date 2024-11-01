@@ -83,7 +83,7 @@ public class WeaponManager : MonoBehaviour
         return current;
     }
 
-    private int CalculateDamage()
+    private float CalculateDamage()
     {
         if (isEnemyWeapon && aiController != null)
         {

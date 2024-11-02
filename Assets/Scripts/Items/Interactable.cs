@@ -8,6 +8,8 @@ public abstract class Interactable : MonoBehaviour
     /// </summary>
     public abstract void Interact();
 
+    public abstract void EquipWeapon();
+
     /// <summary>
     /// To show on screen it's interactable and what to press
     /// </summary>

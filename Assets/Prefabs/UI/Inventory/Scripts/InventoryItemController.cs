@@ -19,4 +19,25 @@ public class InventoryItemController : MonoBehaviour
     {
         item = newItem;
     }
+
+    public void UseItem()
+    {
+        switch (item.itemType)
+        {
+            case Item.ItemType.Weapon:
+                PickUpItem.Instance.EquipWeapon();
+                break;
+            case Item.ItemType.Armor:
+                break;
+            case Item.ItemType.Helmet:
+                break;
+            case Item.ItemType.HealthPotion:
+                break;
+            case Item.ItemType.ManaPotion:
+                break;
+            default:
+                break;
+        }
+        RemoveItem();
+    }
 }

@@ -4,7 +4,7 @@ public class WeaponManager : MonoBehaviour
 {
     public string target;
     private bool isEnemyWeapon;
-    private Collider blade;
+    public Collider blade;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
     private AIController aiController;
@@ -15,8 +15,10 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        blade = GetComponent<Collider>();
-        
+        if (blade == null)
+        {
+            blade = GetComponent<Collider>();
+        }
 
         owner = FindObjectWithTag(transform, "Player") ?? FindObjectWithTag(transform, "Enemy");
 

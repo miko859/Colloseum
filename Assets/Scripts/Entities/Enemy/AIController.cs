@@ -1,12 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
-using static UnityEngine.GraphicsBuffer;
 
 public class AIController : MonoBehaviour
 {

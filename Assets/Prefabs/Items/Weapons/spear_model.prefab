@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Enemy
+  blade: {fileID: 6967366831865226583}
 --- !u!114 &7394388629638840934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3680616656190884529}
+  collider: {fileID: 6967366831865226583}
 --- !u!1 &4104360826609985518
 GameObject:
   m_ObjectHideFlags: 0

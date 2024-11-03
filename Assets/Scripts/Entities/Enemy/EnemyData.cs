@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     public string enemyName;
-    public float enemyHealth;
+    public double enemyHealth;
 
     public float lightAttackDuration;
     public float heavyAttackChargeDuration;

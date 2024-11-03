@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyDataSkeleton
   m_EditorClassIdentifier: 
   enemyName: Skeleton
-  enemyHealth: 6
+  enemyHealth: 25
   lightAttackDuration: 0
   heavyAttackChargeDuration: 0
   heavyAttackPerformDuration: 0
@@ -23,5 +23,5 @@ MonoBehaviour:
   heavyAttackPerformAnimation: 
   blockAnimation: 
   bashAnimation: 
-  lightAttackDamage: 1
+  lightAttackDamage: 10
   heavyAttackDamage: 2

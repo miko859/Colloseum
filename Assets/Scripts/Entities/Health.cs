@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 3; 
-    private float currentHealth; 
+    public double maxHealth = 3; 
+    private double currentHealth; 
     private Animator animator;
     public HealthBar healthBar;
     private Weapon weapon;
@@ -61,6 +61,6 @@ public class Health : MonoBehaviour
     public void Heal(float value)
     {
         currentHealth += value;
-        healthBar.SetHealth(value); 
+        healthBar.SetHealth(currentHealth); 
     }
 }

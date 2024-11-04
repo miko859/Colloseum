@@ -38,6 +38,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         playerInputActions.Player.Attack.started -= OnAttack;
         playerInputActions.Player.Attack.performed -= OnAttack;
 
+        playerInputActions.Player.Run.started -= OnRun;
+        //playerInputActions.Player.Run.performed -= OnRun;
+        playerInputActions.Player.Run.canceled -= OnRun;
+
+
         playerInputActions.Player.Enable();
     }
 
@@ -51,6 +56,8 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         playerInputActions.Player.Disable();
     }
 
+    private bool isBashing = false;
+
     /// <summary>
     /// update is readed every frame
     /// </summary>
@@ -58,8 +65,21 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
         { 
-            currentWeapon.Bash(); 
+            if (staminaBar.GetCurrentStamina() > currentWeapon.weaponData.bashStaminaCons && !isBashing)
+            {
+                isBashing = !isBashing;
+                Debug.Log("Bash");
+                currentWeapon.Bash();
+                staminaBar.ReduceStamina(currentWeapon.weaponData.bashStaminaCons);
+                StartCoroutine(BashCooldown());
+            }
         }
+    }
+
+    IEnumerator BashCooldown()
+    {
+        yield return new WaitForSeconds(currentWeapon.weaponData.bashDuration);
+        isBashing = !isBashing;
     }
 
     /// <summary>
@@ -114,6 +134,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
     }
 
+    public StaminaBar GetStaminaBar()
+    {
+        return staminaBar;
+    }
+
     public void OnChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.started) 
@@ -163,46 +188,37 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
         if (context.performed && context.interaction is SlowTapInteraction)
         {
-            Debug.Log("Rusím heavy attack");
             currentWeapon.HardAttack(false);
-            isCharging = false;
-           // staminaBar.ReduceStamina(currentWeapon.weaponData.heavyAttackStaminaCons);
-
+            
+            if (isCharging)
+            {
+                staminaBar.ReduceStamina(currentWeapon.weaponData.heavyAttackStaminaCons);
+                isCharging = false;
+            }
         }
 
         if (context.performed && context.interaction is TapInteraction)
         {
             currentWeapon.Attack();
+        }
+
+        if (context.interaction is SlowTapInteraction && context.canceled)
+        {
+            StartCoroutine(CancelHeavyAttack());
             isCharging = false;
         }
+    }
+
+    IEnumerator CancelHeavyAttack()
+    {
+        animator.SetBool("Return", true);
+        currentWeapon.GetAnimator().SetBool("Return", true);
+        currentWeapon.GetAnimator().SetBool(currentWeapon.weaponData.heavyAttackAnimation, false);
+        animator.SetBool(currentWeapon.weaponData.heavyAttackAnimation, false);
         
-        /*
-        Debug.Log("holding heavy attack");
-        if (context.started)
-        {
-            isCharging = true;
-        }
-        else if (isCharging)
-        {
-            if (context.interaction is TapInteraction && context.performed)
-            {
-
-                currentWeapon.Attack();
-                isCharging = false;
-
-            }
-            if (context.action.IsPressed())
-            {
-                currentWeapon.HardAttack(true);
-            }
-            else
-            {
-
-                currentWeapon.HardAttack(false);
-                isCharging = false;
-            }
-        }*/
-
+        yield return new WaitForSeconds(currentWeapon.weaponData.heavyAttackChargeDuration);
+        animator.SetBool("Return", false);
+        currentWeapon.GetAnimator().SetBool("Return", false);
     }
     
     public void SetIsCharging(bool value)
@@ -215,8 +231,8 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     /// </summary>
     /// <param name="context"></param>
     public void OnBlock(InputAction.CallbackContext context)
-    { 
-            currentWeapon.Block();    
+    {
+        currentWeapon.Block();    
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -240,6 +256,8 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        GetComponent<PlayerMovement>().Run();
+
         if (context.action.IsPressed())
         {
             animator.SetBool("Run", true);
@@ -269,6 +287,14 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         else if (context.performed) 
         { 
             interacted = false; 
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            GetComponent<PlayerMovement>().Jump();
         }
     }
 

@@ -24,6 +24,11 @@ public class WeaponAnimations : Weapon
         return isBashing;
     }
 
+    public bool getIsBlocking()
+    {
+        return isBlocking;
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -76,12 +81,9 @@ public class WeaponAnimations : Weapon
     /// </summary>
     public override void Block()
     {
-        Debug.Log("BLOCK START");
         isBlocking = !isBlocking;
         animator.SetBool("Block", isBlocking);
         GetBodyAnimator().SetBool("Block", isBlocking);
-        Debug.Log("BLOCK END");
-        GetComponentInParent<CharacterController>().isTrigger = !isBlocking; //doesn't work
     }
 
     /// <summary>

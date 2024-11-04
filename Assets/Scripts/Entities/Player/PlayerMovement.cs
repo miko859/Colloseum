@@ -36,10 +36,19 @@ public class PlayerMovement : MonoBehaviour
 
     public float speedMultiplier = 1f;
 
+    private bool holdShift = false;
+    private float runElapsedTime;
+    private StaminaBar staminaBar;
+
     [Header("Sound effects")]
     public AudioSource movementSound;
     public AudioSource landSound;
     public AudioSource jumpSound;
+
+    private void Start()
+    {
+        staminaBar = GetComponent<PlayerController>().GetStaminaBar();
+    }
 
     /// <summary>
     /// Sets data from Input to values to move player object
@@ -74,9 +83,14 @@ public class PlayerMovement : MonoBehaviour
             startedSound = false;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (holdShift)
         {
-            target_speed = sprint_speed;
+            target_speed = sprint_speed * speedMultiplier;
+
+            if (staminaBar.GetCurrentStamina() > 0.2)
+            {
+                staminaBar.ReduceStamina(0.2);
+            }
         }
         else
         {
@@ -90,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
             PlayLandSound(); // Play the landing sound
             wasGrounded = false;
             hasJumped = false; // Reset the jump after landing
+            
         }
 
         if (!isGrounded) // Reduce target speed by 20%
@@ -115,6 +130,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
+            
+            isJumping = false;
+        }
+        
+
+        if (isGrounded)
+        {
             wasGrounded = false;
             if (velocity.y < 0)
             {
@@ -128,23 +150,27 @@ public class PlayerMovement : MonoBehaviour
 
         playerController.Move(velocity * Time.deltaTime * gravity_acceleration);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            PlayJumpSound(); // Play jump sound
-            isJumping = true;
-            hasJumped = true;
-        }
-        else if (isGrounded)
-        {
-            isJumping = false;
-
-        }
-
         if (isGrounded && (movement_x != 0 || movement_z != 0))
         {
             PlayFootstepSound();
         }
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            PlayJumpSound(); // Play jump sound
+            staminaBar.ReduceStamina(15);
+            isJumping = true;
+            hasJumped = true;
+        }
+    }
+
+    public void Run()
+    {
+        holdShift = !holdShift;
     }
 
     public void RestoreMovementSpeed()

@@ -30,3 +30,7 @@ MonoBehaviour:
   hurtAnimation: Hurt
   lightAttackDamage: 4
   heavyAttackDamage: 6
+  blockTreshhold: 8
+  heavyAttackStaminaCons: 40
+  bashStaminaCons: 28
+  blockStaminaCons: 15

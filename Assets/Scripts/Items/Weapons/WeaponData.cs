@@ -25,4 +25,9 @@ public class WeaponData : ScriptableObject
     [Header("Weapon stats")]
     public float lightAttackDamage;
     public float heavyAttackDamage;
+    public float blockTreshhold;
+    [Header("Stamina Consumption")]
+    public float heavyAttackStaminaCons;
+    public float bashStaminaCons;
+    public float blockStaminaCons;
 }

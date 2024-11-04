@@ -11,9 +11,9 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     private EquipedWeaponManager equipedWeaponManager;
 
     public Animator animator;
+    public StaminaBar staminaBar;
 
     private bool isCharging = true;
-
     private bool isWalking = false;
 
     [Header("Testujem")]
@@ -26,12 +26,17 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     private void Awake()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
+        staminaBar.SetMaxStamina(100, 2.5);
 
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.AddCallbacks(this);
 
         playerInputActions.Player.Block.started -= OnBlock;
         playerInputActions.Player.Block.canceled -= OnBlock;
+
+        playerInputActions.Player.Attack.canceled -= OnAttack;
+        playerInputActions.Player.Attack.started -= OnAttack;
+        playerInputActions.Player.Attack.performed -= OnAttack;
 
         playerInputActions.Player.Enable();
     }
@@ -138,16 +143,31 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
     }
 
+    private bool test = false;
+
     /// <summary>
     /// Will perform attack based on action, if just clicked, LightAttack will be performed and if action is Hold, attack will charge and by releasing button HardAttack will perform
     /// </summary>
     /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.interaction is SlowTapInteraction && context.action.IsInProgress() && context.started && context.time > 1)
+        
+        if (context.interaction is SlowTapInteraction && context.started && context.time > 1 && context.action.IsPressed())
         {
-            isCharging = true;
-            currentWeapon.HardAttack(true); 
+            if (staminaBar.GetCurrentStamina() >= currentWeapon.weaponData.heavyAttackStaminaCons)
+            {
+                isCharging = true;
+                currentWeapon.HardAttack(true);
+            }
+            
+        }
+        if (context.performed && context.interaction is SlowTapInteraction)
+        {
+            Debug.Log("Rusím heavy attack");
+            currentWeapon.HardAttack(false);
+            isCharging = false;
+           // staminaBar.ReduceStamina(currentWeapon.weaponData.heavyAttackStaminaCons);
+
         }
 
         if (context.performed && context.interaction is TapInteraction)
@@ -155,12 +175,34 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
             currentWeapon.Attack();
             isCharging = false;
         }
-
-        if (context.performed && context.interaction is SlowTapInteraction)
+        
+        /*
+        Debug.Log("holding heavy attack");
+        if (context.started)
         {
-            currentWeapon.HardAttack(false);
-            isCharging = false;
+            isCharging = true;
         }
+        else if (isCharging)
+        {
+            if (context.interaction is TapInteraction && context.performed)
+            {
+
+                currentWeapon.Attack();
+                isCharging = false;
+
+            }
+            if (context.action.IsPressed())
+            {
+                currentWeapon.HardAttack(true);
+            }
+            else
+            {
+
+                currentWeapon.HardAttack(false);
+                isCharging = false;
+            }
+        }*/
+
     }
     
     public void SetIsCharging(bool value)

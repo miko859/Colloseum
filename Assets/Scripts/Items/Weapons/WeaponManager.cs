@@ -5,10 +5,12 @@ public class WeaponManager : MonoBehaviour
     public string target;
     private bool isEnemyWeapon;
     public Collider blade;
+    public Collider bashColl;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
     private AIController aiController;
     private Transform owner;
+    private bool isBashing = false;
 
     /// <summary>
     /// Set blade for hitboxes and weaponAnimations to get DMG of actual attack
@@ -51,7 +53,12 @@ public class WeaponManager : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(target) & !hit)
+        if (isBashing && other.CompareTag("Enemy"))
+        {
+            Vector3 direction = transform.position - other.transform.position;
+            //other.
+        }
+        else if (other.CompareTag(target) && !hit)
         {
             other.GetComponent<Health>().DealDamage(CalculateDamage(other));
             Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));

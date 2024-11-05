@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class WeaponAnimations : Weapon
 {
-    private bool isBashing = false;
     private bool isBlocking = false;
     
     private float damage;

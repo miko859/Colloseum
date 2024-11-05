@@ -47,6 +47,11 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        Debug.Log($"Blade Collider: {blade.isTrigger}  Bash Collider: {bashColl.isTrigger}  Character controller: {FindObjectWithTag(transform, "Player").GetComponent<CharacterController>().isTrigger}");
+    }
+
     /// <summary>
     /// Check if entity was hit by weapon and dealing dmg by attack, enemy <=> player
     /// </summary>
@@ -58,7 +63,7 @@ public class WeaponManager : MonoBehaviour
             Vector3 direction = transform.position - other.transform.position;
             //other.
         }
-        else if (other.CompareTag(target) && !hit)
+        else if (other.CompareTag(target) && !hit && blade.isTrigger)
         {
             other.GetComponent<Health>().DealDamage(CalculateDamage(other));
             Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));

@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: Enemy
   blade: {fileID: 1689536358672681262}
+  bashColl: {fileID: 9068211618951443760}
 --- !u!114 &1959265665873146557
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -21,12 +21,14 @@ public class AnimationEventHandler : MonoBehaviour
 
     private void AnimationFinishedTrigger()
     {
+        Debug.Log("AnimationFinishedTrigger");
         weaponManager.SetHit(false);
         collider.isTrigger = false;
     }
 
     private void AnimationStartedTrigger()
     {
+        Debug.Log("AnimationStartedTrigger");
         collider.isTrigger = true;
     }
 }

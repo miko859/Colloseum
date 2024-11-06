@@ -57,10 +57,9 @@ public class WeaponManager : MonoBehaviour
         
         if (target.Equals("Enemy") && !blade.isTrigger)
         {
-            
-            //Debug.Log($"{owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing()}");
             if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
             {
+                Debug.Log($"other.transform.position.y {other.transform.position.y}");
                 Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
                                                 other.transform.position.y,
                                                 other.transform.position.z - transform.position.z);

@@ -252,6 +252,7 @@ public class AIController : MonoBehaviour
         {
             Debug.Log($"{elapsedTime} enemy is being pushed");
             transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }

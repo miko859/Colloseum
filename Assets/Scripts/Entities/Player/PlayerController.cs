@@ -261,7 +261,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         GetComponent<PlayerMovement>().Run();
 
-        if (context.action.IsPressed())
+        if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
         {
             animator.SetBool("Run", true);
             currentWeapon.GetAnimator().SetBool("Run", true);

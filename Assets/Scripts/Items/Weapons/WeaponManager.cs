@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -55,7 +56,7 @@ public class WeaponManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
-        if (target.Equals("Enemy") && !blade.isTrigger)
+        if (target.Equals("Enemy") && bashColl.enabled)
         {
             if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
             {
@@ -63,7 +64,7 @@ public class WeaponManager : MonoBehaviour
                 Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
                                                 0,
                                                 other.transform.position.z - transform.position.z);
-
+                
 
                 AIController enemy = other.transform.GetComponent<AIController>();
                 StartCoroutine(enemy.BeingPushedMovement(1.5f, direction));
@@ -127,5 +128,18 @@ public class WeaponManager : MonoBehaviour
         { 
             return weaponAnimations.getDamage();
         }
+    }
+
+    public IEnumerator SwapCollBlockBash()
+    {
+        //blade.isTrigger = false;
+        blade.enabled = false;
+        //bashColl.isTrigger = true;
+        bashColl.enabled = true;
+        yield return new WaitForSeconds(weaponAnimations.weaponData.bashDuration);
+        //blade.isTrigger = true;
+        blade.enabled = true;
+        //bashColl.isTrigger = false;
+        bashColl.enabled = false;
     }
 }

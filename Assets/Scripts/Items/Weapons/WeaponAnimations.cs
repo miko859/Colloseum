@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponAnimations : Weapon
@@ -92,6 +93,7 @@ public class WeaponAnimations : Weapon
     {
         if (isBlocking)
         {
+            StartCoroutine(GetComponent<WeaponManager>().SwapCollBlockBash());
             StartCoroutine(PlayAnimation(weaponData.bashAnimation, weaponData.bashDuration));
             StartCoroutine(PlayBodyAnimation(weaponData.bashAnimation, weaponData.bashDuration));
         }

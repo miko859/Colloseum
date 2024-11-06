@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7657625602918447259, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -33.3
+      value: -147.9
       objectReference: {fileID: 0}
     - target: {fileID: 7657625602918447259, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17472,7 +17472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballSpells:
-  - {fileID: 8280209294547454244, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
+  - {fileID: 4886826636064426670}
   elementSpells:
   - {fileID: 1548534352}
 --- !u!43 &545266110
@@ -29567,6 +29567,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3028393783740428653, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480426261691088339, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
+      propertyPath: maxMana
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480426261691088339, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
+      propertyPath: fireballManaCost
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7665581462377539075, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
@@ -64443,6 +64451,10 @@ PrefabInstance:
     - target: {fileID: 3339959561819367939, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 640
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562435466451562940, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4562435466451562940, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits

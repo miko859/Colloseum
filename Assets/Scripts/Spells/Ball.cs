@@ -1,17 +1,14 @@
 using UnityEngine;
 
-/// <summary>
-/// Abstract base class for all ball type spells.
-/// </summary>
 public abstract class Ball : Spell
 {
-    public float speed = 10f; // Default speed for all balls ;)
+    public float speed = 10f;
     public Rigidbody spellRb;
     public int impactDamage = 3;
     public PlayerController playerController;
-    protected virtual void Start() 
+
+    protected virtual void Start()
     {
-        
         if (spellRb == null) spellRb = GetComponent<Rigidbody>();
     }
 
@@ -19,7 +16,6 @@ public abstract class Ball : Spell
     {
         CastFireball();
         base.Activate();
-        spellRb.velocity = transform.forward * speed; 
     }
 
     protected virtual void OnCollisionEnter(Collision other)
@@ -31,15 +27,17 @@ public abstract class Ball : Spell
             {
                 enemyHealth.DealDamage(impactDamage);
             }
-            
         }
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
+
     private void CastFireball()
     {
-        Rigidbody fireballInstance = Instantiate(spellRb, playerController.transform.localPosition + transform.forward, Quaternion.LookRotation(transform.forward));
-        fireballInstance.velocity = transform.forward * speed; 
+        
+        Vector3 spawnPosition = playerController.transform.position + playerController.transform.forward * 1.5f;
+
+        Rigidbody fireballInstance = Instantiate(spellRb, spawnPosition, Quaternion.LookRotation(playerController.transform.forward));
+
+        fireballInstance.velocity = playerController.transform.forward * speed;
     }
 }
-
-

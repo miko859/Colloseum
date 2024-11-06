@@ -61,7 +61,7 @@ public class WeaponManager : MonoBehaviour
             {
                 Debug.Log($"other.transform.position.y {other.transform.position.y}");
                 Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
-                                                other.transform.position.y,
+                                                0,
                                                 other.transform.position.z - transform.position.z);
 
 

@@ -137,6 +137,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         return staminaBar;
     }
 
+    public bool GetIsBashing()
+    {
+        return isBashing;
+    }
+
     public void OnChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.started) 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -47,21 +48,27 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log($"Blade Collider: {blade.isTrigger}  Bash Collider: {bashColl.isTrigger}  Character controller: {FindObjectWithTag(transform, "Player").GetComponent<CharacterController>().isTrigger}");
-    }
-
     /// <summary>
     /// Check if entity was hit by weapon and dealing dmg by attack, enemy <=> player
     /// </summary>
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (isBashing && other.CompareTag("Enemy"))
+        
+        if (target.Equals("Enemy") && !blade.isTrigger)
         {
-            Vector3 direction = transform.position - other.transform.position;
-            //other.
+            
+            //Debug.Log($"{owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing()}");
+            if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
+            {
+                Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
+                                                other.transform.position.y,
+                                                other.transform.position.z - transform.position.z);
+
+
+                AIController enemy = other.transform.GetComponent<AIController>();
+                StartCoroutine(enemy.BeingPushedMovement(1.5f, direction));
+            }
         }
         else if (other.CompareTag(target) && !hit && blade.isTrigger)
         {

@@ -241,6 +241,21 @@ public class AIController : MonoBehaviour
         return enemyData.lightAttackDamage + buffDebuffDmg;
     }
 
+    public IEnumerator BeingPushedMovement(float time, Vector3 direction)
+    {
+        Vector3 startingPos = transform.position;
+        Vector3 finalPos = transform.position + (direction * 2);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            Debug.Log($"{elapsedTime} enemy is being pushed");
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
 
     //shows path in Scene
     private void OnDrawGizmos()

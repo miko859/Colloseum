@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
   m_Name: WeaponDataSpear
   m_EditorClassIdentifier: 
-  weaponName: spear
+  itemName: Basic Spear
+  icon: {fileID: 21300000, guid: b2b2cac2e07af854ea102134c22cb6cc, type: 3}
+  value: 1
+  description: A basic Spear with moderate damage
   lightAttackTypesCount: 1
   lightAttackDuration1: 0.6
   lightAttackDuration2: 0

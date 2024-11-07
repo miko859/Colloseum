@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class InventoryItemController : MonoBehaviour
 {
-    public  Item item;
-
+    public Item item;
     public Button RemoveButton;
+
     public void RemoveItem()
     {
         InventoryManager.Instance.Remove(item);
-
         Destroy(gameObject);
     }
 
@@ -25,7 +24,7 @@ public class InventoryItemController : MonoBehaviour
         switch (item.itemType)
         {
             case Item.ItemType.Weapon:
-                PickUpItem.Instance.EquipWeapon();
+                PickUpItem.Instance.EquipWeapon(item); 
                 break;
             case Item.ItemType.Armor:
                 break;

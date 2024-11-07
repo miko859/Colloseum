@@ -30,4 +30,5 @@ public class WeaponData : Item
     public float heavyAttackStaminaCons;
     public float bashStaminaCons;
     public float blockStaminaCons;
+    public Weapon weaponPrefab;
 }

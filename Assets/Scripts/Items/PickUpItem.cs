@@ -2,27 +2,21 @@ using UnityEngine;
 
 public class PickUpItem : Interactable
 {
-    public Weapon weaponPrefab;     // Prefab of weapon that adds to inventory
+    public Weapon weaponPrefab; // Prefab of weapon that adds to inventory
     public bool destroyObject;
-    private string posInHierarchyOfWeapon = "Body";     // Change this, if you want new save pos for weapon in hierarchy
+    private string posInHierarchyOfWeapon = "Body"; 
     public Item item;
 
     public static PickUpItem Instance;
+
     public override void Interact()
     {
-        
-       /* Weapon temp = Instantiate(weaponPrefab);
-        temp.name = weaponPrefab.name;
-        temp.Unequip();
-        temp.transform.SetParent(GameObject.Find(posInHierarchyOfWeapon).transform, false);  
-        EquipedWeaponManager.Instance.AddWeapon(temp);*/
         InventoryManager.Instance.Add(item);
 
         if (destroyObject)
         {
             Destroy(transform.gameObject);
         }
-
     }
 
     public void Awake()
@@ -30,12 +24,16 @@ public class PickUpItem : Interactable
         Instance = this;
     }
 
-    public override void EquipWeapon()
+    public override void EquipWeapon(Item item) 
     {
-        Weapon temp = Instantiate(weaponPrefab);
-        temp.name = weaponPrefab.name;
-        temp.Unequip();
-        temp.transform.SetParent(GameObject.Find(posInHierarchyOfWeapon).transform, false);
-        EquipedWeaponManager.Instance.AddWeapon(temp);
+        if (item is WeaponData weaponData)
+        {
+            Weapon temp = Instantiate(weaponData.weaponPrefab);
+            Debug.Log("Added weapon: " + temp);
+            temp.name = weaponData.name;
+            temp.Unequip();
+            temp.transform.SetParent(GameObject.Find(posInHierarchyOfWeapon).transform, false);
+            EquipedWeaponManager.Instance.AddWeapon(temp);
+        }
     }
 }

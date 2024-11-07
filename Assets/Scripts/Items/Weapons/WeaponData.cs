@@ -25,4 +25,5 @@ public class WeaponData : Item
     [Header("Weapon stats")]
     public int lightAttackDamage;
     public int heavyAttackDamage;
+    public Weapon weaponPrefab;
 }

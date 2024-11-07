@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: b2b2cac2e07af854ea102134c22cb6cc, type: 3}
   value: 1
   description: A basic Spear with moderate damage
+  itemType: 0
   lightAttackTypesCount: 1
   lightAttackDuration1: 0.6
   lightAttackDuration2: 0
@@ -33,3 +34,4 @@ MonoBehaviour:
   hurtAnimation: Hurt
   lightAttackDamage: 3
   heavyAttackDamage: 2
+  weaponPrefab: {fileID: 2923154302685799561, guid: 1485059712069a842a2ceb42f451aa83, type: 3}

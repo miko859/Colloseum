@@ -16,6 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c70ec92cdb9971d43bcc9dadd84e6ee2, type: 3}
   value: 100
   description: A basic axe that deals moderate damage
+  itemType: 0
   lightAttackTypesCount: 2
   lightAttackDuration1: 1.26
   lightAttackDuration2: 1.06
@@ -33,3 +34,4 @@ MonoBehaviour:
   hurtAnimation: Hurt
   lightAttackDamage: 4
   heavyAttackDamage: 6
+  weaponPrefab: {fileID: 7088373120101308152, guid: 7c16a3ecafd45db45ab3b96827cafbcf, type: 3}

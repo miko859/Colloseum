@@ -64454,7 +64454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562435466451562940, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4562435466451562940, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits

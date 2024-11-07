@@ -1,17 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToggleUI : MonoBehaviour
 {
+    private bool isMenuOpen = false;
+    private bool isInventoryOpen = false;
     public GameObject inventory;
     public GameObject mainMenu;
     public InventoryManager inventoryManager;
+    public Button closeButton;
 
-    private bool isInventoryOpen = false;
-    private bool isMenuOpen = false;
+    void Start() 
+    { 
+        closeButton.onClick.AddListener(CloseInventory);
+    }
 
     void Update()
     {
-        
+        HandleInventoryToggle();
+        HandleMenuToggle();
+    }
+
+    public void HandleInventoryToggle()
+    {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (!isMenuOpen)
@@ -25,8 +38,10 @@ public class ToggleUI : MonoBehaviour
                 Time.timeScale = isInventoryOpen ? 0.0f : 1.0f;
             }
         }
+    }
 
-        
+    public void HandleMenuToggle()
+    {
         if (Input.GetKeyDown(KeyCode.V))
         {
             if (!isInventoryOpen)
@@ -39,5 +54,10 @@ public class ToggleUI : MonoBehaviour
                 Time.timeScale = isMenuOpen ? 0.0f : 1.0f;
             }
         }
+    }
+
+    private void CloseInventory() 
+    { 
+        isInventoryOpen = false; inventory.SetActive(false); Cursor.lockState = CursorLockMode.Locked; Time.timeScale = 1.0f; 
     }
 }

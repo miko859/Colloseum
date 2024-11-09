@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class Burning : BuffDebuff
 {

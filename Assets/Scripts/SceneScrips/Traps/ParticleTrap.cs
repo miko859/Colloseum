@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 
 public class ParticleTrap : Trap
 {
@@ -6,7 +7,9 @@ public class ParticleTrap : Trap
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
     [SerializeField] public bool timer = false;
+#if UNITY_EDITOR
     [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
+#endif
     public override void StartTrap()
     {
         SetDetectionCollidor(false, false);

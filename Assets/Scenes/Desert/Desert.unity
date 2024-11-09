@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fireball_alpha
       objectReference: {fileID: 0}
+    - target: {fileID: 8226110377526182375, guid: 502728edcb0849f47b3289ed97f7ad59, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7964,38 +7968,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &357671903 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6394440241161260426, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
-  m_PrefabInstance: {fileID: 1824360059}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &357671909
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357671903}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!1001 &359974913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12203,7 +12175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &511752139
 Transform:
   m_ObjectHideFlags: 0
@@ -20795,6 +20767,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48051,6 +48027,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trap (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 768840914946342072, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
       propertyPath: m_LocalPosition.x
       value: -121.2
@@ -50921,10 +50901,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6394440241161260426, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 357671909}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d1eef0d37085f46b02b32d52e190fc, type: 3}
 --- !u!4 &1824360060 stripped
 Transform:
@@ -67843,6 +67820,10 @@ PrefabInstance:
     - target: {fileID: 768840914946342072, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
       propertyPath: m_Name
       value: Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 768840914946342072, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7968840611469503802, guid: e5e513c86ba500846ad8af5f429fc252, type: 3}
       propertyPath: m_LocalPosition.x

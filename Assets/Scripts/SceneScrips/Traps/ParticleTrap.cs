@@ -7,8 +7,9 @@ public class ParticleTrap : Trap
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
     [SerializeField] public bool timer = false;
+    float timeTillEnd = 0f;
 #if UNITY_EDITOR
-    [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
+    /*[ShowIf("timer", true, false)][SerializeField]*/
 #endif
     public override void StartTrap()
     {

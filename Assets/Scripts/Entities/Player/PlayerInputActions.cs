@@ -47,12 +47,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""dad35b07-8f02-4e77-8449-4f7d9f44535f"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Change Weapon"",
@@ -98,6 +98,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbf86410-8547-4a26-b5f9-05bb3838cba6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -124,48 +133,59 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""da8e4951-e4b7-445b-ac74-2b7aa9fcea78"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""89a5a639-3d3c-4cde-bcaa-3c4116589eec"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""eaa8af87-896b-495a-a665-e54d1fa82baf"",
                     ""path"": ""<Keyboard>/w"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""87090964-1d41-4713-b8ef-de0838eb7c92"",
+                    ""name"": ""down"",
+                    ""id"": ""ee82617a-07b1-4169-9ffd-98ed5fbc3d2d"",
                     ""path"": ""<Keyboard>/s"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""4f05b934-e608-4e6c-b328-3829ac8ed7f8"",
+                    ""name"": ""left"",
+                    ""id"": ""82c3775d-ebd3-4b37-8b96-b112cc40c510"",
                     ""path"": ""<Keyboard>/a"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b2c7d50c-d3c2-4fee-9613-8cd905388b40"",
+                    ""name"": ""right"",
+                    ""id"": ""a7bc8f76-f6f4-448e-924f-501bb7b7ca60"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": ""Press(pressPoint=0.5,behavior=2)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -232,6 +252,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SpellCasting"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""07a1fcc0-6ae9-4523-a371-f6faa915b6e2"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -248,6 +279,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
         m_Player_SpellCasting = m_Player.FindAction("SpellCasting", throwIfNotFound: true);
         m_Player_SpellSwitch = m_Player.FindAction("SpellSwitch", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +349,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpellCast;
     private readonly InputAction m_Player_SpellCasting;
     private readonly InputAction m_Player_SpellSwitch;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -329,6 +362,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
         public InputAction @SpellCasting => m_Wrapper.m_Player_SpellCasting;
         public InputAction @SpellSwitch => m_Wrapper.m_Player_SpellSwitch;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -362,6 +396,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpellSwitch.started += instance.OnSpellSwitch;
             @SpellSwitch.performed += instance.OnSpellSwitch;
             @SpellSwitch.canceled += instance.OnSpellSwitch;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -390,6 +427,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpellSwitch.started -= instance.OnSpellSwitch;
             @SpellSwitch.performed -= instance.OnSpellSwitch;
             @SpellSwitch.canceled -= instance.OnSpellSwitch;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -417,5 +457,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSpellCast(InputAction.CallbackContext context);
         void OnSpellCasting(InputAction.CallbackContext context);
         void OnSpellSwitch(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

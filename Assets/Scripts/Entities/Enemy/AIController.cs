@@ -33,6 +33,7 @@ public class AIController : MonoBehaviour
 
     private float elapsedTime = 0;
 
+    private float savedSpeedToRestore;
 
     public void ChangeBuffDebuffDmgBy(int value)
     {
@@ -49,6 +50,7 @@ public class AIController : MonoBehaviour
         animator = GetComponent<Animator>();
         blade = weapon.GetComponent<Collider>();
         patrolling = GetComponent<Patrolling>();
+        savedSpeedToRestore = agent.speed;
 
         if (agent == null)
         {
@@ -159,6 +161,11 @@ public class AIController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void RestoreMovementSpeed()
+    {
+        agent.speed = savedSpeedToRestore;
     }
 
     private bool CanSeeTarget()

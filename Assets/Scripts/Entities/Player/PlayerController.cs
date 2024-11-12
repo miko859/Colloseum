@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
@@ -31,14 +31,8 @@ public class PlayerController : MonoBehaviour
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
 
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Attack.performed += OnAttack;
-        playerInputActions.Player.Block.performed += OnBlock;
-        playerInputActions.Player.Movement.performed += OnMovement;
-        playerInputActions.Player.ChangeWeapon.performed += OnScroll;
-        playerInputActions.Player.Run.performed += OnRun;
-        playerInputActions.Player.SpellCast.performed += OnSpellCast;
-        playerInputActions.Player.SpellCasting.performed += OnSpellCasting;
-        playerInputActions.Player.SpellSwitch.performed += OnSpellSwitch;
+        playerInputActions.Player.SetCallbacks(this);
+        playerInputActions.Enable();
     }
 
     private void OnEnable()
@@ -123,7 +117,7 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
-    public void OnScroll(InputAction.CallbackContext context)
+    public void OnChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.started) 
         {
@@ -195,17 +189,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed())
+        Vector2 value = playerInputActions.Player.Movement.ReadValue<Vector2>();
+
+        if (value.x != 0 || value.y != 0)
         {
-            if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
-                animator.SetBool("Walk", true);
-                currentWeapon.GetAnimator().SetBool("Walk", true); 
-            }
+            isWalking = true;
         }
-        else if (context.performed) {
-            animator.SetBool("Walk", false);
-            currentWeapon.GetAnimator().SetBool("Walk", false);
+        else
+        {
+            isWalking = false;
         }
+                
+        GetComponent<PlayerMovement>().Move(value);
+
+        animator.SetBool("Walk", isWalking);
+        currentWeapon.GetAnimator().SetBool("Walk", isWalking); 
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -221,6 +219,11 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("Run", false);
             currentWeapon.GetAnimator().SetBool("Run", false);
         }
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        transform.GetComponent<PlayerInteraction>().Interact();
     }
 
     public void OnSpellCast(InputAction.CallbackContext context)

@@ -1748,6 +1748,7 @@ MonoBehaviour:
   animator: {fileID: 153524699417840477}
   range: 0
   player: {fileID: 7657625602918447259}
+  speedMultiplier: 1
   movementSound: {fileID: 961304731711646622}
   landSound: {fileID: 0}
   jumpSound: {fileID: 0}
@@ -1908,6 +1909,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d8fe9626-3583-4ce0-ba88-dd8bceb37c45
     m_ActionName: Player/SpellCasting[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbf86410-8547-4a26-b5f9-05bb3838cba6
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4c78e194af5aea24b8e755b2124eb94c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _COATOFARMSMASK: {instanceID: 0}
+  - _TextureSample2: {fileID: 2800000, guid: b905d00eea0998941970c3ca93863a84, type: 3}
+  - _TextureSample9: {fileID: 2800000, guid: 48d5e65c504ffc247bc3a9f23d875bd3, type: 3}
+  - _texcoord: {instanceID: 0}
+  - _texcoord2: {instanceID: 0}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -160,6 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4859267500469189711}
   - component: {fileID: 2459697535549737033}
+  - component: {fileID: 2240041534817976171}
   m_Layer: 5
   m_Name: HealthBarP
   m_TagString: Untagged
@@ -184,10 +185,10 @@ RectTransform:
   - {fileID: 6412849668944997642}
   m_Father: {fileID: 636954591401944257}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -426.9, y: -265.5}
-  m_SizeDelta: {x: 174.7516, y: 78.0065}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 110.1, y: 52.100006}
+  m_SizeDelta: {x: 174.75159, y: 78.0065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2459697535549737033
 MonoBehaviour:
@@ -235,11 +236,24 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2240041534817976171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542148523405017285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d529b782fe55fd44c94c408ff1080fe5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 2459697535549737033}
 --- !u!1 &4341687862393899610
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 14.3258, y: -3.8975}
+  m_AnchoredPosition: {x: 14.325798, y: -3.8975067}
   m_SizeDelta: {x: 3.5964, y: -45.824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &463992899589805520

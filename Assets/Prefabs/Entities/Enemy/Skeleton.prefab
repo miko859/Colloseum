@@ -1258,6 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 6394440241161260426}
+  collider: {fileID: 0}
 --- !u!114 &7306097169633504453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,7 +2190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1793849016078077888, guid: f7c59459c406fa04e8b2220eb4a70bd9, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1793849016078077888, guid: f7c59459c406fa04e8b2220eb4a70bd9, type: 3}
       propertyPath: m_TagString
@@ -2241,6 +2242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Player
+  blade: {fileID: 0}
+  bashColl: {fileID: 0}
 --- !u!65 &3959479997129887399
 BoxCollider:
   m_ObjectHideFlags: 0

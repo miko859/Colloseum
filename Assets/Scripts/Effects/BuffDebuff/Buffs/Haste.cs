@@ -13,7 +13,7 @@ public class Haste : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed += data.MovementSpeedChangedBy * stacks;
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().speedMultiplier += data.MovementSpeedChangedBy * stacks;
         }
         else
         {
@@ -25,7 +25,7 @@ public class Haste : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<PlayerMovement>().base_move_speed -= data.MovementSpeedChangedBy * stacks;
+            gameObject.transform.GetComponentInChildren<PlayerMovement>().speedMultiplier -= data.MovementSpeedChangedBy * stacks;
         }
         else
         {

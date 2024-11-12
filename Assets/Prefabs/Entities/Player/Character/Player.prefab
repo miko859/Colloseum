@@ -1764,6 +1764,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
+  spellManager: {fileID: 4095329820490981590}
+  spell: {fileID: 0}
   animator: {fileID: 153524699417840477}
 --- !u!114 &4341763608945074473
 MonoBehaviour:
@@ -1870,6 +1872,42 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fac49e2c-3959-4130-92b5-7cacafe5068d
     m_ActionName: Player/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSpellCast
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5511b03b-8d83-40c2-bed3-be2acc11088d
+    m_ActionName: Player/SpellCast[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSpellSwitch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b
+    m_ActionName: Player/SpellSwitch[/Keyboard/1,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d8fe9626-3583-4ce0-ba88-dd8bceb37c45
+    m_ActionName: Player/SpellCasting[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2179,8 +2217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3146849201201999580}
-  - component: {fileID: 1464293953253812349}
-  - component: {fileID: 2028962254863666105}
+  - component: {fileID: 4095329820490981590}
   m_Layer: 7
   m_Name: Spells
   m_TagString: Untagged
@@ -2196,14 +2233,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7669685703500485611}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 11.73, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.023, y: 1.53, z: 0.419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7657625602918447259}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &1464293953253812349
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4095329820490981590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2212,31 +2249,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7669685703500485611}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123cba4be3480384cb4e424df000e5f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 29bfed0ff8d97194abd1ee729374422b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballPrefab: {fileID: 0}
-  fireballSpeed: 15
-  castPoint: {fileID: 2872052656188863262}
-  manaSystem: {fileID: 0}
---- !u!114 &2028962254863666105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7669685703500485611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c5cf2150f681c468ea28913b4ee63d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flameEffect: {fileID: 7340702847124393659}
-  damagePerSecond: 1
-  damageInterval: 0.5
-  range: 10
-  swaySpeed: 5
-  manaSystem: {fileID: 0}
+  ballSpells:
+  - {fileID: 0}
+  elementSpells:
+  - {fileID: 2472572463129397038}
 --- !u!1 &7773327261199772111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2609,15 +2628,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4018642660988182919, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2472572463129397038}
   m_SourcePrefab: {fileID: 100100000, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
 --- !u!4 &5364221669309791235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2591932443275382088, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
   m_PrefabInstance: {fileID: 7604873315237556555}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &7340702847124393659 stripped
+--- !u!1 &6795080582632739020 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4018642660988182919, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
+  m_PrefabInstance: {fileID: 7604873315237556555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2472572463129397038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795080582632739020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c5cf2150f681c468ea28913b4ee63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manaCost: 5
+  damagePerSecond: 1
+  damageInterval: 0.5
+  range: 5
+  particleSystem: {fileID: 6877247422596937126}
+--- !u!198 &6877247422596937126 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 889044916411875312, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3961210451677185261, guid: a2f1de53e29145c4ebed4d57ffb60121, type: 3}
   m_PrefabInstance: {fileID: 7604873315237556555}
   m_PrefabAsset: {fileID: 0}

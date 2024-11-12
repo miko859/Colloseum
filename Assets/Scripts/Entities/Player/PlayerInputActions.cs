@@ -82,6 +82,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpellCasting"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8fe9626-3583-4ce0-ba88-dd8bceb37c45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""SpellSwitch"",
                     ""type"": ""Button"",
                     ""id"": ""53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b"",
@@ -183,8 +192,8 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0b361939-d7c3-4bef-b27f-c019ca7cf2dc"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpellCast"",
@@ -212,6 +221,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""SpellSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef597cd5-b430-4312-9468-7c3e8820fe73"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellCasting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +246,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_ChangeWeapon = m_Player.FindAction("Change Weapon", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
+        m_Player_SpellCasting = m_Player.FindAction("SpellCasting", throwIfNotFound: true);
         m_Player_SpellSwitch = m_Player.FindAction("SpellSwitch", throwIfNotFound: true);
     }
 
@@ -294,6 +315,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ChangeWeapon;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_SpellCast;
+    private readonly InputAction m_Player_SpellCasting;
     private readonly InputAction m_Player_SpellSwitch;
     public struct PlayerActions
     {
@@ -305,6 +327,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
+        public InputAction @SpellCasting => m_Wrapper.m_Player_SpellCasting;
         public InputAction @SpellSwitch => m_Wrapper.m_Player_SpellSwitch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -333,6 +356,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpellCast.started += instance.OnSpellCast;
             @SpellCast.performed += instance.OnSpellCast;
             @SpellCast.canceled += instance.OnSpellCast;
+            @SpellCasting.started += instance.OnSpellCasting;
+            @SpellCasting.performed += instance.OnSpellCasting;
+            @SpellCasting.canceled += instance.OnSpellCasting;
             @SpellSwitch.started += instance.OnSpellSwitch;
             @SpellSwitch.performed += instance.OnSpellSwitch;
             @SpellSwitch.canceled += instance.OnSpellSwitch;
@@ -358,6 +384,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SpellCast.started -= instance.OnSpellCast;
             @SpellCast.performed -= instance.OnSpellCast;
             @SpellCast.canceled -= instance.OnSpellCast;
+            @SpellCasting.started -= instance.OnSpellCasting;
+            @SpellCasting.performed -= instance.OnSpellCasting;
+            @SpellCasting.canceled -= instance.OnSpellCasting;
             @SpellSwitch.started -= instance.OnSpellSwitch;
             @SpellSwitch.performed -= instance.OnSpellSwitch;
             @SpellSwitch.canceled -= instance.OnSpellSwitch;
@@ -386,6 +415,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChangeWeapon(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnSpellCast(InputAction.CallbackContext context);
+        void OnSpellCasting(InputAction.CallbackContext context);
         void OnSpellSwitch(InputAction.CallbackContext context);
     }
 }

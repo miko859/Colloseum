@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
@@ -433,10 +433,10 @@ MonoBehaviour:
   manaSlider: {fileID: 8904758951397069904}
   maxMana: 100
   currentMana: 0
-  fireballManaCost: 40
+  fireballManaCost: 30
   flamethrowerCost: 2
   manaRegen: 1
   regenInterval: 0.18
+  vibrationAmount: 0.5
   vibrationDuration: 0.5
   vibrationMagnitude: 7.5
-  flameThrower: {fileID: 0}

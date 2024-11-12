@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.ChangeWeapon.performed += OnScroll;
         playerInputActions.Player.Run.performed += OnRun;
         playerInputActions.Player.SpellCast.performed += OnSpellCast;
+        playerInputActions.Player.SpellCasting.performed += OnSpellCasting;
         playerInputActions.Player.SpellSwitch.performed += OnSpellSwitch;
     }
 
@@ -224,11 +225,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnSpellCast(InputAction.CallbackContext context)
     {
-        if (context.performed && !context.action.IsPressed())
+        if (context.started)
         {
             spellManager.CallActiveBall();
         }
-        else if (context.action.IsPressed())
+    }
+
+    public void OnSpellCasting(InputAction.CallbackContext context)
+    {
+        
+        if (context.action.IsPressed())
         {
             spellManager.CallActive();
 
@@ -237,7 +243,6 @@ public class PlayerController : MonoBehaviour
         {
             spellManager.CallDeactive();
         }
-
     }
 
     public void OnSpellSwitch(InputAction.CallbackContext context)

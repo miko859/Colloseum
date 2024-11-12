@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpellCasting",
+                    "type": "Button",
+                    "id": "d8fe9626-3583-4ce0-ba88-dd8bceb37c45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SpellSwitch",
                     "type": "Button",
                     "id": "53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b",
@@ -161,8 +170,8 @@
                 {
                     "name": "",
                     "id": "0b361939-d7c3-4bef-b27f-c019ca7cf2dc",
-                    "path": "<Keyboard>/f",
-                    "interactions": "Press(behavior=2)",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "SpellCast",
@@ -188,6 +197,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpellSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef597cd5-b430-4312-9468-7c3e8820fe73",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCasting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

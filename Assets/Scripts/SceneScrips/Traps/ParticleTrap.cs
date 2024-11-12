@@ -6,7 +6,8 @@ public class ParticleTrap : Trap
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
     [SerializeField] public bool timer = false;
-    [ShowIf("timer", true, false)][SerializeField] float timeTillEnd = 0f;
+    //[ShowIf("timer", true, false)][SerializeField]
+    float timeTillEnd = 0f;
     public override void StartTrap()
     {
         SetDetectionCollidor(false, false);

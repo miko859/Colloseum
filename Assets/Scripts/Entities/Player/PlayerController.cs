@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         //playerInputActions.Player.Run.performed -= OnRun;
         playerInputActions.Player.Run.canceled -= OnRun;
 
+        playerInputActions.Player.SpellCast.canceled -= OnSpellCast;
+        playerInputActions.Player.SpellCast.started -= OnSpellCast;
+        //playerInputActions.Player.SpellCast.performed -= OnSpellCast;
 
         playerInputActions.Player.Enable();
     }

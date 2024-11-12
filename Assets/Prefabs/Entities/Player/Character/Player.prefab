@@ -1414,6 +1414,7 @@ GameObject:
   - component: {fileID: 961304731711646622}
   - component: {fileID: 1288085461979614336}
   - component: {fileID: 372730588996837534}
+  - component: {fileID: 2607887572890255059}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1598,6 +1599,18 @@ MonoBehaviour:
   maxHealth: 50
   healthBar: {fileID: 0}
   hasDeathAnimation: 0
+--- !u!114 &2607887572890255059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6391437961676749637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137186e98a45f0f4a8bb333c5ff74632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6662210690725507281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1768,6 +1781,7 @@ MonoBehaviour:
   spellManager: {fileID: 4095329820490981590}
   spell: {fileID: 0}
   animator: {fileID: 153524699417840477}
+  staminaBar: {fileID: 0}
 --- !u!114 &4341763608945074473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1859,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5867833435443790968}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnScroll
+        m_MethodName: OnChangeWeapon
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1906,11 +1920,22 @@ MonoBehaviour:
     m_ActionId: 53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b
     m_ActionName: Player/SpellSwitch[/Keyboard/1,/Keyboard/2]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSpellCasting
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d8fe9626-3583-4ce0-ba88-dd8bceb37c45
     m_ActionName: Player/SpellCasting[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
       m_Calls:
       - m_Target: {fileID: 5867833435443790968}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
@@ -1926,6 +1951,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: bbf86410-8547-4a26-b5f9-05bb3838cba6
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e565333b-206b-4afc-bdae-210533bb39d1
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

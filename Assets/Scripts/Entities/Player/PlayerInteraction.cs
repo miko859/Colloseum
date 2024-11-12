@@ -11,13 +11,14 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         CheckForInteractable();
+    }
 
-        if (currentInteractable != null && Input.GetKeyDown(KeyCode.E))
+    public void Interact()
+    {
+        if (currentInteractable != null)
         {
             currentInteractable.Interact();
         }
-
-        
     }
 
     private void CheckForInteractable()
@@ -34,7 +35,6 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null)
             {
                 currentInteractable = interactable;
-                Debug.Log(interactable.GetInteractPrompt());
             }
             else
             {

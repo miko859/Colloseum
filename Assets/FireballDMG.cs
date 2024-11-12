@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FireballDMG : MonoBehaviour
 {
-    public int damage = 2;
+    public float damage = 2;
 
     void OnTriggerEnter(Collider other)
     {

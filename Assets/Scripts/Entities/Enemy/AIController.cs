@@ -1,12 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
-using static UnityEngine.GraphicsBuffer;
 
 public class AIController : MonoBehaviour
 {
@@ -29,12 +23,13 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
-    private int buffDebuffDmg = 0;
+    private float buffDebuffDmg = 0;
 
     private float elapsedTime = 0;
 
+    private float savedSpeedToRestore;
 
-    public void ChangeBuffDebuffDmgBy(int value)
+    public void ChangeBuffDebuffDmgBy(float value)
     {
         buffDebuffDmg += value;
     }
@@ -49,6 +44,7 @@ public class AIController : MonoBehaviour
         animator = GetComponent<Animator>();
         blade = weapon.GetComponent<Collider>();
         patrolling = GetComponent<Patrolling>();
+        savedSpeedToRestore = agent.speed;
 
         if (agent == null)
         {
@@ -161,6 +157,11 @@ public class AIController : MonoBehaviour
         }
     }
 
+    public void RestoreMovementSpeed()
+    {
+        agent.speed = savedSpeedToRestore;
+    }
+
     private bool CanSeeTarget()
     {
         Vector3 toTarget = player.transform.position - transform.position;
@@ -235,11 +236,27 @@ public class AIController : MonoBehaviour
         fullDistance = temp;
     }
 
-    public int getDamage()
+    public float getDamage()
     {
         return enemyData.lightAttackDamage + buffDebuffDmg;
     }
 
+    public IEnumerator BeingPushedMovement(float time, Vector3 direction)
+    {
+        Vector3 startingPos = transform.position;
+        Vector3 finalPos = transform.position + (direction * 2);
+
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            Debug.Log($"{elapsedTime} enemy is being pushed");
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
 
     //shows path in Scene
     private void OnDrawGizmos()

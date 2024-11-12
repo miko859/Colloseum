@@ -13,11 +13,11 @@ public class Weakness : BuffDebuff
     {
         if (gameObject.tag.Equals("Player"))
         {
-            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg(data.DamageChangedBy * stacks);
+            gameObject.transform.GetComponentInChildren<WeaponAnimations>().ChangeBuffDebuffDmg(data.DamageChangedBy);
         }
         else
         {
-            gameObject.transform.GetComponent<AIController>().ChangeBuffDebuffDmgBy(data.DamageChangedBy * stacks);
+            gameObject.transform.GetComponent<AIController>().ChangeBuffDebuffDmgBy(data.DamageChangedBy);
         }
     }
 

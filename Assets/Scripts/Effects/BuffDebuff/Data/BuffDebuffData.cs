@@ -5,7 +5,7 @@ public static class BuffDebuffData
         Id = 1,
         Name = "Burning",
         DamagePerTick = 2,
-        Frequency = 1f,
+        Frequency = 1,
         Duration = 4.5f
     };
 
@@ -13,8 +13,8 @@ public static class BuffDebuffData
     {
         Id = 2,
         Name = "Freezing",
-        MovementSpeedChangedBy = 2.5f,
-        Duration = 3f
+        MovementSpeedChangedBy = 0.1f,
+        Duration = 3
     };
 
     public static BuffDebuffConfig PoisonConfig = new BuffDebuffConfig
@@ -29,7 +29,7 @@ public static class BuffDebuffData
     {
         Id = 4,
         Name = "Bleeding",
-        Duration = 6f,
+        Duration = 6,
         DamagePerTick = 1
     };
 
@@ -37,7 +37,7 @@ public static class BuffDebuffData
     {
         Id = 5,
         Name = "Weakness",
-        Duration = 4f,
+        Duration = 4,
         DamageChangedBy = -3
     };
 
@@ -45,7 +45,7 @@ public static class BuffDebuffData
     {
         Id = 6,
         Name = "Silence",
-        Duration = 8f,
+        Duration = 8,
         DisableSpellsSkills = true,
     };
 
@@ -53,7 +53,7 @@ public static class BuffDebuffData
     {
         Id = 7,
         Name = "Blessing of Healing",
-        Duration = 5f,
+        Duration = 5,
         HealPerTick = 1
     };
 
@@ -61,7 +61,7 @@ public static class BuffDebuffData
     {
         Id = 8,
         Name = "Power of Minotaur",
-        Duration = 4f,
+        Duration = 4,
         DamageChangedBy = 2
     };
 
@@ -69,7 +69,7 @@ public static class BuffDebuffData
     {
         Id = 9,
         Name = "Haste",
-        Duration = 5f,
+        Duration = 5,
         MovementSpeedChangedBy = 2.5f,
     };
 }

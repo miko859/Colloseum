@@ -4,7 +4,7 @@ using UnityEngine;
 public class FlameThrower : MonoBehaviour
 {
     public ParticleSystem flameEffect;
-    public int damagePerSecond = 5;
+    public float damagePerSecond = 5;
     public float damageInterval = 0.5f;
     public float range = 10f;
     public float swaySpeed = 5f;

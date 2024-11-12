@@ -3,8 +3,8 @@ using UnityEngine.AI;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 3; 
-    private int currentHealth; 
+    public double maxHealth = 3; 
+    private double currentHealth; 
     private Animator animator;
     public HealthBar healthBar;
     private Weapon weapon;
@@ -20,7 +20,6 @@ public class Health : MonoBehaviour
 
     public void Update()
     {
-        //Debug.Log(Time.deltaTime);
         if (currentHealth <= 0)
         {
             if (transform.CompareTag("Enemy"))
@@ -28,11 +27,20 @@ public class Health : MonoBehaviour
                 if (hasDeathAnimation)
                 {
                     animator.SetBool("death", true);
+                    transform.tag = "Ground";
+                    transform.GetComponent<NavMeshAgent>().enabled = false;
+                    transform.GetComponent<AIController>().enabled = false;
+                }
+                else
+                {
+                    transform.tag = "Ground";
+                    animator.enabled = false;
+                    transform.GetComponent<NavMeshAgent>().enabled = false;
+                    transform.GetComponent<AIController>().enabled = false;
                 }
 
-                transform.tag = "Ground";
-                animator.enabled = false;
-                transform.GetComponent<NavMeshAgent>().enabled = false;
+
+                
             }
             else if (transform.CompareTag("Player"))
             {
@@ -53,15 +61,15 @@ public class Health : MonoBehaviour
     }
 
 
-    public void DealDamage(int damage)
+    public void DealDamage(float damage)
     {
         currentHealth -= damage; 
         healthBar.SetHealth(currentHealth); 
     }
 
-    public void Heal(int value)
+    public void Heal(float value)
     {
         currentHealth += value;
-        healthBar.SetHealth(value); 
+        healthBar.SetHealth(currentHealth); 
     }
 }

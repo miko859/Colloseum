@@ -1,19 +1,18 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 {
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
     private EquipedWeaponManager equipedWeaponManager;
 
     public Animator animator;
+    public StaminaBar staminaBar;
 
-    private bool isCharging = false;
-
+    private bool isCharging = true;
     private bool isWalking = false;
 
     [Header("Testujem")]
@@ -26,13 +25,24 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
+        staminaBar.SetMaxStamina(100, 2.5);
 
         playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.Attack.performed += OnAttack;
-        playerInputActions.Player.Block.performed += OnBlock;
-        playerInputActions.Player.Movement.performed += OnMovement;
-        playerInputActions.Player.ChangeWeapon.performed += OnScroll;
-        playerInputActions.Player.Run.performed += OnRun;
+        playerInputActions.Player.AddCallbacks(this);
+
+        playerInputActions.Player.Block.started -= OnBlock;
+        playerInputActions.Player.Block.canceled -= OnBlock;
+
+        playerInputActions.Player.Attack.canceled -= OnAttack;
+        playerInputActions.Player.Attack.started -= OnAttack;
+        playerInputActions.Player.Attack.performed -= OnAttack;
+
+        playerInputActions.Player.Run.started -= OnRun;
+        //playerInputActions.Player.Run.performed -= OnRun;
+        playerInputActions.Player.Run.canceled -= OnRun;
+
+
+        playerInputActions.Player.Enable();
     }
 
     private void OnEnable()
@@ -45,15 +55,28 @@ public class PlayerController : MonoBehaviour
         playerInputActions.Player.Disable();
     }
 
-    /// <summary>
-    /// update is readed every frame
-    /// </summary>
+    private bool isBashing = false;
+
     private void Update()
     {
         if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
         { 
-            currentWeapon.Bash(); 
+            if (staminaBar.GetCurrentStamina() > currentWeapon.weaponData.bashStaminaCons && !isBashing)
+            {
+                isBashing = !isBashing;
+                StartCoroutine(BashCooldown());
+                Debug.Log("Bash");
+                currentWeapon.Bash();
+                staminaBar.ReduceStamina(currentWeapon.weaponData.bashStaminaCons);
+                currentWeapon.SetIsBashing(true);
+            }
         }
+    }
+
+    IEnumerator BashCooldown()
+    {
+        yield return new WaitForSeconds(currentWeapon.weaponData.bashDuration);
+        isBashing = !isBashing;
     }
 
     /// <summary>
@@ -89,8 +112,6 @@ public class PlayerController : MonoBehaviour
 
         if (currentWeapon != null)
         {
-            //StartCoroutine(test());
-
             // sync parameters
             foreach (AnimatorControllerParameter parameter in currentWeapon.bodyAnimator.parameters)
             {
@@ -110,14 +131,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator test()
+    public StaminaBar GetStaminaBar()
     {
-        Debug.Log($"{currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime} === {currentWeapon.GetAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime}");
-        currentWeapon.GetAnimator().Play(currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).fullPathHash, 0, currentWeapon.GetBodyAnimator().GetCurrentAnimatorStateInfo(0).normalizedTime);
-        yield return null;
+        return staminaBar;
     }
 
-    public void OnScroll(InputAction.CallbackContext context)
+    public bool GetIsBashing()
+    {
+        return isBashing;
+    }
+
+    public void OnChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.started) 
         {
@@ -146,65 +170,97 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool test = false;
+
     /// <summary>
     /// Will perform attack based on action, if just clicked, LightAttack will be performed and if action is Hold, attack will charge and by releasing button HardAttack will perform
     /// </summary>
     /// <param name="context"></param>
     public void OnAttack(InputAction.CallbackContext context)
     {
-            if (context.started)
+        
+        if (context.interaction is SlowTapInteraction && context.started && context.time > 1 && context.action.IsPressed())
+        {
+            if (staminaBar.GetCurrentStamina() >= currentWeapon.weaponData.heavyAttackStaminaCons)
             {
                 isCharging = true;
+                currentWeapon.HardAttack(true);
             }
-            else if (isCharging)
+            
+        }
+        if (context.performed && context.interaction is SlowTapInteraction)
+        {
+            currentWeapon.HardAttack(false);
+            
+            if (isCharging)
             {
-                if (context.interaction is TapInteraction && context.performed)
-                {
-                    
-                    currentWeapon.Attack();
-                    isCharging = false;
+                staminaBar.ReduceStamina(currentWeapon.weaponData.heavyAttackStaminaCons);
+                isCharging = false;
+            }
+        }
 
-                }
-                if (context.action.IsPressed())
-                {
-                    currentWeapon.HardAttack(true);
-                }
-                else
-                {
-                    
-                    currentWeapon.HardAttack(false);
-                    isCharging = false;
-                }
-            } 
+        if (context.performed && context.interaction is TapInteraction)
+        {
+            currentWeapon.Attack();
+        }
+
+        if (context.interaction is SlowTapInteraction && context.canceled)
+        {
+            StartCoroutine(CancelHeavyAttack());
+            isCharging = false;
+        }
+    }
+
+    IEnumerator CancelHeavyAttack()
+    {
+        animator.SetBool("Return", true);
+        currentWeapon.GetAnimator().SetBool("Return", true);
+        currentWeapon.GetAnimator().SetBool(currentWeapon.weaponData.heavyAttackAnimation, false);
+        animator.SetBool(currentWeapon.weaponData.heavyAttackAnimation, false);
+        
+        yield return new WaitForSeconds(currentWeapon.weaponData.heavyAttackChargeDuration);
+        animator.SetBool("Return", false);
+        currentWeapon.GetAnimator().SetBool("Return", false);
     }
     
+    public void SetIsCharging(bool value)
+    {
+        isCharging = value;
+    }
+
     /// <summary>
     /// Will perform block
     /// </summary>
     /// <param name="context"></param>
     public void OnBlock(InputAction.CallbackContext context)
-    { 
-        currentWeapon.Block(); 
+    {
+        currentWeapon.Block();    
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed())
+        Vector2 value = playerInputActions.Player.Movement.ReadValue<Vector2>();
+
+        if (value.x != 0 || value.y != 0)
         {
-            if (context.control.name == "w" || context.control.name == "s" || context.control.name == "a" || context.control.name == "d") {
-                animator.SetBool("Walk", true);
-                currentWeapon.GetAnimator().SetBool("Walk", true); 
-            }
+            isWalking = true;
         }
-        else if (context.performed) {
-            animator.SetBool("Walk", false);
-            currentWeapon.GetAnimator().SetBool("Walk", false);
+        else
+        {
+            isWalking = false;
         }
+                
+        GetComponent<PlayerMovement>().Move(value);
+
+        animator.SetBool("Walk", isWalking);
+        currentWeapon.GetAnimator().SetBool("Walk", isWalking); 
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.action.IsPressed())
+        GetComponent<PlayerMovement>().Run();
+
+        if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
         {
             animator.SetBool("Run", true);
             currentWeapon.GetAnimator().SetBool("Run", true);
@@ -214,6 +270,37 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Run", false);
             currentWeapon.GetAnimator().SetBool("Run", false);
+        }
+    }
+
+    private bool interacted = false;
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            
+            if (!interacted)
+            {
+                transform.GetComponent<PlayerInteraction>().Interact();
+                interacted = true;
+            } 
+            
+        }
+        else if (context.performed) 
+        { 
+            interacted = false; 
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (staminaBar.GetCurrentStamina() > 15)
+            {
+                GetComponent<PlayerMovement>().Jump();
+            }
+            
         }
     }
 

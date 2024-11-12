@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController playerController;
     Vector3 movement_direction;
     float movement_speed;
-    public float base_move_speed = 10f;
+    public float base_move_speed = 12f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -34,6 +34,12 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform player;
 
+    public float speedMultiplier = 1f;
+
+    private bool holdShift = false;
+    private float runElapsedTime;
+    private StaminaBar staminaBar;
+
     [Header("Sound effects")]
     public AudioSource movementSound;
     public AudioSource landSound;
@@ -41,18 +47,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        staminaBar = GetComponent<PlayerController>().GetStaminaBar();
+    }
+
+    /// <summary>
+    /// Sets data from Input to values to move player object
+    /// </summary>
+    /// <param name="value">2D Vector (x,y(z))</param>
+    public void Move(Vector2 value)
+    {
+        if (!isJumping)
+        {
+            movement_x = value.x;
+            movement_z = value.y;
+        }
     }
 
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (!isJumping)
-        {
-            movement_x = Input.GetAxisRaw("Horizontal");
-            movement_z = Input.GetAxisRaw("Vertical");
-
-        }
 
         Vector3 input_direction = (player.transform.right * movement_x + player.transform.forward * movement_z).normalized;
         if ((movement_x != 0 || movement_z != 0) && isGrounded)
@@ -70,9 +83,19 @@ public class PlayerMovement : MonoBehaviour
             startedSound = false;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (holdShift)
         {
-            target_speed = sprint_speed;
+            
+
+            if (staminaBar.GetCurrentStamina() > 0.2)
+            {
+                staminaBar.ReduceStamina(0.2);
+                target_speed = sprint_speed * speedMultiplier;
+            }
+            else
+            {
+                target_speed = base_move_speed;
+            }
         }
         else
         {
@@ -86,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
             PlayLandSound(); // Play the landing sound
             wasGrounded = false;
             hasJumped = false; // Reset the jump after landing
+            
         }
 
         if (!isGrounded) // Reduce target speed by 20%
@@ -102,12 +126,19 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            movement_speed = target_speed;
+            movement_speed = target_speed * speedMultiplier;
         }
 
         movement_direction = input_direction; // you don't need to modify direction for air control, just speed
-
+        
         playerController.Move(movement_direction * movement_speed * Time.deltaTime);
+
+        if (isGrounded)
+        {
+            
+            isJumping = false;
+        }
+        
 
         if (isGrounded)
         {
@@ -124,23 +155,32 @@ public class PlayerMovement : MonoBehaviour
 
         playerController.Move(velocity * Time.deltaTime * gravity_acceleration);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            PlayJumpSound(); // Play jump sound
-            isJumping = true;
-            hasJumped = true;
-        }
-        else if (isGrounded)
-        {
-            isJumping = false;
-
-        }
-
         if (isGrounded && (movement_x != 0 || movement_z != 0))
         {
             PlayFootstepSound();
         }
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            PlayJumpSound(); // Play jump sound
+            staminaBar.ReduceStamina(15);
+            isJumping = true;
+            hasJumped = true;
+        }
+    }
+
+    public void Run()
+    {
+        holdShift = !holdShift;
+    }
+
+    public void RestoreMovementSpeed()
+    {
+        speedMultiplier = 1f;
     }
 
     IEnumerator StartMovementSoundWithDelay(float delay)

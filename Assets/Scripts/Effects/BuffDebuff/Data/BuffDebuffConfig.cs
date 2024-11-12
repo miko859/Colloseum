@@ -9,10 +9,10 @@ public class BuffDebuffConfig
     public string Description { get; set; }
     public float Duration { get; set; }
     public float Frequency { get; set; }
-    public int DamagePerTick { get; set; }
-    public int HealPerTick { get; set; }
+    public float DamagePerTick { get; set; }
+    public float HealPerTick { get; set; }
     public float MovementSpeedChangedBy { get; set; }
-    public int DamageChangedBy { get; set; }
+    public float DamageChangedBy { get; set; }
     public bool DisableSpellsSkills { get; set; }
     public int MaxStacks { get; set; }
 }

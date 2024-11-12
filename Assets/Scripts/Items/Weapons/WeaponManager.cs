@@ -1,22 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
     public string target;
     private bool isEnemyWeapon;
-    private Collider blade;
+    public Collider blade;
+    public Collider bashColl;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
     private AIController aiController;
     private Transform owner;
+    private bool isBashing = false;
 
     /// <summary>
     /// Set blade for hitboxes and weaponAnimations to get DMG of actual attack
     /// </summary>
     void Start()
     {
-        blade = GetComponent<Collider>();
-        
+        if (blade == null)
+        {
+            blade = GetComponent<Collider>();
+        }
 
         owner = FindObjectWithTag(transform, "Player") ?? FindObjectWithTag(transform, "Enemy");
 
@@ -49,10 +54,25 @@ public class WeaponManager : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(target) & !hit)
+        
+        if (target.Equals("Enemy") && bashColl.enabled)
         {
-            other.GetComponent<Health>().DealDamage(CalculateDamage());
-            Debug.Log("you hit " + target + " by damage " + CalculateDamage());
+            if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
+            {
+                Debug.Log($"other.transform.position.y {other.transform.position.y}");
+                Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
+                                                0,
+                                                other.transform.position.z - transform.position.z);
+                
+
+                AIController enemy = other.transform.GetComponent<AIController>();
+                StartCoroutine(enemy.BeingPushedMovement(1.5f, direction));
+            }
+        }
+        else if (other.CompareTag(target) && !hit && blade.isTrigger)
+        {
+            other.GetComponent<Health>().DealDamage(CalculateDamage(other));
+            Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));
             hit = true; 
 
             if (other.tag == "Player")
@@ -83,15 +103,42 @@ public class WeaponManager : MonoBehaviour
         return current;
     }
 
-    private int CalculateDamage()
+    private float CalculateDamage(Collider other)
     {
         if (isEnemyWeapon && aiController != null)
         {
+            PlayerController playerController = other.transform.GetChild(0).GetComponent<PlayerController>();
+            WeaponAnimations playerWeaponAnimations = other.GetComponentInChildren<WeaponAnimations>();
+
+            if (playerWeaponAnimations.getIsBlocking() && playerController.GetStaminaBar().GetCurrentStamina() > playerWeaponAnimations.weaponData.blockStaminaCons)
+            {
+                playerController.GetStaminaBar().ReduceStamina(playerWeaponAnimations.weaponData.blockStaminaCons);
+                float total = aiController.getDamage() - playerWeaponAnimations.weaponData.blockTreshhold;
+                Debug.Log($"total damage {total} AI dmg {aiController.getDamage()} player block {playerWeaponAnimations.weaponData.blockTreshhold}");
+                if (total > 0)
+                {
+                    return total;
+                }
+                return 0;
+            }
             return aiController.getDamage();
         }
         else
-        {
+        { 
             return weaponAnimations.getDamage();
         }
+    }
+
+    public IEnumerator SwapCollBlockBash()
+    {
+        //blade.isTrigger = false;
+        blade.enabled = false;
+        //bashColl.isTrigger = true;
+        bashColl.enabled = true;
+        yield return new WaitForSeconds(weaponAnimations.weaponData.bashDuration);
+        //blade.isTrigger = true;
+        blade.enabled = true;
+        //bashColl.isTrigger = false;
+        bashColl.enabled = false;
     }
 }

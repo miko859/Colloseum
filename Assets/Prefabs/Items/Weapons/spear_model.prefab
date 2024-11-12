@@ -200,6 +200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: Enemy
+  blade: {fileID: 6967366831865226583}
+  bashColl: {fileID: 3560526464967612277}
 --- !u!114 &7394388629638840934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 3680616656190884529}
+  collider: {fileID: 6967366831865226583}
 --- !u!1 &4104360826609985518
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6796966717834856562}
   - component: {fileID: 6967366831865226583}
+  - component: {fileID: 3560526464967612277}
   m_Layer: 9
   m_Name: root
   m_TagString: Untagged
@@ -266,6 +270,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.015, y: 0.07, z: 0.015}
   m_Center: {x: 0, y: 0.08, z: 0}
+--- !u!65 &3560526464967612277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104360826609985518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.04, y: 0.15, z: 0.04}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5485520753340955455
 GameObject:
   m_ObjectHideFlags: 0

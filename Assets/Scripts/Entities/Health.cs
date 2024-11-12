@@ -27,11 +27,20 @@ public class Health : MonoBehaviour
                 if (hasDeathAnimation)
                 {
                     animator.SetBool("death", true);
+                    transform.tag = "Ground";
+                    transform.GetComponent<NavMeshAgent>().enabled = false;
+                    transform.GetComponent<AIController>().enabled = false;
+                }
+                else
+                {
+                    transform.tag = "Ground";
+                    animator.enabled = false;
+                    transform.GetComponent<NavMeshAgent>().enabled = false;
+                    transform.GetComponent<AIController>().enabled = false;
                 }
 
-                transform.tag = "Ground";
-                animator.enabled = false;
-                transform.GetComponent<NavMeshAgent>().enabled = false;
+
+                
             }
             else if (transform.CompareTag("Player"))
             {

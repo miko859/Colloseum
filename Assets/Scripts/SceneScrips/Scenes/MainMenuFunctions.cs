@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuFunctions : MonoBehaviour
 {
@@ -16,5 +12,6 @@ public class MainMenuFunctions : MonoBehaviour
     {
         mainMenu.SetActive(false);
         Time.timeScale = false ? 0.0f : 1.0f;
+
     }
 }

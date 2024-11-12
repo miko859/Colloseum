@@ -1,12 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Progress;
-using static UnityEngine.GraphicsBuffer;
 
 public class AIController : MonoBehaviour
 {
@@ -29,13 +23,13 @@ public class AIController : MonoBehaviour
     private bool knowAboutPlayer;
     private bool fallBack;
 
-    private int buffDebuffDmg = 0;
+    private float buffDebuffDmg = 0;
 
     private float elapsedTime = 0;
 
     private float savedSpeedToRestore;
 
-    public void ChangeBuffDebuffDmgBy(int value)
+    public void ChangeBuffDebuffDmgBy(float value)
     {
         buffDebuffDmg += value;
     }
@@ -242,7 +236,7 @@ public class AIController : MonoBehaviour
         fullDistance = temp;
     }
 
-    public int getDamage()
+    public float getDamage()
     {
         return enemyData.lightAttackDamage + buffDebuffDmg;
     }

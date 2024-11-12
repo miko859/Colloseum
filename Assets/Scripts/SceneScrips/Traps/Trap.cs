@@ -17,7 +17,7 @@ public abstract class Trap : MonoBehaviour
     [Header("Trap settings")]
     public bool singleUse = false;
     public bool enemyCanActivate = true;
-    public int damage = 0;
+    public float damage = 0;
     public bool dmgPerTick = false;
     [Header("Trap Animation")]
     public Animator animator;

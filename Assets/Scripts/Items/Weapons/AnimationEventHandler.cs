@@ -8,12 +8,15 @@ public class AnimationEventHandler : MonoBehaviour
     public GameObject weapon;
 
     private WeaponManager weaponManager;
-    private Collider collider;
+    public Collider collider;
 
     private void Start()
     {
         weaponManager = weapon.GetComponent<WeaponManager>();
-        collider = weapon.GetComponent<Collider>();
+        if (collider == null)
+        {
+            collider = weapon.GetComponent<Collider>();
+        }
     }
 
     private void AnimationFinishedTrigger()

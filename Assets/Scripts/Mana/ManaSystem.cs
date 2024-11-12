@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class ManaSystem : MonoBehaviour
 {
     public Slider manaSlider;
-    public int maxMana = 100;
-    public int currentMana;
-    public int fireballManaCost = 10;
-    public int flamethrowerCost = 2;
-    public int manaRegen = 1;
+    public float maxMana = 100;
+    public float currentMana;
+    public float fireballManaCost = 10;
+    public float flamethrowerCost = 2;
+    public float manaRegen = 1;
     public float regenInterval = 0.2f;
     private bool isFlameActive = false;
     private Coroutine manaSpendingCoroutine;

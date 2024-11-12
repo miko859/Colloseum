@@ -1,18 +1,58 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider healthSlider; 
+    public Slider healthSlider;
 
-    public void SetMaxHealth(int health)
+    private double currentHealth;
+    private double changedHealth;
+
+    public void SetMaxHealth(double health)
     {
-        healthSlider.maxValue = health;
-        healthSlider.value = health;
+        healthSlider.maxValue = (float)health;
+        healthSlider.value = (float)health;
+
+        currentHealth = health;
+        changedHealth = health;
     }
 
-    public void SetHealth(int health)
+    public void SetHealth(double health)
     {
-        healthSlider.value = health;
+        changedHealth = health;
+    }
+
+    private void Update()
+    {
+        if (healthSlider != null)
+        {
+
+            if (currentHealth > changedHealth)
+            {
+                double healthSmoothTake = (currentHealth - changedHealth) / 30 + 0.1 * Time.deltaTime;
+                healthSlider.value -= (float)healthSmoothTake;
+                currentHealth -= healthSmoothTake;
+
+                if (healthSlider.value <= changedHealth)
+                {
+                    currentHealth = changedHealth;
+                    healthSlider.value = (float)changedHealth;
+                }
+            }
+            else if (currentHealth < changedHealth)
+            {
+                double healthSmoothAdd = (changedHealth - currentHealth) / 30 + 0.1 * Time.deltaTime;
+                healthSlider.value += (float)healthSmoothAdd;
+                currentHealth += healthSmoothAdd;
+
+                if (healthSlider.value >= changedHealth)
+                {
+                    currentHealth = changedHealth;
+                    healthSlider.value = (float)changedHealth;
+                }
+            }
+            
+        }
     }
 }

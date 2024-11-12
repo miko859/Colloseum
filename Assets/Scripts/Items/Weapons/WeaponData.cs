@@ -23,6 +23,11 @@ public class WeaponData : ScriptableObject
     public string bashAnimation;
     public string hurtAnimation;
     [Header("Weapon stats")]
-    public int lightAttackDamage;
-    public int heavyAttackDamage;
+    public float lightAttackDamage;
+    public float heavyAttackDamage;
+    public float blockTreshhold;
+    [Header("Stamina Consumption")]
+    public float heavyAttackStaminaCons;
+    public float bashStaminaCons;
+    public float blockStaminaCons;
 }

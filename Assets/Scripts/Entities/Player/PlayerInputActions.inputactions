@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "e565333b-206b-4afc-bdae-210533bb39d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -103,7 +112,18 @@
                     "name": "",
                     "id": "50aa1310-b0d7-46b8-8f0b-eea3b43ec68b",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap(duration=0.2,pressPoint=0.5),SlowTap(duration=0.5,pressPoint=0.5)",
+                    "interactions": "Tap(duration=0.2,pressPoint=0.5),SlowTap(duration=0.4,pressPoint=0.4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "112ad704-70f1-48ba-bd9d-bddce26fbddc",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold(duration=0.4,pressPoint=0.5)",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
@@ -191,7 +211,7 @@
                     "name": "",
                     "id": "07a1fcc0-6ae9-4523-a371-f6faa915b6e2",
                     "path": "<Keyboard>/e",
-                    "interactions": "Press",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
@@ -239,6 +259,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpellCasting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a928ead2-3046-4fbe-ba09-e3fba5569846",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

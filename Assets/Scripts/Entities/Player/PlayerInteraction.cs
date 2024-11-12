@@ -35,7 +35,6 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null)
             {
                 currentInteractable = interactable;
-                Debug.Log(interactable.GetInteractPrompt());
             }
             else
             {

@@ -4,7 +4,7 @@ public class WeaponManager : MonoBehaviour
 {
     public string target;
     private bool isEnemyWeapon;
-    private Collider blade;
+    public Collider blade;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
     private AIController aiController;
@@ -15,8 +15,10 @@ public class WeaponManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        blade = GetComponent<Collider>();
-        
+        if (blade == null)
+        {
+            blade = GetComponent<Collider>();
+        }
 
         owner = FindObjectWithTag(transform, "Player") ?? FindObjectWithTag(transform, "Enemy");
 
@@ -51,8 +53,8 @@ public class WeaponManager : MonoBehaviour
     {
         if (other.CompareTag(target) & !hit)
         {
-            other.GetComponent<Health>().DealDamage(CalculateDamage());
-            Debug.Log("you hit " + target + " by damage " + CalculateDamage());
+            other.GetComponent<Health>().DealDamage(CalculateDamage(other));
+            Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));
             hit = true; 
 
             if (other.tag == "Player")
@@ -83,14 +85,28 @@ public class WeaponManager : MonoBehaviour
         return current;
     }
 
-    private int CalculateDamage()
+    private float CalculateDamage(Collider other)
     {
         if (isEnemyWeapon && aiController != null)
         {
+            PlayerController playerController = other.transform.GetChild(0).GetComponent<PlayerController>();
+            WeaponAnimations playerWeaponAnimations = other.GetComponentInChildren<WeaponAnimations>();
+
+            if (playerWeaponAnimations.getIsBlocking() && playerController.GetStaminaBar().GetCurrentStamina() > playerWeaponAnimations.weaponData.blockStaminaCons)
+            {
+                playerController.GetStaminaBar().ReduceStamina(playerWeaponAnimations.weaponData.blockStaminaCons);
+                float total = aiController.getDamage() - playerWeaponAnimations.weaponData.blockTreshhold;
+                Debug.Log($"total damage {total} AI dmg {aiController.getDamage()} player block {playerWeaponAnimations.weaponData.blockTreshhold}");
+                if (total > 0)
+                {
+                    return total;
+                }
+                return 0;
+            }
             return aiController.getDamage();
         }
         else
-        {
+        { 
             return weaponAnimations.getDamage();
         }
     }

@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Progress;
+using static UnityEngine.GraphicsBuffer;
 
 public class AIController : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class AIController : MonoBehaviour
     private Collider blade;
     private Patrolling patrolling;      //script for patrolling
     public EnemyData enemyData;
+
+    private bool forwardCheck = true;
 
     private bool isAttacking;
     private bool knowAboutPlayer;
@@ -65,6 +69,14 @@ public class AIController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
+            if (follows && !CanSeeTarget())
+            {
+                
+                Vector3 direction = (player.transform.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 2);
+            }
+
             if (elapsedTime >= 0.33)
             {
                 elapsedTime = 0;
@@ -76,6 +88,7 @@ public class AIController : MonoBehaviour
 
                 if (knowAboutPlayer & distanceToPlayer <= 20 & path.status != NavMeshPathStatus.PathComplete)
                 {
+                    
                     Debug.Log(knowAboutPlayer + " " +  distanceToPlayer + " " + path.status.ToString());
                     fallBack = false;
                     patrolling.StopPatrolling();
@@ -98,6 +111,7 @@ public class AIController : MonoBehaviour
                 }
                 else if (path.status == NavMeshPathStatus.PathComplete & fullDistance <= 20 & fullDistance != 0)
                 {
+                    
                     fallBack = false;
                     knowAboutPlayer = true;
                     agent.stoppingDistance = 2.5f;
@@ -107,7 +121,7 @@ public class AIController : MonoBehaviour
                     animator.SetBool("walk", true);
                     follows = true;
 
-                    if (fullDistance <= 3 || (fullDistance <= 3 && IsPlayerAbove()))
+                    if (fullDistance <= 4 || (fullDistance <= 4 && IsPlayerAbove()))
                     {
                         AiStateAttackOrGoBack();
                     }
@@ -147,13 +161,25 @@ public class AIController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Check if player is above enemy entity
-    /// </summary>
-    /// <returns>
-    /// bool = true/false
-    /// </returns>
-    private bool IsPlayerAbove()
+    private bool CanSeeTarget()
+    {
+        Vector3 toTarget = player.transform.position - transform.position;
+        if (Physics.Raycast(transform.position, toTarget, out RaycastHit hit))
+        {
+            if (hit.transform.root == player)
+                return true;
+        }
+        return false;
+    }
+    
+
+        /// <summary>
+        /// Check if player is above enemy entity
+        /// </summary>
+        /// <returns>
+        /// bool = true/false
+        /// </returns>
+        private bool IsPlayerAbove()
     {
         RaycastHit hit;
         Vector3 direction = (player.transform.position - agent.transform.position).normalized;
@@ -174,18 +200,20 @@ public class AIController : MonoBehaviour
         {
             animator.SetBool("walk", false);
             animator.SetBool("attack", true);
+            forwardCheck = true;
         }
         else
         {
             animator.SetBool("walk", false);
             animator.SetBool("attack", false);
+            forwardCheck = false;
         }
     }
 
         private IEnumerator TimeUntilEnemyForgetPlayer()
     {
         yield return new WaitForSecondsRealtime(5);
-       // knowAboutPlayer = false;
+        //knowAboutPlayer = false;
     }
 
     

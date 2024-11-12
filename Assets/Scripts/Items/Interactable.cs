@@ -7,6 +7,8 @@ public abstract class Interactable : MonoBehaviour
     /// Function, triggered by interaction by player with items
     /// </summary>
     public abstract void Interact();
+    public abstract void EquipWeapon(Item item);
+
 
     /// <summary>
     /// To show on screen it's interactable and what to press

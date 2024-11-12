@@ -296,7 +296,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         if (context.started)
         {
-            GetComponent<PlayerMovement>().Jump();
+            if (staminaBar.GetCurrentStamina() > 15)
+            {
+                GetComponent<PlayerMovement>().Jump();
+            }
+            
         }
     }
 

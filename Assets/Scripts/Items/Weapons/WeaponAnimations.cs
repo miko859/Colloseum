@@ -1,8 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponAnimations : Weapon
 {
-    private bool isBashing = false;
     private bool isBlocking = false;
     
     private float damage;
@@ -93,6 +93,7 @@ public class WeaponAnimations : Weapon
     {
         if (isBlocking)
         {
+            StartCoroutine(GetComponent<WeaponManager>().SwapCollBlockBash());
             StartCoroutine(PlayAnimation(weaponData.bashAnimation, weaponData.bashDuration));
             StartCoroutine(PlayBodyAnimation(weaponData.bashAnimation, weaponData.bashDuration));
         }

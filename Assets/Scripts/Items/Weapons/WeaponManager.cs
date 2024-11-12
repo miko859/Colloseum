@@ -1,14 +1,18 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WeaponManager : MonoBehaviour
 {
     public string target;
     private bool isEnemyWeapon;
     public Collider blade;
+    public Collider bashColl;
     private bool hit = false;
     private WeaponAnimations weaponAnimations;
     private AIController aiController;
     private Transform owner;
+    private bool isBashing = false;
 
     /// <summary>
     /// Set blade for hitboxes and weaponAnimations to get DMG of actual attack
@@ -51,7 +55,22 @@ public class WeaponManager : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(target) & !hit)
+        
+        if (target.Equals("Enemy") && bashColl.enabled)
+        {
+            if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
+            {
+                Debug.Log($"other.transform.position.y {other.transform.position.y}");
+                Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
+                                                0,
+                                                other.transform.position.z - transform.position.z);
+                
+
+                AIController enemy = other.transform.GetComponent<AIController>();
+                StartCoroutine(enemy.BeingPushedMovement(1.5f, direction));
+            }
+        }
+        else if (other.CompareTag(target) && !hit && blade.isTrigger)
         {
             other.GetComponent<Health>().DealDamage(CalculateDamage(other));
             Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));
@@ -109,5 +128,18 @@ public class WeaponManager : MonoBehaviour
         { 
             return weaponAnimations.getDamage();
         }
+    }
+
+    public IEnumerator SwapCollBlockBash()
+    {
+        //blade.isTrigger = false;
+        blade.enabled = false;
+        //bashColl.isTrigger = true;
+        bashColl.enabled = true;
+        yield return new WaitForSeconds(weaponAnimations.weaponData.bashDuration);
+        //blade.isTrigger = true;
+        blade.enabled = true;
+        //bashColl.isTrigger = false;
+        bashColl.enabled = false;
     }
 }

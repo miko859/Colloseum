@@ -61,9 +61,6 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
     private bool isBashing = false;
 
-    /// <summary>
-    /// update is readed every frame
-    /// </summary>
     private void Update()
     {
         if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
@@ -71,10 +68,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
             if (staminaBar.GetCurrentStamina() > currentWeapon.weaponData.bashStaminaCons && !isBashing)
             {
                 isBashing = !isBashing;
+                StartCoroutine(BashCooldown());
                 Debug.Log("Bash");
                 currentWeapon.Bash();
                 staminaBar.ReduceStamina(currentWeapon.weaponData.bashStaminaCons);
-                StartCoroutine(BashCooldown());
+                currentWeapon.SetIsBashing(true);
             }
         }
     }
@@ -140,6 +138,11 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     public StaminaBar GetStaminaBar()
     {
         return staminaBar;
+    }
+
+    public bool GetIsBashing()
+    {
+        return isBashing;
     }
 
     public void OnChangeWeapon(InputAction.CallbackContext context)
@@ -261,7 +264,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         GetComponent<PlayerMovement>().Run();
 
-        if (context.action.IsPressed())
+        if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
         {
             animator.SetBool("Run", true);
             currentWeapon.GetAnimator().SetBool("Run", true);

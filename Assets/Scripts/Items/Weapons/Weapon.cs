@@ -10,6 +10,7 @@ public abstract class Weapon : MonoBehaviour
     public AnimatorOverrideController overrideController;
 
     protected bool isAttacking = false;
+    protected bool isBashing = false;
 
     protected virtual void Awake()
     {
@@ -46,6 +47,11 @@ public abstract class Weapon : MonoBehaviour
 
     public void setBodyAnimator(Animator bodyAnimator) { 
         this.bodyAnimator = bodyAnimator; 
+    }
+
+    public void SetIsBashing(bool isBashing)
+    {
+        this.isBashing = isBashing;
     }
 
     public Animator GetAnimator() { return animator; }

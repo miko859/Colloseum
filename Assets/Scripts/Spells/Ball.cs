@@ -7,9 +7,18 @@ public abstract class Ball : Spell
     public int impactDamage = 3;
     public PlayerController playerController;
 
-    protected virtual void Start()
+    protected void Start()
     {
-        if (spellRb == null) spellRb = GetComponent<Rigidbody>();
+        if (spellRb == null)
+            spellRb = GetComponent<Rigidbody>();
+
+        
+        playerController = FindObjectOfType<PlayerController>();
+
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController not found in the scene! Please attach the script to the appropriate GameObject.");
+        }
     }
 
     public override void ActiveBall()
@@ -33,11 +42,19 @@ public abstract class Ball : Spell
 
     private void CastFireball()
     {
-        
+        if (playerController == null)
+        {
+            Debug.LogError("PlayerController is null. Cannot cast fireball!");
+            return;
+        }
+
         Vector3 spawnPosition = playerController.transform.position + playerController.transform.forward * 1.5f;
 
+        Debug.Log($"Casting fireball at {spawnPosition}");
         Rigidbody fireballInstance = Instantiate(spellRb, spawnPosition, Quaternion.LookRotation(playerController.transform.forward));
 
         fireballInstance.velocity = playerController.transform.forward * speed;
+
+        Debug.Log("Fireball cast successfully!");
     }
 }

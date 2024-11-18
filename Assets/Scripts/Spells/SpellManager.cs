@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-
     public List<Spell> ballSpells = new List<Spell>();
     public List<Spell> elementSpells = new List<Spell>();
+    public List<Spell> utilitySpells = new List<Spell>();
+
     private int ballIdx = 0;
     private int elementIdx = 0;
-    // Start is called before the first frame update
+    private int utilityIdx = 0;
+
     private void Start()
     {
-        ballSpells.Add(new Fireball());// This may not work
-        elementSpells.Add(new Flamethrower()); //This may not work
+        ballSpells.Add(new Fireball());
+        elementSpells.Add(new Flamethrower());
+        utilitySpells.Add(new HasteSpell());
     }
+
     public void SpellSwitch(string value)
     {
-
-
         if (value.Equals("1"))
         {
             if (ballSpells.Count - 1 > ballIdx)
@@ -30,11 +32,9 @@ public class SpellManager : MonoBehaviour
                 ballIdx = 0;
             }
             ballSpells[ballIdx].Initialize();
-
         }
         else if (value.Equals("2"))
         {
-
             if (elementSpells.Count - 1 > elementIdx)
             {
                 elementIdx++;
@@ -45,22 +45,41 @@ public class SpellManager : MonoBehaviour
             }
             elementSpells[elementIdx].Initialize();
         }
+        else if (value.Equals("3"))
+        {
+            if (utilitySpells.Count - 1 > utilityIdx)
+            {
+                utilityIdx++;
+            }
+            else
+            {
+                utilityIdx = 0;
+            }
+            utilitySpells[utilityIdx].Initialize();
+        }
         else
         {
             Debug.Log("YOU SEE DONT WORRY ROBO, I GOT IT COVERED");
         }
     }
 
-    public void CallActive() {
+    public void CallActive()
+    {
         elementSpells[elementIdx].Activate();
-    
     }
-    public void CallActiveBall() {
-        ballSpells[elementIdx].ActiveBall();
-    
-    }
-    public void CallDeactive() { 
-        elementSpells[elementIdx].Deactivate();
 
+    public void CallActiveBall()
+    {
+        ballSpells[elementIdx].ActiveBall();
+    }
+
+    public void CallActiveUtility()
+    {
+        utilitySpells[utilityIdx].Activate();
+    }
+
+    public void CallDeactive()
+    {
+        elementSpells[elementIdx].Deactivate();
     }
 }

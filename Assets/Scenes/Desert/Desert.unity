@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1894821587}
-  m_IndirectSpecularColor: {r: 0.43736386, g: 0.48515522, b: 0.5654241, a: 1}
+  m_IndirectSpecularColor: {r: 0.13306755, g: 0.17116472, b: 0.25096953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: c482561641a25514791bf19c84125d92, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 46dbb48307cc30240b1bcea06ce3db6d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -23642,6 +23642,10 @@ PrefabInstance:
     - target: {fileID: -8404541751711752833, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8404541751711752833, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8404541751711752833, guid: 1f86a0d3ebb03004db257bd7034073e9, type: 3}
       propertyPath: m_StaticEditorFlags

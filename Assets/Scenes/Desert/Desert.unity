@@ -7879,6 +7879,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 511752139}
     m_Modifications:
     - target: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: manaCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
       propertyPath: manaSystem
       value: 
       objectReference: {fileID: 799658942}

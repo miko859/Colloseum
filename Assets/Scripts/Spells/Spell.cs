@@ -21,10 +21,10 @@ public abstract class Spell : MonoBehaviour
 
     public virtual void Activate()
     {
-        if (manaSystem == null) 
+        if (manaSystem == null)
         {
-            Debug.LogError("ManaSystem is null in Activate.");
-            return; 
+            Debug.LogError($"ManaSystem is null in Activate. Spell: {gameObject.name}, Instance ID: {GetInstanceID()}");
+            return;
         }
 
         if (manaSystem.TrySpendMana(manaCost))
@@ -36,7 +36,6 @@ public abstract class Spell : MonoBehaviour
         {
             Debug.Log("Not enough mana!");
             StartCoroutine(manaSystem.VibrateManaBar(() => Debug.Log("Vibration Complete")));
-
         }
     }
 

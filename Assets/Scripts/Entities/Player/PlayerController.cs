@@ -332,6 +332,16 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
     }
 
+    public void OnUtilCast(InputAction.CallbackContext context)
+    {
+
+        if (context.action.IsPressed())
+        {
+            spellManager.CallActiveUtility();
+            Debug.Log("Called Util cast");
+
+        }
+    }
     public void OnSpellSwitch(InputAction.CallbackContext context)
     {
         if (context.performed) {

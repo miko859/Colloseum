@@ -26,6 +26,7 @@ public class SpellManager : MonoBehaviour
             if (ballSpells.Count - 1 > ballIdx)
             {
                 ballIdx++;
+                Debug.Log("Switching ball spell");
             }
             else
             {
@@ -38,6 +39,7 @@ public class SpellManager : MonoBehaviour
             if (elementSpells.Count - 1 > elementIdx)
             {
                 elementIdx++;
+                Debug.Log("Switching element spell");
             }
             else
             {
@@ -50,6 +52,7 @@ public class SpellManager : MonoBehaviour
             if (utilitySpells.Count - 1 > utilityIdx)
             {
                 utilityIdx++;
+                Debug.Log("Switching util spell");
             }
             else
             {

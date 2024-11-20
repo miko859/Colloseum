@@ -305,6 +305,10 @@ PrefabInstance:
     - target: {fileID: 4095329820490981590, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: utilitySpells.Array.data[0]
       value: 
+      objectReference: {fileID: 393932339}
+    - target: {fileID: 5867833435443790968, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
+      propertyPath: spell
+      value: 
       objectReference: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
     - target: {fileID: 5867833435443790968, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: staminaBar
@@ -7866,6 +7870,72 @@ Transform:
   - {fileID: 247241072}
   m_Father: {fileID: 265840035}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &268070036
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 511752139}
+    m_Modifications:
+    - target: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: manaSystem
+      value: 
+      objectReference: {fileID: 799658942}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5292906622275709932, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+      propertyPath: m_Name
+      value: Haste_Spell
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+--- !u!4 &268070037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 158710780445364107, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+  m_PrefabInstance: {fileID: 268070036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &274863197
 GameObject:
   m_ObjectHideFlags: 0
@@ -10093,6 +10163,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6814799570741590883, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
   m_PrefabInstance: {fileID: 390009176}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &393932339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+  m_PrefabInstance: {fileID: 268070036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef106f43a89fd54980bf8dfccc37f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &396864710
 Mesh:
   m_ObjectHideFlags: 0
@@ -13257,6 +13338,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 503470883}
+  - {fileID: 268070037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &527825035
@@ -25519,6 +25601,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6814799570741590883, guid: 6ccc19ab5b1d1294bb16b5d4ae164b12, type: 3}
   m_PrefabInstance: {fileID: 786255272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &799658942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4480426261691088339, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
+  m_PrefabInstance: {fileID: 883093026}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3989e9441a87361469d0490bcd68e61f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &805462518 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5714229035188606006, guid: f1d7cd77b7e96af4cb9890ad2e94865a, type: 3}
@@ -69855,7 +69948,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -0.2700995, y: 0.04999235, z: -0.056444414}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -69949,7 +70042,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -0.3976459, y: 0.12001676, z: 0.03151994}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -69995,7 +70088,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.09699415, y: -0.019688979, z: 0.07351185}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -70299,7 +70392,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -9.515434, y: 2.1466503, z: -1.1161633}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -70617,7 +70710,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -0.083831735, y: -0.00000086426735, z: -0.000000062864274}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -70875,7 +70968,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: 0.09707476, y: -0.018754195, z: -0.07350996}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -71190,7 +71283,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0, z: 0}
+  m_ConnectedAnchor: {x: -0.26924208, y: -0.21649708, z: 0.07033018}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:

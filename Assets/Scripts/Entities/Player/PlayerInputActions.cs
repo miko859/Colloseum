@@ -116,6 +116,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UtilCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""edba166c-bd30-4552-81c0-49d2520daae3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -283,6 +292,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a463938d-01a2-4ded-8766-12deff9514e0"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -301,6 +321,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_SpellCasting = m_Player.FindAction("SpellCasting", throwIfNotFound: true);
         m_Player_SpellSwitch = m_Player.FindAction("SpellSwitch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_UtilCast = m_Player.FindAction("UtilCast", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,6 +393,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SpellCasting;
     private readonly InputAction m_Player_SpellSwitch;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_UtilCast;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -386,6 +408,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @SpellCasting => m_Wrapper.m_Player_SpellCasting;
         public InputAction @SpellSwitch => m_Wrapper.m_Player_SpellSwitch;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @UtilCast => m_Wrapper.m_Player_UtilCast;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,6 +448,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @UtilCast.started += instance.OnUtilCast;
+            @UtilCast.performed += instance.OnUtilCast;
+            @UtilCast.canceled += instance.OnUtilCast;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -459,6 +485,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @UtilCast.started -= instance.OnUtilCast;
+            @UtilCast.performed -= instance.OnUtilCast;
+            @UtilCast.canceled -= instance.OnUtilCast;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -488,5 +517,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnSpellCasting(InputAction.CallbackContext context);
         void OnSpellSwitch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnUtilCast(InputAction.CallbackContext context);
     }
 }

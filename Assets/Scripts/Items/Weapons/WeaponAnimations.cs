@@ -53,7 +53,7 @@ public class WeaponAnimations : Weapon
     }
 
     /// <summary>
-    /// Hard Attack/Strong Attack
+    /// HARD Attack/Strong Attack
     /// </summary>
     /// <param name="attackPhase"></param>
     public override void HardAttack(bool attackPhase)

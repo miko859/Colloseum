@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
+  m_Name: HammerWeaponData
+  m_EditorClassIdentifier: 
+  itemName: Hammer
+  icon: {fileID: 21300000, guid: fa9cca2412970aa4c98ac36411738330, type: 3}
+  value: 43
+  description: Heavy two-handed hammer made by dwarfs  in Leikland mountains.
+  itemType: 0
+  lightAttackTypesCount: 1
+  lightAttackDuration1: 1.667
+  lightAttackDuration2: 0
+  lightAttackDuration3: 0
+  heavyAttackChargeDuration: 0.583
+  heavyAttackPerformDuration: 1.867
+  bashDuration: 1.167
+  hurtDuration: 0.333
+  equipUnequipDuration: 0.4
+  lightAttackAnimation: LightAttack
+  heavyAttackAnimation: HeavyAttack
+  heavyAttackPerformAnimation: HeavyAttackPerform
+  blockAnimation: Block
+  bashAnimation: Bash
+  hurtAnimation: Hurt
+  lightAttackDamage: 6
+  heavyAttackDamage: 10
+  blockTreshhold: 4
+  heavyAttackStaminaCons: 80
+  bashStaminaCons: 46
+  blockStaminaCons: 42
+  weaponPrefab: {fileID: 463186324098979194, guid: d89c31235ccc16440917f6f5f6d2d7cc, type: 3}

@@ -7,8 +7,10 @@ public class DifficultyManager : MonoBehaviour
     {
         EASY,
         MEDIUM,
-        HARD
+        HARD,
+        HARDCORE
     }
+
     public static DifficultyManager Instance { get; set; }
 
     public Difficulty CurrentDifficulty { get; private set; } = Difficulty.MEDIUM;
@@ -22,7 +24,7 @@ public class DifficultyManager : MonoBehaviour
 
     private Dictionary<Difficulty, float> enemyHealthMultiplier = new Dictionary<Difficulty, float>
     {
-        { Difficulty.EASY, 0.9f },
+        { Difficulty.EASY, 0.8f },
         { Difficulty.MEDIUM, 1.0f },
         { Difficulty.HARD, 1.2f }
     };

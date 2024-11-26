@@ -16,6 +16,11 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
         currentHealth = maxHealth; 
         healthBar.SetMaxHealth(maxHealth); 
+
+        if (transform.CompareTag("Enemy"))
+        {
+            maxHealth = maxHealth * DifficultyManager.Instance.GetEnemyHealthMultiplier();
+        }
     }
 
     public void Update()

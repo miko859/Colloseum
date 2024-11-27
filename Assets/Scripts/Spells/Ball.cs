@@ -23,9 +23,18 @@ public abstract class Ball : Spell
 
     public override void ActiveBall()
     {
-        CastFireball();
+        if (manaSystem != null && manaSystem.TrySpendMana(manaCost))
+        {
+            CastFireball();
+        }
+        else
+        {
+            Debug.Log("Not enough mana to cast fireball!");
+            StartCoroutine(manaSystem.VibrateManaBar(() => Debug.Log("Vibration Complete")));
+        }
         base.Activate();
     }
+
 
     protected virtual void OnCollisionEnter(Collision other)
     {

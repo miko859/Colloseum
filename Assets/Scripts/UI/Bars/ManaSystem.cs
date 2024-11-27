@@ -11,95 +11,24 @@ public class ManaSystem : MonoBehaviour
     public float flamethrowerCost = 2;
     public float manaRegen = 1;
     public float regenInterval = 0.2f;
+    private bool isFlameActive = false;
+    private Coroutine manaSpendingCoroutine;
+    private Vector3 originalPosition;
+    public float vibrationAmount = 0.5f; 
     public float vibrationDuration = 0.5f;
     public float vibrationMagnitude = 7.1f;
     private bool isVibrating = false;
-    private FlameThrower flameThrower;
-
-    private Coroutine manaSpendingCoroutine;
-
     void Start()
     {
         currentMana = maxMana;
         UpdateManaUI();
-
         StartCoroutine(RegenerateMana());
+        originalPosition = manaSlider.transform.localPosition;
     }
 
-    IEnumerator RegenerateMana()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(regenInterval);
 
-            if (currentMana < maxMana)
-            {
-                currentMana = Mathf.Min(currentMana + manaRegen, maxMana);
-                UpdateManaUI();
-            }
-        }
-    }
 
-    public Coroutine StartSpendingManaPerSecond()
-    {
-        if (manaSpendingCoroutine == null)
-        {
-            manaSpendingCoroutine = StartCoroutine(SpendManaPerSecond());
-        }
-        return manaSpendingCoroutine;
-    }
-
-    public void StopSpendingManaPerSecond()
-    {
-        if (manaSpendingCoroutine != null)
-        {
-            StopCoroutine(manaSpendingCoroutine);
-            manaSpendingCoroutine = null; // Clear the reference after stopping
-        }
-    }
-
-    public IEnumerator SpendManaPerSecond()
-    {
-        bool vibrationIsTriggered = false;
-
-        while (currentMana >= flamethrowerCost)
-        {
-            Debug.Log("Spending mana...");
-            yield return new WaitForSeconds(0.2f);
-
-            currentMana -= flamethrowerCost;
-            UpdateManaUI();
-
-            if (currentMana < flamethrowerCost)
-            {
-                Debug.Log("Not enough mana!");
-                vibrationIsTriggered = true;
-                StartCoroutine(VibrateManaBar(() => vibrationIsTriggered = false));
-                break;
-            }
-        }
-
-        StopSpendingManaPerSecond(); // Ensure it stops when mana is insufficient
-    }
-
-    public bool SpendMana(float amount)
-    {
-        if (currentMana >= amount)
-        {
-            currentMana -= amount;
-            UpdateManaUI();
-            return true;
-        }
-
-        if (!isVibrating)
-        {
-            StartCoroutine(VibrateManaBar(() => { isVibrating = false; }));
-        }
-
-        return false;
-    }
-
-    IEnumerator VibrateManaBar(System.Action onVibrationComplete)
+    public IEnumerator VibrateManaBar(System.Action onVibrationComplete)
     {
         if (isVibrating) yield break;
 
@@ -118,6 +47,60 @@ public class ManaSystem : MonoBehaviour
         manaSlider.transform.localPosition = originalPosition;
         onVibrationComplete?.Invoke();
         isVibrating = false;
+    }
+
+    
+    public bool TrySpendMana(int amount)
+    {
+        if (currentMana >= amount)
+        {
+            currentMana -= amount;
+            UpdateManaUI();
+            return true;
+        }
+        return false;
+    }
+
+    
+    /*public void StartSpendingManaForFlamethrower()
+    {
+        if (manaSpendingCoroutine == null && currentMana >= flamethrowerCost)
+        {
+            manaSpendingCoroutine = StartCoroutine(SpendManaPerSecond());
+        }
+    }
+
+    public void StopSpendingManaForFlamethrower()
+    {
+        if (manaSpendingCoroutine != null)
+        {
+            StopCoroutine(manaSpendingCoroutine);
+            manaSpendingCoroutine = null;
+        }
+    }
+
+    private IEnumerator SpendManaPerSecond()
+    {
+        while (currentMana >= flamethrowerCost)
+        {
+            yield return new WaitForSeconds(1f);
+            currentMana -= flamethrowerCost;
+            UpdateManaUI();
+        }
+        StopSpendingManaForFlamethrower();  // Stop if out of mana
+    }*/
+
+    IEnumerator RegenerateMana()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(regenInterval);
+            if (currentMana < maxMana)
+            {
+                currentMana = Mathf.Min(currentMana + manaRegen, maxMana);
+                UpdateManaUI();
+            }
+        }
     }
 
     void UpdateManaUI()

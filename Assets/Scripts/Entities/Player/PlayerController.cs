@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     public PlayerInputActions playerInputActions;
     public Weapon currentWeapon;
     private EquipedWeaponManager equipedWeaponManager;
+    public SpellManager spellManager;
+
+    public Spell spell;
 
     public Animator animator;
     public StaminaBar staminaBar;
@@ -41,6 +44,9 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         //playerInputActions.Player.Run.performed -= OnRun;
         playerInputActions.Player.Run.canceled -= OnRun;
 
+        playerInputActions.Player.SpellCast.canceled -= OnSpellCast;
+        playerInputActions.Player.SpellCast.started -= OnSpellCast;
+        //playerInputActions.Player.SpellCast.performed -= OnSpellCast;
 
         playerInputActions.Player.Enable();
     }
@@ -301,6 +307,45 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
                 GetComponent<PlayerMovement>().Jump();
             }
             
+        }
+    }
+
+    public void OnSpellCast(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            spellManager.CallActiveBall();
+        }
+    }
+
+    public void OnSpellCasting(InputAction.CallbackContext context)
+    {
+        
+        if (context.action.IsPressed())
+        {
+            spellManager.CallActive();
+
+        }
+        else
+        {
+            spellManager.CallDeactive();
+        }
+    }
+
+    public void OnUtilCast(InputAction.CallbackContext context)
+    {
+
+        if (context.action.IsPressed())
+        {
+            spellManager.CallActiveUtility();
+            Debug.Log("Called Util cast");
+
+        }
+    }
+    public void OnSpellSwitch(InputAction.CallbackContext context)
+    {
+        if (context.performed) {
+            spellManager.SpellSwitch(context.control.name);
         }
     }
 

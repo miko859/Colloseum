@@ -27,15 +27,15 @@ public abstract class Spell : MonoBehaviour
             return;
         }
 
-        if (manaSystem.TrySpendMana(manaCost))
-        {
-            Debug.Log($"{GetType().Name} spell activated.");
-            StartManaSpending();
-        }
-        else
+        if (this is not Element && !manaSystem.TrySpendMana(manaCost))
         {
             Debug.Log("Not enough mana!");
             StartCoroutine(manaSystem.VibrateManaBar(() => Debug.Log("Vibration Complete")));
+        }
+        else
+        {
+            Debug.Log($"{GetType().Name} spell activated.");
+            StartManaSpending();
         }
     }
 

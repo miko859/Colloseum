@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123cba4be3480384cb4e424df000e5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manaCost: 0
+  manaCost: 20
   speed: 10
   spellRb: {fileID: 3339959561819367939, guid: 973a9c81e128c8d45a4ccde5bada5b3d, type: 3}
   impactDamage: 3
+  playerController: {fileID: 0}

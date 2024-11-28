@@ -60,9 +60,45 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SpellCast",
+                    "type": "Button",
+                    "id": "5511b03b-8d83-40c2-bed3-be2acc11088d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpellCasting",
+                    "type": "Button",
+                    "id": "d8fe9626-3583-4ce0-ba88-dd8bceb37c45",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpellSwitch",
+                    "type": "Button",
+                    "id": "53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "e565333b-206b-4afc-bdae-210533bb39d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UtilCast",
+                    "type": "Button",
+                    "id": "edba166c-bd30-4552-81c0-49d2520daae3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -182,12 +218,67 @@
                 },
                 {
                     "name": "",
+                    "id": "0b361939-d7c3-4bef-b27f-c019ca7cf2dc",
+                    "path": "<Keyboard>/q",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f9bc471-629d-4ccd-b73d-1ea321fc7383",
+                    "path": "<Keyboard>/1",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "960330b0-1489-447f-8683-c6153f65a0dc",
+                    "path": "<Keyboard>/2",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellSwitch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ef597cd5-b430-4312-9468-7c3e8820fe73",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpellCasting",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a928ead2-3046-4fbe-ba09-e3fba5569846",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a463938d-01a2-4ded-8766-12deff9514e0",
+                    "path": "<Keyboard>/h",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UtilCast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

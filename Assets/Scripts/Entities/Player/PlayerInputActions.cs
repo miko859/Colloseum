@@ -82,9 +82,45 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""SpellCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""5511b03b-8d83-40c2-bed3-be2acc11088d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpellCasting"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8fe9626-3583-4ce0-ba88-dd8bceb37c45"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpellSwitch"",
+                    ""type"": ""Button"",
+                    ""id"": ""53f7d58d-ed06-4bf1-9b4e-cb9110ab7d6b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""e565333b-206b-4afc-bdae-210533bb39d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UtilCast"",
+                    ""type"": ""Button"",
+                    ""id"": ""edba166c-bd30-4552-81c0-49d2520daae3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -204,12 +240,67 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""0b361939-d7c3-4bef-b27f-c019ca7cf2dc"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellCast"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f9bc471-629d-4ccd-b73d-1ea321fc7383"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""960330b0-1489-447f-8683-c6153f65a0dc"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellSwitch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef597cd5-b430-4312-9468-7c3e8820fe73"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpellCasting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a928ead2-3046-4fbe-ba09-e3fba5569846"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a463938d-01a2-4ded-8766-12deff9514e0"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UtilCast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -226,7 +317,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_ChangeWeapon = m_Player.FindAction("Change Weapon", throwIfNotFound: true);
         m_Player_Run = m_Player.FindAction("Run", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+        m_Player_SpellCast = m_Player.FindAction("SpellCast", throwIfNotFound: true);
+        m_Player_SpellCasting = m_Player.FindAction("SpellCasting", throwIfNotFound: true);
+        m_Player_SpellSwitch = m_Player.FindAction("SpellSwitch", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+        m_Player_UtilCast = m_Player.FindAction("UtilCast", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -294,7 +389,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_ChangeWeapon;
     private readonly InputAction m_Player_Run;
     private readonly InputAction m_Player_Interact;
+    private readonly InputAction m_Player_SpellCast;
+    private readonly InputAction m_Player_SpellCasting;
+    private readonly InputAction m_Player_SpellSwitch;
     private readonly InputAction m_Player_Jump;
+    private readonly InputAction m_Player_UtilCast;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -305,7 +404,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @ChangeWeapon => m_Wrapper.m_Player_ChangeWeapon;
         public InputAction @Run => m_Wrapper.m_Player_Run;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
+        public InputAction @SpellCast => m_Wrapper.m_Player_SpellCast;
+        public InputAction @SpellCasting => m_Wrapper.m_Player_SpellCasting;
+        public InputAction @SpellSwitch => m_Wrapper.m_Player_SpellSwitch;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
+        public InputAction @UtilCast => m_Wrapper.m_Player_UtilCast;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -333,9 +436,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
+            @SpellCast.started += instance.OnSpellCast;
+            @SpellCast.performed += instance.OnSpellCast;
+            @SpellCast.canceled += instance.OnSpellCast;
+            @SpellCasting.started += instance.OnSpellCasting;
+            @SpellCasting.performed += instance.OnSpellCasting;
+            @SpellCasting.canceled += instance.OnSpellCasting;
+            @SpellSwitch.started += instance.OnSpellSwitch;
+            @SpellSwitch.performed += instance.OnSpellSwitch;
+            @SpellSwitch.canceled += instance.OnSpellSwitch;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @UtilCast.started += instance.OnUtilCast;
+            @UtilCast.performed += instance.OnUtilCast;
+            @UtilCast.canceled += instance.OnUtilCast;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -358,9 +473,21 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
+            @SpellCast.started -= instance.OnSpellCast;
+            @SpellCast.performed -= instance.OnSpellCast;
+            @SpellCast.canceled -= instance.OnSpellCast;
+            @SpellCasting.started -= instance.OnSpellCasting;
+            @SpellCasting.performed -= instance.OnSpellCasting;
+            @SpellCasting.canceled -= instance.OnSpellCasting;
+            @SpellSwitch.started -= instance.OnSpellSwitch;
+            @SpellSwitch.performed -= instance.OnSpellSwitch;
+            @SpellSwitch.canceled -= instance.OnSpellSwitch;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @UtilCast.started -= instance.OnUtilCast;
+            @UtilCast.performed -= instance.OnUtilCast;
+            @UtilCast.canceled -= instance.OnUtilCast;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -386,6 +513,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnChangeWeapon(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnSpellCast(InputAction.CallbackContext context);
+        void OnSpellCasting(InputAction.CallbackContext context);
+        void OnSpellSwitch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnUtilCast(InputAction.CallbackContext context);
     }
 }

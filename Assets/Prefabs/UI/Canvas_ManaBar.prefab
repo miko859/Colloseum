@@ -433,9 +433,10 @@ MonoBehaviour:
   manaSlider: {fileID: 8904758951397069904}
   maxMana: 100
   currentMana: 0
-  fireballManaCost: 40
+  fireballManaCost: 30
   flamethrowerCost: 2
   manaRegen: 1
   regenInterval: 0.18
+  vibrationAmount: 0.5
   vibrationDuration: 0.5
   vibrationMagnitude: 7.5

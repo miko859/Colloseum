@@ -299,17 +299,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 948379807}
     - target: {fileID: 4095329820490981590, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      propertyPath: utilitySpells.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4095329820490981590, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: utilitySpells.Array.data[0]
       value: 
       objectReference: {fileID: 393932339}
-    - target: {fileID: 5867833435443790968, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      propertyPath: spell
-      value: 
-      objectReference: {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
     - target: {fileID: 5867833435443790968, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: staminaBar
       value: 
@@ -361,10 +353,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6391437961676749637, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 820465185}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
 --- !u!1 &11210246
 GameObject:
@@ -30241,23 +30230,6 @@ Transform:
   - {fileID: 1974268938}
   m_Father: {fileID: 334851118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &820465178 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6391437961676749637, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
-  m_PrefabInstance: {fileID: 7035115}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &820465185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 820465178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137186e98a45f0f4a8bb333c5ff74632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &824218917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1360958530714404262, guid: 752c43329c8bdff44ba1993dc0aa9dee, type: 3}
@@ -38294,10 +38266,6 @@ PrefabInstance:
     - target: {fileID: 6525904513205901322, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
       propertyPath: m_Name
       value: FireBall
-      objectReference: {fileID: 0}
-    - target: {fileID: 8280209294547454244, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
-      propertyPath: manaCost
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

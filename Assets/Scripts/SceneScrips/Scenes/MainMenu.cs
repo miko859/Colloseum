@@ -4,11 +4,26 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject options;
-    public GameObject optionsGameplay;
-    public GameObject optionsVideo;
-    public GameObject optionsAudio;
-    public GameObject optionsCotrolls;
-    public GameObject optionsBack;
+    [SerializeField]private GameObject activeScreen;
+
+
+    [Header("Buttons")]
+    public GameObject optionsGameplayB;
+    public GameObject optionsVideoB;
+    public GameObject optionsAudioB;
+    public GameObject optionsCotrollsB;
+    public GameObject optionsBackB;
+
+    [Header("Option screens")]
+    public GameObject optionsGameplayS;
+    public GameObject optionsVideoS;
+    public GameObject optionsAudioS;
+    public GameObject optionsCotrollsS;
+
+    private void Start()
+    {
+        options.SetActive(false);
+    }
 
     public void PlayGame()
     {
@@ -18,6 +33,9 @@ public class MainMenu : MonoBehaviour
     public void Options()
     {
         options.SetActive(true);
+
+        activeScreen = optionsGameplayS;
+        activeScreen.SetActive(true);
     }
 
     public void ExitGame()
@@ -28,5 +46,28 @@ public class MainMenu : MonoBehaviour
     public void BackToMainMenu()
     {
         options.SetActive(false);
+    }
+
+    public void ScreenSwitchToVideoOption()
+    {
+        OptionScreenSwitch(optionsVideoS);
+    }
+    public void ScreenSwitchToGameplayOption()
+    {
+        OptionScreenSwitch(optionsGameplayS);
+    }
+    public void ScreenSwitchToAudioOption()
+    {
+        OptionScreenSwitch(optionsAudioS);
+    }
+    public void ScreenSwitchToControlls()
+    {
+        OptionScreenSwitch(optionsCotrollsS);
+    }
+    private void OptionScreenSwitch(GameObject screen)
+    {
+        activeScreen.SetActive(false);
+        activeScreen = screen;
+        activeScreen.SetActive(true);
     }
 }

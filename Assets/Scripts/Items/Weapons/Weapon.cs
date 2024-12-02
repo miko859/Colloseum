@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public abstract class Weapon : MonoBehaviour
     public abstract void HardAttack(bool attackPhase);
     public abstract void Block();
     public abstract void Bash();
-    public abstract void HandleInput(PlayerInputActions playerInputActions);
+    public abstract void HandleInput(PlayerInput playerInput);
     public abstract void Equip();
     public abstract void Unequip();
 

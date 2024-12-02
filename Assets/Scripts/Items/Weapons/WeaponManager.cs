@@ -110,10 +110,12 @@ public class WeaponManager : MonoBehaviour
             PlayerController playerController = other.transform.GetChild(0).GetComponent<PlayerController>();
             WeaponAnimations playerWeaponAnimations = other.GetComponentInChildren<WeaponAnimations>();
 
+            float totalIncomingDmg = aiController.getDamage() * DifficultyManager.Instance.GetEnemyDamageMultiplier();
+
             if (playerWeaponAnimations.getIsBlocking() && playerController.GetStaminaBar().GetCurrentStamina() > playerWeaponAnimations.weaponData.blockStaminaCons)
             {
                 playerController.GetStaminaBar().ReduceStamina(playerWeaponAnimations.weaponData.blockStaminaCons);
-                float total = aiController.getDamage() - playerWeaponAnimations.weaponData.blockTreshhold;
+                float total = totalIncomingDmg - playerWeaponAnimations.weaponData.blockTreshhold;
                 Debug.Log($"total damage {total} AI dmg {aiController.getDamage()} player block {playerWeaponAnimations.weaponData.blockTreshhold}");
                 if (total > 0)
                 {
@@ -121,7 +123,7 @@ public class WeaponManager : MonoBehaviour
                 }
                 return 0;
             }
-            return aiController.getDamage();
+            return totalIncomingDmg;
         }
         else
         { 

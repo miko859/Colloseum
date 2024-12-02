@@ -22,11 +22,15 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        
         options.SetActive(false);
     }
 
     public void PlayGame()
     {
+        transform.parent = null;
+        DontDestroyOnLoad(this);
+        
         SceneManager.LoadSceneAsync(1);
     }
 

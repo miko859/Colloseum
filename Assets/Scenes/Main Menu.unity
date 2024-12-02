@@ -415,7 +415,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ScreenSwitchToVideoOption
         m_Mode: 1
@@ -693,7 +693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: BackToMainMenu
         m_Mode: 1
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ScreenSwitchToControlls
         m_Mode: 1
@@ -4076,7 +4076,6 @@ GameObject:
   - component: {fileID: 869630284}
   - component: {fileID: 869630283}
   - component: {fileID: 869630282}
-  - component: {fileID: 869630285}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4158,29 +4157,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &869630285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869630281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b9db0a7b5a5b84fa0d93c238747836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  options: {fileID: 752383699}
-  activeScreen: {fileID: 0}
-  optionsGameplayB: {fileID: 1952756329}
-  optionsVideoB: {fileID: 9789456}
-  optionsAudioB: {fileID: 1175128175}
-  optionsCotrollsB: {fileID: 322283373}
-  optionsBackB: {fileID: 68891363}
-  optionsGameplayS: {fileID: 131868025}
-  optionsVideoS: {fileID: 1921872147}
-  optionsAudioS: {fileID: 404004354}
-  optionsCotrollsS: {fileID: 1719896780}
 --- !u!1 &897159456
 GameObject:
   m_ObjectHideFlags: 0
@@ -4264,7 +4240,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
@@ -5301,7 +5277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ScreenSwitchToAudioOption
         m_Mode: 1
@@ -7062,9 +7038,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8767,7 +8743,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: Options
         m_Mode: 1
@@ -9362,7 +9338,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 869630285}
+      - m_Target: {fileID: 2119989168}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: ScreenSwitchToGameplayOption
         m_Mode: 1
@@ -9771,6 +9747,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2073274714}
   m_CullTransparentMesh: 1
+--- !u!1 &2119989166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119989167}
+  - component: {fileID: 2119989168}
+  m_Layer: 0
+  m_Name: MenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2119989167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119989166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 114.860054, y: 81.97351, z: -0.24257316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119989168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119989166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b9db0a7b5a5b84fa0d93c238747836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  options: {fileID: 752383699}
+  activeScreen: {fileID: 0}
+  optionsGameplayB: {fileID: 1952756329}
+  optionsVideoB: {fileID: 9789456}
+  optionsAudioB: {fileID: 1175128175}
+  optionsCotrollsB: {fileID: 322283373}
+  optionsBackB: {fileID: 68891363}
+  optionsGameplayS: {fileID: 131868025}
+  optionsVideoS: {fileID: 1921872147}
+  optionsAudioS: {fileID: 404004354}
+  optionsCotrollsS: {fileID: 1719896780}
 --- !u!1001 &2919888619765762628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9951,3 +9982,4 @@ SceneRoots:
   - {fileID: 1498270412}
   - {fileID: 3657756343341983941}
   - {fileID: 2919888619765762628}
+  - {fileID: 2119989167}

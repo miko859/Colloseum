@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
-    public PlayerInputActions playerInputActions;
+    public PlayerInput playerInput;
     public Weapon currentWeapon;
     private EquipedWeaponManager equipedWeaponManager;
     public SpellManager spellManager;
@@ -29,49 +29,29 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
         staminaBar.SetMaxStamina(100, 2.5);
-
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.AddCallbacks(this);
-
-        playerInputActions.Player.Block.started -= OnBlock;
-        playerInputActions.Player.Block.canceled -= OnBlock;
-
-        playerInputActions.Player.Attack.canceled -= OnAttack;
-        playerInputActions.Player.Attack.started -= OnAttack;
-        playerInputActions.Player.Attack.performed -= OnAttack;
-
-        playerInputActions.Player.Run.started -= OnRun;
-        //playerInputActions.Player.Run.performed -= OnRun;
-        playerInputActions.Player.Run.canceled -= OnRun;
-
-        playerInputActions.Player.SpellCast.canceled -= OnSpellCast;
-        playerInputActions.Player.SpellCast.started -= OnSpellCast;
-        //playerInputActions.Player.SpellCast.performed -= OnSpellCast;
-
-        playerInputActions.Player.Enable();
+        playerInput = GetComponent<PlayerInput>();
     }
 
     private void OnEnable()
     {
-        playerInputActions.Player.Enable();
+        playerInput.currentActionMap.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputActions.Player.Disable();
+        playerInput.currentActionMap.Disable();
     }
 
     private bool isBashing = false;
 
     private void Update()
     {
-        if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
+        if (playerInput.actions["Attack"].IsPressed() && playerInput.actions["Block"].IsInProgress())
         { 
             if (staminaBar.GetCurrentStamina() > currentWeapon.weaponData.bashStaminaCons && !isBashing)
             {
                 isBashing = !isBashing;
                 StartCoroutine(BashCooldown());
-                Debug.Log("Bash");
                 currentWeapon.Bash();
                 staminaBar.ReduceStamina(currentWeapon.weaponData.bashStaminaCons);
                 currentWeapon.SetIsBashing(true);
@@ -245,7 +225,7 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Vector2 value = playerInputActions.Player.Movement.ReadValue<Vector2>();
+        Vector2 value = playerInput.actions["Movement"].ReadValue<Vector2>();
 
         if (value.x != 0 || value.y != 0)
         {

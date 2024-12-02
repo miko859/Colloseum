@@ -7,7 +7,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 {
     /// <summary>
     /// This is an example for how to override the default display behavior of bindings. The component
-    /// hooks into <see cref="RebindActionUI.updateBindingUIEvent"/> which is triggered when UI display
+    /// hook
+    /// nto <see cref="RebindActionUI.updateBindingUIEvent"/> which is triggered when UI display
     /// of a binding should be refreshed. It then checks whether we have an icon for the current binding
     /// and if so, replaces the default text display with an icon.
     /// </summary>

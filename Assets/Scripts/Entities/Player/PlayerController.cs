@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using Sources.Entities.Player;
 
 public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 {

@@ -17,9 +17,14 @@ public class HealthBar : MonoBehaviour
         changedHealth = health;
     }
 
-    public void SetHealth(double health)
+    public void SetHealth(double health, bool instant = false)
     {
         changedHealth = health;
+        if (instant)
+        {
+            currentHealth = health;
+            healthSlider.value = (float)health; // ensure immediate update
+        }
     }
 
     private void Update()

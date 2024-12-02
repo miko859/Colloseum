@@ -18,14 +18,17 @@ public class SaveLoad : MonoBehaviour
 
         if (data != null)
         {
-            Debug.Log($"Loaded Player Data: Position = ({data.position[0]}, {data.position[1]}, {data.position[2]}), Health = {data.healthData}");
-
+            // update player position
             playerTransform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
-            healthBar.currentHealth = (float)data.healthData;
+
+            // update player health 
+            healthBar.SetHealth(data.healthData, true);
+
+            Debug.Log($"Loaded Position: {playerTransform.position}, Health: {healthBar.currentHealth}");
         }
         else
         {
-            Debug.LogError("Failed to load player data.");
+            Debug.LogError("No data to load.");
         }
     }
 }

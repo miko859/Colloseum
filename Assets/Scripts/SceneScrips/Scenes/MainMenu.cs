@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject options;
-    [SerializeField]private GameObject activeScreen;
-
+    private GameObject activeScreen;
+    public InputActionAsset actions;
 
     [Header("Buttons")]
     public GameObject optionsGameplayB;
@@ -36,15 +37,25 @@ public class MainMenu : MonoBehaviour
 
     public void Options()
     {
+        GetData();
         options.SetActive(true);
 
         activeScreen = optionsGameplayS;
         activeScreen.SetActive(true);
+        
     }
 
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void ApplySettings()
+    {
+        SaveData();
+        activeScreen.SetActive(false);
+        activeScreen = null;
+        options.SetActive(false);
     }
 
     public void BackToMainMenu()
@@ -73,5 +84,18 @@ public class MainMenu : MonoBehaviour
         activeScreen.SetActive(false);
         activeScreen = screen;
         activeScreen.SetActive(true);
+    }
+
+    public void GetData()
+    {
+        var rebinds = PlayerPrefs.GetString("rebinds");
+        if (!string.IsNullOrEmpty(rebinds))
+            actions.LoadBindingOverridesFromJson(rebinds);
+    }
+
+    public void SaveData()
+    {
+        var rebinds = actions.SaveBindingOverridesAsJson();
+        PlayerPrefs.SetString("rebinds", rebinds);
     }
 }

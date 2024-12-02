@@ -5,7 +5,7 @@ public class HealthBar : MonoBehaviour
 {
     public Slider healthSlider;
 
-    private double currentHealth;
+    public double currentHealth;
     private double changedHealth;
 
     public void SetMaxHealth(double health)

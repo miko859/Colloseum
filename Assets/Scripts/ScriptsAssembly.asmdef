@@ -1,17 +1,17 @@
 {
-    "name": "NewAssembly",
+    "name": "ScriptsAssembly",
     "rootNamespace": "",
     "references": [
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework",
+        "Unity.InputSystem.IntegrationTests",
+        "Unity.InputSystem.RebindingUI",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Tests",
         "Unity.VisualScripting.Core",
         "Unity.TextMeshPro.Tests",
         "Unity.TextMeshPro",
-        "Unity.TextMeshPro.Editor",
-        "Unity.TextMeshPro.Editor.Tests"
+        "FbxBuildTests"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

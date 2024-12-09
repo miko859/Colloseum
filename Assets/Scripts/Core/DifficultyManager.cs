@@ -38,6 +38,8 @@ public class DifficultyManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        LoadDifficulty();
     }
 
     public void SetDifficulty(Difficulty difficulty)
@@ -53,5 +55,23 @@ public class DifficultyManager : MonoBehaviour
     public float GetEnemyHealthMultiplier()
     {
         return enemyHealthMultiplier[CurrentDifficulty];
+    }
+
+    private void LoadDifficulty()
+    {
+        string value = Settings.Get<string>("DIFFICULTY");
+
+        switch (value)
+        {
+            case "Easy":
+                CurrentDifficulty = Difficulty.EASY;
+                break;
+            case "Medium":
+                CurrentDifficulty = Difficulty.MEDIUM;
+                break;
+            case "Hard":
+                CurrentDifficulty = Difficulty.HARD;
+                break;
+        }
     }
 }

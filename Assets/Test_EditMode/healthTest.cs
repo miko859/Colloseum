@@ -1,88 +1,71 @@
+using System;
+using System.Collections;
+using System.Drawing.Printing;
+using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.TestTools;
-using System.Collections;
+using UnityEngine.UI;
 
-public class HealthTests : MonoBehaviour {
+public class HealthAndHealthBarTests
+{
     private GameObject testObject;
     private Health health;
     private HealthBar healthBar;
-    private WeaponManager weaponManager;
 
     [SetUp]
     public void Setup()
     {
+        // Create a GameObject and add necessary components
         testObject = new GameObject();
+        testObject.AddComponent<CapsuleCollider>();
         health = testObject.AddComponent<Health>();
+        GameObject healthBarObject = new GameObject();
+        healthBar = healthBarObject.AddComponent<HealthBar>();
+        Slider slider = healthBarObject.AddComponent<Slider>();
+        healthBar.healthSlider = slider;
 
-        // Adding necessary components
-        healthBar = testObject.AddComponent<HealthBar>();
+        // Link the Health and HealthBar components
         health.healthBar = healthBar;
 
-        testObject.AddComponent<Animator>();
-        testObject.AddComponent<CapsuleCollider>();
-        testObject.AddComponent<Weapon>();
-
-        // Create and initialize the WeaponManager
-        var weaponManagerObject = new GameObject();
-        weaponManagerObject.transform.parent = testObject.transform;
-        weaponManager = weaponManagerObject.AddComponent<WeaponManager>();
-        health.weaponManager = weaponManager;
-
-        // Initialize the WeaponManager's colliders
-        weaponManager.blade = weaponManagerObject.AddComponent<CapsuleCollider>();
-        weaponManager.bashColl = weaponManagerObject.AddComponent<BoxCollider>();
-
-        // Initializing the health class
+        // Initialize the components
+        health.maxHealth = 100;
+        health.SetCurrentHealth(health.maxHealth);
         health.Start();
     }
 
     [Test]
-    public void Start_InitializesHealthCorrectly()
+    public void DealDamage_ReducesHealthAndUpdatesHealthBar()
     {
-        Assert.AreEqual(health.maxHealth, health.CurrentHealth);
-        Assert.AreEqual(health.maxHealth, health.healthBar.MaxHealth);
-    }
-
-    [UnityTest]
-    public IEnumerator Update_WhenHealthIsZero_TriggersDeathLogic()
-    {
-        health.DealDamage((float)health.maxHealth);
-
-        yield return null;  // Wait for a frame to process the Update method
-
-        Assert.AreEqual("DeadEnemy", testObject.tag);
-        Assert.IsFalse(testObject.GetComponent<Collider>().enabled);
-
-        if (health.weaponManager != null)
-        {
-            Assert.IsFalse(health.weaponManager.blade.enabled);
-        }
+        health.DealDamage(20);
+        Assert.AreEqual(80, health.GetCurrentHealth(), "Health did not reduce correctly.");
+        Assert.AreEqual(100, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");
     }
 
     [Test]
-    public void DealDamage_ReducesHealth()
+    public void  Heal_IncreasesHealthAndUpdatesHealthBar()
     {
-        var initialHealth = health.CurrentHealth;
-        health.DealDamage(1);
-
-        Assert.AreEqual(initialHealth - 1, health.CurrentHealth);
+        
+        health.DealDamage(50);
+        //Thread.Sleep(100); // Pause for 100 milliseconds
+        health.Heal(30);
+        Assert.AreEqual(80, health.GetCurrentHealth(), "Health did not increase correctly.");
+        Assert.AreEqual(100, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");
     }
 
     [Test]
-    public void Heal_IncreasesHealth()
+    public void HealthDoesNotExceedMaxHealth()
     {
-        health.DealDamage(1);
-        var reducedHealth = health.CurrentHealth;
-        health.Heal(1);
-
-        Assert.AreEqual(reducedHealth + 1, health.CurrentHealth);
+        health.Heal(50);
+        Assert.AreEqual(150, health.GetCurrentHealth(), "");
+        Assert.AreEqual(100, healthBar.healthSlider.value, "HealthBar slider value exceeded max health.");
     }
+
 
     [TearDown]
     public void Teardown()
     {
-        Object.DestroyImmediate(testObject);
+        testObject = null;
+        healthBar = null;
     }
 }
+

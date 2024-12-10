@@ -11489,10 +11489,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manaCost: 0
   manaSystem: {fileID: 0}
-  manaSystem: {fileID: 0}
-  duration: 5
-  speedMultiplier: 1.5
-  isOnCooldown: 0
 --- !u!43 &396864710
 Mesh:
   m_ObjectHideFlags: 0
@@ -27964,10 +27960,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0499b54b3399bfd44a96e215b43232ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryOn: 1
   inventory: {fileID: 1212499312}
   ToggleMainMenu: {fileID: 1440118879}
-  n: 1
 --- !u!4 &768162337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2ad392d38dd0e354dafb34bbfb9fe52b, type: 3}
@@ -29429,7 +29423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137186e98a45f0f4a8bb333c5ff74632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posInHierarchyOfWeapon: Body
 --- !u!4 &824218917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1360958530714404262, guid: 752c43329c8bdff44ba1993dc0aa9dee, type: 3}
@@ -38231,9 +38224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   victoryScreen: {fileID: 1669744739}
-  totalEnemies: 0
-  showingVictoryScreen: 0
-  stopShowing: 0
 --- !u!1001 &993033093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41303,7 +41293,6 @@ MonoBehaviour:
   image2: {fileID: 0}
   blackScreen: {fileID: 0}
   fadeDuration: 1
-  isFirstImageShowing: 1
   delay: 2
 --- !u!43 &1103150915
 Mesh:
@@ -67651,8 +67640,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e45d08877ffd6469171e80efc3b6a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMenuOpen: 0
-  isInventoryOpen: 0
   inventory: {fileID: 1212499312}
   mainMenu: {fileID: 1440118879}
   inventoryManager: {fileID: 1109249120}

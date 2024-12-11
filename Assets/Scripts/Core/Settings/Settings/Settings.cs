@@ -39,6 +39,8 @@ public static class Settings {
         Rebind();
 
         Debug.Log("Settings has been initialized");
+
+        Debug.Log(conf.Get<bool>("FULLSCREEN"));
     }
 
     public static void Set<T>(string property, T value) {

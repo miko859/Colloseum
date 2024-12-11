@@ -245,10 +245,12 @@
 
             using (FileStream stream = File.Open(BuildDestination, FileMode.Create, FileAccess.Write)) {
                 string line = "";
-
+                Debug.Log("Build Destination: " + BuildDestination);
+                
                 using (TextWriter writer = new StreamWriter(stream)) {
                     while (enumerator.MoveNext()) {
                         line = string.Format("{0}\t=\t{1}", enumerator.Key, enumerator.Value);
+                        Debug.Log(line);
                         writer.WriteLine(line);
                     }
                 }

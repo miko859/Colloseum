@@ -1,17 +1,19 @@
+using Blameless.Configuration;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Options : MonoBehaviour
 {
     [Header("Gameplay")]
-    [SerializeField] private Dropdown difficulty;
+    [SerializeField] private TMP_Dropdown difficulty;
     [Header("Video")]
-    [SerializeField] private Dropdown quality;
-    [SerializeField] private Dropdown resolution;
-    [SerializeField] private Dropdown anti_aliasing;
+    [SerializeField] private TMP_Dropdown quality;
+    [SerializeField] private TMP_Dropdown resolution;
+    [SerializeField] private TMP_Dropdown anti_aliasing;
     [SerializeField] private Toggle fullscreen;
     [SerializeField] private Toggle v_sync;
     [Header("Audio")]
@@ -22,118 +24,119 @@ public class Options : MonoBehaviour
 
     void Start()
     {
-        Settings.Initialize();
+        //Settings.Initialize();
 
-        difficulty.value = SetDifficulty(Settings.Get<string>("DIFFICULTY"));
-        quality.value = SetQuality(Settings.Get<string>("QUALITY_LEVEL"));
-        resolution.value = Settings.Get<int>("RESOLUTION_ID");
-        anti_aliasing.value = Settings.Get<int>("ANTI-ALIASING");
-        fullscreen.isOn = Settings.Get<bool>("FULLSCREEN");
-        v_sync.isOn = Settings.Get<bool>("V-SYNC");
-        masterVolume.value = Settings.Get<float>("MASTER_VOLUME");
-        soundVolume.value = Settings.Get<float>("SOUND_VOLUME");
-        musicVolume.value = Settings.Get<float>("MUSIC_VOLUME");
-        effectVolume.value = Settings.Get<float>("EFFECT_VOLUME");
+        difficulty.value = Settings.Conf.Get<int>("DIFFICULTY");
+        quality.value = Settings.Conf.Get<int>("QUALITY_LEVEL");
+        resolution.value = Settings.Conf.Get<int>("RESOLUTION_ID");
+        anti_aliasing.value = Settings.Conf.Get<int>("ANTI-ALIASING");
+        fullscreen.isOn = Settings.Conf.Get<bool>("FULLSCREEN");
+        v_sync.isOn = Settings.Conf.Get<bool>("V-SYNC");
+        masterVolume.value = Settings.Conf.Get<float>("MASTER_VOLUME");
+        soundVolume.value = Settings.Conf.Get<float>("SOUND_VOLUME");
+        musicVolume.value = Settings.Conf.Get<float>("MUSIC_VOLUME");
+        effectVolume.value = Settings.Conf.Get<float>("EFFECT_VOLUME");
     }
 
-    public void applyChanges()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void LoadConfigOnStart()
+    { 
+        Settings.Initialize();
+
+        QualitySettings.SetQualityLevel(Settings.Get<int>("QUALITY_LEVEL"));
+        string[] resolutions = Settings.Get<string>("RESOLUTION").Split("x");
+
+        if (resolutions.Length != 2 ||
+    !int.TryParse(resolutions[0].Trim(), out int width) ||
+    !int.TryParse(resolutions[1].Trim(), out int height))
+        {
+            Debug.LogError("Failed to parse resolution");
+            return;
+        }
+
+        // Successfully parsed width and height
+        Debug.Log($"Width: {width}, Height: {height}");
+
+        Screen.SetResolution(width, height, Settings.Conf.Get<bool>("FULLSCREEN"));
+        QualitySettings.antiAliasing = Settings.Get<int>("ANTI-ALIASING");
+        QualitySettings.vSyncCount = (Settings.Get<bool>("V-SYNC")) ? 2 : 0;
+    }
+
+    public void ApplyChanges()
     {
-        Settings.Save();
+        Settings.Conf.Save();
+        Debug.Log("Apply");
 
         QualitySettings.SetQualityLevel(quality.value);
-        string[] resolutions = resolution.itemText.text.Split("x");
-        Screen.SetResolution(Int32.Parse(resolutions[0]), Int32.Parse(resolutions[1]), fullscreen.isOn);
+        Debug.Log("Resolution -> " + resolution.options[resolution.value].text);
+        string[] resolutions = resolution.options[resolution.value].text.Split("x");
+        Debug.Log(resolutions[0] + " " + resolutions[1]);
+        if (resolutions.Length != 2 ||
+    !int.TryParse(resolutions[0].Trim(), out int width) ||
+    !int.TryParse(resolutions[1].Trim(), out int height))
+        {
+            Debug.LogError("Failed to parse resolution");
+            return;
+        }
+        Screen.SetResolution(width, height, fullscreen.isOn);
+        //Screen.fullScreenMode = fullscreen.isOn ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
         QualitySettings.antiAliasing = anti_aliasing.value;
         QualitySettings.vSyncCount = (v_sync.isOn) ? 2 : 0;
     }
 
     public void OnDifficultyChange()
     {
-        Settings.Set("DIFFICULTY", difficulty.itemText.text);
+        Settings.Conf.Set<int>("DIFFICULTY", difficulty.value);
     }
 
     public void OnQualityChange()
     {
-        Settings.Set("QUALITY_LEVEL", quality.itemText.text);
+        Settings.Conf.Set("QUALITY_LEVEL", quality.value);
 
         QualitySettings.SetQualityLevel(quality.value);
 
         anti_aliasing.value = QualitySettings.antiAliasing;
-        v_sync.isOn = (QualitySettings.vSyncCount == 0) ? false : true; 
+        v_sync.isOn = (QualitySettings.vSyncCount == 0) ? false : true;
     }
 
     public void OnResolutionChange()
     {
-        Settings.Set("RESOLUTION", resolution.itemText.text);
-        Settings.Set("RESOLUTION_ID", resolution.value);
+        Settings.Conf.Set("RESOLUTION", resolution.options[resolution.value].text);
+        Settings.Conf.Set("RESOLUTION_ID", resolution.value);
     }
 
     public void OnAntiAliasingChange()
     {
-        Settings.Set("ANTI-ALIASING", anti_aliasing.value);
+        Settings.Conf.Set("ANTI-ALIASING", anti_aliasing.value);
     }
 
     public void OnFullScreenChange()
     {
-        Settings.Set("FULLSCREEN", fullscreen.isOn);
+        Settings.Conf.Set("FULLSCREEN", fullscreen.isOn);
     }
 
     public void OnVSyncChange()
     {
-        Settings.Set("V-SYNC", v_sync.isOn);
+        Settings.Conf.Set("V-SYNC", v_sync.isOn);
     }
 
     public void OnMasterVolumeChange()
     {
-        Settings.Set("MASTER_VOLUME", masterVolume.value);
+        Settings.Conf.Set("MASTER_VOLUME", masterVolume.value);
     }
 
     public void OnMusicVolumeChange()
     {
-        Settings.Set("MUSIC_VOLUME", musicVolume.value);
+        Settings.Conf.Set("MUSIC_VOLUME", musicVolume.value);
     }
 
     public void OnEffectVolumeChange()
     {
-        Settings.Set("EFFECT_VOLUME", effectVolume.value);
+        Settings.Conf.Set("EFFECT_VOLUME", effectVolume.value);
     }
 
     public void OnSoundVolumeChange()
     {
-        Settings.Set("SOUND_VOLUME", soundVolume.value);
-    }
-
-    private int SetDifficulty(string value)
-    {
-        switch(value)
-        {
-            case "Easy":
-                return 0;
-            case "Medium":
-                return 1;
-            case "Hard":
-                return 2;
-        }
-        return 1;
-    }
-
-    private int SetQuality(string value)
-    {
-        switch(value)
-        {
-            case "Very Low":
-                return 0;
-            case "Low":
-                return 1;
-            case "Medium":
-                return 2;
-            case "High":
-                return 3;
-            case "Very High":
-                return 4;
-            case "Ultra":
-                return 5;
-        }
-        return 2;
+        Settings.Conf.Set("SOUND_VOLUME", soundVolume.value);
     }
 }

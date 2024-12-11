@@ -56,6 +56,7 @@ public class MainMenu : MonoBehaviour
         activeScreen.SetActive(false);
         activeScreen = null;
         options.SetActive(false);
+        GetComponent<Options>().ApplyChanges();
     }
 
     public void BackToMainMenu()

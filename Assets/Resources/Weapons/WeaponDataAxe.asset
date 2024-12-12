@@ -10,32 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
-  m_Name: MaceWeaponData
+  m_Name: WeaponDataAxe
   m_EditorClassIdentifier: 
-  itemName: Iron Mace
-  icon: {fileID: 21300000, guid: 627df4f17f3bb1c4d97930a4c7937134, type: 3}
-  value: 24
-  description: Heavy one-handed weapon with a chance to inflict bleeding on enemies.
+  itemName: Basic Axe
+  icon: {fileID: 21300000, guid: c70ec92cdb9971d43bcc9dadd84e6ee2, type: 3}
+  value: 100
+  description: A basic axe that deals moderate damage
   itemType: 0
   lightAttackTypesCount: 2
-  lightAttackDuration1: 0.817
-  lightAttackDuration2: 0.817
+  lightAttackDuration1: 1.26
+  lightAttackDuration2: 1.06
   lightAttackDuration3: 0
-  heavyAttackChargeDuration: 0.533
-  heavyAttackPerformDuration: 0.667
-  bashDuration: 0.267
-  hurtDuration: 0.3
-  equipUnequipDuration: 0.3
+  heavyAttackChargeDuration: 0.8
+  heavyAttackPerformDuration: 0.8
+  bashDuration: 0.4
+  hurtDuration: 0.23
+  equipUnequipDuration: 0.333
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform
   blockAnimation: Block
   bashAnimation: Bash
   hurtAnimation: Hurt
-  lightAttackDamage: 3
-  heavyAttackDamage: 7
-  blockTreshhold: 3
-  heavyAttackStaminaCons: 35
+  lightAttackDamage: 4
+  heavyAttackDamage: 6
+  blockTreshhold: 8
+  heavyAttackStaminaCons: 40
   bashStaminaCons: 28
-  blockStaminaCons: 26
-  weaponPrefab: {fileID: -8958210447087375531, guid: f157c6df2f6f8c145b0ed1a67b56a71d, type: 3}
+  blockStaminaCons: 15
+  weaponPrefab: {fileID: 7088373120101308152, guid: 7c16a3ecafd45db45ab3b96827cafbcf, type: 3}
+  weaponName: Axe

@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     private AnimatorControllerParameter[] parametre;
     private Animator bodyAni;
 
+
+
     private void Awake()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
@@ -55,7 +57,10 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     {
         playerInputActions.Player.Enable();
     }
-
+    public Transform GetBodyTransform()
+    {
+        return transform.Find("Body");
+    }
     private void OnDisable()
     {
         playerInputActions.Player.Disable();

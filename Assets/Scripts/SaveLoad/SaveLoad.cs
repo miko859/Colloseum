@@ -1,15 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SaveLoad : MonoBehaviour
 {
-    public Transform playerTransform; 
-    public HealthBar healthBar;       
+    public Transform playerTransform;
+    public HealthBar healthBar;
+    public EquipedWeaponManager equipedWeaponManager;
+
+    private void Awake()
+    {
+        if (playerTransform == null)
+        {
+            playerTransform = GameObject.FindWithTag("Player").transform;
+        }
+        if (healthBar == null)
+        {
+            healthBar = GameObject.FindObjectOfType<HealthBar>();
+        }
+        if (equipedWeaponManager == null)
+        {
+            equipedWeaponManager = GameObject.FindObjectOfType<EquipedWeaponManager>();
+        }
+    }
 
     public void SavePlayer()
     {
-        SaveSystem.SavePlayer(playerTransform, healthBar);
+        if (playerTransform == null || healthBar == null || equipedWeaponManager == null)
+        {
+            Debug.LogError("SavePlayer: One or more required components are not assigned.");
+            return;
+        }
+
+        // Save player data (position, health, and weapons)
+        SaveSystem.SavePlayer(playerTransform, healthBar, equipedWeaponManager);
+
+        // Call SavePlayerData to log the weapons
+        SavePlayerData();
     }
 
     public void LoadPlayer()
@@ -40,6 +66,14 @@ public class SaveLoad : MonoBehaviour
             // update player health
             healthBar.SetHealth(data.healthData, true);
 
+            // Load equipped weapons
+            equipedWeaponManager.weaponery.Clear();
+            foreach (var weaponName in data.equippedWeapons)
+            {
+                Weapon weapon = equipedWeaponManager.FindOrCreateWeapon(weaponName);
+                equipedWeaponManager.weaponery.Add(weapon); // Add the weapon to the list
+            }
+
             // enable the logic we disabled earlier
             if (rb != null) rb.isKinematic = false;
             if (controller != null) controller.enabled = true;
@@ -52,5 +86,29 @@ public class SaveLoad : MonoBehaviour
         }
     }
 
-}
+    
+    private void SavePlayerData()
+    {
+        Debug.Log("Saving Player Data...");
 
+        // log weapon data
+        foreach (var weapon in equipedWeaponManager.weaponery)
+        {
+            if (weapon != null)
+            {
+                Debug.Log($"Weapon in weaponery: {weapon.weaponName}");
+            }
+            else
+            {
+                Debug.LogWarning("Null weapon detected in weaponery!");
+            }
+        }
+
+        
+        string weaponsList = string.Join(", ", equipedWeaponManager.weaponery.Select(w => w.weaponName));
+        Debug.Log($"Saving Player Data: Position = {playerTransform.position}, Health = {healthBar.currentHealth}, Weapons = {weaponsList}");
+
+        //saves the data to the system using SaveSystem
+        SaveSystem.SavePlayer(playerTransform, healthBar, equipedWeaponManager);
+    }
+}

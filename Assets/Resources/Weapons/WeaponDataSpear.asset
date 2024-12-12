@@ -39,3 +39,4 @@ MonoBehaviour:
   bashStaminaCons: 20
   blockStaminaCons: 20
   weaponPrefab: {fileID: 2923154302685799561, guid: 1485059712069a842a2ceb42f451aa83, type: 3}
+  weaponName: spear

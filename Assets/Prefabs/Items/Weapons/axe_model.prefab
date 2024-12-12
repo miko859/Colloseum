@@ -133,6 +133,7 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 9e6a293735e105141b54b577a75ed037, type: 2}
   overrideController: {fileID: 22100000, guid: b236c0456646f3248b8c2cb83cf6b703, type: 2}
+  weaponName: WeaponDataAxe
 --- !u!114 &7120362107569298484
 MonoBehaviour:
   m_ObjectHideFlags: 0

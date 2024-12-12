@@ -37,7 +37,7 @@ public class EquipedWeaponManager : MonoBehaviour
 
     public Weapon FindOrCreateWeapon(string weaponName)
     {
-        
+        // Try to find the weapon in the existing list
         Weapon weapon = weaponery.Find(w => w.weaponName == weaponName);
 
         if (weapon != null)
@@ -46,45 +46,34 @@ public class EquipedWeaponManager : MonoBehaviour
         }
         else
         {
-            // load weapon data
+            // Load WeaponData 
             Debug.Log($"Loading WeaponData for: {weaponName}");
             WeaponData weaponData = Resources.Load<WeaponData>($"Weapons/{weaponName}");
 
             if (weaponData != null)
             {
-                // creates a weapon instance
+                // Create weapon instance
                 weapon = Instantiate(weaponData.weaponPrefab);
                 weapon.weaponName = weaponName; // Set weapon name
 
                 Debug.Log($"Created weapon instance: {weapon.weaponName}");
 
-                // Get player's body transform (or hand if available)
-                Transform bodyTransform = transform.GetComponent<PlayerController>().GetBodyTransform(); 
+                // Get players body transform
+                Transform bodyTransform = transform.GetComponent<PlayerController>().GetBodyTransform();
 
                 if (bodyTransform != null)
                 {
-                    // parent weapon to the player body
-                    weapon.transform.SetParent(bodyTransform, false); 
-                    weapon.transform.localPosition = Vector3.zero; 
+                    // Parent the weapon to the body
+                    weapon.transform.SetParent(bodyTransform, false);
+                    Debug.Log($"Weapon parent set to: {weapon.transform.parent.name}");
+
+                    // Reset position, rotation, and scale relative to the parent
+                    weapon.transform.localPosition = Vector3.zero;
                     weapon.transform.localRotation = Quaternion.identity;
-                    weapon.transform.localScale = Vector3.one; 
+                    weapon.transform.localScale = Vector3.one;
 
-                    // reset position rotation and scale of axe_rig
-                    Transform axeRig = weapon.transform.Find("axe_rig"); 
-                    if (axeRig != null)
-                    {
-                        axeRig.localPosition = Vector3.zero; 
-                        axeRig.localRotation = Quaternion.identity; 
-                        axeRig.localScale = Vector3.one; 
-                    }
-                    else
-                    {
-                        Debug.LogError("axe_rig not found in weapon.");
-                    }
-
-                    // Add weapon to weaponery
+                    // Add weapon to the weaponery list
                     AddWeapon(weapon);
-
                     Debug.Log($"Added new weapon to weaponery: {weapon.weaponName}");
                 }
                 else

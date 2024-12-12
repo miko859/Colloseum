@@ -59,7 +59,19 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     }
     public Transform GetBodyTransform()
     {
-        return transform.Find("Body");
+        if (transform.name == "Body")
+        {
+            return transform;
+        }
+        else
+        {
+            Transform bodyTransform = transform.Find("Body");
+            if (bodyTransform == null)
+            {
+                Debug.LogError("Body transform not found! Ensure the hierarchy is correct.");
+            }
+            return bodyTransform;
+        }
     }
     private void OnDisable()
     {

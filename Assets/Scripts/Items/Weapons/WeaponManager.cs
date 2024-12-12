@@ -109,7 +109,8 @@ public class WeaponManager : MonoBehaviour
         {
             PlayerController playerController = other.transform.GetChild(0).GetComponent<PlayerController>();
             WeaponAnimations playerWeaponAnimations = other.GetComponentInChildren<WeaponAnimations>();
-
+            Debug.Log(aiController.getDamage());
+            Debug.Log(DifficultyManager.Instance.GetEnemyDamageMultiplier());
             float totalIncomingDmg = aiController.getDamage() * DifficultyManager.Instance.GetEnemyDamageMultiplier();
 
             if (playerWeaponAnimations.getIsBlocking() && playerController.GetStaminaBar().GetCurrentStamina() > playerWeaponAnimations.weaponData.blockStaminaCons)

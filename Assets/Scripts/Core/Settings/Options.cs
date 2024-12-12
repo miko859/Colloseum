@@ -24,8 +24,6 @@ public class Options : MonoBehaviour
 
     void Start()
     {
-        //Settings.Initialize();
-
         difficulty.value = Settings.Conf.Get<int>("DIFFICULTY");
         quality.value = Settings.Conf.Get<int>("QUALITY_LEVEL");
         resolution.value = Settings.Conf.Get<int>("RESOLUTION_ID");
@@ -41,21 +39,16 @@ public class Options : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void LoadConfigOnStart()
     { 
-        Settings.Initialize();
+        Settings.Conf.Initialize();
 
         QualitySettings.SetQualityLevel(Settings.Get<int>("QUALITY_LEVEL"));
         string[] resolutions = Settings.Get<string>("RESOLUTION").Split("x");
 
-        if (resolutions.Length != 2 ||
-    !int.TryParse(resolutions[0].Trim(), out int width) ||
-    !int.TryParse(resolutions[1].Trim(), out int height))
+        if (resolutions.Length != 2 || !int.TryParse(resolutions[0].Trim(), out int width) || !int.TryParse(resolutions[1].Trim(), out int height))
         {
-            Debug.LogError("Failed to parse resolution");
+            Debug.LogError("Failed to parse resolution at loading options");
             return;
         }
-
-        // Successfully parsed width and height
-        Debug.Log($"Width: {width}, Height: {height}");
 
         Screen.SetResolution(width, height, Settings.Conf.Get<bool>("FULLSCREEN"));
         QualitySettings.antiAliasing = Settings.Get<int>("ANTI-ALIASING");
@@ -65,28 +58,23 @@ public class Options : MonoBehaviour
     public void ApplyChanges()
     {
         Settings.Conf.Save();
-        Debug.Log("Apply");
 
         QualitySettings.SetQualityLevel(quality.value);
-        Debug.Log("Resolution -> " + resolution.options[resolution.value].text);
         string[] resolutions = resolution.options[resolution.value].text.Split("x");
         Debug.Log(resolutions[0] + " " + resolutions[1]);
-        if (resolutions.Length != 2 ||
-    !int.TryParse(resolutions[0].Trim(), out int width) ||
-    !int.TryParse(resolutions[1].Trim(), out int height))
+        if (resolutions.Length != 2 || !int.TryParse(resolutions[0].Trim(), out int width) || !int.TryParse(resolutions[1].Trim(), out int height))
         {
-            Debug.LogError("Failed to parse resolution");
+            Debug.LogError("Failed to parse resolution at applying options");
             return;
         }
         Screen.SetResolution(width, height, fullscreen.isOn);
-        //Screen.fullScreenMode = fullscreen.isOn ? FullScreenMode.Windowed : FullScreenMode.FullScreenWindow;
         QualitySettings.antiAliasing = anti_aliasing.value;
         QualitySettings.vSyncCount = (v_sync.isOn) ? 2 : 0;
     }
 
     public void OnDifficultyChange()
     {
-        Settings.Conf.Set<int>("DIFFICULTY", difficulty.value);
+        Settings.Conf.Set("DIFFICULTY", difficulty.value);
     }
 
     public void OnQualityChange()

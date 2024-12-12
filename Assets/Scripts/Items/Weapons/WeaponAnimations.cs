@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WeaponAnimations : Weapon
 {
@@ -53,7 +54,7 @@ public class WeaponAnimations : Weapon
     }
 
     /// <summary>
-    /// Hard Attack/Strong Attack
+    /// HARD Attack/Strong Attack
     /// </summary>
     /// <param name="attackPhase"></param>
     public override void HardAttack(bool attackPhase)
@@ -102,17 +103,17 @@ public class WeaponAnimations : Weapon
     /// Function to handle inputs from InputSystem Map
     /// </summary>
     /// <param name="playerInputActions"></param>
-    public override void HandleInput(PlayerInputActions playerInputActions)
+    public override void HandleInput(PlayerInput playerInput)
     {
-        if (playerInputActions.Player.Attack.triggered)
+        if (playerInput.actions["Attack"].triggered)
         {
             Attack();
         }
-        if (playerInputActions.Player.Attack.triggered)
+        if (playerInput.actions["Attack"].triggered)
         {
             HardAttack(true || false);
         }
-        if (playerInputActions.Player.Block.triggered)
+        if (playerInput.actions["Block"].triggered)
         {
             Block();
         }

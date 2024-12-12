@@ -297,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 4095329820490981590, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: ballSpells.Array.data[0]
       value: 
-      objectReference: {fileID: 948379807}
+      objectReference: {fileID: 2205321846533856261, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
     - target: {fileID: 4095329820490981590, guid: b7cb7f1a6cb125e46b4684335303d6ab, type: 3}
       propertyPath: utilitySpells.Array.data[0]
       value: 
@@ -38272,17 +38272,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
---- !u!114 &948379807 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8280209294547454244, guid: e02c6ccf14e5c5f47b0f6cad1e7cda12, type: 3}
-  m_PrefabInstance: {fileID: 948379806}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123cba4be3480384cb4e424df000e5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &954928853
 PrefabInstance:
   m_ObjectHideFlags: 0

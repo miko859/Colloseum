@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.TestTools;
 
 
-public class work
+public class TestRunnerWorksTest
 
 {
     private int a;

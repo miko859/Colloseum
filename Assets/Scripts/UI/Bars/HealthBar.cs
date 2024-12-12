@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
     public double currentHealth;
     private double changedHealth;
 
+    public object MaxHealth { get; set; }
+
     public void SetMaxHealth(double health)
     {
         healthSlider.maxValue = (float)health;

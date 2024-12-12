@@ -50,7 +50,7 @@ public class ManaSystem : MonoBehaviour
     }
 
     
-    public bool TrySpendMana(int amount)
+    public bool TrySpendMana(float amount)
     {
         if (currentMana >= amount)
         {

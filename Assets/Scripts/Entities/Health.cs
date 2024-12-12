@@ -13,6 +13,9 @@ public class Health : MonoBehaviour
 
     private Collider entityCollider;
 
+    public double GetCurrentHealth() {return currentHealth;  }
+    public void SetCurrentHealth(double currentHealth) {this.currentHealth=currentHealth;}
+
     public void Start()
     {
         weapon = GetComponent<Weapon>();

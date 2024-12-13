@@ -110,7 +110,7 @@
                     "name": "",
                     "id": "b32f6468-e2b2-4f8b-b85c-eaa1c99a0b56",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "Hold(duration=0.4,pressPoint=0.5)",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Block",

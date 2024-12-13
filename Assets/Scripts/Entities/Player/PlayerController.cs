@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isCharging = true;
     private bool isWalking = false;
+    private bool isBlocking = false;
 
     [Header("Testujem")]
     private AnimatorStateInfo stateInfo;
@@ -25,11 +26,12 @@ public class PlayerController : MonoBehaviour
     private AnimatorControllerParameter[] parametre;
     private Animator bodyAni;
 
-    private void Awake()
+    private void Start()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
         staminaBar.SetMaxStamina(100, 2.5);
         playerInput = GetComponent<PlayerInput>();
+        EquipedWeaponManager.Instance.AddWeapon(currentWeapon);
     }
 
     private void OnEnable()
@@ -220,7 +222,16 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"></param>
     public void OnBlock(InputAction.CallbackContext context)
     {
-        currentWeapon.Block();    
+        if (!isBlocking)
+        {
+            currentWeapon.Block();
+            Debug.Log("Player Controller - Block");
+            isBlocking = !isBlocking;
+        }
+        else
+        {
+            isBlocking = !isBlocking;
+        }
     }
 
     public void OnMovement(InputAction.CallbackContext context)

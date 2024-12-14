@@ -35,31 +35,48 @@ public class Health_Tests
     }
 
     [Test]
-    public void DealDamage_ReducesHealthAndUpdatesHealth()
+    [TestCase(20,80,true)]
+    [TestCase(80,20,false)]
+    public void DealDamage_ReducesHealthAndUpdatesHealth(float dmgValue, float expectedValue,Boolean expectedStatus)
     {
-        health.DealDamage(20);
+        health.DealDamage(dmgValue);
         health.healthBar.SetHealth(health.GetCurrentHealth());
-        Assert.AreEqual(80, health.GetCurrentHealth(), "Health did not reduce correctly.");
+        if (expectedStatus == false)
+        {
+            Assert.AreNotEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly.");
+        }
+        else { Assert.AreEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly."); }
         //Assert.AreEqual(80, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");
     }
 
     [Test]
-    public void  DealDamageAndHeal_ReducesHealthUpdatesHealth()
+    [TestCase(50,25,75, true)]
+    [TestCase(50,25,75, false)]
+    public void  DealDamageAndHeal_ReducesHealthUpdatesHealth(float dmgValue, float healValue, float expectedValue, Boolean expectedStatus)
     {
         
-        health.DealDamage(50);
-        health.Heal(35);
+        health.DealDamage(dmgValue);
+        health.Heal(healValue);
         //health.healthBar.SetHealth(health.GetCurrentHealth());
-        Assert.AreEqual(85, health.GetCurrentHealth(), "Health did not increase correctly.");
+        if (expectedStatus == false)
+        {
+            Assert.AreNotEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly.");
+        }
+        else { Assert.AreEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly."); }
         //Assert.AreEqual(85, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");
     }
 
     [Test]
-    public void Heal_UpdatesHealth()
+    [TestCase(10, 110, true)]
+    public void Heal_UpdatesHealth(float healValue, float expectedValue, Boolean expectedStatus)
     {
-        health.Heal(50);
+        health.Heal(healValue);
         //health.healthBar.SetHealth(health.GetCurrentHealth());
-        Assert.AreEqual(150, health.GetCurrentHealth(), "");
+        if (expectedStatus == false)
+        {
+            Assert.AreNotEqual(expectedValue, health.GetCurrentHealth(), "Health did not increase correctly.");
+        }
+        else { Assert.AreEqual(expectedValue, health.GetCurrentHealth(), "Health did not increase correctly."); }
         //Assert.AreEqual(150, healthBar.healthSlider.value, "HealthBar slider value exceeded max health.");
     }
 

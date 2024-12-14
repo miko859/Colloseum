@@ -2008,8 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a922e90ca6d501543a9e86ded9a67191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponery:
-  - {fileID: 1429867244090369214}
+  weaponery: []
 --- !u!1 &7152469309457388583
 GameObject:
   m_ObjectHideFlags: 0

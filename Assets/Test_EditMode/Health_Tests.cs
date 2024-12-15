@@ -60,7 +60,7 @@ public class Health_Tests
         //health.healthBar.SetHealth(health.GetCurrentHealth());
         if (expectedStatus == false)
         {
-            Assert.AreNotEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly.");
+            Assert.AreNotEqual((double) expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly.");
         }
         else { Assert.AreEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly."); }
         //Assert.AreEqual(85, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");

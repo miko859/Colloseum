@@ -44,41 +44,50 @@ public class SaveLoad : MonoBehaviour
 
         if (data != null)
         {
-            // disable rigidBody physics
+            // Disable rigidBody physics and movement logic temporarily
             Rigidbody rb = playerTransform.GetComponent<Rigidbody>();
             if (rb != null) rb.isKinematic = true;
 
-            // disable movement logic
             CharacterController controller = playerTransform.GetComponent<CharacterController>();
             if (controller != null) controller.enabled = false;
 
-            // disable the timeScale for a bit so the position can be changed
-            float previousTimeScale = Time.timeScale;
-            Time.timeScale = 1.0f;
-
-            // update player position
+            // Restore player position
             playerTransform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
             Debug.Log($"Player position updated to: {playerTransform.position}");
 
-            // restore time scale
-            Time.timeScale = previousTimeScale;
-
-            // update player health
+            // Restore health
             healthBar.SetHealth(data.healthData, true);
+            Debug.Log($"Player health updated to: {data.healthData}");
 
-            // Load equipped weapons
+            // Clear existing equipped weapons
+            foreach (var weapon in equipedWeaponManager.weaponery)
+            {
+                if (weapon != null)
+                {
+                    Destroy(weapon.gameObject); // Destroy weapon GameObject
+                }
+            }
             equipedWeaponManager.weaponery.Clear();
+
+            // Load equipped weapons from saved data
             foreach (var weaponName in data.equippedWeapons)
             {
                 Weapon weapon = equipedWeaponManager.FindOrCreateWeapon(weaponName);
-                equipedWeaponManager.weaponery.Add(weapon); // Add the weapon to the list
+                if (weapon != null)
+                {
+                    equipedWeaponManager.weaponery.Add(weapon); // Add weapon to the list
+                }
+                else
+                {
+                    Debug.LogError($"Failed to load weapon: {weaponName}");
+                }
             }
 
-            // enable the logic we disabled earlier
+            // Re-enable rigidBody physics and movement logic
             if (rb != null) rb.isKinematic = false;
             if (controller != null) controller.enabled = true;
 
-            Debug.Log($"Loaded Position: {playerTransform.position}, Health: {healthBar.currentHealth}");
+            Debug.Log($"Loaded Position: {playerTransform.position}, Health: {healthBar.currentHealth}, Weapons: {string.Join(", ", data.equippedWeapons)}");
         }
         else
         {
@@ -86,7 +95,8 @@ public class SaveLoad : MonoBehaviour
         }
     }
 
-    
+
+
     private void SavePlayerData()
     {
         Debug.Log("Saving Player Data...");

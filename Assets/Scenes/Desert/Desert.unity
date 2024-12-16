@@ -35050,7 +35050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1517629671176754096, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3028393783740428653, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_Pivot.x
@@ -35138,11 +35138,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7665581462377539075, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7665581462377539075, guid: 4d24977f1234a374185582359f0a00d9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -47883,7 +47883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1275149515
 Transform:
   m_ObjectHideFlags: 0
@@ -48544,7 +48544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1305113213
 Transform:
   m_ObjectHideFlags: 0
@@ -53902,11 +53902,11 @@ PrefabInstance:
       objectReference: {fileID: 1521956396}
     - target: {fileID: 3115326533685880327, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3115326533685880327, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3241181996873231416, guid: 4a2995c2dfa5ee447bb99406df3fd57e, type: 3}
       propertyPath: camera
@@ -57869,10 +57869,6 @@ PrefabInstance:
     - target: {fileID: 4341687862393899610, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
       propertyPath: m_Name
       value: Canvas_HealthBar
-      objectReference: {fileID: 0}
-    - target: {fileID: 4341687862393899610, guid: 840509344c002e54dbd9454b2a3eae68, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -79143,13 +79139,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas_Stamina
       objectReference: {fileID: 0}
-    - target: {fileID: 1832104047549607378, guid: 8d19de0419985e24f899797f14064c52, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 287173969891420476, guid: 8d19de0419985e24f899797f14064c52, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1832104047549607378, guid: 8d19de0419985e24f899797f14064c52, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1832104047549607378, guid: 8d19de0419985e24f899797f14064c52, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7126360001033333715, guid: 8d19de0419985e24f899797f14064c52, type: 3}
       propertyPath: m_Pivot.x

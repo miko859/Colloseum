@@ -259,6 +259,7 @@ public class PlayerController : MonoBehaviour
 
         if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
         {
+            Debug.Log("utekaaaaam");
             animator.SetBool("Run", true);
             currentWeapon.GetAnimator().SetBool("Run", true);
             

@@ -1764,8 +1764,8 @@ MonoBehaviour:
   player: {fileID: 7657625602918447259}
   speedMultiplier: 1
   movementSound: {fileID: 961304731711646622}
-  landSound: {fileID: 0}
-  jumpSound: {fileID: 0}
+  landSound: {fileID: 8066523089395395501}
+  jumpSound: {fileID: 8249628538789892794}
 --- !u!114 &5867833435443790968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2321,7 +2321,8 @@ MonoBehaviour:
   - {fileID: 0}
   elementSpells:
   - {fileID: 2472572463129397038}
-  utilitySpells: []
+  utilitySpells:
+  - {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
 --- !u!1 &7773327261199772111
 GameObject:
   m_ObjectHideFlags: 0

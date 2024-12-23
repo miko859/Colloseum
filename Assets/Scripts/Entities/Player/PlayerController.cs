@@ -26,7 +26,9 @@ public class PlayerController : MonoBehaviour
     private AnimatorControllerParameter[] parametre;
     private Animator bodyAni;
 
-    private void Start()
+
+
+    private void Awake()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
         staminaBar.SetMaxStamina(100, 2.5);
@@ -38,7 +40,22 @@ public class PlayerController : MonoBehaviour
     {
         playerInput.currentActionMap.Enable();
     }
-
+    public Transform GetBodyTransform()
+    {
+        if (transform.name == "Body")
+        {
+            return transform;
+        }
+        else
+        {
+            Transform bodyTransform = transform.Find("Body");
+            if (bodyTransform == null)
+            {
+                Debug.LogError("Body transform not found! Ensure the hierarchy is correct.");
+            }
+            return bodyTransform;
+        }
+    }
     private void OnDisable()
     {
         playerInput.currentActionMap.Disable();

@@ -39,3 +39,4 @@ MonoBehaviour:
   bashStaminaCons: 46
   blockStaminaCons: 42
   weaponPrefab: {fileID: 463186324098979194, guid: d89c31235ccc16440917f6f5f6d2d7cc, type: 3}
+  weaponName: hammer

@@ -31,4 +31,6 @@ public class WeaponData : Item
     public float bashStaminaCons;
     public float blockStaminaCons;
     public Weapon weaponPrefab;
+
+    public string weaponName; 
 }

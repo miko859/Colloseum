@@ -8,6 +8,7 @@ public abstract class Weapon : MonoBehaviour
     public Animator bodyAnimator;
     public WeaponData weaponData;
     public AnimatorOverrideController overrideController;
+    public string weaponName;
 
     protected bool isAttacking = false;
     protected bool isBashing = false;

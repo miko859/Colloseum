@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 7507649243716699077}
   - component: {fileID: 8880330184455590431}
   - component: {fileID: 3894225377012638174}
+  - component: {fileID: 1691151989170012254}
   m_Layer: 9
   m_Name: spear_model_pickUpOnly
   m_TagString: Weapon
@@ -216,6 +217,19 @@ MonoBehaviour:
   interactPrompt: Press E to interact
   weaponPrefab: {fileID: 2923154302685799561, guid: 1485059712069a842a2ceb42f451aa83, type: 3}
   destroyObject: 1
+--- !u!114 &1691151989170012254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4063834206622064933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c958f8e24f830de42a2fada9b1e396c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: fcbc255b3ed669f46814680a26d6498f, type: 2}
 --- !u!1 &5139155800455205035
 GameObject:
   m_ObjectHideFlags: 0

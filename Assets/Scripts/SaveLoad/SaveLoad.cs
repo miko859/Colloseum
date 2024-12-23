@@ -59,31 +59,42 @@ public class SaveLoad : MonoBehaviour
             healthBar.SetHealth(data.healthData, true);
             Debug.Log($"Player health updated to: {data.healthData}");
 
-            // Clear existing equipped weapons
+            // Clear existing equipped weapons but do not delete hands_model
             foreach (var weapon in equipedWeaponManager.weaponery)
             {
-                if (weapon != null)
+                if (weapon != null && weapon.gameObject.name != "hands_model") // Skip deleting hands_model
                 {
                     Destroy(weapon.gameObject); // Destroy weapon GameObject
                 }
             }
             equipedWeaponManager.weaponery.Clear();
 
+            // Ensure hands_model is added as a weapon if it was previously equipped
+            Weapon handsWeapon = equipedWeaponManager.FindOrCreateWeapon("hands_model");
+            if (handsWeapon != null)
+            {
+                equipedWeaponManager.weaponery.Add(handsWeapon); // Add hands to the list if not already
+            }
+
             // Load equipped weapons from saved data
             foreach (var weaponName in data.equippedWeapons)
             {
-                Weapon weapon = equipedWeaponManager.FindOrCreateWeapon(weaponName);
-                if (weapon != null)
+                // Skip adding hands_model as it should always be in the weapon list
+                if (weaponName != "hands_model")
                 {
-                    equipedWeaponManager.weaponery.Add(weapon); // Add weapon to the list
-                }
-                else
-                {
-                    Debug.LogError($"Failed to load weapon: {weaponName}");
+                    Weapon weapon = equipedWeaponManager.FindOrCreateWeapon(weaponName);
+                    if (weapon != null)
+                    {
+                        equipedWeaponManager.weaponery.Add(weapon); // Add weapon to the list
+                    }
+                    else
+                    {
+                        Debug.LogError($"Failed to load weapon: {weaponName}");
+                    }
                 }
             }
 
-            // Re-enable rigidBody physics and movement logic
+            // enable rigidBody physics and movement logic
             if (rb != null) rb.isKinematic = false;
             if (controller != null) controller.enabled = true;
 
@@ -94,6 +105,7 @@ public class SaveLoad : MonoBehaviour
             Debug.LogError("No data to load.");
         }
     }
+
 
 
 

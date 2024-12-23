@@ -46,13 +46,13 @@ public class EquipedWeaponManager : MonoBehaviour
         }
         else
         {
-            // Load WeaponData 
+            // Load WeaponData if the weapon is not found
             Debug.Log($"Loading WeaponData for: {weaponName}");
             WeaponData weaponData = Resources.Load<WeaponData>($"Weapons/{weaponName}");
 
             if (weaponData != null)
             {
-                // Create weapon instance
+                // Create weapon instance only if it doesnt exist already
                 weapon = Instantiate(weaponData.weaponPrefab);
                 weapon.weaponName = weaponName; // Set weapon name
 
@@ -67,14 +67,21 @@ public class EquipedWeaponManager : MonoBehaviour
                     weapon.transform.SetParent(bodyTransform, false);
                     Debug.Log($"Weapon parent set to: {weapon.transform.parent.name}");
 
-                    // Reset position, rotation, and scale relative to the parent
+                    // Reset position, rotation, and scale
                     weapon.transform.localPosition = Vector3.zero;
                     weapon.transform.localRotation = Quaternion.identity;
                     weapon.transform.localScale = Vector3.one;
 
-                    // Add weapon to the weaponery list
-                    AddWeapon(weapon);
-                    Debug.Log($"Added new weapon to weaponery: {weapon.weaponName}");
+                    // Add weapon to the weaponery list only if its not already in the list
+                    if (!weaponery.Contains(weapon))
+                    {
+                        AddWeapon(weapon);
+                        Debug.Log($"Added new weapon to weaponery: {weapon.weaponName}");
+                    }
+                    else
+                    {
+                        Debug.Log($"Weapon already in weaponery: {weapon.weaponName}");
+                    }
                 }
                 else
                 {
@@ -102,6 +109,7 @@ public class EquipedWeaponManager : MonoBehaviour
 
 
 
+
     /// <summary>
     /// Add weapon into weaponery/inventory
     /// </summary>
@@ -113,6 +121,7 @@ public class EquipedWeaponManager : MonoBehaviour
             Debug.LogError("Weapon name is empty! This weapon will not be saved correctly.");
         }
 
+        // ensure that there will be no duplicated weapons
         if (!weaponery.Contains(newWeapon))
         {
             weaponery.Add(newWeapon);
@@ -130,14 +139,15 @@ public class EquipedWeaponManager : MonoBehaviour
         }
     }
 
+
     public void LoadWeapon(string weaponName)
     {
-        // Find or create the weapon from the weaponery (inventory)
+        // Find or create the weapon from the weaponery 
         Weapon weapon = FindOrCreateWeapon(weaponName);
 
         if (weapon != null)
         {
-            // Switch to this weapon if it's successfully loaded
+            // Switch to this weapon if it is loaded
             SwitchWeapon(weaponery.IndexOf(weapon));
         }
         else

@@ -7,7 +7,7 @@ public abstract class Interactable : MonoBehaviour
     /// Function, triggered by interaction by player with items
     /// </summary>
     public abstract void Interact();
-    public abstract void EquipWeapon(Item item);
+    public virtual void EquipWeapon(Item item) { }
 
 
     /// <summary>

@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isCharging = true;
     private bool isWalking = false;
     private bool isBlocking = false;
+    private bool isRunning = false;
 
     [Header("Testujem")]
     private AnimatorStateInfo stateInfo;
@@ -255,20 +256,30 @@ public class PlayerController : MonoBehaviour
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        GetComponent<PlayerMovement>().Run();
 
-        if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
+        if (!isRunning)
         {
-            Debug.Log("utekaaaaam");
-            animator.SetBool("Run", true);
-            currentWeapon.GetAnimator().SetBool("Run", true);
-            
+            isRunning = !isRunning;
+            GetComponent<PlayerMovement>().Run();
+
+            if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
+            {
+                Debug.Log("utekaaaaam");
+                animator.SetBool("Run", true);
+                currentWeapon.GetAnimator().SetBool("Run", true);
+
+            }
+            else
+            {
+                animator.SetBool("Run", false);
+                currentWeapon.GetAnimator().SetBool("Run", false);
+            }
         }
         else
         {
-            animator.SetBool("Run", false);
-            currentWeapon.GetAnimator().SetBool("Run", false);
+            isRunning = !isRunning;
         }
+        
     }
 
     private bool interacted = false;

@@ -19,44 +19,33 @@ public class ToggleUI : MonoBehaviour
         continueButton.onClick.AddListener(ContinueGame);
     }
 
-    void Update()
-    {
-        HandleInventoryToggle();
-        HandleMenuToggle();
-    }
-
     public void HandleInventoryToggle()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (!isMenuOpen)
         {
-            if (!isMenuOpen)
-            {
-                isInventoryOpen = !isInventoryOpen;
-                inventory.SetActive(isInventoryOpen);
-                mainMenu.SetActive(false);
-                inventoryManager.ListItems();
+            isInventoryOpen = !isInventoryOpen;
+            inventory.SetActive(isInventoryOpen);
+            mainMenu.SetActive(false);
+            inventoryManager.ListItems();
 
-                Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
-                Cursor.visible = isInventoryOpen;
-                Time.timeScale = isInventoryOpen ? 0.0f : 1.0f;
-            }
+            Cursor.lockState = isInventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isInventoryOpen;
+            Time.timeScale = isInventoryOpen ? 0.0f : 1.0f;
         }
+        
     }
 
     public void HandleMenuToggle()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (!isInventoryOpen)
         {
-            if (!isInventoryOpen)
-            {
-                isMenuOpen = !isMenuOpen;
-                mainMenu.SetActive(isMenuOpen);
-                inventory.SetActive(false);
+            isMenuOpen = !isMenuOpen;
+            mainMenu.SetActive(isMenuOpen);
+            inventory.SetActive(false);
 
-                Cursor.lockState = isMenuOpen ? CursorLockMode.None : CursorLockMode.Locked;
-                Cursor.visible = isMenuOpen;
-                Time.timeScale = isMenuOpen ? 0.0f : 1.0f;
-            }
+            Cursor.lockState = isMenuOpen ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = isMenuOpen;
+            Time.timeScale = isMenuOpen ? 0.0f : 1.0f;
         }
     }
 

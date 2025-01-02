@@ -13,6 +13,7 @@ public class WeaponData : Item
     public float bashDuration;
     public float hurtDuration;
     public float equipUnequipDuration;
+    public float blockedDuration;
 
     [Header("Animation names")]
     public string lightAttackAnimation;
@@ -21,6 +22,7 @@ public class WeaponData : Item
     public string blockAnimation;
     public string bashAnimation;
     public string hurtAnimation;
+    public string blockedAnimation;
 
     [Header("Weapon stats")]
     public float lightAttackDamage;

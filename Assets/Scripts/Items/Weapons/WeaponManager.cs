@@ -54,7 +54,6 @@ public class WeaponManager : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        
         if (target.Equals("Enemy") && bashColl.enabled)
         {
             if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
@@ -117,6 +116,7 @@ public class WeaponManager : MonoBehaviour
             {
                 playerController.GetStaminaBar().ReduceStamina(playerWeaponAnimations.weaponData.blockStaminaCons);
                 float total = totalIncomingDmg - playerWeaponAnimations.weaponData.blockTreshhold;
+                playerWeaponAnimations.BlockedAttack();
                 Debug.Log($"total damage {total} AI dmg {aiController.getDamage()} player block {playerWeaponAnimations.weaponData.blockTreshhold}");
                 if (total > 0)
                 {
@@ -134,14 +134,10 @@ public class WeaponManager : MonoBehaviour
 
     public IEnumerator SwapCollBlockBash()
     {
-        //blade.isTrigger = false;
         blade.enabled = false;
-        //bashColl.isTrigger = true;
         bashColl.enabled = true;
         yield return new WaitForSeconds(weaponAnimations.weaponData.bashDuration);
-        //blade.isTrigger = true;
         blade.enabled = true;
-        //bashColl.isTrigger = false;
         bashColl.enabled = false;
     }
 }

@@ -26,12 +26,14 @@ MonoBehaviour:
   bashDuration: 0.267
   hurtDuration: 0.3
   equipUnequipDuration: 0.3
+  blockedDuration: 0.5
   lightAttackAnimation: LightAttack
   heavyAttackAnimation: HeavyAttack
   heavyAttackPerformAnimation: HeavyAttackPerform
   blockAnimation: Block
   bashAnimation: Bash
   hurtAnimation: Hurt
+  blockedAnimation: Blocked
   lightAttackDamage: 3
   heavyAttackDamage: 7
   blockTreshhold: 3

@@ -1,5 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -10,12 +13,13 @@ public class Health : MonoBehaviour
     private Weapon weapon;
     public bool hasDeathAnimation = false;
     private WeaponManager weaponManager;
+    private bool isAlive = false;
 
     private Collider entityCollider;
 
     public double GetCurrentHealth() {return currentHealth;  }
     public void SetCurrentHealth(double currentHealth) {this.currentHealth=currentHealth;}
-
+    public void SetIsAlive(bool value) { this.isAlive=value;}
     public void Start()
     {
         weapon = GetComponent<Weapon>();
@@ -50,20 +54,24 @@ public class Health : MonoBehaviour
                 if (hasDeathAnimation)
                 {
                     animator.SetBool("death", true);
-                    transform.tag = "DeadEnemy";
-                    transform.GetComponent<NavMeshAgent>().enabled = false;
-                    transform.GetComponent<AIController>().enabled = false;
                 }
                 else
                 {
-                    transform.tag = "DeadEnemy";
                     animator.enabled = false;
-                    transform.GetComponent<NavMeshAgent>().enabled = false;
-                    transform.GetComponent<AIController>().enabled = false;
                 }
+
+                transform.tag = "DeadEnemy";
+                transform.GetComponent<NavMeshAgent>().enabled = false;
+                transform.GetComponent<AIController>().enabled = false;
+
             }
             else if (transform.CompareTag("Player"))
             {
+                if (!isAlive)
+                {
+                    isAlive = !isAlive;
+                    FindAnyObjectByType<DeathScreenFade>().TriggerDeathFade();
+                }
                 Debug.Log("YOU HAVE DIED");
             }
 

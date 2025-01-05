@@ -248,7 +248,6 @@ public class PlayerController : MonoBehaviour
         if (!isBlocking)
         {
             currentWeapon.Block();
-            Debug.Log("Player Controller - Block");
             isBlocking = !isBlocking;
         }
         else

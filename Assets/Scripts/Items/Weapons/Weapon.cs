@@ -21,6 +21,7 @@ public abstract class Weapon : MonoBehaviour
     public abstract void Attack();
     public abstract void HardAttack(bool attackPhase);
     public abstract void Block();
+    public abstract void BlockedAttack();
     public abstract void Bash();
     public abstract void HandleInput(PlayerInput playerInput);
     public abstract void Equip();

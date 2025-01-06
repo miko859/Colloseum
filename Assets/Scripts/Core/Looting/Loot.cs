@@ -126,7 +126,7 @@ public class Loot : Interactable
         List<Item> validLoot = lootPool.FindAll(loot => GetRarityIntValue(loot.rarity) <= GetRarityIntValue(LootItemsRarity) + 1).Where(loot => loot.itemType == itemType).ToList<Item>();
         if (validLoot.Count == 0)
             return null;
-        Item tempItem = validLoot[UnityEngine.Random.Range(0, validLoot.Count)];
+        Item tempItem = validLoot.ElementAt(UnityEngine.Random.Range(0, validLoot.Count));
 
         if (itemsToDrop - GetRarityIntValue(tempItem.rarity) > -1)
         {

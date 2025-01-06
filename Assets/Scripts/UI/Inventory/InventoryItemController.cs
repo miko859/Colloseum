@@ -23,16 +23,15 @@ public class InventoryItemController : MonoBehaviour
     {
         switch (item.itemType)
         {
-            case Item.ItemType.Weapon:
-                PickUpItem.Instance.EquipWeapon(item); 
+            case Item.ItemType.Equipment:
+                if (item as WeaponData)
+                {
+                    PickUpItem.Instance.EquipWeapon(item);
+                }
                 break;
-            case Item.ItemType.Armor:
+            case Item.ItemType.Potion:
                 break;
-            case Item.ItemType.Helmet:
-                break;
-            case Item.ItemType.HealthPotion:
-                break;
-            case Item.ItemType.ManaPotion:
+            case Item.ItemType.Currency:
                 break;
             default:
                 break;

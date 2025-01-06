@@ -17,6 +17,7 @@ MonoBehaviour:
   value: 43
   description: Heavy two-handed hammer made by dwarfs  in Leikland mountains.
   itemType: 0
+  rarity: 1
   lightAttackTypesCount: 1
   lightAttackDuration1: 1.667
   lightAttackDuration2: 0

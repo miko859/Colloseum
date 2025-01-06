@@ -362,7 +362,6 @@ public class PlayerController : MonoBehaviour
         if (context.action.IsPressed() && !isSilenced)
         {
             spellManager.CallActiveUtility();
-            Debug.Log("Called Util cast");
         }
     }
     public void OnSpellSwitch(InputAction.CallbackContext context)
@@ -381,7 +380,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Inventory");
             toggleUI.HandleInventoryToggle();
         }
     }
@@ -390,7 +388,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            Debug.Log("Menu");
             toggleUI.HandleMenuToggle();
         }
     }

@@ -8,14 +8,22 @@ public abstract class Item : ScriptableObject
     public int value;
     public string description;
     public ItemType itemType;
+    public LootRarity rarity;
     List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
 
     public enum ItemType
     {
-        Weapon,
-        Armor,
-        Helmet,
-        HealthPotion,
-        ManaPotion
+        Equipment,
+        Potion,
+        Currency
+    }
+    public enum LootRarity
+    {
+        COMMON,
+        UNCOMMON,
+        RARE,
+        EPIC,
+        LEGENDARY,
+        MYSTERIOUS
     }
 }

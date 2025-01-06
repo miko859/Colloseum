@@ -2027,7 +2027,7 @@ MonoBehaviour:
   interactionRange: 5
   interactionLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8776
   currentInteractable: {fileID: 0}
 --- !u!114 &2024704079196360826
 MonoBehaviour:

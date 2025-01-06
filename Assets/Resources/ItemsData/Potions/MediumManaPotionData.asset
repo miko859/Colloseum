@@ -15,8 +15,11 @@ MonoBehaviour:
   itemName: Medium Mana Flask
   icon: {fileID: 21300000, guid: 952bacbcb1f84d240aef503d702ad864, type: 3}
   value: 36
-  description: Mediuml flask of blue liquid with magical powers.
+  description: Medium flask of blue liquid with magical powers.
   itemType: 1
   rarity: 1
+  stackable: 1
   potionType: 1
   amount: 16
+  currentStack: 1
+  maxStack: 5

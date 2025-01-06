@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using Random = System.Random;
 
@@ -55,7 +57,7 @@ public class Loot : Interactable
             while (potionsToDrop != 0)
             {
                 Item entry = GetRandomLootByRarity(lootPool, potionsToDrop, Item.ItemType.Potion);
-                lootedItems.Add(entry);
+                lootedItems.Add(CloneLootItem(entry));
                 Debug.Log("potionsToDrop " +  potionsToDrop);
                 potionsToDrop -= GetRarityIntValue(entry.rarity);
                 Debug.Log("potion drop " + entry.itemName);
@@ -64,9 +66,10 @@ public class Loot : Interactable
         if (moneyDrop)
         {
             int money = UnityEngine.Random.Range(currentRates.minMoney, currentRates.maxMoney + 1);
-            Item currency = new Currency();
+            Item currency = lootPool.Find(loot => loot.itemType == Item.ItemType.Currency);
+
             currency.value = money;
-            lootedItems.Add(currency);
+            lootedItems.Add(CloneLootItem(currency));
             Debug.Log("money drop " +  currency.value);
         }
         
@@ -126,17 +129,16 @@ public class Loot : Interactable
         List<Item> validLoot = lootPool.FindAll(loot => GetRarityIntValue(loot.rarity) <= GetRarityIntValue(LootItemsRarity) + 1).Where(loot => loot.itemType == itemType).ToList<Item>();
         if (validLoot.Count == 0)
             return null;
-        Item tempItem = validLoot.ElementAt(UnityEngine.Random.Range(0, validLoot.Count));
+        Item tempItem; 
+        
+        do
+        {
+            tempItem = validLoot.ElementAt(UnityEngine.Random.Range(0, validLoot.Count));
+        }
+        while (itemsToDrop - GetRarityIntValue(tempItem.rarity) < 0);
 
-        if (itemsToDrop - GetRarityIntValue(tempItem.rarity) > -1)
-        {
-            return tempItem;
-        }
-        else
-        {
-            GetRandomLootByRarity(lootPool, itemsToDrop, itemType);
-            return null;
-        }
+        return tempItem;
+        
     }
 
     private int GetRarityIntValue(Item.LootRarity rarity)
@@ -150,5 +152,43 @@ public class Loot : Interactable
             case Item.LootRarity.LEGENDARY: return 5;
             default: return 1;
         }
+    }
+
+    private Item CloneLootItem(Item original)
+    {
+        Item clone = (original is Currency) ? ScriptableObject.CreateInstance<Currency>() : ScriptableObject.CreateInstance<PotionData>();
+
+        clone.itemName = original.itemName;
+        clone.rarity = original.rarity;
+        clone.stackable = original.stackable;
+
+        if (original is Currency currency)
+        {
+            Currency clonedCurrency = clone as Currency;
+            if (clonedCurrency != null)
+            {
+                clonedCurrency.maxStack = currency.maxStack;
+            }
+        }
+        else if (original is PotionData potion)
+        {
+            PotionData clonedPotion = clone as PotionData;
+            if (clonedPotion != null)
+            {
+                clonedPotion.amount = potion.amount;
+                clonedPotion.currentStack = potion.currentStack;
+                clonedPotion.maxStack = potion.maxStack;
+                clonedPotion.potionType = potion.potionType;
+            }
+        }
+
+        clone.icon = original.icon;
+        clone.value = original.value;
+        clone.description = original.description;
+        clone.itemType = original.itemType;
+
+        clone.listOfEffects = new List<BuffDebuff>(original.listOfEffects);
+
+        return clone;
     }
 }

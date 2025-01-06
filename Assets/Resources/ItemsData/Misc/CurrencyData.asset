@@ -18,4 +18,5 @@ MonoBehaviour:
   description: Golden coins known from the old world.
   itemType: 2
   rarity: 0
+  stackable: 1
   maxStack: 500

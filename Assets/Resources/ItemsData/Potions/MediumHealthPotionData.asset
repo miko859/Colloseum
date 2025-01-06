@@ -18,5 +18,8 @@ MonoBehaviour:
   description: Medium flask of life water.
   itemType: 1
   rarity: 1
+  stackable: 1
   potionType: 0
   amount: 20
+  currentStack: 1
+  maxStack: 5

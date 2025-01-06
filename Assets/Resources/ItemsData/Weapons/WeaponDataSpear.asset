@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Basic Spear
   icon: {fileID: 21300000, guid: b2b2cac2e07af854ea102134c22cb6cc, type: 3}
-  value: 1
+  value: 28
   description: A basic Spear with moderate damage
   itemType: 0
+  rarity: 0
+  stackable: 0
   lightAttackTypesCount: 1
   lightAttackDuration1: 0.6
   lightAttackDuration2: 0

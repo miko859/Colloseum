@@ -5,6 +5,8 @@ public class PotionData : Item
 {
     public PotionType potionType;
     public double amount;
+    public int currentStack = 1;
+    public int maxStack = 5;
 }
 
 public enum PotionType

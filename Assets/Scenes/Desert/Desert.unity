@@ -66737,18 +66737,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1891649906}
     m_Modifications:
-    - target: {fileID: 1127375608819044482, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489142758687377549, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8302901
-      objectReference: {fileID: 0}
-    - target: {fileID: 5489142758687377549, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8302901
-      objectReference: {fileID: 0}
     - target: {fileID: 5489142758687377549, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
       propertyPath: m_LocalPosition.x
       value: -29.799988
@@ -66789,21 +66777,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6334247637765988831, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
-    - target: {fileID: 6375366263872942158, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
-      objectReference: {fileID: 0}
     - target: {fileID: 8928280459773775945, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
       propertyPath: m_Name
       value: Chest_Prefab (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8928280459773775945, guid: ad658d5cd65f77e48967b16eb7028616, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

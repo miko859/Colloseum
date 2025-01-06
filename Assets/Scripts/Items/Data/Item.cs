@@ -9,7 +9,8 @@ public abstract class Item : ScriptableObject
     public string description;
     public ItemType itemType;
     public LootRarity rarity;
-    List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
+    public bool stackable = false;
+    public List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
 
     public enum ItemType
     {

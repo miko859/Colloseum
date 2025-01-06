@@ -18,5 +18,8 @@ MonoBehaviour:
   description: Small flask of blue liquid with magical powers.
   itemType: 1
   rarity: 0
+  stackable: 1
   potionType: 1
   amount: 8
+  currentStack: 1
+  maxStack: 5

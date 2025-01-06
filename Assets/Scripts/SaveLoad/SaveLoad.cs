@@ -94,7 +94,24 @@ public class SaveLoad : MonoBehaviour
                 }
             }
 
-            // enable rigidBody physics and movement logic
+            Debug.Log("Before: " + equipedWeaponManager.weaponery.Count);
+            equipedWeaponManager.RemoveOddIndexedItems();
+            Debug.Log("After: " + equipedWeaponManager.weaponery.Count);
+
+            // Disable all weapons except the first one in the list
+            for (int i = 0; i < equipedWeaponManager.weaponery.Count; i++)
+            {
+                if (i == 0)
+                {
+                    equipedWeaponManager.weaponery[i].gameObject.SetActive(true); // Enable the first weapon
+                }
+                else
+                {
+                    equipedWeaponManager.weaponery[i].gameObject.SetActive(false); // Disable all other weapons
+                }
+            }
+
+            // Enable rigidBody physics and movement logic
             if (rb != null) rb.isKinematic = false;
             if (controller != null) controller.enabled = true;
 
@@ -105,6 +122,7 @@ public class SaveLoad : MonoBehaviour
             Debug.LogError("No data to load.");
         }
     }
+
 
 
 

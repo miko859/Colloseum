@@ -8,36 +8,36 @@ public class EquipedWeaponManager : MonoBehaviour
     public List<Weapon> weaponery = new List<Weapon>();
     private int currentWeaponIndex = 0;
 
+    [SerializeField]
+    private GameObject handsPrefab; // The hands prefab to be added
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+
+        //handsPrefab is added to weaponery at startup
+       // AddHandsToWeaponery();
     }
 
-    public int getCurrentWeaponIndex() 
-    {  
-        return currentWeaponIndex; 
+    public int getCurrentWeaponIndex()
+    {
+        return currentWeaponIndex;
     }
 
-    /// <summary>
-    /// This will equip weapon from inventory based on index recevied from InputSystem
-    /// </summary>
-    /// <param name="index"></param>
     public void SwitchWeapon(int index)
     {
         if (index >= 0 && index < weaponery.Count)
         {
             currentWeaponIndex = index;
-
             StartCoroutine(transform.GetComponent<PlayerController>().EquipWeapon(weaponery[currentWeaponIndex]));
         }
     }
 
     public Weapon FindOrCreateWeapon(string weaponName)
     {
-        // Try to find the weapon in the existing list
         Weapon weapon = weaponery.Find(w => w.weaponName == weaponName);
 
         if (weapon != null)
@@ -46,33 +46,25 @@ public class EquipedWeaponManager : MonoBehaviour
         }
         else
         {
-            // Load WeaponData if the weapon is not found
             Debug.Log($"Loading WeaponData for: {weaponName}");
             WeaponData weaponData = Resources.Load<WeaponData>($"Weapons/{weaponName}");
 
             if (weaponData != null)
             {
-                // Create weapon instance only if it doesnt exist already
                 weapon = Instantiate(weaponData.weaponPrefab);
-                weapon.weaponName = weaponName; // Set weapon name
+                weapon.weaponName = weaponName;
 
                 Debug.Log($"Created weapon instance: {weapon.weaponName}");
 
-                // Get players body transform
                 Transform bodyTransform = transform.GetComponent<PlayerController>().GetBodyTransform();
 
                 if (bodyTransform != null)
                 {
-                    // Parent the weapon to the body
                     weapon.transform.SetParent(bodyTransform, false);
-                    Debug.Log($"Weapon parent set to: {weapon.transform.parent.name}");
-
-                    // Reset position, rotation, and scale
                     weapon.transform.localPosition = Vector3.zero;
                     weapon.transform.localRotation = Quaternion.identity;
                     weapon.transform.localScale = Vector3.one;
 
-                    // Add weapon to the weaponery list only if its not already in the list
                     if (!weaponery.Contains(weapon))
                     {
                         AddWeapon(weapon);
@@ -99,21 +91,6 @@ public class EquipedWeaponManager : MonoBehaviour
         return weapon;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    /// <summary>
-    /// Add weapon into weaponery/inventory
-    /// </summary>
-    /// <param name="newWeapon"></param>
     public void AddWeapon(Weapon newWeapon)
     {
         if (string.IsNullOrEmpty(newWeapon.weaponName))
@@ -121,7 +98,6 @@ public class EquipedWeaponManager : MonoBehaviour
             Debug.LogError("Weapon name is empty! This weapon will not be saved correctly.");
         }
 
-        // ensure that there will be no duplicated weapons
         if (!weaponery.Contains(newWeapon))
         {
             weaponery.Add(newWeapon);
@@ -132,22 +108,15 @@ public class EquipedWeaponManager : MonoBehaviour
             Debug.LogWarning($"Weapon already exists in weaponery: {newWeapon.weaponName}");
         }
 
-        // Temporary fix for equipping first weapon
-        if (transform.GetComponent<PlayerController>().currentWeapon == null)
-        {
-            StartCoroutine(transform.GetComponent<PlayerController>().EquipWeapon(weaponery[0]));
-        }
+        AddHandsToWeaponery(); // Ensure handsPrefab is always at the end
     }
-
 
     public void LoadWeapon(string weaponName)
     {
-        // Find or create the weapon from the weaponery 
         Weapon weapon = FindOrCreateWeapon(weaponName);
 
         if (weapon != null)
         {
-            // Switch to this weapon if it is loaded
             SwitchWeapon(weaponery.IndexOf(weapon));
         }
         else
@@ -156,5 +125,34 @@ public class EquipedWeaponManager : MonoBehaviour
         }
     }
 
+    public void RemoveOddIndexedItems()
+    {
+        for (int i = weaponery.Count - 1; i >= 0; i--)
+        {
+            if (i % 2 != 0)
+            {
+                weaponery.RemoveAt(i);
+            }
+        }
 
+        AddHandsToWeaponery(); // Ensure handsPrefab is always at the end
+    }
+
+    private void AddHandsToWeaponery()
+    {
+        if (handsPrefab != null)
+        {
+            Weapon handsWeapon = handsPrefab.GetComponent<Weapon>();
+
+            if (handsWeapon != null && !weaponery.Contains(handsWeapon))
+            {
+                weaponery.Add(handsWeapon);
+                Debug.Log("Hands prefab added to weaponery.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Hands prefab is not assigned in the inspector.");
+        }
+    }
 }

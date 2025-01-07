@@ -17,26 +17,45 @@ public class InventoryItemController : MonoBehaviour
     public void AddItem(Item newItem)
     {
         item = newItem;
+        if (item != null)
+        {
+            Debug.Log($"Item added to InventoryItemController: {item.itemName}");
+        }
     }
+
 
     public void UseItem()
     {
+        if (item == null)
+        {
+            Debug.LogError("Cannot use item because 'item' is null.");
+            return;
+        }
+
         switch (item.itemType)
         {
             case Item.ItemType.Weapon:
-                PickUpItem.Instance.EquipWeapon(item); 
+                Debug.Log($"Equipping weapon: {item.itemName}");
+                PickUpItem.Instance.EquipWeapon(item);
                 break;
             case Item.ItemType.Armor:
+                Debug.Log("Equipping armor.");
                 break;
             case Item.ItemType.Helmet:
+                Debug.Log("Equipping helmet.");
                 break;
             case Item.ItemType.HealthPotion:
+                Debug.Log("Using health potion.");
                 break;
             case Item.ItemType.ManaPotion:
+                Debug.Log("Using mana potion.");
                 break;
             default:
+                Debug.LogWarning("Unknown item type.");
                 break;
         }
+
         RemoveItem();
     }
+
 }

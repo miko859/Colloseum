@@ -177,6 +177,12 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 9910433c5d87028408a6b0128fc87f44, type: 2}
   overrideController: {fileID: 22100000, guid: 22a9681708d6d4b4eab83f2d1d58e4ea, type: 2}
+  weaponName: HandsData
+  lightAttackSound: {fileID: 0}
+  heavyAttackSound: {fileID: 0}
+  blockSound: {fileID: 0}
+  bashSound: {fileID: 0}
+  hurtSound: {fileID: 0}
 --- !u!95 &7611274222296488974
 Animator:
   serializedVersion: 5

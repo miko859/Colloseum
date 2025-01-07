@@ -1781,7 +1781,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   currentWeapon: {fileID: 1429867244090369214}
   spellManager: {fileID: 4095329820490981590}
-  spell: {fileID: 0}
+  manaSystem: {fileID: 0}
   animator: {fileID: 153524699417840477}
   staminaBar: {fileID: 0}
   toggleUI: {fileID: 0}
@@ -2042,6 +2042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponery: []
+  handsPrefab: {fileID: 8132330556231310391}
 --- !u!1 &7152469309457388583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,12 +2720,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3467031634182292819, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
   m_PrefabInstance: {fileID: 2579074157841179117}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8132330556231310391}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd99c767af3395747a9643cad2b7564d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8132330556231310391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5985672882309283290, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
+  m_PrefabInstance: {fileID: 2579074157841179117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8903624302877247117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6366596089802123104, guid: a270703c193a48f499b625e4399d2b8d, type: 3}

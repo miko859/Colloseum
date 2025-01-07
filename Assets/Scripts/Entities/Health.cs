@@ -108,6 +108,14 @@ public class Health : MonoBehaviour
     public void Heal(float value)
     {
         currentHealth += value;
-        healthBar.SetHealth(currentHealth);
+        if (currentHealth > maxHealth)
+        {
+            healthBar.SetHealth(maxHealth);
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            healthBar.SetHealth(currentHealth);
+        }
     }
 }

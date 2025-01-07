@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private EquipedWeaponManager equipedWeaponManager;
     public SpellManager spellManager;
 
-    public Spell spell;
+    public ManaSystem manaSystem;
 
     public Animator animator;
     public StaminaBar staminaBar;

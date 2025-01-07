@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 6263586966122425336}
   - component: {fileID: 7724040347303054750}
   - component: {fileID: 29744071706712758}
+  - component: {fileID: 2040703480875201948}
   m_Layer: 3
   m_Name: Chest_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &5489142758687377549
 Transform:
@@ -139,6 +140,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.01, y: 3.25, z: 2.83}
   m_Center: {x: 0.26, y: 1.59, z: 0.37}
+--- !u!95 &2040703480875201948
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928280459773775945}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85f6e7f9edf6d434c88913fcf2671ec8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6568127852312206478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -193,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3133498875991405556, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2859109400176981367, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -209,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 243041194690276544, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_Name
@@ -221,7 +243,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908160863352278831, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908160863352278831, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.157893
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

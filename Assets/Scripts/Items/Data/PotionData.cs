@@ -4,7 +4,7 @@ using UnityEngine;
 public class PotionData : Item
 {
     public PotionType potionType;
-    public double amount;
+    public float amount;
     public int currentStack = 1;
     public int maxStack = 5;
 }

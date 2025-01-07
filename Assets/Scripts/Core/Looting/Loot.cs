@@ -14,20 +14,31 @@ public class Loot : Interactable
     public Item.LootRarity LootItemsRarity;
     public Item[] possibleLoot;
     private LootDropRates lootDropRates;
+    private Animator animator;
 
     [Header("What can be looted")]
     public bool itemDrop = true;
     public bool potionDrop = true;
     public bool moneyDrop = true;
+    private bool looted = false;
 
     private void Start()
     {
         lootDropRates = GetComponent<LootDropRates>();
+        animator = GetComponent<Animator>();
     }
 
     public override void Interact()
     {
-        GenerateLoot();
+        if (!looted)
+        {
+            GenerateLoot();
+            looted = !looted;
+        }
+        if (animator != null)
+        {
+            animator.Play("Looting");
+        }
     }
 
     private void GenerateLoot()

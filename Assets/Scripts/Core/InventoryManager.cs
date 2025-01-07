@@ -28,9 +28,10 @@ public class InventoryManager : MonoBehaviour
                 Currency tempItem = items.Find(currency => currency.itemType == item.itemType && currency.value < (item as Currency).maxStack) as Currency;
                 if (tempItem != null)
                 {
-                    int spaceLeft = tempItem.value - (item as Currency).maxStack;
-                    int difference = item.value - spaceLeft;
-                    if (difference <= 0)
+                    int spaceLeft = (item as Currency).maxStack - tempItem.value;
+                    int difference = spaceLeft - item.value;
+
+                    if (difference >= 0)
                     {
                         tempItem.value += item.value;
                     }

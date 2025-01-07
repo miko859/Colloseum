@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
 
         if (transform.CompareTag("Enemy"))
         {
-            maxHealth = maxHealth * DifficultyManager.Instance.GetEnemyHealthMultiplier();
+            maxHealth = maxHealth * FindObjectOfType<DifficultyManager>().GetEnemyDamageMultiplier();
         }
 
         currentHealth = maxHealth;

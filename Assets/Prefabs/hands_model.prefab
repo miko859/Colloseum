@@ -72,6 +72,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.794153
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.388857
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -19.319887
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
       propertyPath: m_Name
       value: hands_model
@@ -83,6 +95,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
       propertyPath: m_TagString
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639587953679754628, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -194,7 +210,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: b32612b8190fe7c4ba63d9d9c66bc131, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

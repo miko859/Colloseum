@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
         entityCollider = GetComponent<CapsuleCollider>();
         weaponManager = GetComponentInChildren<WeaponManager>();
 
-        if (entityCollider == null)
+        if (entityCollider == null && !transform.CompareTag("Player"))
         {
             Debug.LogWarning("No collider found on entity: " + gameObject.name);
         }

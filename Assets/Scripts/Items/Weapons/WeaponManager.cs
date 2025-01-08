@@ -55,10 +55,9 @@ public class WeaponManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (target.Equals("Enemy") && bashColl.enabled)
-        {
+        {  
             if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
             {
-                Debug.Log($"other.transform.position.y {other.transform.position.y}");
                 Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
                                                 0,
                                                 other.transform.position.z - transform.position.z);
@@ -71,7 +70,6 @@ public class WeaponManager : MonoBehaviour
         else if (other.CompareTag(target) && !hit && blade.isTrigger)
         {
             other.GetComponent<Health>().DealDamage(CalculateDamage(other));
-            Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));
             hit = true; 
 
             if (other.tag == "Player")

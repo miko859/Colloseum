@@ -36,22 +36,23 @@ public class Health_Tests
 
     [Test]
     [TestCase(20,80,true)]
-    [TestCase(80,20,false)]
+    [TestCase(80,10,false)]
     public void DealDamage_ReducesHealthAndUpdatesHealth(float dmgValue, float expectedValue,Boolean expectedStatus)
     {
         health.DealDamage(dmgValue);
         health.healthBar.SetHealth(health.GetCurrentHealth());
         if (expectedStatus == false)
         {
-            Assert.AreNotEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly.");
+            Assert.AreNotEqual(expectedValue, (float )health.GetCurrentHealth(), "Health did not reduce correctly.");
         }
         else { Assert.AreEqual(expectedValue, health.GetCurrentHealth(), "Health did not reduce correctly."); }
         //Assert.AreEqual(80, healthBar.healthSlider.value, "HealthBar slider value did not update correctly.");
     }
 
     [Test]
+    //DMG,Heal,Expected,Status
     [TestCase(50,25,75, true)]
-    [TestCase(50,25,75, false)]
+    [TestCase(50,5,75, false)]
     public void  DealDamageAndHeal_ReducesHealthUpdatesHealth(float dmgValue, float healValue, float expectedValue, Boolean expectedStatus)
     {
         

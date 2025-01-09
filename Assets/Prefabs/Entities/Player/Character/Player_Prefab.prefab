@@ -1781,9 +1781,10 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   currentWeapon: {fileID: 1429867244090369214}
   spellManager: {fileID: 4095329820490981590}
-  spell: {fileID: 0}
+  manaSystem: {fileID: 0}
   animator: {fileID: 153524699417840477}
   staminaBar: {fileID: 0}
+  toggleUI: {fileID: 0}
 --- !u!114 &4341763608945074473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1973,6 +1974,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: edba166c-bd30-4552-81c0-49d2520daae3
     m_ActionName: Player/UtilCast[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, ScriptsAssembly
+        m_MethodName: OnInventory
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6d4b5e28-f7c4-4063-98f1-711b898547a8
+    m_ActionName: Player/Inventory[/Keyboard/tab]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5867833435443790968}
+        m_TargetAssemblyTypeName: PlayerController, ScriptsAssembly
+        m_MethodName: OnMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 545d7c1b-cd89-4979-b73f-564a1d70ada2
+    m_ActionName: Player/Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1994,7 +2027,7 @@ MonoBehaviour:
   interactionRange: 5
   interactionLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8776
   currentInteractable: {fileID: 0}
 --- !u!114 &2024704079196360826
 MonoBehaviour:
@@ -2009,6 +2042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponery: []
+  handsPrefab: {fileID: 8132330556231310391}
 --- !u!1 &7152469309457388583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,7 +2356,7 @@ MonoBehaviour:
   elementSpells:
   - {fileID: 2472572463129397038}
   utilitySpells:
-  - {fileID: -1032378726320950461, guid: c6a84d734b2abfc42810be5f40b7f8eb, type: 3}
+  - {fileID: 0}
 --- !u!1 &7773327261199772111
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,50 +2622,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2985893403322209114}
     m_Modifications:
-    - target: {fileID: 2897489581260006671, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.70722884
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897489581260006671, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7069847
-      objectReference: {fileID: 0}
-    - target: {fileID: 2897489581260006671, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3467031634182292819, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
       propertyPath: bodyAnimator
       value: 
       objectReference: {fileID: 153524699417840477}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.027783994
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.030159138
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0076956684
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9579488
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.08541375
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.20141652
-      objectReference: {fileID: 0}
-    - target: {fileID: 3608018486053013003, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.18566106
-      objectReference: {fileID: 0}
     - target: {fileID: 5985672882309283290, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
       propertyPath: m_Name
       value: hands_model
@@ -2686,12 +2680,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3467031634182292819, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
   m_PrefabInstance: {fileID: 2579074157841179117}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8132330556231310391}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fd99c767af3395747a9643cad2b7564d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8132330556231310391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5985672882309283290, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
+  m_PrefabInstance: {fileID: 2579074157841179117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8903624302877247117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6366596089802123104, guid: a270703c193a48f499b625e4399d2b8d, type: 3}

@@ -107,4 +107,19 @@ public class ManaSystem : MonoBehaviour
     {
         manaSlider.value = currentMana;
     }
+
+    public void AddMana(float value)
+    {
+        currentMana += value;
+        if (currentMana > maxMana)
+        {
+            currentMana = maxMana;
+            manaSlider.value = maxMana;
+        }
+        else
+        {
+            manaSlider.value += value;
+        }
+        UpdateManaUI();
+    }
 }

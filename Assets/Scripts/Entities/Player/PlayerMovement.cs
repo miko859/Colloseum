@@ -85,8 +85,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (holdShift)
         {
-
-            Debug.Log("funguje tooooo");
             if (staminaBar.GetCurrentStamina() > 0.2)
             {
                 staminaBar.ReduceStamina(0.2);

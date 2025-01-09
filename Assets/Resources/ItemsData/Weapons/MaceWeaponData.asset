@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
+  m_Name: MaceWeaponData
+  m_EditorClassIdentifier: 
+  itemName: Iron Mace
+  icon: {fileID: 21300000, guid: 627df4f17f3bb1c4d97930a4c7937134, type: 3}
+  value: 24
+  description: Heavy one-handed weapon with a chance to inflict bleeding on enemies.
+  itemType: 0
+  lightAttackTypesCount: 2
+  lightAttackDuration1: 0.817
+  lightAttackDuration2: 0.817
+  lightAttackDuration3: 0
+  heavyAttackChargeDuration: 0.533
+  heavyAttackPerformDuration: 0.667
+  bashDuration: 0.267
+  hurtDuration: 0.3
+  equipUnequipDuration: 0.3
+  blockedDuration: 0.5
+  lightAttackAnimation: LightAttack
+  heavyAttackAnimation: HeavyAttack
+  heavyAttackPerformAnimation: HeavyAttackPerform
+  blockAnimation: Block
+  bashAnimation: Bash
+  hurtAnimation: Hurt
+  blockedAnimation: Blocked
+  lightAttackDamage: 3
+  heavyAttackDamage: 7
+  blockTreshhold: 3
+  heavyAttackStaminaCons: 35
+  bashStaminaCons: 28
+  blockStaminaCons: 26
+  weaponPrefab: {fileID: -8958210447087375531, guid: f157c6df2f6f8c145b0ed1a67b56a71d, type: 3}
+  weaponName: mace

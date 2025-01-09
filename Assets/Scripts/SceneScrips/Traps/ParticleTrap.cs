@@ -9,6 +9,9 @@ public class ParticleTrap : Trap
     public bool timer = false;
     public float timeTillEnd = 2f;
 
+    [Header("Audio Settings")]
+    public AudioSource trapAudio; 
+
     public override void OffParticles()
     {
         foreach (ParticleSystem particle in particleObjects)
@@ -19,6 +22,12 @@ public class ParticleTrap : Trap
 
     public override void StartTrap()
     {
+        // Play the sound
+        if (trapAudio != null)
+        {
+            trapAudio.Play();
+        }
+
         SetDetectionCollidor(false, false);
         SetDamageCollidor(true, true);
 
@@ -40,7 +49,6 @@ public class ParticleTrap : Trap
         {
             StartCoroutine(SetTimerToEndTrap(timeTillEnd));
         }
-
     }
 
     public override void RunningTrap(Collider other)
@@ -80,13 +88,12 @@ public class ParticleTrap : Trap
                     ApplyEffect(other);
                 }
             }
-
         }
-
     }
+
     public override void StopTrap()
     {
-        if (!timer || (timer && turnOffTrap)) 
+        if (!timer || (timer && turnOffTrap))
         {
             turnOffTrap = false;
             SetDamageCollidor(false, false);
@@ -101,7 +108,6 @@ public class ParticleTrap : Trap
             {
                 particle.Stop();
             }
-            
 
             SetIsActived(false);
             SetDealtInstaDmg(false);

@@ -18,6 +18,11 @@ public class PickUpItem : Interactable
         }
     }
 
+    private void Start()
+    {
+        interactPrompt = "Press E to pick up item";
+    }
+
     public void Awake()
     {
         Instance = this;

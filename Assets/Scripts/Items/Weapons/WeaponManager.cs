@@ -54,12 +54,10 @@ public class WeaponManager : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
-        
         if (target.Equals("Enemy") && bashColl.enabled)
-        {
+        {  
             if (owner.transform.GetChild(0).GetComponent<PlayerController>().GetIsBashing())
             {
-                Debug.Log($"other.transform.position.y {other.transform.position.y}");
                 Vector3 direction = new Vector3(other.transform.position.x - transform.position.x,
                                                 0,
                                                 other.transform.position.z - transform.position.z);
@@ -72,7 +70,6 @@ public class WeaponManager : MonoBehaviour
         else if (other.CompareTag(target) && !hit && blade.isTrigger)
         {
             other.GetComponent<Health>().DealDamage(CalculateDamage(other));
-            Debug.Log("you hit " + target + " by damage " + CalculateDamage(other));
             hit = true; 
 
             if (other.tag == "Player")
@@ -117,6 +114,7 @@ public class WeaponManager : MonoBehaviour
             {
                 playerController.GetStaminaBar().ReduceStamina(playerWeaponAnimations.weaponData.blockStaminaCons);
                 float total = totalIncomingDmg - playerWeaponAnimations.weaponData.blockTreshhold;
+                playerWeaponAnimations.BlockedAttack();
                 Debug.Log($"total damage {total} AI dmg {aiController.getDamage()} player block {playerWeaponAnimations.weaponData.blockTreshhold}");
                 if (total > 0)
                 {
@@ -134,14 +132,10 @@ public class WeaponManager : MonoBehaviour
 
     public IEnumerator SwapCollBlockBash()
     {
-        //blade.isTrigger = false;
         blade.enabled = false;
-        //bashColl.isTrigger = true;
         bashColl.enabled = true;
         yield return new WaitForSeconds(weaponAnimations.weaponData.bashDuration);
-        //blade.isTrigger = true;
         blade.enabled = true;
-        //bashColl.isTrigger = false;
         bashColl.enabled = false;
     }
 }

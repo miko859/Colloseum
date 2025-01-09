@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
+  m_Name: WeaponDataAxe
+  m_EditorClassIdentifier: 
+  itemName: Basic Axe
+  icon: {fileID: 21300000, guid: c70ec92cdb9971d43bcc9dadd84e6ee2, type: 3}
+  value: 100
+  description: A basic axe that deals moderate damage
+  itemType: 0
+  lightAttackTypesCount: 2
+  lightAttackDuration1: 1.26
+  lightAttackDuration2: 1.06
+  lightAttackDuration3: 0
+  heavyAttackChargeDuration: 0.8
+  heavyAttackPerformDuration: 0.8
+  bashDuration: 0.4
+  hurtDuration: 0.23
+  equipUnequipDuration: 0.333
+  blockedDuration: 0.483
+  lightAttackAnimation: LightAttack
+  heavyAttackAnimation: HeavyAttack
+  heavyAttackPerformAnimation: HeavyAttackPerform
+  blockAnimation: Block
+  bashAnimation: Bash
+  hurtAnimation: Hurt
+  blockedAnimation: Blocked
+  lightAttackDamage: 4
+  heavyAttackDamage: 6
+  blockTreshhold: 8
+  heavyAttackStaminaCons: 40
+  bashStaminaCons: 28
+  blockStaminaCons: 15
+  weaponPrefab: {fileID: 7088373120101308152, guid: 7c16a3ecafd45db45ab3b96827cafbcf, type: 3}
+  weaponName: Axe

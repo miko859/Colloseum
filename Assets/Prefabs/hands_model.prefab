@@ -72,6 +72,46 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.027783994
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.030159138
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0076956684
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9579488
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.08541375
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.20141652
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.18566106
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -13.794153
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -21.388857
+      objectReference: {fileID: 0}
+    - target: {fileID: -1314407162120960384, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -19.319887
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
       propertyPath: m_Name
       value: hands_model
@@ -83,6 +123,22 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
       propertyPath: m_TagString
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639587953679754628, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.70722884
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639587953679754628, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069847
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639587953679754628, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639587953679754628, guid: bcdfcdec9ba0b15418cad17bebafcd21, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -89.98021
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -153,7 +209,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -177,6 +233,12 @@ MonoBehaviour:
   bodyAnimator: {fileID: 0}
   weaponData: {fileID: 11400000, guid: 9910433c5d87028408a6b0128fc87f44, type: 2}
   overrideController: {fileID: 22100000, guid: 22a9681708d6d4b4eab83f2d1d58e4ea, type: 2}
+  weaponName: HandsData
+  lightAttackSound: {fileID: 0}
+  heavyAttackSound: {fileID: 0}
+  blockSound: {fileID: 0}
+  bashSound: {fileID: 0}
+  hurtSound: {fileID: 0}
 --- !u!95 &7611274222296488974
 Animator:
   serializedVersion: 5
@@ -188,7 +250,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: b32612b8190fe7c4ba63d9d9c66bc131, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0

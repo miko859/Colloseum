@@ -1,5 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -10,12 +13,13 @@ public class Health : MonoBehaviour
     private Weapon weapon;
     public bool hasDeathAnimation = false;
     private WeaponManager weaponManager;
+    private bool isAlive = false;
 
     private Collider entityCollider;
 
     public double GetCurrentHealth() {return currentHealth;  }
     public void SetCurrentHealth(double currentHealth) {this.currentHealth=currentHealth;}
-
+    public void SetIsAlive(bool value) { this.isAlive=value;}
     public void Start()
     {
         weapon = GetComponent<Weapon>();
@@ -23,7 +27,7 @@ public class Health : MonoBehaviour
         entityCollider = GetComponent<CapsuleCollider>();
         weaponManager = GetComponentInChildren<WeaponManager>();
 
-        if (entityCollider == null)
+        if (entityCollider == null && !transform.CompareTag("Player"))
         {
             Debug.LogWarning("No collider found on entity: " + gameObject.name);
         }
@@ -34,7 +38,7 @@ public class Health : MonoBehaviour
 
         if (transform.CompareTag("Enemy"))
         {
-            maxHealth = maxHealth * DifficultyManager.Instance.GetEnemyHealthMultiplier();
+            maxHealth = maxHealth * FindObjectOfType<DifficultyManager>().GetEnemyDamageMultiplier();
         }
 
         currentHealth = maxHealth;
@@ -50,27 +54,35 @@ public class Health : MonoBehaviour
                 if (hasDeathAnimation)
                 {
                     animator.SetBool("death", true);
-                    transform.tag = "DeadEnemy";
-                    transform.GetComponent<NavMeshAgent>().enabled = false;
-                    transform.GetComponent<AIController>().enabled = false;
+                    transform.GetComponent<Loot>().enabled = true;
                 }
                 else
                 {
-                    transform.tag = "DeadEnemy";
                     animator.enabled = false;
-                    transform.GetComponent<NavMeshAgent>().enabled = false;
-                    transform.GetComponent<AIController>().enabled = false;
+                    transform.GetComponentInChildren<Loot>().enabled = true;
                 }
+
+                transform.tag = "DeadEnemy";
+                transform.GetComponent<NavMeshAgent>().enabled = false;
+                transform.GetComponent<AIController>().enabled = false;
+                transform.GetComponent<Patrolling>().enabled = false;
+                
+
             }
             else if (transform.CompareTag("Player"))
             {
-                Debug.Log("YOU HAVE DIED");
+                if (!isAlive)
+                {
+                    isAlive = !isAlive;
+                    FindAnyObjectByType<DeathScreenFade>().TriggerDeathFade();
+                }
             }
 
-            // Disable the boss collider so that you cant get stuck on it 
             if (entityCollider != null)
             {
-                entityCollider.enabled = false;
+                //entityCollider.enabled = false;
+                entityCollider.isTrigger = true;
+                entityCollider.providesContacts = false;
                 Debug.Log("Entity collider disabled: " + entityCollider.name);
             }
 
@@ -100,6 +112,14 @@ public class Health : MonoBehaviour
     public void Heal(float value)
     {
         currentHealth += value;
-        healthBar.SetHealth(currentHealth);
+        if (currentHealth > maxHealth)
+        {
+            healthBar.SetHealth(maxHealth);
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            healthBar.SetHealth(currentHealth);
+        }
     }
 }

@@ -1,8 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
     public string interactPrompt = "Press E to interact";
+
     /// <summary>
     /// Function, triggered by interaction by player with items
     /// </summary>

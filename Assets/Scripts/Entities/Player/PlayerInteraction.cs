@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -7,6 +8,8 @@ public class PlayerInteraction : MonoBehaviour
     public LayerMask interactionLayerMask;
 
     public Interactable currentInteractable;
+
+    public TextMeshProUGUI textToInteract;
 
     void Update()
     {
@@ -35,16 +38,20 @@ public class PlayerInteraction : MonoBehaviour
             if (interactable != null)
             {
                 currentInteractable = interactable;
+                textToInteract.text = currentInteractable.interactPrompt;
             }
             else
             {
                 currentInteractable = null;
+                textToInteract.text = "";
             }
         }
         else
         {
             Debug.DrawLine(cameraTransform.position, cameraTransform.forward * interactionRange, Color.blue);
             currentInteractable = null;
+            textToInteract.text = "";
+
         }
     }
 }

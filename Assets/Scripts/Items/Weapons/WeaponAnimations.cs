@@ -107,6 +107,12 @@ public class WeaponAnimations : Weapon
         PlaySound(blockSound); // Play block sound
     }
 
+    public override void BlockedAttack()
+    {
+        StartCoroutine(PlayAnimation(weaponData.blockedAnimation, weaponData.blockedDuration));
+        StartCoroutine(PlayBodyAnimation(weaponData.blockedAnimation, weaponData.blockedDuration));
+    }
+
     /// <summary>
     /// Bash, player will bash enemy, which will stun enemy for a little time
     /// </summary>
@@ -117,7 +123,7 @@ public class WeaponAnimations : Weapon
             StartCoroutine(GetComponent<WeaponManager>().SwapCollBlockBash());
             StartCoroutine(PlayAnimation(weaponData.bashAnimation, weaponData.bashDuration));
             StartCoroutine(PlayBodyAnimation(weaponData.bashAnimation, weaponData.bashDuration));
-            PlaySound(bashSound); // Play bash sound
+            PlaySound(bashSound);
         }
     }
 

@@ -37,9 +37,10 @@ public class DifficultyManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
+        //DontDestroyOnLoad(gameObject);
+        Debug.Log("Difficulty before load: " + CurrentDifficulty);
         LoadDifficulty();
+        Debug.Log("Difficulty after load: " + CurrentDifficulty);
     }
 
     public void SetDifficulty(Difficulty difficulty)
@@ -59,17 +60,17 @@ public class DifficultyManager : MonoBehaviour
 
     private void LoadDifficulty()
     {
-        string value = Settings.Get<string>("DIFFICULTY");
-
+        int value = Settings.Get<int>("DIFFICULTY");
+        Debug.Log("value got from Settings: " + value); 
         switch (value)
         {
-            case "Easy":
+            case 0:
                 CurrentDifficulty = Difficulty.EASY;
                 break;
-            case "Medium":
+            case 1:
                 CurrentDifficulty = Difficulty.MEDIUM;
                 break;
-            case "Hard":
+            case 2:
                 CurrentDifficulty = Difficulty.HARD;
                 break;
         }

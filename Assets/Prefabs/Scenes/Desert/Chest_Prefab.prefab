@@ -9,6 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5489142758687377549}
+  - component: {fileID: 6263586966122425336}
+  - component: {fileID: 7724040347303054750}
+  - component: {fileID: 29744071706712758}
+  - component: {fileID: 2040703480875201948}
   m_Layer: 3
   m_Name: Chest_Prefab
   m_TagString: Untagged
@@ -26,12 +30,137 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.038816, y: 0.26458, z: 0.059922}
-  m_LocalScale: {x: 0.83029, y: 0.83029, z: 0.83029}
+  m_LocalScale: {x: 0.8302901, y: 0.83029, z: 0.8302901}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6677734363667790693}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6263586966122425336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928280459773775945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1863ff508641d3b45bf71218c2e13cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactPrompt: Press E to interact
+  LootItemsRarity: 0
+  possibleLoot:
+  - {fileID: 11400000, guid: c3a0e4db9a29ea34395792aafeabd206, type: 2}
+  - {fileID: 11400000, guid: 5d8483fe278c1f14982dd3399cec342d, type: 2}
+  - {fileID: 11400000, guid: 3810d5c07ff20e242a0d06397e8f0fd1, type: 2}
+  - {fileID: 11400000, guid: 9e6a293735e105141b54b577a75ed037, type: 2}
+  - {fileID: 11400000, guid: fcbc255b3ed669f46814680a26d6498f, type: 2}
+  - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}
+  - {fileID: 11400000, guid: 337f85072b05f994887a0d61a137990c, type: 2}
+  - {fileID: 11400000, guid: 3bf215bfafbebfc45b48a38cdec95906, type: 2}
+  - {fileID: 11400000, guid: e9168b30ba04ce841b176034a913239d, type: 2}
+  - {fileID: 11400000, guid: 329e24831a545b246b8f8c1fe7160806, type: 2}
+  - {fileID: 11400000, guid: 34896f4f257bf604cb0ca44efa68bc64, type: 2}
+  itemDrop: 1
+  potionDrop: 1
+  moneyDrop: 1
+--- !u!114 &7724040347303054750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928280459773775945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08d82687a0bfe694283ff2bfc845c6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commonRates:
+    minMoney: 5
+    maxMoney: 15
+    minPotions: 0
+    maxPotions: 1
+    minItems: 0
+    maxItems: 2
+  uncommonRates:
+    minMoney: 10
+    maxMoney: 25
+    minPotions: 0
+    maxPotions: 2
+    minItems: 1
+    maxItems: 3
+  rareRates:
+    minMoney: 20
+    maxMoney: 40
+    minPotions: 1
+    maxPotions: 3
+    minItems: 2
+    maxItems: 4
+  epicRates:
+    minMoney: 50
+    maxMoney: 60
+    minPotions: 2
+    maxPotions: 3
+    minItems: 4
+    maxItems: 5
+  legendaryRates:
+    minMoney: 70
+    maxMoney: 80
+    minPotions: 4
+    maxPotions: 4
+    minItems: 5
+    maxItems: 7
+  mysteriousRates:
+    minMoney: 80
+    maxMoney: 90
+    minPotions: 5
+    maxPotions: 6
+    minItems: 8
+    maxItems: 10
+--- !u!65 &29744071706712758
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928280459773775945}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6.01, y: 3.25, z: 2.83}
+  m_Center: {x: 0.26, y: 1.59, z: 0.37}
+--- !u!95 &2040703480875201948
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928280459773775945}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 85f6e7f9edf6d434c88913fcf2671ec8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &6568127852312206478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84,6 +213,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -3133498875991405556, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2859109400176981367, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -96,6 +229,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 243041194690276544, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_Name
       value: Chest
@@ -103,6 +240,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908160863352278831, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908160863352278831, guid: 0cd7fa6c10541ec47b2f7c2e7c262ef2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.157893
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

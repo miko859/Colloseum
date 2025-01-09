@@ -39,3 +39,4 @@ MonoBehaviour:
   bashStaminaCons: 0
   blockStaminaCons: 0
   weaponPrefab: {fileID: 3467031634182292819, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
+  weaponName: Hands

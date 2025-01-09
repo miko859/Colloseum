@@ -126,6 +126,20 @@ public class InventoryManager : MonoBehaviour
                 var itemIcon = obj.transform.Find("ItemIcone").GetComponent<Image>();
                 var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
 
+                if (item.stackable)
+                {
+                    var itemCount = obj.transform.Find("ItemCount").GetComponent<TMP_Text>();
+
+                    if (item is PotionData potionData)
+                    {
+                        itemCount.text = potionData.currentStack.ToString();
+                    }
+                    else if (item is Currency currency)
+                    {
+                        itemCount.text = currency.value.ToString();
+                    }
+                }
+
                 itemName.text = item.itemName;
                 itemIcon.sprite = item.icon;
 

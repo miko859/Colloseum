@@ -15,6 +15,7 @@ public class Loot : Interactable
     public Item[] possibleLoot;
     private LootDropRates lootDropRates;
     private Animator animator;
+    
 
     [Header("What can be looted")]
     public bool itemDrop = true;
@@ -26,6 +27,7 @@ public class Loot : Interactable
     {
         lootDropRates = GetComponent<LootDropRates>();
         animator = GetComponent<Animator>();
+        interactPrompt = "Press E to loot";
     }
 
     public override void Interact()
@@ -34,6 +36,7 @@ public class Loot : Interactable
         {
             GenerateLoot();
             looted = !looted;
+            interactPrompt = "";
         }
         if (animator != null)
         {

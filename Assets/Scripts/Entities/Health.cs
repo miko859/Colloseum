@@ -54,15 +54,19 @@ public class Health : MonoBehaviour
                 if (hasDeathAnimation)
                 {
                     animator.SetBool("death", true);
+                    transform.GetComponent<Loot>().enabled = true;
                 }
                 else
                 {
                     animator.enabled = false;
+                    transform.GetComponentInChildren<Loot>().enabled = true;
                 }
 
                 transform.tag = "DeadEnemy";
                 transform.GetComponent<NavMeshAgent>().enabled = false;
                 transform.GetComponent<AIController>().enabled = false;
+                transform.GetComponent<Patrolling>().enabled = false;
+                
 
             }
             else if (transform.CompareTag("Player"))
@@ -72,13 +76,13 @@ public class Health : MonoBehaviour
                     isAlive = !isAlive;
                     FindAnyObjectByType<DeathScreenFade>().TriggerDeathFade();
                 }
-                Debug.Log("YOU HAVE DIED");
             }
 
-            // Disable the boss collider so that you cant get stuck on it 
             if (entityCollider != null)
             {
-                entityCollider.enabled = false;
+                //entityCollider.enabled = false;
+                entityCollider.isTrigger = true;
+                entityCollider.providesContacts = false;
                 Debug.Log("Entity collider disabled: " + entityCollider.name);
             }
 

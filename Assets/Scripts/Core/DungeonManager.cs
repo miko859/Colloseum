@@ -15,7 +15,6 @@ public class DungeonManager : MonoBehaviour
 
     void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         totalEnemies = enemies.Length;
         victoryScreen.SetActive(false);
     }

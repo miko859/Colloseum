@@ -170,7 +170,10 @@ public class InventoryManager : MonoBehaviour
         {
             foreach (Transform item in ItemContent)
             {
-                item.Find("RemoveButton").gameObject.SetActive(true);
+                if (!item.GetComponent<InventoryItemController>().item.questItem)
+                {
+                    item.Find("RemoveButton").gameObject.SetActive(true);
+                }
             }
         }
         else

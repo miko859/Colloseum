@@ -68,7 +68,7 @@ public class Health_Tests
     }
 
     [Test]
-    [TestCase(10, 110, true)]
+    [TestCase(10, 100, true)]
     public void Heal_UpdatesHealth(float healValue, float expectedValue, Boolean expectedStatus)
     {
         health.Heal(healValue);

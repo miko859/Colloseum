@@ -30,13 +30,6 @@ public class DungeonManager : MonoBehaviour
         {
             exitDoor.GetComponent<DoorScript>().OpenDoor();
         }
-
-        if (Input.anyKey && showingVictoryScreen==true && stopShowing==true)
-        {
-            victoryScreen.active = false;
-            stopShowing = false;
-
-        }
     }
 
     public bool CheckEnemies()
@@ -70,20 +63,5 @@ public class DungeonManager : MonoBehaviour
         {
             return false;
         }
-    }
-
-    private void ShowVictoryScreen()
-    {
-        StartCoroutine(Wait());
-
-        victoryScreen.SetActive(true);
-        
-        showingVictoryScreen=true;
-
-    }
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(2);
-        stopShowing = true;
     }
 }

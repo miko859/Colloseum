@@ -6522,7 +6522,7 @@ CanvasGroup:
   m_GameObject: {fileID: 208439684}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &208439690
@@ -6547,7 +6547,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Congratulation for beating the dungeon
 
-    
+
 
     Thank you for playing
 
@@ -6902,7 +6902,7 @@ CanvasGroup:
   m_GameObject: {fileID: 229128244}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &229128250
@@ -25614,6 +25614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactPrompt: Press E to interact
+  endingCanvas: {fileID: 1616552124}
   blackFadeCanvas: {fileID: 229128249}
   endingTextCanvas: {fileID: 208439689}
   playersUI:
@@ -58958,7 +58959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1616552125
 RectTransform:
   m_ObjectHideFlags: 0

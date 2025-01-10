@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class QuestItemInserter : Interactable
 {
+    public GameObject endingCanvas;
     public CanvasGroup blackFadeCanvas;
     public CanvasGroup endingTextCanvas;
     public CanvasGroup[] playersUI;
@@ -29,6 +30,8 @@ public class QuestItemInserter : Interactable
 
     private IEnumerator StartEndingScreen()
     {
+        endingCanvas.SetActive(true);
+
         float elapsedTimeBg = 0f;
         float elapsedTimeText = 0f;
         FindAnyObjectByType<PlayerInput>().DeactivateInput();

@@ -3398,7 +3398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1863ff508641d3b45bf71218c2e13cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactPrompt: Press E to interact
+  interactPrompt: 
   LootItemsRarity: 1
   possibleLoot:
   - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}
@@ -3412,6 +3412,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34896f4f257bf604cb0ca44efa68bc64, type: 2}
   - {fileID: 11400000, guid: 9e6a293735e105141b54b577a75ed037, type: 2}
   - {fileID: 11400000, guid: fcbc255b3ed669f46814680a26d6498f, type: 2}
+  sureLoot:
+  - {fileID: 11400000, guid: bf5cc2bddcb0d054dbf1db4c3d95327a, type: 2}
   itemDrop: 1
   potionDrop: 1
   moneyDrop: 1
@@ -4121,11 +4123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6718722160522758833, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6718722160522758833, guid: 4d3e6c63eb44db448a229e89d6bd5658, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -3691,7 +3691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1863ff508641d3b45bf71218c2e13cf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactPrompt: Press E to interact
+  interactPrompt: 
   LootItemsRarity: 0
   possibleLoot:
   - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}
@@ -3773,8 +3773,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4725794179140361083}
   - component: {fileID: 8869407660874615703}
-  - component: {fileID: 6162309713676369785}
-  - component: {fileID: 5727053203951959296}
   m_Layer: 6
   m_Name: goblin_low
   m_TagString: Untagged
@@ -3823,90 +3821,6 @@ CapsuleCollider:
   m_Height: 1.53
   m_Direction: 1
   m_Center: {x: 0, y: 0.92, z: 0.08}
---- !u!114 &6162309713676369785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8516015135913528015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08d82687a0bfe694283ff2bfc845c6cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commonRates:
-    minMoney: 5
-    maxMoney: 15
-    minPotions: 0
-    maxPotions: 2
-    minItems: 0
-    maxItems: 2
-  uncommonRates:
-    minMoney: 10
-    maxMoney: 25
-    minPotions: 1
-    maxPotions: 3
-    minItems: 1
-    maxItems: 3
-  rareRates:
-    minMoney: 20
-    maxMoney: 40
-    minPotions: 1
-    maxPotions: 3
-    minItems: 2
-    maxItems: 4
-  epicRates:
-    minMoney: 50
-    maxMoney: 60
-    minPotions: 2
-    maxPotions: 3
-    minItems: 4
-    maxItems: 5
-  legendaryRates:
-    minMoney: 70
-    maxMoney: 80
-    minPotions: 4
-    maxPotions: 4
-    minItems: 5
-    maxItems: 7
-  mysteriousRates:
-    minMoney: 80
-    maxMoney: 90
-    minPotions: 5
-    maxPotions: 6
-    minItems: 8
-    maxItems: 10
---- !u!114 &5727053203951959296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8516015135913528015}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1863ff508641d3b45bf71218c2e13cf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactPrompt: Press E to interact
-  LootItemsRarity: 0
-  possibleLoot:
-  - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}
-  - {fileID: 11400000, guid: 337f85072b05f994887a0d61a137990c, type: 2}
-  - {fileID: 11400000, guid: c3a0e4db9a29ea34395792aafeabd206, type: 2}
-  - {fileID: 11400000, guid: 5d8483fe278c1f14982dd3399cec342d, type: 2}
-  - {fileID: 11400000, guid: 3810d5c07ff20e242a0d06397e8f0fd1, type: 2}
-  - {fileID: 11400000, guid: 3bf215bfafbebfc45b48a38cdec95906, type: 2}
-  - {fileID: 11400000, guid: e9168b30ba04ce841b176034a913239d, type: 2}
-  - {fileID: 11400000, guid: 329e24831a545b246b8f8c1fe7160806, type: 2}
-  - {fileID: 11400000, guid: 34896f4f257bf604cb0ca44efa68bc64, type: 2}
-  - {fileID: 11400000, guid: 9e6a293735e105141b54b577a75ed037, type: 2}
-  - {fileID: 11400000, guid: fcbc255b3ed669f46814680a26d6498f, type: 2}
-  sureLoot: []
-  itemDrop: 1
-  potionDrop: 1
-  moneyDrop: 1
 --- !u!1 &8561471265611109119
 GameObject:
   m_ObjectHideFlags: 0

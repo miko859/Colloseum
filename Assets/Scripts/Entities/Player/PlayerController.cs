@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private EquipedWeaponManager equipedWeaponManager;
     public SpellManager spellManager;
 
-    public Spell spell;
+    public ManaSystem manaSystem;
 
     public Animator animator;
     public StaminaBar staminaBar;
@@ -19,12 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool isWalking = false;
     private bool isBlocking = false;
     private bool isRunning = false;
-
-    [Header("Testujem")]
-    private AnimatorStateInfo stateInfo;
-    private Animator oldAnimator;
-    private AnimatorClipInfo[] clipInfo;
-    private AnimatorControllerParameter[] parametre;
+    private bool isSilenced = false;
+    public ToggleUI toggleUI;
     private Animator bodyAni;
 
 
@@ -147,6 +143,15 @@ public class PlayerController : MonoBehaviour
         return isBashing;
     }
 
+    public bool GetIsSilenced()
+    {
+        return isSilenced;
+    }
+    public void ChangeSilence()
+    {
+        isSilenced = !isSilenced;
+    }
+
     public void OnChangeWeapon(InputAction.CallbackContext context)
     {
         if (context.started) 
@@ -243,7 +248,6 @@ public class PlayerController : MonoBehaviour
         if (!isBlocking)
         {
             currentWeapon.Block();
-            Debug.Log("Player Controller - Block");
             isBlocking = !isBlocking;
         }
         else
@@ -332,7 +336,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnSpellCast(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !isSilenced)
         {
             spellManager.CallActiveBall();
         }
@@ -340,26 +344,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnSpellCasting(InputAction.CallbackContext context)
     {
-        
-        if (context.action.IsPressed())
+        if (!isSilenced)
         {
-            spellManager.CallActive();
-
-        }
-        else
-        {
-            spellManager.CallDeactive();
+            if (context.action.IsPressed())
+            {
+                spellManager.CallActive();
+            }
+            else
+            {
+                spellManager.CallDeactive();
+            }
         }
     }
 
     public void OnUtilCast(InputAction.CallbackContext context)
     {
-
-        if (context.action.IsPressed())
+        if (context.action.IsPressed() && !isSilenced)
         {
             spellManager.CallActiveUtility();
-            Debug.Log("Called Util cast");
-
         }
     }
     public void OnSpellSwitch(InputAction.CallbackContext context)
@@ -374,4 +376,19 @@ public class PlayerController : MonoBehaviour
         currentWeapon.GetComponent<WeaponAnimations>().GotHit();
     }
 
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            toggleUI.HandleInventoryToggle();
+        }
+    }
+
+    public void OnMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            toggleUI.HandleMenuToggle();
+        }
+    }
 }

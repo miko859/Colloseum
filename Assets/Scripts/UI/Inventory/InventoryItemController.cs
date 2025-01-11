@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,11 +9,20 @@ public class InventoryItemController : MonoBehaviour
 {
     public Item item;
     public Button RemoveButton;
+    private GameObject player;
+
+    private void Start()
+    {
+        player = FindObjectOfType<CharacterController>().GameObject();
+    }
 
     public void RemoveItem()
     {
-        InventoryManager.Instance.Remove(item);
-        Destroy(gameObject);
+        //if (!item.questItem)
+        //{
+            InventoryManager.Instance.Remove(item);
+            Destroy(gameObject);
+        //}
     }
 
     public void AddItem(Item newItem)
@@ -34,28 +45,50 @@ public class InventoryItemController : MonoBehaviour
 
         switch (item.itemType)
         {
-            case Item.ItemType.Weapon:
-                Debug.Log($"Equipping weapon: {item.itemName}");
-                PickUpItem.Instance.EquipWeapon(item);
+            case Item.ItemType.Equipment:
+                if (item as WeaponData)
+                {
+                    PickUpItem.Instance.EquipWeapon(item);
+                    RemoveItem();
+                }
                 break;
-            case Item.ItemType.Armor:
-                Debug.Log("Equipping armor.");
+            case Item.ItemType.Potion:
+                var itemCount = transform.Find("ItemCount").GetComponent<TMP_Text>();
+
+                if ((item is PotionData healingPotion) && healingPotion.potionType == PotionType.HEALTH)
+                {
+                    player.GetComponent<Health>().Heal(healingPotion.amount);
+                    healingPotion.currentStack -= 1;
+                    itemCount.text = healingPotion.currentStack.ToString();
+
+                    if (healingPotion.currentStack == 0)
+                    {
+                        RemoveItem();
+                    }
+                    Debug.Log("Heal");
+                }
+                else if ((item is PotionData manaPotion) && manaPotion.potionType == PotionType.MANA)
+                {
+                    player.GetComponentInChildren<PlayerController>().manaSystem.AddMana(manaPotion.amount);
+                    manaPotion.currentStack -= 1;
+                    itemCount.text = manaPotion.currentStack.ToString();
+
+                    if (manaPotion.currentStack == 0)
+                    {
+                        RemoveItem();
+                    }
+                    Debug.Log("Mana");
+                }
                 break;
-            case Item.ItemType.Helmet:
-                Debug.Log("Equipping helmet.");
+            case Item.ItemType.Currency:
+                Debug.Log($"{item.value} gold coins");
                 break;
-            case Item.ItemType.HealthPotion:
-                Debug.Log("Using health potion.");
-                break;
-            case Item.ItemType.ManaPotion:
-                Debug.Log("Using mana potion.");
+            case Item.ItemType.Miscellaneous:
+                Debug.Log($"{item.name} miscellaneous");
                 break;
             default:
                 Debug.LogWarning("Unknown item type.");
                 break;
         }
-
-        RemoveItem();
     }
-
 }

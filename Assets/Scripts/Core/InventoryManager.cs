@@ -22,7 +22,60 @@ public class InventoryManager : MonoBehaviour
 
     public void Add(Item item)
     {
-        items.Add(item);
+        if (item.stackable)
+        {
+            if (item.itemType == Item.ItemType.Currency)
+            {
+                Currency tempItem = items.Find(currency => currency.itemType == item.itemType && currency.value < (item as Currency).maxStack) as Currency;
+                if (tempItem != null)
+                {
+                    int spaceLeft = (item as Currency).maxStack - tempItem.value;
+                    int difference = spaceLeft - item.value;
+
+                    if (difference >= 0)
+                    {
+                        tempItem.value += item.value;
+                    }
+                    else
+                    {
+                        tempItem.value = (item as Currency).maxStack;
+                        item.value -= spaceLeft;
+                        items.Add(item);
+                    }
+                }
+                else
+                {
+                    items.Add(item);
+                }
+                
+            }
+            else if (item.itemType == Item.ItemType.Potion)
+            {
+                Item tempItem = items.Find(potion => potion.itemName.Equals(item.itemName) && (potion as PotionData).currentStack < (potion as PotionData).maxStack);
+                if (tempItem != null)
+                {
+                    if ((tempItem as PotionData).currentStack < (tempItem as PotionData).maxStack)
+                    {
+                        (tempItem as PotionData).currentStack += 1;
+                    }
+                    else
+                    {
+                        items.Add(item);
+                    }
+                }
+                else
+                {
+                    items.Add(item);
+                }
+                
+                
+            }
+        }
+        else
+        {
+            items.Add(item);
+        }
+        
         Debug.Log($"{item.itemName} added to inventory.");
     }
 
@@ -73,6 +126,20 @@ public class InventoryManager : MonoBehaviour
                 var itemIcon = obj.transform.Find("ItemIcone").GetComponent<Image>();
                 var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
 
+                if (item.stackable)
+                {
+                    var itemCount = obj.transform.Find("ItemCount").GetComponent<TMP_Text>();
+
+                    if (item is PotionData potionData)
+                    {
+                        itemCount.text = potionData.currentStack.ToString();
+                    }
+                    else if (item is Currency currency)
+                    {
+                        itemCount.text = currency.value.ToString();
+                    }
+                }
+
                 itemName.text = item.itemName;
                 itemIcon.sprite = item.icon;
 
@@ -103,7 +170,10 @@ public class InventoryManager : MonoBehaviour
         {
             foreach (Transform item in ItemContent)
             {
-                item.Find("RemoveButton").gameObject.SetActive(true);
+                if (!item.GetComponent<InventoryItemController>().item.questItem)
+                {
+                    item.Find("RemoveButton").gameObject.SetActive(true);
+                }
             }
         }
         else

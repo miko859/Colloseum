@@ -66,8 +66,34 @@ public class Health : MonoBehaviour
                 transform.GetComponent<NavMeshAgent>().enabled = false;
                 transform.GetComponent<AIController>().enabled = false;
                 transform.GetComponent<Patrolling>().enabled = false;
+                transform.GetComponent<Patrolling>().enabled = false;
+                transform.GetComponent<AnimationEventHandler>().enabled = false;
+                transform.GetComponent<EffectStatus>().enabled = false;
                 
+                StartCoroutine(DestroyObjectAfterTime());
 
+                if (entityCollider != null)
+                {
+                    //entityCollider.enabled = false;
+                    entityCollider.isTrigger = true;
+                    entityCollider.providesContacts = false;
+                    Debug.Log("Entity collider disabled: " + entityCollider.name);
+                }
+
+                // Disable the weapon collider for the same reason we disabled the boss collider 
+                if (weaponManager != null)
+                {
+                    Collider weaponCollider = weaponManager.GetComponent<Collider>();
+                    if (weaponCollider != null)
+                    {
+                        weaponCollider.enabled = false;
+                        Debug.Log("Weapon collider disabled: " + weaponCollider.name);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No collider found on weapon: " + weaponManager.name);
+                    }
+                }
             }
             else if (transform.CompareTag("Player"))
             {
@@ -78,28 +104,7 @@ public class Health : MonoBehaviour
                 }
             }
 
-            if (entityCollider != null)
-            {
-                //entityCollider.enabled = false;
-                entityCollider.isTrigger = true;
-                entityCollider.providesContacts = false;
-                Debug.Log("Entity collider disabled: " + entityCollider.name);
-            }
-
-            // Disable the weapon collider for the same reason we disabled the boss collider 
-            if (weaponManager != null)
-            {
-                Collider weaponCollider = weaponManager.GetComponent<Collider>();
-                if (weaponCollider != null)
-                {
-                    weaponCollider.enabled = false;
-                    Debug.Log("Weapon collider disabled: " + weaponCollider.name);
-                }
-                else
-                {
-                    Debug.LogWarning("No collider found on weapon: " + weaponManager.name);
-                }
-            }
+            
         }
     }
 
@@ -121,5 +126,12 @@ public class Health : MonoBehaviour
         {
             healthBar.SetHealth(currentHealth);
         }
+    }
+
+    private IEnumerator DestroyObjectAfterTime()
+    {
+        yield return new WaitForSeconds(5);
+        transform.gameObject.isStatic = true;
+        //transform.GetComponent<Rigidbody>().useGravity = false;
     }
 }

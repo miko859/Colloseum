@@ -3692,6 +3692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactPrompt: 
+  entity: {fileID: 8436400490062229924}
   LootItemsRarity: 0
   possibleLoot:
   - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}

@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactPrompt: Press E to interact
+  entity: {fileID: 2292279165291071904}
   LootItemsRarity: 0
   possibleLoot:
   - {fileID: 11400000, guid: 92e0a4c52239010409beef0922642a9f, type: 2}
@@ -923,6 +924,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34896f4f257bf604cb0ca44efa68bc64, type: 2}
   - {fileID: 11400000, guid: 9e6a293735e105141b54b577a75ed037, type: 2}
   - {fileID: 11400000, guid: fcbc255b3ed669f46814680a26d6498f, type: 2}
+  sureLoot: []
   itemDrop: 1
   potionDrop: 1
   moneyDrop: 1

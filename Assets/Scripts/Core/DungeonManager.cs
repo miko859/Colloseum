@@ -37,12 +37,12 @@ public class DungeonManager : MonoBehaviour
         int deadEnemies = 0;
         foreach (GameObject enemy in enemies)
         {
-            if (enemy != null && enemy.tag == "DeadEnemy")
+            if (enemy == null || enemy.tag == "DeadEnemy")
             {
                 deadEnemies++;
             }
         }
-
+        Debug.Log(deadEnemies);
         if (deadEnemies >= totalEnemies)
         {
             return true;
@@ -51,6 +51,7 @@ public class DungeonManager : MonoBehaviour
         {
             return false;
         }
+        
     }
 
     private bool CheckBoss()

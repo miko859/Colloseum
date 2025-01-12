@@ -1,6 +1,7 @@
 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,6 +9,7 @@ using UnityEngine;
 public class Loot : Interactable
 
 {
+    public GameObject entity;
     public Item.LootRarity LootItemsRarity;
     public Item[] possibleLoot;
     public Item[] sureLoot;
@@ -40,6 +42,10 @@ public class Loot : Interactable
         {
             animator.Play("Looting");
         }
+        if (entity.CompareTag("DeadEnemy"))
+        {
+            StartCoroutine(DestroyEntity());
+        }
     }
 
     private void GenerateLoot()
@@ -53,7 +59,15 @@ public class Loot : Interactable
         {
             foreach (Item item in sureLoot) 
             {
-                lootedItems.Add(item);
+                if (item as WeaponData)
+                {
+                    lootedItems.Add(item);
+                }
+                else
+                {
+                    lootedItems.Add(CloneLootItem(item));
+                }
+                
             };
         }
 
@@ -198,6 +212,7 @@ public class Loot : Interactable
         clone.itemName = original.itemName;
         clone.rarity = original.rarity;
         clone.stackable = original.stackable;
+        clone.questItem = original.questItem;
 
         if (original is Currency currency)
         {
@@ -227,5 +242,11 @@ public class Loot : Interactable
         clone.listOfEffects = new List<BuffDebuff>(original.listOfEffects);
 
         return clone;
+    }
+
+    private IEnumerator DestroyEntity()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(entity);
     }
 }

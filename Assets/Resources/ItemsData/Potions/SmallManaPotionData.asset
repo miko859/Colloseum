@@ -19,6 +19,8 @@ MonoBehaviour:
   itemType: 1
   rarity: 0
   stackable: 1
+  questItem: 0
+  listOfEffects: []
   potionType: 1
   amount: 8
   currentStack: 1

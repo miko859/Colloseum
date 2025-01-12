@@ -14,7 +14,7 @@ public class QuestItemInserter : Interactable
 
     public override void Interact()
     {
-        Item questItem = InventoryManager.Instance.items.Find(item => item == neededItem);
+        Item questItem = InventoryManager.Instance.items.Find(item => item.questItem == true);
 
         if (questItem != null)
         {

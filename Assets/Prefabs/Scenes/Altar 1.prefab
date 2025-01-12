@@ -122,5 +122,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   fadeDuration: 2
   neededItem: {fileID: 11400000, guid: bf5cc2bddcb0d054dbf1db4c3d95327a, type: 2}

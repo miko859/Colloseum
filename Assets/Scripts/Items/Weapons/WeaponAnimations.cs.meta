@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: fd99c767af3395747a9643cad2b7564d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bodyAnimator: {instanceID: 0}
+  - weaponData: {instanceID: 0}
+  - overrideController: {instanceID: 0}
+  - lightAttackSound: {fileID: 8300000, guid: 55772acf82e85a6459bb7f79f6deac73, type: 3}
+  - heavyAttackSound: {fileID: 8300000, guid: f563ba536bdec1c408cfbc6e906c00af, type: 3}
+  - blockSound: {instanceID: 0}
+  - bashSound: {instanceID: 0}
+  - hurtSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

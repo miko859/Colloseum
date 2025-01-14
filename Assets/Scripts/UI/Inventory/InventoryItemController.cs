@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +18,11 @@ public class InventoryItemController : MonoBehaviour
 
     public void RemoveItem()
     {
-        InventoryManager.Instance.Remove(item);
-        Destroy(gameObject);
+        //if (!item.questItem)
+        //{
+            InventoryManager.Instance.Remove(item);
+            Destroy(gameObject);
+        //}
     }
 
     public void AddItem(Item newItem)
@@ -49,11 +53,13 @@ public class InventoryItemController : MonoBehaviour
                 }
                 break;
             case Item.ItemType.Potion:
+                var itemCount = transform.Find("ItemCount").GetComponent<TMP_Text>();
 
                 if ((item is PotionData healingPotion) && healingPotion.potionType == PotionType.HEALTH)
                 {
                     player.GetComponent<Health>().Heal(healingPotion.amount);
                     healingPotion.currentStack -= 1;
+                    itemCount.text = healingPotion.currentStack.ToString();
 
                     if (healingPotion.currentStack == 0)
                     {
@@ -65,6 +71,7 @@ public class InventoryItemController : MonoBehaviour
                 {
                     player.GetComponentInChildren<PlayerController>().manaSystem.AddMana(manaPotion.amount);
                     manaPotion.currentStack -= 1;
+                    itemCount.text = manaPotion.currentStack.ToString();
 
                     if (manaPotion.currentStack == 0)
                     {
@@ -75,6 +82,9 @@ public class InventoryItemController : MonoBehaviour
                 break;
             case Item.ItemType.Currency:
                 Debug.Log($"{item.value} gold coins");
+                break;
+            case Item.ItemType.Miscellaneous:
+                Debug.Log($"{item.name} miscellaneous");
                 break;
             default:
                 Debug.LogWarning("Unknown item type.");

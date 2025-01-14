@@ -7,61 +7,61 @@ public class DungeonManager : MonoBehaviour
     public GameObject[] enemies;
     public GameObject victoryScreen;
     private int totalEnemies;
-    public static int deadEnemies = 0;
     bool showingVictoryScreen = false;
     bool stopShowing = false;
-    // Start is called before the first frame update
+    public GameObject bossEntity;
+    public GameObject bossDoor;
+    public GameObject exitDoor;
+
     void Start()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         totalEnemies = enemies.Length;
         victoryScreen.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckEnemies();
-        if (Input.anyKey && showingVictoryScreen==true && stopShowing==true)
+        if (CheckEnemies())
         {
-            victoryScreen.active = false;
-            stopShowing = false;
+            bossDoor.GetComponent<DoorScript>().OpenDoor();
+        }
 
+        if (CheckBoss())
+        {
+            exitDoor.GetComponent<DoorScript>().OpenDoor();
         }
     }
 
-    public void CheckEnemies()
+    public bool CheckEnemies()
     {
         int deadEnemies = 0;
         foreach (GameObject enemy in enemies)
         {
-            if (enemy != null&&enemy.tag == "DeadEnemy")
+            if (enemy != null && enemy.tag == "DeadEnemy")
             {
                 deadEnemies++;
-                Debug.Log("Dead: "+ deadEnemies); 
             }
-
         }
 
-        if (deadEnemies >= totalEnemies&& showingVictoryScreen == false)
+        if (deadEnemies >= totalEnemies)
         {
-            ShowVictoryScreen();
-            Debug.Log("Showing Victory Screen");
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-    private void ShowVictoryScreen()
+    private bool CheckBoss()
     {
-        StartCoroutine(wait());
-
-        victoryScreen.SetActive(true);
-        
-        showingVictoryScreen=true;
-
-    }
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(2);
-        stopShowing = true;
+        if (bossEntity.GetComponent<Health>().GetCurrentHealth() <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

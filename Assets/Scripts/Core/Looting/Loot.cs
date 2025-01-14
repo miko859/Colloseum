@@ -3,16 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditorInternal.VersionControl;
 using UnityEngine;
-using Random = System.Random;
 
 public class Loot : Interactable
 
 {
     public Item.LootRarity LootItemsRarity;
     public Item[] possibleLoot;
+    public Item[] sureLoot;
     private LootDropRates lootDropRates;
     private Animator animator;
     
@@ -50,6 +48,14 @@ public class Loot : Interactable
 
         List<Item> lootedItems = new List<Item>();
         List<Item> lootPool = new List<Item>(possibleLoot);
+
+        if (sureLoot.Length > 0)
+        {
+            foreach (Item item in sureLoot) 
+            {
+                lootedItems.Add(item);
+            };
+        }
 
         if (itemDrop)
         {
@@ -170,8 +176,25 @@ public class Loot : Interactable
 
     private Item CloneLootItem(Item original)
     {
-        Item clone = (original is Currency) ? ScriptableObject.CreateInstance<Currency>() : ScriptableObject.CreateInstance<PotionData>();
+        Item clone;
+        if (original.itemType == Item.ItemType.Potion)
+        {
+            clone = ScriptableObject.CreateInstance<PotionData>();
+        }
+        else if (original.itemType == Item.ItemType.Currency)
+        {
+            clone = ScriptableObject.CreateInstance<Currency>();
+        }
+        else if (original.itemType == Item.ItemType.Miscellaneous)
+        {
+            clone = ScriptableObject.CreateInstance<MiscData>();
+        }
+        else
+        {
+            clone= ScriptableObject.CreateInstance<Item>();
+        }
 
+        clone.name = original.itemName;
         clone.itemName = original.itemName;
         clone.rarity = original.rarity;
         clone.stackable = original.stackable;

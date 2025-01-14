@@ -10,13 +10,15 @@ public abstract class Item : ScriptableObject
     public ItemType itemType;
     public LootRarity rarity;
     public bool stackable = false;
+    public bool questItem = false;
     public List<BuffDebuff> listOfEffects = new List<BuffDebuff>();
 
     public enum ItemType
     {
         Equipment,
         Potion,
-        Currency
+        Currency,
+        Miscellaneous
     }
     public enum LootRarity
     {

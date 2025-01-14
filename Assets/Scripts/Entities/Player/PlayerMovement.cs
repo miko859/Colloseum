@@ -85,12 +85,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (holdShift)
         {
-            
-
             if (staminaBar.GetCurrentStamina() > 0.2)
             {
                 staminaBar.ReduceStamina(0.2);
-                target_speed = sprint_speed * speedMultiplier;
+                target_speed = base_move_speed + base_move_speed;
             }
             else
             {

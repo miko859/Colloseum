@@ -10,11 +10,11 @@ public class Silence : BuffDebuff
 
     public override void Functionality()
     {
-        gameObject.transform.GetComponent<Health>().DealDamage(data.DamagePerTick * stacks);
+        gameObject.transform.GetComponentInChildren<PlayerController>().ChangeSilence();
     }
 
     public override void ReverseEffect()
     {
-        throw new System.NotImplementedException();
+        gameObject.transform.GetComponentInChildren<PlayerController>().ChangeSilence();
     }
 }

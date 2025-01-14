@@ -20,6 +20,7 @@ public abstract class Trap : MonoBehaviour
     [Header("Trap Animation")]
     public Animator animator;
 
+    protected bool turnOffTrap = false;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public abstract class Trap : MonoBehaviour
         damageCollider.isTrigger = false;
         detectionCollider.enabled = true;
         damageCollider.enabled = false;
+        OffParticles();
     }
 
     /// <summary>
@@ -81,7 +83,9 @@ public abstract class Trap : MonoBehaviour
     /// <returns></returns>
     protected IEnumerator SetTimerToEndTrap(float timeTillEnd)
     {
-        yield return new WaitForSecondsRealtime(timeTillEnd);
+        Debug.Log("Nastavil sa timer " + timeTillEnd);
+        yield return new WaitForSeconds(timeTillEnd);
+        turnOffTrap = true;
         StopTrap();
     }
 
@@ -148,5 +152,6 @@ public abstract class Trap : MonoBehaviour
     public abstract void StartTrap();
     public abstract void RunningTrap(Collider other);
     public abstract void StopTrap();
+    public virtual void OffParticles() { }
 
 }

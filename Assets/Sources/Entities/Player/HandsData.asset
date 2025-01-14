@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27701a2f56334c4418d85ef30a87d0ea, type: 3}
+  m_Name: HandsData
+  m_EditorClassIdentifier: 
+  itemName: Ruky bazuky
+  icon: {fileID: 0}
+  value: 0
+  description: No weapon? No problem! We still have our manly hands!
+  itemType: 0
+  lightAttackTypesCount: 1
+  lightAttackDuration1: 0.6
+  lightAttackDuration2: 0
+  lightAttackDuration3: 0
+  heavyAttackChargeDuration: 0
+  heavyAttackPerformDuration: 0
+  bashDuration: 0
+  hurtDuration: 0.5
+  equipUnequipDuration: 0.333
+  lightAttackAnimation: LightAttack
+  heavyAttackAnimation: HeavyAttack
+  heavyAttackPerformAnimation: HeavyAttackPerform
+  blockAnimation: Block
+  bashAnimation: Bash
+  hurtAnimation: Hurt
+  lightAttackDamage: 1
+  heavyAttackDamage: 0
+  blockTreshhold: 0
+  heavyAttackStaminaCons: 0
+  bashStaminaCons: 0
+  blockStaminaCons: 0
+  weaponPrefab: {fileID: 3467031634182292819, guid: a270703c193a48f499b625e4399d2b8d, type: 3}
+  weaponName: Hands

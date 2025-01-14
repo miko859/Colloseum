@@ -11,6 +11,7 @@ TagManager:
   - HeavyBlade
   - Enemy
   - DeadEnemy
+  - Trap
   layers:
   - Default
   - TransparentFX
@@ -23,9 +24,9 @@ TagManager:
   - CameraVisible
   - Weapon
   - Fireball
-  - 
-  - 
-  - 
+  - post
+  - no post
+  - Loot
   - 
   - 
   - 

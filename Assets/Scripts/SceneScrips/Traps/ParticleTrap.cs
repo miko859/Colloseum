@@ -6,13 +6,28 @@ public class ParticleTrap : Trap
     private float elapsedTime = 0;
     [Header("Particles to activate")]
     public ParticleSystem[] particleObjects;
-    [SerializeField] public bool timer = false;
-    float timeTillEnd = 0f;
-#if UNITY_EDITOR
-    /*[ShowIf("timer", true, false)][SerializeField]*/
-#endif
+    public bool timer = false;
+    public float timeTillEnd = 2f;
+
+    [Header("Audio Settings")]
+    public AudioSource trapAudio; 
+
+    public override void OffParticles()
+    {
+        foreach (ParticleSystem particle in particleObjects)
+        {
+            particle.Stop();
+        }
+    }
+
     public override void StartTrap()
     {
+        // Play the sound
+        if (trapAudio != null)
+        {
+            trapAudio.Play();
+        }
+
         SetDetectionCollidor(false, false);
         SetDamageCollidor(true, true);
 
@@ -27,14 +42,13 @@ public class ParticleTrap : Trap
 
         if (animator != null)
         {
-            animator.Play("trap", 0, 0f);
+            animator.Play("down", 0, 0f);
         }
 
         if (timer)
         {
             StartCoroutine(SetTimerToEndTrap(timeTillEnd));
         }
-
     }
 
     public override void RunningTrap(Collider other)
@@ -74,19 +88,20 @@ public class ParticleTrap : Trap
                     ApplyEffect(other);
                 }
             }
-
         }
-
     }
+
     public override void StopTrap()
     {
-        if (!timer) 
+        if (!timer || (timer && turnOffTrap))
         {
+            turnOffTrap = false;
             SetDamageCollidor(false, false);
 
             if (!singleUse)
             {
                 SetDetectionCollidor(true, true);
+                animator.Play("up", 0, 0f);
             }
 
             foreach (var particle in particleObjects)

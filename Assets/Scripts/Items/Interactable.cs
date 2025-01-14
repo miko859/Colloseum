@@ -1,13 +1,15 @@
+using TMPro;
 using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
     public string interactPrompt = "Press E to interact";
+
     /// <summary>
     /// Function, triggered by interaction by player with items
     /// </summary>
     public abstract void Interact();
-    public abstract void EquipWeapon(Item item);
+    public virtual void EquipWeapon(Item item) { }
 
 
     /// <summary>

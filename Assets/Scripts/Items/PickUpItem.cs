@@ -5,18 +5,22 @@ public class PickUpItem : Interactable
     public Weapon weaponPrefab; // Prefab of weapon that adds to inventory
     public bool destroyObject;
     private string posInHierarchyOfWeapon = "Body"; 
-    public Item item;
 
     public static PickUpItem Instance;
 
     public override void Interact()
     {
-        InventoryManager.Instance.Add(item);
+        InventoryManager.Instance.Add(weaponPrefab.weaponData);
 
         if (destroyObject)
         {
             Destroy(transform.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        interactPrompt = "Press E to pick up item";
     }
 
     public void Awake()

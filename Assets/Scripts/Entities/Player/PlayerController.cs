@@ -3,69 +3,71 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 
-public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
+public class PlayerController : MonoBehaviour
 {
-    public PlayerInputActions playerInputActions;
+    public PlayerInput playerInput;
     public Weapon currentWeapon;
     private EquipedWeaponManager equipedWeaponManager;
+    public SpellManager spellManager;
+
+    public ManaSystem manaSystem;
 
     public Animator animator;
     public StaminaBar staminaBar;
 
     private bool isCharging = true;
     private bool isWalking = false;
-
-    [Header("Testujem")]
-    private AnimatorStateInfo stateInfo;
-    private Animator oldAnimator;
-    private AnimatorClipInfo[] clipInfo;
-    private AnimatorControllerParameter[] parametre;
+    private bool isBlocking = false;
+    private bool isRunning = false;
+    private bool isSilenced = false;
+    public ToggleUI toggleUI;
     private Animator bodyAni;
+
+
 
     private void Awake()
     {
         equipedWeaponManager = GetComponent<EquipedWeaponManager>();
         staminaBar.SetMaxStamina(100, 2.5);
-
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Player.AddCallbacks(this);
-
-        playerInputActions.Player.Block.started -= OnBlock;
-        playerInputActions.Player.Block.canceled -= OnBlock;
-
-        playerInputActions.Player.Attack.canceled -= OnAttack;
-        playerInputActions.Player.Attack.started -= OnAttack;
-        playerInputActions.Player.Attack.performed -= OnAttack;
-
-        playerInputActions.Player.Run.started -= OnRun;
-        //playerInputActions.Player.Run.performed -= OnRun;
-        playerInputActions.Player.Run.canceled -= OnRun;
-
-
-        playerInputActions.Player.Enable();
+        playerInput = GetComponent<PlayerInput>();
+        EquipedWeaponManager.Instance.AddWeapon(currentWeapon);
     }
 
     private void OnEnable()
     {
-        playerInputActions.Player.Enable();
+        playerInput.currentActionMap.Enable();
     }
-
+    public Transform GetBodyTransform()
+    {
+        if (transform.name == "Body")
+        {
+            return transform;
+        }
+        else
+        {
+            Transform bodyTransform = transform.Find("Body");
+            if (bodyTransform == null)
+            {
+                Debug.LogError("Body transform not found! Ensure the hierarchy is correct.");
+            }
+            return bodyTransform;
+        }
+    }
     private void OnDisable()
     {
-        playerInputActions.Player.Disable();
+        playerInput.currentActionMap.Disable();
     }
 
     private bool isBashing = false;
 
     private void Update()
     {
-        if (playerInputActions.Player.Attack.IsPressed() && playerInputActions.Player.Block.IsInProgress())
+        if (playerInput.actions["Attack"].IsPressed() && playerInput.actions["Block"].IsInProgress())
         { 
             if (staminaBar.GetCurrentStamina() > currentWeapon.weaponData.bashStaminaCons && !isBashing)
             {
                 isBashing = !isBashing;
                 StartCoroutine(BashCooldown());
-                Debug.Log("Bash");
                 currentWeapon.Bash();
                 staminaBar.ReduceStamina(currentWeapon.weaponData.bashStaminaCons);
                 currentWeapon.SetIsBashing(true);
@@ -139,6 +141,15 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     public bool GetIsBashing()
     {
         return isBashing;
+    }
+
+    public bool GetIsSilenced()
+    {
+        return isSilenced;
+    }
+    public void ChangeSilence()
+    {
+        isSilenced = !isSilenced;
     }
 
     public void OnChangeWeapon(InputAction.CallbackContext context)
@@ -234,12 +245,20 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
     /// <param name="context"></param>
     public void OnBlock(InputAction.CallbackContext context)
     {
-        currentWeapon.Block();    
+        if (!isBlocking)
+        {
+            currentWeapon.Block();
+            isBlocking = !isBlocking;
+        }
+        else
+        {
+            isBlocking = !isBlocking;
+        }
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Vector2 value = playerInputActions.Player.Movement.ReadValue<Vector2>();
+        Vector2 value = playerInput.actions["Movement"].ReadValue<Vector2>();
 
         if (value.x != 0 || value.y != 0)
         {
@@ -258,19 +277,30 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        GetComponent<PlayerMovement>().Run();
 
-        if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
+        if (!isRunning)
         {
-            animator.SetBool("Run", true);
-            currentWeapon.GetAnimator().SetBool("Run", true);
-            
+            isRunning = !isRunning;
+            GetComponent<PlayerMovement>().Run();
+
+            if (context.action.IsPressed() && staminaBar.GetCurrentStamina() > 0.2)
+            {
+                Debug.Log("utekaaaaam");
+                animator.SetBool("Run", true);
+                currentWeapon.GetAnimator().SetBool("Run", true);
+
+            }
+            else
+            {
+                animator.SetBool("Run", false);
+                currentWeapon.GetAnimator().SetBool("Run", false);
+            }
         }
         else
         {
-            animator.SetBool("Run", false);
-            currentWeapon.GetAnimator().SetBool("Run", false);
+            isRunning = !isRunning;
         }
+        
     }
 
     private bool interacted = false;
@@ -304,9 +334,61 @@ public class PlayerController : MonoBehaviour, PlayerInputActions.IPlayerActions
         }
     }
 
+    public void OnSpellCast(InputAction.CallbackContext context)
+    {
+        if (context.started && !isSilenced)
+        {
+            spellManager.CallActiveBall();
+        }
+    }
+
+    public void OnSpellCasting(InputAction.CallbackContext context)
+    {
+        if (!isSilenced)
+        {
+            if (context.action.IsPressed())
+            {
+                spellManager.CallActive();
+            }
+            else
+            {
+                spellManager.CallDeactive();
+            }
+        }
+    }
+
+    public void OnUtilCast(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed() && !isSilenced)
+        {
+            spellManager.CallActiveUtility();
+        }
+    }
+    public void OnSpellSwitch(InputAction.CallbackContext context)
+    {
+        if (context.performed) {
+            spellManager.SpellSwitch(context.control.name);
+        }
+    }
+
     public void GotHit()
     {
         currentWeapon.GetComponent<WeaponAnimations>().GotHit();
     }
 
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            toggleUI.HandleInventoryToggle();
+        }
+    }
+
+    public void OnMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            toggleUI.HandleMenuToggle();
+        }
+    }
 }

@@ -22,7 +22,8 @@ public static class BuffDebuffData
         Id = 3,
         Name = "Posion",
         Duration = 5f,
-        DamagePerTick = 2
+        DamagePerTick = 2,
+        Frequency = 1
     };
 
     public static BuffDebuffConfig BleedingConfig = new BuffDebuffConfig
@@ -30,7 +31,9 @@ public static class BuffDebuffData
         Id = 4,
         Name = "Bleeding",
         Duration = 6,
-        DamagePerTick = 1
+        DamagePerTick = 1, 
+        Frequency = 1
+        
     };
 
     public static BuffDebuffConfig WeaknessConfig = new BuffDebuffConfig

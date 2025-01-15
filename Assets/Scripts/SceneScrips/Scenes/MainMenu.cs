@@ -62,6 +62,7 @@ public class MainMenu : MonoBehaviour
     public void BackToMainMenu()
     {
         options.SetActive(false);
+        activeScreen.SetActive(false);
     }
 
     public void ScreenSwitchToVideoOption()

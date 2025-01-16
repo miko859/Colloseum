@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217510485def2664f9a440af3a2a1c01, type: 3}
   m_Name: SmallManaPotionData
   m_EditorClassIdentifier: 
-  itemName: Small Mana Flask
+  itemName: Small Mana
   icon: {fileID: 21300000, guid: 1ac7d56671b0e8147bfe1565289b33ca, type: 3}
   value: 17
   description: Small flask of blue liquid with magical powers.
